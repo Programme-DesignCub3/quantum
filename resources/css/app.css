@@ -1,11 +1,146 @@
 @import 'tailwindcss';
 
+@plugin "@iconify/tailwind4";
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("http://quantum.test/fonts/Inter-VariableFont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("http://quantum.test/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
+}
+
+@layer base {
+    /* Headline */
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 125%;
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 133%;
+    }
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 140%;
+    }
+    h4 {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 144%;
+    }
+    h5 {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+    }
+    h6 {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 143%;
+    }
+    /* Body Text */
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 143%;
+    }
+    /* Caption Text */
+    span {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+}
+
+@layer components {
+    /* Body Text */
+    p.large {
+        @apply text-base font-normal leading-[150%];
+    }
+    p.small {
+        @apply text-xs font-normal leading-[140%];
+    }
+    /* Caption Text */
+    span.small {
+        @apply text-[11px] font-normal leading-[145%];
+    }
+    span.extrasmall {
+        @apply text-[10px] font-normal leading-[140%];
+    }
+    /* Custom Gradient */
+    .bg-gradient-qt-green {
+        background: #00686B;
+        background: linear-gradient(180deg,rgba(0, 104, 107, 0) 0%, rgba(0, 104, 107, 1) 37%, rgba(0, 104, 107, 1) 74%, rgba(0, 54, 56, 1) 100%);
+    }
+    .bg-gradient-black-transparent {
+        background: #000000;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+    }
+}
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    --color-qt-green-normal: #127681;
+    --color-qt-green-hover: #00686B;
+}
+
+[x-cloak] {
+    @apply hidden!;
+}
+
+.splide__pagination {
+    &.slide-home {
+        @apply gap-2 flex-nowrap! z-20!;
+        li {
+            @apply w-full;
+        }
+        button {
+            &.splide__pagination__page {
+                @apply w-full h-1 rounded-full opacity-30;
+                &.is-active {
+                    @apply opacity-100;
+                    transform: scale(1) !important;
+                }
+                &:focus {
+                    @apply outline-white;
+                }
+            }
+        }
+    }
+    &.slide-testimonial {
+        @apply gap-2 flex-nowrap! z-20! -bottom-9;
+        li {
+            @apply w-8;
+        }
+        button {
+            &.splide__pagination__page {
+                @apply w-full h-1 rounded-full opacity-30;
+                &.is-active {
+                    @apply opacity-100;
+                    transform: scale(1) !important;
+                }
+                &:focus {
+                    @apply outline-white;
+                }
+            }
+        }
+    }
 }
