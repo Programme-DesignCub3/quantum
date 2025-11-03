@@ -52,16 +52,16 @@
                 <div class="flex flex-col">
                     <x-displays.accordion title="Tentang">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Tentang Kami</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Award</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Partner Marketplace</a>
+                            <a href="{{ route('about') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Tentang Kami</a>
+                            <a href="{{ route('about') }}#award" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Award</a>
+                            <a href="{{ route('about') }}#marketplace" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Partner Marketplace</a>
                         </div>
                     </x-displays.accordion>
                     <x-displays.accordion title="Produk">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kompor</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Selang dan Regulator Gas</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Suku Cadang</a>
+                            <a href="{{ route('product.category', 'kompor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kompor</a>
+                            <a href="{{ route('product.category', 'regulator-dan-selang-gas') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Selang dan Regulator Gas</a>
+                            <a href="{{ route('product.category', 'suku-cadang') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Suku Cadang</a>
                         </div>
                     </x-displays.accordion>
                     <x-displays.accordion title="Distributor">
@@ -91,19 +91,19 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <a href="#" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="https://www.linkedin.com/company/quantum-home-appliances" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[jam--linkedin] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="#" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="https://www.facebook.com/QuantumIDN" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ri--facebook-fill] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="#" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="https://www.youtube.com/@quantumindonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--youtube] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="#" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="https://www.instagram.com/quantum_indonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--instagram] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="#" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="https://www.tiktok.com/@quantum_indonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ic--baseline-tiktok] text-qt-green-normal text-[32px]"></span>
                 </a>
             </div>

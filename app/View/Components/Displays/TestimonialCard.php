@@ -8,13 +8,16 @@ use Illuminate\View\Component;
 
 class TestimonialCard extends Component
 {
+    // Props
+
+    // DATA = data from controller
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public array $payload,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

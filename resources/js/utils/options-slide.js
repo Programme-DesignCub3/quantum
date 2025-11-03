@@ -44,3 +44,13 @@ export const whyChooseHomeSwipeOptions = {
     gap: '2rem',
     padding: '1rem'
 }
+
+export const awardAboutSwipeOptions = {
+    arrows: false,
+    pagination: false,
+    drag: 'free',
+    perPage: 1,
+    autoWidth: true,
+    gap: '2rem',
+    padding: '1.5rem'
+}

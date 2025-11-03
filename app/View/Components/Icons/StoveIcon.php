@@ -12,7 +12,8 @@ class StoveIcon extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public ?string $class
+        public ?string $class,
+        public ?string $color,
     ) {}
 
     /**

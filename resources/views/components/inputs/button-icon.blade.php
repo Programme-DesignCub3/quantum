@@ -8,7 +8,11 @@
         $class
     ])>
         @if($icon)
-            <span @class([$icon, $iconClass])></span>
+            <span @class([
+                $icon,
+                $iconClass,
+                'shrink-0'
+            ])></span>
         @endif
         @if(isset($image))
             {{ $image }}
@@ -25,7 +29,11 @@
         $class
     ]) @disabled($disabled)>
         @if($icon)
-            <span @class([$icon, $iconClass])></span>
+            <span @class([
+                $icon,
+                $iconClass,
+                'shrink-0'
+            ])></span>
         @endif
         @if(isset($image))
             {{ $image }}

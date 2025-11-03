@@ -9,7 +9,7 @@
         {{ $slot }}
     </a>
 @else
-    <button type="{{ $type ?? 'button' }}" @class([
+    <button type="{{ $type ?? 'button' }}" @if(isset($event)) @click="{{ $event }}" @endif @class([
         'transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed',
         $sizeClass,
         $variantClass,

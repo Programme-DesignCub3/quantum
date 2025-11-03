@@ -8,12 +8,25 @@ use Illuminate\View\Component;
 
 class ProductCard extends Component
 {
+    // Props
+
+    // DATA = data from controller
+
+    public array $dataDrawer = [];
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        public array $payload,
+    ) {
+        $this->dataDrawer = [
+            'image' => $this->payload['image'],
+            'category' => $this->payload['category'],
+            'name' => $this->payload['name'],
+            'price' => $this->payload['price'],
+            'marketplace' => $this->payload['marketplace'],
+        ];
     }
 
     /**

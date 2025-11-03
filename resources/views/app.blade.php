@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +9,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ config('app.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="antialiased">
-    <main class="relative max-w-md mx-auto font-sans overflow-hidden">
-        <x-navigation.navbar />
+<body class="antialiased max-w-md mx-auto font-sans bg-pink-200/90">
+    <x-navigation.navbar
+        :transparent="Route::currentRouteName() === 'home'"
+        :sticky="Route::currentRouteName() !== 'home'"
+    />
+    @if(Route::currentRouteName() !== 'home')
+        @if(Route::current() && count(Route::current()->parameters()) > 0)
+            {{ Breadcrumbs::render(Route::currentRouteName(),
+                ...array_values(Route::current()->parameters())
+            ) }}
+        @else
+            {{ Breadcrumbs::render(Route::currentRouteName()) }}
+        @endif
+    @endif
         @yield('content')
-        <x-navigation.footer />
-    </main>
+    <x-navigation.floating />
+    <x-navigation.footer />
     @livewireScripts
     @stack('scripts')
 </body>
