@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <main x-data="about" class="bg-white">
+    <main x-data="about" id="about" class="bg-white">
         <section class="relative">
             <img class="w-full h-[560px] object-cover object-top" src="{{ asset('images/about-mobile.jpg') }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">

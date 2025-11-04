@@ -54,3 +54,23 @@ export const awardAboutSwipeOptions = {
     gap: '2rem',
     padding: '1.5rem'
 }
+
+export const superiorProductSwipeOptions = {
+    arrows: false,
+    pagination: false,
+    drag: 'free',
+    perPage: 1,
+    autoWidth: true,
+    gap: '2rem',
+    padding: '1rem'
+}
+
+export const guideProductSwipeOptions = {
+    arrows: false,
+    pagination: false,
+    drag: 'free',
+    perPage: 1,
+    autoWidth: true,
+    gap: '2rem',
+    padding: '1rem'
+}

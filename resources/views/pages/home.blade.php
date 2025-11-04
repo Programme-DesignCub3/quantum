@@ -1,8 +1,8 @@
 @extends('app')
 
 @section('content')
-    <main class="bg-white">
-        <section class="splide slideshow-home relative" id="homepage" role="group" aria-label="Quantum Home Slides">
+    <main id="homepage" class="bg-white">
+        <section class="splide slideshow-home relative" role="group" aria-label="Quantum Home Slides">
             <div class="absolute z-10 flex flex-col justify-end size-full">
                 <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-28 min-[375px]:px-12">
                     <h1>Pilihan Andalan Buat Dapur Impian</h1>
@@ -119,7 +119,7 @@
                         <ul class="splide__list">
                             <li class="splide__slide">
                                 <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl" src="{{ asset('images/harga-terjangkau-thumbnail.jpg') }}" alt="">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-1.jpg') }}" alt="">
                                     <div class="p-2 space-y-3">
                                         <h4>Harga Terjangkau</h4>
                                         <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
@@ -128,19 +128,28 @@
                             </li>
                             <li class="splide__slide">
                                 <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl" src="{{ asset('images/harga-terjangkau-thumbnail.jpg') }}" alt="">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-2.jpg') }}" alt="">
                                     <div class="p-2 space-y-3">
-                                        <h4>Harga Terjangkau</h4>
-                                        <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
+                                        <h4>Aman Digunakan</h4>
+                                        <p class="small text-[#9A9A9A]">Dilengkapi fitur keselamatan canggih yang dirancang khusus untuk melindungi Anda dan keluarga saat memasak.</p>
                                     </div>
                                 </div>
                             </li>
                             <li class="splide__slide">
                                 <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl" src="{{ asset('images/harga-terjangkau-thumbnail.jpg') }}" alt="">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-3.jpg') }}" alt="">
                                     <div class="p-2 space-y-3">
-                                        <h4>Harga Terjangkau</h4>
-                                        <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
+                                        <h4>Mudah & Praktis</h4>
+                                        <p class="small text-[#9A9A9A]">Desain yang mudah digunakan  membuat pengalaman memasak jadi lebih simpel, nyaman, dan tanpa ribet.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="flex flex-col gap-2 w-60">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-4.jpg') }}" alt="">
+                                    <div class="p-2 space-y-3">
+                                        <h4>Awet & Tahan Lama</h4>
+                                        <p class="small text-[#9A9A9A]">Quantum terus berinovasi untuk selalu menghasilkan produk yang mampu menghemat konsumsi gas hingga 30%.</p>
                                     </div>
                                 </div>
                             </li>

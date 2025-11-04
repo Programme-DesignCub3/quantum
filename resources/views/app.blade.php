@@ -13,7 +13,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="antialiased max-w-md mx-auto font-sans bg-pink-200/90">
+<body class="antialiased max-w-md mx-auto font-sans bg-white">
+{{-- <body class="antialiased max-w-md mx-auto font-sans bg-pink-200/90"> --}}
     <x-navigation.navbar
         :transparent="Route::currentRouteName() === 'home'"
         :sticky="Route::currentRouteName() !== 'home'"

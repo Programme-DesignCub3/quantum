@@ -11,6 +11,8 @@ class ProductCard extends Component
     // Props
 
     // DATA = data from controller
+    // SIZE = 'lg' | 'md' | 'sm' (default: 'md')
+    // DIRECTION = 'row' | 'col' (default: 'col')
 
     public array $dataDrawer = [];
 
@@ -19,6 +21,8 @@ class ProductCard extends Component
      */
     public function __construct(
         public array $payload,
+        public ?string $size = 'md',
+        public ?string $direction = 'col',
     ) {
         $this->dataDrawer = [
             'image' => $this->payload['image'],

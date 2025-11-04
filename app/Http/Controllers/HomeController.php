@@ -27,6 +27,7 @@ class HomeController extends Controller
                 ]
             ],
             [
+                'label' => 'Best Seller',
                 'image' => asset('images/product-2.jpg'),
                 'category' => 'Kompor Gas',
                 'name' => 'QGC - 101 AB Hitam',

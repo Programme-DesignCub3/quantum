@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <main x-data="product" class="bg-white">
+    <main x-data="product" id="product" class="bg-white">
         <section class="relative">
             <img class="w-full h-[560px] object-cover" src="{{ asset('images/product-mobile.jpg') }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
@@ -9,71 +9,141 @@
                 <p class="large">Andalkan kompor Quantum yang bikin setiap ide masak jadi sempurna</p>
             </div>
         </section>
-        <section>
-            <div :class="isTop ? 'top-[88px] duration-300 delay-130' : 'top-0 duration-100'" class="sticky z-40 flex flex-col transition-all ease-in-out">
-                <div class="flex justify-evenly gap-2 p-2 bg-[#106B75]">
-                    <a href="{{ route('product') }}" class="flex flex-col gap-3 justify-start items-center bg-[#0B474D] rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5">
-                        <span class="icon-[mingcute--grid-line] text-[28px]"></span>
-                        <span class="font-semibold leading-[133%]">Semua</span>
-                    </a>
-                    <a href="{{ route('product.category', 'kompor') }}" class="flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5">
-                        <x-icons.stove-icon class="fill-white stroke-white" />
-                        <span class="font-semibold leading-[133%]">Kompor</span>
-                    </a>
-                    <a href="{{ route('product.category', 'regulator-dan-selang-gas') }}" class="flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5">
-                        <x-icons.regulator-icon class="fill-white stroke-white" />
-                        <span class="font-semibold leading-[133%]">Regulator & Selang Gas</span>
-                    </a>
-                    <a href="{{ route('product.category', 'suku-cadang') }}" class="flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5">
-                        <x-icons.target-icon class="fill-white stroke-white" />
-                        <span class="font-semibold leading-[133%]">Suku Cadang</span>
-                    </a>
-                </div>
-                <div class="flex flex-col bg-white">
-                    <div class="flex gap-2 py-2 px-4">
-                        <button type="button" class="flex justify-center items-center size-9 cursor-pointer">
-                            <span class="icon-[mage--filter] text-2xl"></span>
-                        </button>
-                        <div class="flex gap-2 w-full">
-                            <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] flex-auto cursor-pointer">
-                                Jenis
-                            </button>
-                            <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] flex-auto cursor-pointer">
-                                Tipe Kategori
-                            </button>
-                            <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] flex-auto cursor-pointer">
-                                Harga
-                            </button>
+        <livewire:components.displays.product-list :category="Route::current()->parameters('category')" />
+        <section class="flex flex-col gap-[42px] py-[92px]">
+            <div class="space-y-4 text-center max-w-xs mx-auto">
+                <h2>Kenapa Kompor Quantum Jadi Andalan?</h2>
+                <p class="text-[#6D6D6D]">Kompor Quantum hadir dengan teknologi andal untuk hasil masakan yang sempurna</p>
+            </div>
+            <div class="flex flex-col gap-8">
+                <div class="px-4">
+                    <div class="relative rounded-3xl overflow-hidden">
+                        <img class="w-full h-[300px] object-cover object-top" src="{{ asset('images/superior-1.jpg') }}" alt="">
+                        <div class="absolute bottom-0 left-0 w-full h-3/4 flex items-end bg-gradient-black-transparent">
+                            <div class="space-y-3 py-6 px-4 text-white">
+                                <h4>Apinya Stabil dan Merata</h4>
+                                <p class="small">Kontrol panas lebih mudah dengan masak pakai kompor Quantum</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex justify-between py-2 px-4">
-                        <button type="button" class="w-[170px] flex justify-between items-center rounded-xl p-3 border border-[#E9E9E9]">
-                            <p class="text-[#6D6D6D]">Terbaru</p>
-                            <span class="icon-[lucide--chevron-down] text-xl"></span>
-                        </button>
-                        <div class="flex border border-[#F4F4F4] rounded-xl">
-                            <button type="button" class="p-2.5 cursor-pointer">
-                                <x-icons.grid-square-icon class="stroke-[#6D6D6D] fill-none" />
-                            </button>
-                            <button type="button" class="border-x border-[#E9E9E9] p-2.5 cursor-pointer bg-[#F4F4F4]">
-                                <x-icons.grid-row-icon class="stroke-[#6D6D6D] fill-none" />
-                            </button>
-                            <button type="button" class="p-2.5 cursor-pointer">
-                                <x-icons.grid-col-icon class="stroke-[#6D6D6D] fill-none" />
-                            </button>
-                        </div>
+                </div>
+                <div class="splide superior-product" role="group" aria-label="Superior Product">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="flex flex-col gap-2 w-60">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/superior-2.jpg') }}" alt="">
+                                    <div class="p-2 space-y-3">
+                                        <h4>Hemat Gas</h4>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="flex flex-col gap-2 w-60">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/superior-3.jpg') }}" alt="">
+                                    <div class="p-2 space-y-3">
+                                        <h4>Desain Modern dan Fungsional</h4>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="flex flex-col gap-2 w-60">
+                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/superior-4.jpg') }}" alt="">
+                                    <div class="p-2 space-y-3">
+                                        <h4>Fitur Aman, Masak Nyaman</h4>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="bg-[#F4F4F4] px-4 p-1">
-                <p class="text-[#6D6D6D] p-2">12 Produk</p>
-                <div class="grid grid-cols-2 gap-4">
-                    @foreach($products as $product)
-                        <x-displays.product-card :payload="$product" />
-                    @endforeach
+        </section>
+        <section class="flex flex-col gap-[42px] pt-9 pb-[92px]">
+            <div class="space-y-4 text-center max-w-xs mx-auto">
+                <h2>Panduan dan Tutorial</h2>
+                <p class="text-[#6D6D6D]">Yuk, cek panduan dan tutorial praktis biar pengalaman masak kamu lebih nyaman</p>
+            </div>
+            <div class="splide guide-product" role="group" aria-label="Guide and Tutorial Product">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="relative rounded-3xl overflow-hidden max-w-60 h-[300px]">
+                                <img class="size-full object-cover object-center" src="{{ asset('images/guide-1.jpg') }}" alt="">
+                                <div class="absolute bottom-0 left-0 w-full h-3/4 flex items-end bg-gradient-black-transparent">
+                                    <div class="space-y-3 py-6 px-4 text-white">
+                                        <h4>Panduan Membersihkan Kompor Gas 1 Tungku</h4>
+                                        <x-inputs.button type="button" size="md" color="white">
+                                            Selengkapnya
+                                        </x-inputs.button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="relative rounded-3xl overflow-hidden max-w-60 h-[300px]">
+                                <img class="size-full object-cover object-center" src="{{ asset('images/guide-2.jpg') }}" alt="">
+                                <div class="absolute bottom-0 left-0 w-full h-3/4 flex items-end bg-gradient-black-transparent">
+                                    <div class="space-y-3 py-6 px-4 text-white">
+                                        <h4>Tutorial Memasang Selang Regulator ke Kompor Gas</h4>
+                                        <x-inputs.button type="button" size="md" color="white">
+                                            Selengkapnya
+                                        </x-inputs.button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="relative rounded-3xl overflow-hidden max-w-60 h-[300px]">
+                                <img class="size-full object-cover object-center" src="{{ asset('images/guide-3.jpg') }}" alt="">
+                                <div class="absolute bottom-0 left-0 w-full h-3/4 flex items-end bg-gradient-black-transparent">
+                                    <div class="space-y-3 py-6 px-4 text-white">
+                                        <h4>Solusi Cepat Kalau Kompor Gas Susah Menyala</h4>
+                                        <x-inputs.button type="button" size="md" color="white">
+                                            Selengkapnya
+                                        </x-inputs.button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="flex justify-center">
-
+            </div>
+        </section>
+        <section class="py-[60px] px-4">
+            <h2 class="mb-4">Info Lainnya</h2>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4 border border-[#DBDBDB] rounded-3xl py-6 px-4">
+                    <div class="flex gap-2.5">
+                        <div class="space-y-1">
+                            <h3>Tips dan Edukasi</h3>
+                            <p>Simak Tips dan Edukasi Penting Seputar Produk Quantum</p>
+                        </div>
+                        <div class="shrink-0 flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                            <x-icons.tips-idea-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
+                        </div>
+                    </div>
+                    <div class="flex justify-start">
+                        <x-inputs.button type="button" size="lg">
+                            Lihat
+                        </x-inputs.button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 border border-[#DBDBDB] rounded-3xl py-6 px-4">
+                    <div class="flex gap-2.5">
+                        <div class="space-y-1">
+                            <h3>Tutorial Video</h3>
+                            <p>Simak berbagai video tutorial praktis seputar produk Quantum</p>
+                        </div>
+                        <div class="shrink-0 flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                            <x-icons.video-lesson-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
+                        </div>
+                    </div>
+                    <div class="flex justify-start">
+                        <x-inputs.button type="button" size="lg">
+                            Lihat
+                        </x-inputs.button>
+                    </div>
                 </div>
             </div>
         </section>
