@@ -32,6 +32,18 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, 
     $trail->push($slug, route('product.detail', [$category, $slug]));
 });
 
+// Beranda > Syarat & Ketentuan
+Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Syarat & Ketentuan', route('terms-conditions'));
+});
+
+// Beranda > Kebijakan Privasi
+Breadcrumbs::for('privacy-policy', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Kebijakan Privasi', route('privacy-policy'));
+});
+
 // 404 Error Page
 Breadcrumbs::for('errors.404', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

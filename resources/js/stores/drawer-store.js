@@ -20,8 +20,6 @@ document.addEventListener('alpine:init', () => {
         openDrawer(data) {
             this.open = true
             this.data = data
-
-            console.log(this.data)
         },
         closeDrawer() {
             this.open = false

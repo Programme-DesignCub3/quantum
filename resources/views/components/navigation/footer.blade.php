@@ -1,4 +1,4 @@
-<footer>
+<footer id="footer">
     <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
         <h2>Quantum Care</h2>
         <div class="grid grid-cols-2 gap-4">
@@ -114,9 +114,9 @@
     </div>
     <div class="px-4 py-8 space-y-4 bg-[#083236] text-white">
         <div class="flex items-center gap-2.5">
-            <a href="#" class="font-semibold text-xs tracking-[0.5px] border-b border-transparent hover:border-qt-green-normal">Syarat dan Ketentuan</a>
+            <a href="{{ route('terms-conditions') }}" class="font-semibold text-xs tracking-[0.5px] border-b border-transparent hover:border-qt-green-normal">Syarat dan Ketentuan</a>
             <div class="size-1 bg-white rounded-full"></div>
-            <a href="#" class="font-semibold text-xs tracking-[0.5px] border-b border-transparent hover:border-qt-green-normal">Kebijakan Privasi</a>
+            <a href="{{ route('privacy-policy') }}" class="font-semibold text-xs tracking-[0.5px] border-b border-transparent hover:border-qt-green-normal">Kebijakan Privasi</a>
         </div>
         <p class="small">&copy; PT. Nawasena Sentosa Utama. All right reserved.</p>
     </div>

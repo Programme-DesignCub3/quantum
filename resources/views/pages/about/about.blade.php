@@ -58,15 +58,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="relative rounded-3xl overflow-hidden">
-                        <img class="w-full h-[300px] object-cover object-top" src="{{ asset('images/history-1.jpg') }}" alt="">
-                        <div class="absolute bottom-0 left-0 size-full flex items-end bg-gradient-black-transparent">
-                            <div class="space-y-3 py-6 px-4 text-white">
-                                <h4>Awal Berdiri</h4>
-                                <p class="small">Awal berdirinya Quantum sebagai perusahaan kompor Indonesia</p>
-                            </div>
-                        </div>
-                    </div>
+                    <x-displays.inside-card image="images/history-1.jpg">
+                        <h4>Awal Berdiri</h4>
+                        <p class="small">Awal berdirinya Quantum sebagai perusahaan kompor Indonesia</p>
+                    </x-displays.inside-card>
                 </div>
             </div>
             <div id="visi-misi" class="text-center scroll-mt-20 px-4 py-8">
@@ -117,7 +112,12 @@
                             <ul class="splide__list">
                                 @foreach($awards as $award)
                                     <li class="splide__slide">
-                                        <x-displays.award-card :payload="$award" />
+                                        <x-displays.swipe-card image="{{ $award['image'] }}">
+                                            <h4>{{ $award['name'] }}</h4>
+                                            @if(isset($award['description']))
+                                                <span class="block small text-[#9a9a9a]">{{ $award['description'] }}</span>
+                                            @endif
+                                        </x-displays.swipe-card>
                                     </li>
                                 @endforeach
                             </ul>

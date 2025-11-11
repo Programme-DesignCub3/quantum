@@ -3,8 +3,9 @@
 namespace App\View\Components\Displays;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class ProductCard extends Component
 {
@@ -23,6 +24,8 @@ class ProductCard extends Component
         public array $payload,
         public ?string $size = 'md',
         public ?string $direction = 'col',
+        public ?bool $disableView = false,
+        public ?bool $disableSpecs = false,
     ) {
         $this->dataDrawer = [
             'image' => $this->payload['image'],

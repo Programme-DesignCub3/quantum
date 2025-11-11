@@ -14,15 +14,11 @@
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img class="brightness-90" src="{{ asset('images/home-mobile.jpg') }}" alt="">
-                    </li>
-                    <li class="splide__slide">
-                        <img class="brightness-90" src="{{ asset('images/home-mobile.jpg') }}" alt="">
-                    </li>
-                    <li class="splide__slide">
-                        <img class="brightness-90" src="{{ asset('images/home-mobile.jpg') }}" alt="">
-                    </li>
+                    @for($i = 1; $i <= 3; $i++)
+                        <li class="splide__slide">
+                            <img class="brightness-90" src="{{ asset('images/home-mobile.jpg') }}" alt="">
+                        </li>
+                    @endfor
                 </ul>
             </div>
             <ul class="splide__pagination slide-home"></ul>
@@ -43,7 +39,7 @@
                         </button>
                     </div>
                 </div>
-                <div x-data :class="$store.productDrawer.open ? 'z-50' : 'z-40'" class="splide products-home z-40" role="group" aria-label="Products Home Slides">
+                <div class="splide products-home" role="group" aria-label="Products Home Slides">
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach($products as $product)
@@ -52,42 +48,6 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <x-displays.drawer store="productDrawer" color="green">
-                            <div class="flex flex-col gap-6 px-2">
-                                <div class="flex items-center gap-4">
-                                    <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
-                                        <img class="size-[100px] object-cover object-center" :src="$store.productDrawer.data?.image || ''" alt="">
-                                    </div>
-                                    <div class="flex flex-col gap-2.5">
-                                        <div>
-                                            <span x-text="$store.productDrawer.data?.category || ''" class="text-[#9A9A9A]"></span>
-                                            <h4 x-text="$store.productDrawer.data?.name || ''" class="text-qt-green-normal"></h4>
-                                        </div>
-                                        <div class="flex items-center gap-1">
-                                            <span>Rp</span>
-                                            <p x-text="$store.productDrawer.data?.price || ''"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col justify-center items-center gap-6">
-                                    <h4>Beli Produk di Marketplace</h4>
-                                    <div class="flex gap-2.5">
-                                        <a :href="$store.productDrawer.data?.marketplace.lazada" target="_blank" class="flex justify-center items-center size-[70px] bg-white rounded-full">
-                                            <img src="{{ asset('images/lazada.png') }}" alt="">
-                                        </a>
-                                        <a :href="$store.productDrawer.data?.marketplace.blibli" target="_blank" class="flex justify-center items-center size-[70px] bg-white rounded-full">
-                                            <img src="{{ asset('images/blibli.png') }}" alt="">
-                                        </a>
-                                        <a :href="$store.productDrawer.data?.marketplace.shopee" target="_blank" class="flex justify-center items-center size-[70px] bg-white rounded-full">
-                                            <img src="{{ asset('images/shopee.png') }}" alt="">
-                                        </a>
-                                        <a :href="$store.productDrawer.data?.marketplace.tokopedia" target="_blank" class="flex justify-center items-center size-[70px] bg-white rounded-full">
-                                            <img src="{{ asset('images/tokopedia.png') }}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </x-displays.drawer>
                     </div>
                 </div>
                 <div class="flex justify-center items-center px-4">
@@ -104,54 +64,37 @@
             </div>
             <div class="flex flex-col gap-8">
                 <div class="px-4">
-                    <div class="relative rounded-3xl overflow-hidden">
-                        <img class="w-full h-[300px] object-cover object-top" src="{{ asset('images/hemat-gas-thumbnail.jpg') }}" alt="">
-                        <div class="absolute bottom-0 left-0 size-full flex items-end bg-gradient-black-transparent">
-                            <div class="space-y-3 py-6 px-4 text-white">
-                                <h4>Hemat dan Efisien</h4>
-                                <p class="small">Teknologi inovatif Quantum membantu mengurangi konsumsi gas, sehingga lebih efisien dan ramah di kantong.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <x-displays.inside-card image="images/hemat-gas-thumbnail.jpg">
+                        <h4>Hemat dan Efisien</h4>
+                        <p class="small">Teknologi inovatif Quantum membantu mengurangi konsumsi gas, sehingga lebih efisien dan ramah di kantong.</p>
+                    </x-displays.inside-card>
                 </div>
                 <div class="splide why-choose-home" role="group" aria-label="Why Choose Quantum Slides">
                     <div class="splide__track">
                         <ul class="splide__list">
                             <li class="splide__slide">
-                                <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-1.jpg') }}" alt="">
-                                    <div class="p-2 space-y-3">
-                                        <h4>Harga Terjangkau</h4>
-                                        <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
-                                    </div>
-                                </div>
+                                <x-displays.swipe-card image="images/why-1.jpg">
+                                    <h4>Harga Terjangkau</h4>
+                                    <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
+                                </x-displays.swipe-card>
                             </li>
                             <li class="splide__slide">
-                                <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-2.jpg') }}" alt="">
-                                    <div class="p-2 space-y-3">
-                                        <h4>Aman Digunakan</h4>
-                                        <p class="small text-[#9A9A9A]">Dilengkapi fitur keselamatan canggih yang dirancang khusus untuk melindungi Anda dan keluarga saat memasak.</p>
-                                    </div>
-                                </div>
+                                <x-displays.swipe-card image="images/why-2.jpg">
+                                    <h4>Aman Digunakan</h4>
+                                    <p class="small text-[#9A9A9A]">Dilengkapi fitur keselamatan canggih yang dirancang khusus untuk melindungi Anda dan keluarga saat memasak.</p>
+                                </x-displays.swipe-card>
                             </li>
                             <li class="splide__slide">
-                                <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-3.jpg') }}" alt="">
-                                    <div class="p-2 space-y-3">
-                                        <h4>Mudah & Praktis</h4>
-                                        <p class="small text-[#9A9A9A]">Desain yang mudah digunakan  membuat pengalaman memasak jadi lebih simpel, nyaman, dan tanpa ribet.</p>
-                                    </div>
-                                </div>
+                                <x-displays.swipe-card image="images/why-3.jpg">
+                                    <h4>Mudah & Praktis</h4>
+                                    <p class="small text-[#9A9A9A]">Desain yang mudah digunakan  membuat pengalaman memasak jadi lebih simpel, nyaman, dan tanpa ribet.</p>
+                                </x-displays.swipe-card>
                             </li>
                             <li class="splide__slide">
-                                <div class="flex flex-col gap-2 w-60">
-                                    <img class="w-60 h-[140px] rounded-2xl object-cover object-center" src="{{ asset('images/why-4.jpg') }}" alt="">
-                                    <div class="p-2 space-y-3">
-                                        <h4>Awet & Tahan Lama</h4>
-                                        <p class="small text-[#9A9A9A]">Quantum terus berinovasi untuk selalu menghasilkan produk yang mampu menghemat konsumsi gas hingga 30%.</p>
-                                    </div>
-                                </div>
+                                <x-displays.swipe-card image="images/why-4.jpg">
+                                    <h4>Awet & Tahan Lama</h4>
+                                    <p class="small text-[#9A9A9A]">Quantum terus berinovasi untuk selalu menghasilkan produk yang mampu menghemat konsumsi gas hingga 30%.</p>
+                                </x-displays.swipe-card>
                             </li>
                         </ul>
                     </div>

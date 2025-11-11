@@ -12,7 +12,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-1.jpg'),
                 'category' => 'Kompor Gas',
+                'category_slug' => 'kompor',
                 'name' => 'QGC - 101 AB Putih',
+                'slug' => 'qgc-101-ab-putih',
                 'specs' => [
                     'furnace_type' => '1 Tungku',
                     'power_type' => 'Elektrik',
@@ -30,7 +32,9 @@ class HomeController extends Controller
                 'label' => 'Best Seller',
                 'image' => asset('images/product-2.jpg'),
                 'category' => 'Kompor Gas',
+                'category_slug' => 'kompor',
                 'name' => 'QGC - 101 AB Hitam',
+                'slug' => 'qgc-101-ab-hitam',
                 'specs' => [
                     'furnace_type' => '1 Tungku',
                     'power_type' => 'Elektrik',
@@ -47,7 +51,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-3.jpg'),
                 'category' => 'Kompor Gas',
+                'category_slug' => 'kompor',
                 'name' => 'QGC - 101 A',
+                'slug' => 'qgc-101-a',
                 'specs' => [
                     'furnace_type' => '1 Tungku',
                     'power_type' => 'Mekanik',
@@ -64,7 +70,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-4.jpg'),
                 'category' => 'Regulator',
+                'category_slug' => 'regulator-dan-selang-gas',
                 'name' => 'QRL-03',
+                'slug' => 'qrl-03',
                 'specs' => [
                     'power_type' => 'Kunci Tunggal',
                     'fuel_type' => 'Tekanan Rendah',
@@ -80,7 +88,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-5.jpg'),
                 'category' => 'Regulator',
+                'category_slug' => 'regulator-dan-selang-gas',
                 'name' => 'QRH-09',
+                'slug' => 'qrh-09',
                 'specs' => [
                     'power_type' => 'Kunci Tunggal',
                     'fuel_type' => 'Tekanan Rendah',
@@ -95,8 +105,10 @@ class HomeController extends Controller
             ],
             [
                 'image' => asset('images/product-6.jpg'),
-                'category' => 'Selang dan Regulator Gas',
+                'category' => 'Regulator dan Selang Gas',
+                'category_slug' => 'regulator-dan-selang-gas',
                 'name' => 'QRH-032',
+                'slug' => 'qrh-032',
                 'specs' => [
                     'length_type' => '1,8 Meter',
                     'fuel_type' => 'Tekanan Rendah',
@@ -112,7 +124,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-7.jpg'),
                 'category' => 'Sparepart',
+                'category_slug' => 'suku-cadang',
                 'name' => 'Burner Kuningan',
+                'slug' => 'burner-kuningan',
                 'price' => '100.000',
                 'marketplace' => [
                     'lazada' => 'https://www.lazada.co.id/',
@@ -124,7 +138,9 @@ class HomeController extends Controller
             [
                 'image' => asset('images/product-8.jpg'),
                 'category' => 'Sparepart',
+                'category_slug' => 'suku-cadang',
                 'name' => 'Tatakan Kompor',
+                'slug' => 'tatakan-kompor',
                 'specs' => [
                     'furnace_type' => '5 Kaki',
                 ],

@@ -1,12 +1,12 @@
 <div @class([
     'max-w-full' => $size === 'lg',
-    'max-w-60' => $size !== 'lg',
+    'max-w-60 w-full' => $size !== 'lg',
     'flex flex-col rounded-2xl overflow-hidden h-full'
 ])>
     <div class="relative bg-white">
         <img @class([
             'h-[260px]' => $size === 'lg',
-            'h-[200px]' => $size === 'md',
+            'h-[200px] object-cover' => $size === 'md',
             'w-full h-[140px] object-contain' => $size === 'sm',
         ]) src="{{ $payload['image'] }}" alt="">
         @if(isset($payload['label']))
@@ -21,7 +21,7 @@
         'flex flex-col justify-between h-full gap-4 bg-white'
     ])>
         <div class="flex flex-col gap-2">
-            <div>
+            <div class="space-y-0">
                 @switch($size)
                     @case('lg')
                         <p class="text-[#9A9A9A]">{{ $payload['category'] }}</p>
@@ -37,7 +37,7 @@
                         @break
                 @endswitch
             </div>
-            @if(isset($payload['specs']))
+            @if(isset($payload['specs']) && !$disableSpecs)
                 <div @class([
                     'gap-3' => $size !== 'sm',
                     'gap-2' => $size === 'sm',
@@ -138,14 +138,18 @@
                     'small' => $size === 'sm',
                 ])>{{ $payload['price'] }}</p>
             </div>
-            <div @class([
+            <div x-data="{ data: {{ json_encode($dataDrawer) }} }" @class([
                 'flex-col min-[420px]:flex-row' => $size === 'sm',
                 'flex justify-between text-center gap-1'
             ])>
-                <x-inputs.button type="hyperlink" size="md" color="white">
-                    Lihat
-                </x-inputs.button>
-                <x-inputs.button type="button" size="md" event="$store.productDrawer.openDrawer(data)">
+                @if(!$disableView)
+                    <x-inputs.button type="hyperlink" href="{{ route('product.detail', [$payload['category_slug'], $payload['slug']]) }}" size="md" color="white">
+                        Lihat
+                    </x-inputs.button>
+                @endif
+                <x-inputs.button type="button" size="md" event="$store.productDrawer.openDrawer(data)" @class([
+                    'w-full' => $disableView,
+                ])>
                     Beli
                 </x-inputs.button>
             </div>

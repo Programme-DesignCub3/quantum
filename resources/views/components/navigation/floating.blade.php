@@ -1,10 +1,16 @@
 <div x-data="{ scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-} }" :class="$store.contactDrawer.open ? 'z-50' : 'z-40'" class="fixed bottom-5 ml-[82%] min-[375px]:ml-[84%] min-[410px]:ml-[86%] min-[450px]:ml-[390px]">
+} }" :class="$store.contactDrawer.open ? 'z-50' : 'z-40'" @class([
+    'bottom-24' => Route::currentRouteName() === 'product.detail',
+    'bottom-5' => Route::currentRouteName() !== 'product.detail',
+    'fixed ml-[82%] min-[375px]:ml-[84%] min-[410px]:ml-[86%] min-[450px]:ml-[390px]'
+])>
     <div class="flex flex-col gap-2">
-        <button type="button" @click="$store.contactDrawer.openDrawer()" class="transition-all duration-300 ease-in-out flex justify-center items-center size-10 bg-white drop-shadow-float rounded-full cursor-pointer active:shadow-none">
-            <x-icons.chat-icon class="stroke-qt-green-normal stroke-[2.5] size-5 fill-transparent" />
-        </button>
+        @if(Route::currentRouteName() !== 'product.detail')
+            <button type="button" @click="$store.contactDrawer.openDrawer()" class="transition-all duration-300 ease-in-out flex justify-center items-center size-10 bg-white drop-shadow-float rounded-full cursor-pointer active:shadow-none">
+                <x-icons.chat-icon class="stroke-qt-green-normal stroke-[2.5] size-5 fill-transparent" />
+            </button>
+        @endif
         <button type="button" @click="scrollToTop()" class="transition-all duration-300 ease-in-out flex justify-center items-center size-10 bg-white drop-shadow-float rounded-full cursor-pointer active:shadow-none">
             <span class="icon-[lucide--chevron-up] text-3xl text-qt-green-normal"></span>
         </button>

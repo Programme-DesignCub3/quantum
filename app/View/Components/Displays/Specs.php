@@ -6,13 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AwardCard extends Component
+class Specs extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public array $payload,
+        public string $label,
     ) {}
 
     /**
@@ -20,6 +20,6 @@ class AwardCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.displays.award-card');
+        return view('components.displays.specs');
     }
 }

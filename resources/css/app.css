@@ -12,7 +12,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url("/fonts/Inter-VariableFont.woff2") format("woff2");
+    src: url("http://quantum.test/fonts/Inter-VariableFont.woff2") format("woff2");
 }
 
 @font-face {
@@ -20,7 +20,7 @@
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
-    src: url("/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
+    src: url("http://quantum.test/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
 }
 
 @layer base {
@@ -135,6 +135,38 @@
         -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
         -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
     }
+    .drop-shadow-float-lg {
+        box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
+        -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #bbbbbb;
+    }
+
+    .zoom-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;  /* ukuran tampilan */
+  height: 312px;
+  cursor: crosshair;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  transition: transform 0.2s ease, transform-origin 0.2s ease;
+}
+
 }
 
 @theme {
@@ -185,4 +217,33 @@
             }
         }
     }
+}
+
+.splide__arrows.thumbnail-arrows {
+    @apply flex justify-end-safe gap-2 w-max;
+    .splide__arrow {
+        width: 40px;
+        height: 40px;
+        border-radius: 0;
+        background: none;
+        transform: translateY(0%);
+        color: #B3B3B3;
+        &.splide__arrow--prev {
+            @apply static left-auto! right-0!;
+        }
+        &.splide__arrow--next {
+            @apply static right-0!;
+        }
+        &:disabled {
+            opacity: 0.25;
+        }
+    }
+}
+
+.splide__track--nav>.splide__list>.splide__slide {
+    @apply rounded-lg overflow-hidden border! border-[#F0F3F6]!;
+}
+
+.splide__track--nav>.splide__list>.splide__slide.is-active {
+    @apply rounded-lg overflow-hidden border! border-[#6D6D6D]!;
 }
