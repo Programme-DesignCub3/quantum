@@ -13,13 +13,13 @@
                                 </div>
                             </li> --}}
                             <li class="splide__slide">
-                                <img class="w-full h-[300px]" src="{{ asset('images/product-1.jpg') }}" alt="">
+                                <img class="w-full h-[300px] object-cover" src="{{ asset('images/product-1.jpg') }}" alt="">
                             </li>
                             <li class="splide__slide">
-                                <img class="w-full h-[300px]" src="{{ asset('images/var-product-1.1.jpg') }}" alt="">
+                                <img class="w-full h-[300px] object-cover" src="{{ asset('images/var-product-1.1.jpg') }}" alt="">
                             </li>
                             <li class="splide__slide">
-                                <img class="w-full h-[300px]" src="{{ asset('images/var-product-1.2.jpg') }}" alt="">
+                                <img class="w-full h-[300px] object-cover" src="{{ asset('images/var-product-1.2.jpg') }}" alt="">
                             </li>
                         </ul>
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div x-data="{ data: {{ json_encode($dataDrawer) }} }" :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 flex justify-between items-center bg-white p-4 max-w-[416px] w-full rounded-t-2xl drop-shadow-float-lg">
+            <div x-cloak x-data="{ data: {{ json_encode($dataDrawer) }} }" :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 flex justify-between items-center bg-white p-4 max-w-[416px] w-full rounded-t-2xl drop-shadow-float-lg">
                 <div class="space-y-0">
                     <span>Harga</span>
                     <div class="flex space-x-1">
@@ -82,14 +82,14 @@
             </div>
         </section>
         <section>
-            <div :class="isTop ? 'top-[88px] duration-300 delay-150' : 'top-0 duration-150'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
-                <a href="#fitur" class="inline-block relative py-5 font-semibold text-sm before:absolute before:left-0 before:bottom-0 before:content-[''] before:w-full before:h-[3px] before:bg-qt-green-normal before:rounded-t-xl">Fitur</a>
-                <a href="#spesifikasi" class="inline-block relative py-5 font-semibold text-sm text-[#6D6D6D]">Spesifikasi</a>
-                <a href="#galeri" class="inline-block relative py-5 font-semibold text-sm text-[#6D6D6D]">Galeri</a>
-                <a href="#bandingkan" class="inline-block relative py-5 font-semibold text-sm text-[#6D6D6D]">Bandingkan</a>
-                <a href="#bantuan" class="inline-block relative py-5 font-semibold text-sm text-[#6D6D6D]">Bantuan</a>
+            <div id="tabs-border-anchor" :class="isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
+                <a href="#fitur" class="tab-border active">Fitur</a>
+                <a href="#spesifikasi" class="tab-border">Spesifikasi</a>
+                <a href="#galeri" class="tab-border">Galeri</a>
+                <a href="#bandingkan" class="tab-border">Bandingkan</a>
+                <a href="#bantuan" class="tab-border">Bantuan</a>
             </div>
-            <div id="fitur" class="flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-24">
+            <div id="fitur" class="scrollspy flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-24">
                 <div class="space-y-4 text-center max-w-sm mx-auto">
                     <h2>Apa Keunggulan Kompor Quantum QGC - 101 RB?</h2>
                     <p class="text-[#6D6D6D]">Pilihan tepat untuk dapur Anda, Quantum hadirkan efisiensi dan kepraktisan dalam setiap masakan.</p>
@@ -97,28 +97,28 @@
                 <div class="flex flex-col gap-4">
                     <x-displays.simple-card :simetric="true">
                         <h4>Teknologi Terkini</h4>
-                        <p class="small text-[#6D6D6D]">Memastikan proses memasak lebih efisien dan hasil masakan optimal.</p>
+                        <p class="small text-[#9A9A9A]">Memastikan proses memasak lebih efisien dan hasil masakan optimal.</p>
                         <x-slot:icon>
                             <x-icons.tech-icon class="fill-qt-green-normal size-8" />
                         </x-slot:icon>
                     </x-displays.simple-card>
                     <x-displays.simple-card :simetric="true">
                         <h4>Desain Elegan & Fungsional</h4>
-                        <p class="small text-[#6D6D6D]">Pas untuk dapur modern, hemat ruang, dan mudah ditempatkan di mana saja.</p>
+                        <p class="small text-[#9A9A9A]">Pas untuk dapur modern, hemat ruang, dan mudah ditempatkan di mana saja.</p>
                         <x-slot:icon>
                             <x-icons.elegant-icon class="fill-qt-green-normal size-8" />
                         </x-slot:icon>
                     </x-displays.simple-card>
                     <x-displays.simple-card :simetric="true">
                         <h4>Cepat & Efisien</h4>
-                        <p class="small text-[#6D6D6D]">Nikmati kemudahan dalam menyajikan hidangan lezat dengan waktu yang lebih singkat.</p>
+                        <p class="small text-[#9A9A9A]">Nikmati kemudahan dalam menyajikan hidangan lezat dengan waktu yang lebih singkat.</p>
                         <x-slot:icon>
                             <x-icons.fast-icon class="fill-qt-green-normal size-8" />
                         </x-slot:icon>
                     </x-displays.simple-card>
                     <x-displays.simple-card :simetric="true">
                         <h4>Kualitas Terjamin</h4>
-                        <p class="small text-[#6D6D6D]">Dibuat dengan standar tinggi untuk durabilitas dan keamanan penggunaan sehari-hari.</p>
+                        <p class="small text-[#9A9A9A]">Dibuat dengan standar tinggi untuk durabilitas dan keamanan penggunaan sehari-hari.</p>
                         <x-slot:icon>
                             <x-icons.medal-icon class="fill-qt-green-normal size-8" />
                         </x-slot:icon>
@@ -160,7 +160,7 @@
                     </div>
                 </div>
             </div>
-            <div id="spesifikasi" class="border-b border-[#CECECE] py-[60px] px-4 scroll-mt-28">
+            <div id="spesifikasi" class="scrollspy border-b border-[#CECECE] py-[60px] px-4 scroll-mt-24">
                 <div class="flex flex-col gap-8">
                     <h2>Spesifikasi</h2>
                     <x-displays.accordion type="secondary" title="Dimensi" :open="true">
@@ -210,7 +210,7 @@
                     </x-displays.accordion>
                 </div>
             </div>
-            <div id="galeri" class="border-b border-[#CECECE] flex flex-col gap-8 py-[60px] px-4 scroll-mt-28">
+            <div id="galeri" class="scrollspy border-b border-[#CECECE] flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
                 <h2>Galeri</h2>
                 <div class="flex flex-col gap-4">
                     <div class="relative rounded-2xl overflow-hidden">
@@ -229,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <div id="bandingkan" class="flex flex-col gap-8 py-[60px] px-4 scroll-mt-28">
+            <div id="bandingkan" class="scrollspy flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
                 <h2>Bandingkan</h2>
                 <div class="flex flex-col gap-4">
                     <div class="border-b border-[#CECECE] py-3">
@@ -331,7 +331,7 @@
                 </div>
             </div>
         </section>
-        <section id="bantuan" class="flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-6">
+        <section id="bantuan" class="flex flex-col gap-[42px] py-[60px] px-4">
             <div class="flex flex-col gap-4">
                 <h2>Panduan</h2>
                 <div class="flex justify-center items-center gap-4 p-2 bg-[#F4F4F4] rounded-2xl">

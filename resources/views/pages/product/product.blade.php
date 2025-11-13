@@ -97,9 +97,11 @@
                         <x-icons.tips-idea-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
                     </x-slot:icon>
                     <x-slot:button>
-                        <x-inputs.button type="button" size="lg">
-                            Lihat
-                        </x-inputs.button>
+                        <div class="flex justify-start">
+                            <x-inputs.button type="button" size="lg">
+                                Lihat
+                            </x-inputs.button>
+                        </div>
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.simple-card>
@@ -109,9 +111,11 @@
                         <x-icons.video-lesson-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
                     </x-slot:icon>
                     <x-slot:button>
-                        <x-inputs.button type="button" size="lg">
-                            Lihat
-                        </x-inputs.button>
+                        <div class="flex justify-start">
+                            <x-inputs.button type="button" size="lg">
+                                Lihat
+                            </x-inputs.button>
+                        </div>
                     </x-slot:button>
                 </x-displays.simple-card>
             </div>

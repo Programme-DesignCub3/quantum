@@ -1,5 +1,5 @@
 <section x-data="productList">
-    <div :class="isTop ? 'top-[88px] duration-300 delay-130' : 'top-0 duration-100'" class="sticky z-40 flex flex-col transition-all ease-in-out">
+    <div :class="isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-40 flex flex-col transition-all ease-in-out">
         <div wire:ignore class="flex justify-evenly gap-2 p-2 bg-[#106B75]">
             <a href="{{ route('product') }}" @class([
                 'bg-[#0B474D]' => Route::currentRouteName() === 'product',

@@ -7,7 +7,7 @@
         'fixed': !sticky
     }" @class([
         'bg-white!' => !$transparent,
-        'z-50 px-3 py-5 transition-all duration-300 ease-in-out flex justify-between items-center w-full max-w-md'
+        'z-50 px-3 py-3 transition-all duration-300 ease-in-out flex justify-between items-center w-full max-w-md'
     ])>
     <a href="{{ route('home') }}">
         <img class="w-24" src="{{ asset('images/logo.png') }}" alt="">
@@ -116,7 +116,7 @@
                         <span class="icon-[lucide--chevron-left]"></span>
                         Bantuan
                     </button>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('customer-service') }}" class="menu-nav-sublink">
                         <x-icons.customer-care-icon class="fill-qt-green-normal size-7" />
                         Layanan Pelanggan
                     </a>
@@ -128,11 +128,11 @@
                         <span class="icon-[lucide--map-pin]"></span>
                         Service Center
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('faq') }}" class="menu-nav-sublink">
                         <x-icons.chat-icon class="stroke-qt-green-normal stroke-[2.5] size-7 fill-transparent" />
                         FAQ
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('contact') }}" class="menu-nav-sublink">
                         <span class="icon-[lucide--mail]"></span>
                         Kontak
                     </a>

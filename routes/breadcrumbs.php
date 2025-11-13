@@ -32,6 +32,24 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, 
     $trail->push($slug, route('product.detail', [$category, $slug]));
 });
 
+// Beranda > Layanan Pelanggan
+Breadcrumbs::for('customer-service', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Layanan Pelanggan', route('customer-service'));
+});
+
+// Beranda > FAQ
+Breadcrumbs::for('faq', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('FAQ', route('faq'));
+});
+
+// Beranda > Kontak
+Breadcrumbs::for('contact', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Kontak', route('contact'));
+});
+
 // Beranda > Syarat & Ketentuan
 Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

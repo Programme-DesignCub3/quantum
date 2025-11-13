@@ -1,23 +1,18 @@
 <?php
 
-namespace App\View\Components\Displays;
+namespace App\View\Components\Icons;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SwipeCard extends Component
+class FaqIcon extends Component
 {
-    // Props
-
-    // IMAGE = 'string' (image path)
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $image,
-        public ?string $video
+        public ?string $class
     ) {}
 
     /**
@@ -25,6 +20,6 @@ class SwipeCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.displays.swipe-card');
+        return view('components.icons.faq-icon');
     }
 }

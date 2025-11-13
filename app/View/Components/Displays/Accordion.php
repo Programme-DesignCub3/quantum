@@ -11,7 +11,7 @@ class Accordion extends Component
     // Props
 
     // TITLE = *any string*
-    // TYPE = 'primary', 'secondary' (default: 'primary')
+    // TYPE = 'primary', 'secondary', 'tertiary' (default: 'primary')
     // LAST = true, false (default: false)
     // OPEN = true, false (default: false)
 

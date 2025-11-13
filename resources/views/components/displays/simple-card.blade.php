@@ -1,7 +1,9 @@
 <div @class([
     'rounded-2xl p-6' => $simetric,
     'rounded-3xl py-6 px-4' => !$simetric,
-    'flex flex-col gap-4 border border-[#DBDBDB]'
+    'border border-[#DBDBDB]' => $border,
+    'bg-white' => $background === 'white',
+    'flex flex-col gap-4'
 ])>
     <div class="flex gap-2.5">
         <div @class([
@@ -10,13 +12,14 @@
         ])>
             {{ $slot }}
         </div>
-        <div class="shrink-0 flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+        <div @class([
+            'bg-[#F3F8F9] size-[60px] rounded-2xl items-center' => $backgroundIcon,
+            'shrink-0 flex justify-center'
+        ])>
             {{ $icon }}
         </div>
     </div>
     @if(isset($button))
-        <div class="flex justify-start">
-            {{ $button }}
-        </div>
+        {{ $button }}
     @endif
 </div>

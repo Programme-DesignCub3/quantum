@@ -1,31 +1,33 @@
 <footer id="footer">
-    <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
-        <h2>Quantum Care</h2>
-        <div class="grid grid-cols-2 gap-4">
-            <x-inputs.button-icon type="hyperlink">
-                <x-slot:image>
-                    <x-icons.customer-care-icon class="fill-qt-green-normal group-hover:fill-white" />
-                </x-slot:image>
-                Call Center
-            </x-inputs.button-icon>
-            <x-inputs.button-icon type="hyperlink" icon="icon-[ic--baseline-whatsapp]">
-                WhatsApp
-            </x-inputs.button-icon>
-            <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--mail]">
-                Email
-            </x-inputs.button-icon>
-            <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--map-pin]">
-                Location
-            </x-inputs.button-icon>
-        </div>
-        <div class="space-y-1">
-            <h5>Jam Operasional</h5>
+    @if (Route::currentRouteName() !== 'contact')
+        <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
+            <h2>Quantum Care</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <x-inputs.button-icon type="hyperlink">
+                    <x-slot:image>
+                        <x-icons.customer-care-icon class="fill-qt-green-normal group-hover:fill-white" />
+                    </x-slot:image>
+                    Call Center
+                </x-inputs.button-icon>
+                <x-inputs.button-icon type="hyperlink" icon="icon-[ic--baseline-whatsapp]">
+                    WhatsApp
+                </x-inputs.button-icon>
+                <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--mail]">
+                    Email
+                </x-inputs.button-icon>
+                <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--map-pin]">
+                    Location
+                </x-inputs.button-icon>
+            </div>
             <div class="space-y-1">
-                <span class="extrasmall">Senin - Jumat</span>
-                <p>08.00 - 17.00 WIB</p>
+                <h5>Jam Operasional</h5>
+                <div class="space-y-1">
+                    <span class="extrasmall">Senin - Jumat</span>
+                    <p>08.00 - 17.00 WIB</p>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="px-4 py-[60px] bg-[#0D545C] flex flex-col gap-6">
         <div class="space-y-4 text-white">
             <h2>Jangan Lewatkan Penawaran Spesial dari Quantum</h2>
@@ -81,11 +83,11 @@
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Informasi Garansi</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Service Center</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">FAQ</a>
+                            <a href="{{ route('faq') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">FAQ</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kontak Kami</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Edukasi dan Panduan</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Video dan Tutorial</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Layanan Pelanggan</a>
+                            <a href="{{ route('customer-service') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Layanan Pelanggan</a>
                         </div>
                     </x-displays.accordion>
                 </div>

@@ -10,7 +10,7 @@
             </div>
         </section>
         <section>
-            <div :class="isTop ? 'top-[88px] border-y duration-300 delay-150' : 'top-0 border-b duration-100'" class="sticky z-40 px-5 py-3.5 transition-all ease-in-out bg-white border-y border-[#DBDBDB] overflow-auto">
+            <div id="tabs-anchor" :class="isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-40 px-5 py-3.5 transition-all ease-in-out bg-white border-y border-[#DBDBDB] overflow-auto">
                 <div class="flex justify-between gap-0.5 w-max min-[420px]:w-full">
                     <a href="#sejarah" class="tab active">
                         Sejarah
@@ -26,7 +26,7 @@
                     </a>
                 </div>
             </div>
-            <div id="sejarah" class="space-y-4 text-center scroll-mt-20 px-6 pt-[76px] pb-12">
+            <div id="sejarah" class="scrollspy space-y-4 text-center scroll-mt-20 px-6 pt-[76px] pb-12">
                 <h2 class="max-w-xs mx-auto">Inovasi Tiada Henti Quantum untuk Setiap Generasi</h2>
                 <div class="space-y-4 text-[#6D6D6D]">
                     <p>Sejak 1993, Quantum telah berdedikasi menjadi produsen peralatan dapur terkemuka dan terpercaya di Indonesia. Kami bangga menghadirkan kompor, selang dan regulator gas 100% buatan Indonesia yang telah menjadi pilihan jutaan keluarga.</p>
@@ -64,7 +64,7 @@
                     </x-displays.inside-card>
                 </div>
             </div>
-            <div id="visi-misi" class="text-center scroll-mt-20 px-4 py-8">
+            <div id="visi-misi" class="scrollspy text-center scroll-mt-20 px-4 py-8">
                 <div class="space-y-4 py-[60px]">
                     <h2 class="max-w-56 mx-auto">Visi & Misi Quantum Indonesia</h2>
                     <p class="max-w-sm mx-auto text-[#6D6D6D]">Inilah komitmen Quantum hadirkan produk dengan presisi dan kualitas teruji untuk negeri</p>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div id="award" class="flex flex-col gap-8 scroll-mt-20 py-[92px] bg-[#F4F4F4]">
+            <div id="award" class="scrollspy flex flex-col gap-8 scroll-mt-20 py-[92px] bg-[#F4F4F4]">
                 <div class="space-y-4 text-center max-w-xs mx-auto">
                     <h2>Penghargaan</h2>
                     <p class="text-[#6D6D6D]">Telah dipercaya jutaan masyarakat, Quantum raih berbagai penghargaan dalam menghadirkan produk dengan kualitas unggul.</p>
@@ -115,7 +115,7 @@
                                         <x-displays.swipe-card image="{{ $award['image'] }}">
                                             <h4>{{ $award['name'] }}</h4>
                                             @if(isset($award['description']))
-                                                <span class="block small text-[#9a9a9a]">{{ $award['description'] }}</span>
+                                                <p class="small text-[#9a9a9a]">{{ $award['description'] }}</p>
                                             @endif
                                         </x-displays.swipe-card>
                                     </li>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div id="marketplace" class="py-14 px-4 scroll-mt-24">
+            <div id="marketplace" class="scrollspy py-14 px-4 scroll-mt-24">
                 <div class="space-y-4 text-center max-w-xs mx-auto">
                     <h2>Dapatkan Promo Spesial di Official Store Quantum</h2>
                     <p class="text-[#6D6D6D]">Temukan produk terbaik Quantum di toko online resmi kami dan nikmati penawaran eksklusifnya</p>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="flex justify-center">
-                        <x-inputs.button type="button" size="lg">
+                        <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg">
                             Beli Sekarang
                         </x-inputs.button>
                     </div>
