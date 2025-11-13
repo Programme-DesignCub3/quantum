@@ -12,7 +12,7 @@
             <a href="#garansi" class="tab-border">Garansi</a>
         </div>
         <section class="flex flex-col gap-[42px] py-20 px-4">
-            <div id="produk" class="scrollspy flex flex-col gap-8 scroll-mt-20">
+            <div id="produk" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2>Sub Question Produk</h2>
                 <div class="flex flex-col gap-4">
                     @for($i = 1; $i <= 3; $i++)
@@ -24,7 +24,7 @@
                     @endfor
                 </div>
             </div>
-            <div id="pembelian" class="scrollspy flex flex-col gap-8 scroll-mt-20">
+            <div id="pembelian" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2>Sub Question Pembelian</h2>
                 <div class="flex flex-col gap-4">
                     @for($i = 1; $i <= 3; $i++)
@@ -36,7 +36,7 @@
                     @endfor
                 </div>
             </div>
-            <div id="garansi" class="scrollspy flex flex-col gap-8 scroll-mt-20">
+            <div id="garansi" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2>Sub Question Garansi</h2>
                 <div class="flex flex-col gap-4">
                     @for($i = 1; $i <= 3; $i++)

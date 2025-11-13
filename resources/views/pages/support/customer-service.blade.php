@@ -109,7 +109,7 @@
             </div>
         </section>
         <section class="flex flex-col gap-[42px] pt-6 pb-[92px]">
-            <div class="space-y-4 text-center max-w-sm mx-auto">
+            <div class="space-y-4 text-center max-w-sm mx-auto px-4">
                 <h2>Tutorial Penggunaan Produk</h2>
                 <p class="text-[#6D6D6D]">Semua yang perlu Anda tahu dalam penggunaan produk Quantum.</p>
             </div>
