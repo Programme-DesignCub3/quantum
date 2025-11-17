@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GuidanceController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
@@ -17,22 +18,30 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 
 // Product
-Route::prefix('produk')->group(function () {
+Route::prefix('produk')->name('product')->group(function () {
     Route::controller(ProductController::class)->group(function () {
-        Route::get('/', 'index')->name('product');
-        Route::get('/{category}', 'category')->name('product.category');
-        Route::get('/{category}/{slug}', 'detail')->name('product.detail');
+        Route::get('/', 'index');
+        Route::get('/{category}', 'category')->name('.category');
+        Route::get('/{category}/{slug}', 'detail')->name('.detail');
     });
 });
 
-// Customer Service
-Route::get('/layanan-pelanggan', [CustomerServiceController::class, 'index'])->name('customer-service');
-
-// FAQ
-Route::get('/faq', [FaqController::class, 'index'])->name('faq');
-
-// Contact
-Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
+// Support
+Route::name('support')->group(function () {
+    // (Customer Service)
+    Route::get('/layanan-pelanggan', [CustomerServiceController::class, 'index'])->name('.customer-service');
+    // (FAQ)
+    Route::get('/faq', [FaqController::class, 'index'])->name('.faq');
+    // (Contact)
+    Route::get('/kontak', [ContactController::class, 'index'])->name('.contact');
+    // (Education & Guidance)
+    Route::prefix('edukasi-dan-panduan')->name('.guidance')->group(function () {
+        Route::controller(GuidanceController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/{slug}', 'detail')->name('.detail');
+        });
+    });
+});
 
 // Terms and Conditions
 Route::get('/syarat-dan-ketentuan', [TermsConditionsController::class, 'index'])->name('terms-conditions');

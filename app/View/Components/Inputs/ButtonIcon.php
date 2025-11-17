@@ -18,6 +18,7 @@ class ButtonIcon extends Component
     // CLASS = additional classes
     // ICON = icon class name
     // IMAGE = image as icon
+    // EVENT = event to trigger
 
     public string $sizeClass = '';
     public string $iconClass = '';
@@ -33,7 +34,8 @@ class ButtonIcon extends Component
         public ?bool $disabled = false,
         public ?string $href,
         public ?string $class,
-        public ?string $icon
+        public ?string $icon,
+        public ?string $event,
     ) {
         // Set size class
         switch($this->size) {

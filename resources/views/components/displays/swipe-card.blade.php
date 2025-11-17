@@ -2,7 +2,7 @@
     <div class="relative bg-white rounded-2xl overflow-hidden">
         @if ($video)
             <div class="absolute flex justify-center items-center size-full">
-                <button type="button" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
+                <button x-data type="button" @click="$store.videoModal.openVideo()" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
                     <span class="icon-[ph--play-bold] text-3xl"></span>
                 </button>
             </div>

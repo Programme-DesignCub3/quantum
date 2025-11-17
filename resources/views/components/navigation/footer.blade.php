@@ -83,11 +83,11 @@
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Informasi Garansi</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Service Center</a>
-                            <a href="{{ route('faq') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">FAQ</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kontak Kami</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Edukasi dan Panduan</a>
+                            <a href="{{ route('support.faq') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">FAQ</a>
+                            <a href="{{ route('support.contact') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kontak Kami</a>
+                            <a href="{{ route('support.guidance') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Edukasi dan Panduan</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Video dan Tutorial</a>
-                            <a href="{{ route('customer-service') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Layanan Pelanggan</a>
+                            <a href="{{ route('support.customer-service') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Layanan Pelanggan</a>
                         </div>
                     </x-displays.accordion>
                 </div>

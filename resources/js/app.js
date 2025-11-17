@@ -1,6 +1,7 @@
 import './init/slides';
 import './init/scrollspy';
 import './stores/drawer-store';
+import './stores/video-store';
 import './bootstrap';
 
 // const container = document.querySelector('.zoom-container');
@@ -19,4 +20,3 @@ import './bootstrap';
 // container.addEventListener('mouseleave', () => {
 //   img.style.transform = 'scale(1)';
 // });
-

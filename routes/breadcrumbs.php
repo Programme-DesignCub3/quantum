@@ -33,21 +33,33 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, 
 });
 
 // Beranda > Layanan Pelanggan
-Breadcrumbs::for('customer-service', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Layanan Pelanggan', route('customer-service'));
+    $trail->push('Layanan Pelanggan', route('support.customer-service'));
 });
 
 // Beranda > FAQ
-Breadcrumbs::for('faq', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.faq', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('FAQ', route('faq'));
+    $trail->push('FAQ', route('support.faq'));
 });
 
 // Beranda > Kontak
-Breadcrumbs::for('contact', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.contact', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Kontak', route('contact'));
+    $trail->push('Kontak', route('support.contact'));
+});
+
+// Beranda > Edukasi dan Panduan
+Breadcrumbs::for('support.guidance', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Edukasi dan Panduan', route('support.guidance'));
+});
+
+// Beranda > Edukasi dan Panduan > [Detail Panduan]
+Breadcrumbs::for('support.guidance.detail', function (BreadcrumbTrail $trail, $slug) {
+    $trail->parent('support.guidance');
+    $trail->push($slug, route('support.guidance.detail', $slug));
 });
 
 // Beranda > Syarat & Ketentuan

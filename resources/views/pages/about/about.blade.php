@@ -10,7 +10,7 @@
             </div>
         </section>
         <section>
-            <div id="tabs-anchor" :class="isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-40 px-5 py-3.5 transition-all ease-in-out bg-white border-y border-[#DBDBDB] overflow-auto">
+            <div id="tabs-anchor" :class="isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-30 px-5 py-3.5 transition-all ease-in-out bg-white border-[#DBDBDB] overflow-x-auto">
                 <div class="flex justify-between gap-0.5 w-max min-[420px]:w-full">
                     <a href="#sejarah" class="tab active">
                         Sejarah

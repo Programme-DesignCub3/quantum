@@ -106,7 +106,7 @@
             <div class="absolute w-full h-[400px] bottom-0 left-0 bg-gradient-qt-green"></div>
             <div class="absolute flex flex-col gap-[55px] bottom-0 left-0 size-full pt-22">
                 <div class="flex justify-center items-center p-6">
-                    <button type="button" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
+                    <button x-data type="button" @click="$store.videoModal.openVideo()" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
                         <span class="icon-[ph--play-bold] text-3xl"></span>
                     </button>
                 </div>

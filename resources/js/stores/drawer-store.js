@@ -25,6 +25,31 @@ document.addEventListener('alpine:init', () => {
             this.open = false
             this.data = null
         },
+    }),
+    Alpine.store('contactCall', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    }),
+    Alpine.store('contactWhatsApp', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    }),
+    Alpine.store('contactEmail', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    }),
+    Alpine.store('contactOffice', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    }),
+    Alpine.store('contactSocmed', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
     })
 })
 

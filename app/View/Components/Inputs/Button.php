@@ -18,7 +18,7 @@ class Button extends Component
     // DISABLED = true | false (default: false)
     // HREF = null (for hyperlink type only)
     // CLASS = additional classes
-    // CLICK = null (for click event handling)
+    // EVENT = event to trigger
 
     public string $sizeClass = '';
     public string $variantClass = '';

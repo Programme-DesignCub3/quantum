@@ -216,7 +216,7 @@
                     <div class="relative rounded-2xl overflow-hidden">
                         <img class="w-full h-[420px] object-cover object-center" src="{{ asset('images/gallery-1.jpg') }}" alt="">
                         <div class="absolute top-0 left-0 size-full flex justify-center items-center">
-                            <button type="button" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
+                            <button x-data type="button" @click="$store.videoModal.openVideo()" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
                                 <span class="icon-[ph--play-bold] text-3xl"></span>
                             </button>
                         </div>
