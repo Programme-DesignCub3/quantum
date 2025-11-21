@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GuidanceController;
+use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,16 @@ Route::prefix('produk')->name('product')->group(function () {
         Route::get('/', 'index');
         Route::get('/{category}', 'category')->name('.category');
         Route::get('/{category}/{slug}', 'detail')->name('.detail');
+    });
+});
+
+// Updates
+Route::name('updates')->group(function () {
+    Route::prefix('berita-dan-event')->name('.news')->group(function () {
+        Route::controller(NewsEventController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/{slug}', 'detail')->name('.detail');
+        });
     });
 });
 

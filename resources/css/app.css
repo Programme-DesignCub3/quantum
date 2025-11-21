@@ -163,7 +163,10 @@
     ::-webkit-scrollbar-thumb {
         background: #bbbbbb;
     }
-
+    /* Add New Utility */
+    .scrollbar-gutter-stable {
+        scrollbar-gutter: stable;
+    }
     .zoom-container {
   position: relative;
   overflow: hidden;

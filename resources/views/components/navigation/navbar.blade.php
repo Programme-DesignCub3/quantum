@@ -1,4 +1,4 @@
-<nav x-data="navbar" x-init="init()"
+<nav x-data="navbar"
     :class="{
         'bg-white': isWhite,
         'top-0': position,
@@ -98,7 +98,7 @@
                         <span class="icon-[lucide--chevron-left]"></span>
                         Updates
                     </button>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('updates.news') }}" class="menu-nav-sublink">
                         <x-icons.newspaper-folded-icon class="fill-qt-green-normal" />
                         Artikel
                     </a>

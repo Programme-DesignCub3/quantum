@@ -23,3 +23,10 @@ export const slidePagination = {
     gap: '0.5rem',
     padding: '1.5rem'
 }
+
+export const swipeNormal = {
+    arrows: false,
+    pagination: false,
+    drag: 'free',
+    perPage: 1,
+}

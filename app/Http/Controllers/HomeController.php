@@ -158,24 +158,28 @@ class HomeController extends Controller
             [
                 'image' => asset('images/article-1.jpg'),
                 'title' => '5 Cara Hemat Energi dengan Kompor Quantum',
+                'slug' => '5-cara-hemat-energi-dengan-kompor-quantum',
                 'excerpt' => 'Pelajari cara mengoptimalkan penggunaan kompor untuk',
                 'category' => 'Tips',
             ],
             [
                 'image' => asset('images/article-2.jpg'),
                 'title' => 'Desain Dapur Modern dengan Kompor Quantum',
+                'slug' => 'desain-dapur-modern-dengan-kompor-quantum',
                 'excerpt' => 'Dapatkan ide desain dapur minimalis dan modern dengan',
                 'category' => 'Inspirasi',
             ],
             [
                 'image' => asset('images/article-3.jpg'),
                 'title' => 'Keunggulan Kompor Quantum QGC 201 DEP',
+                'slug' => 'keunggulan-kompor-quantum-qgc-201-dep',
                 'excerpt' => 'Mengenal lebih dekat kompor gas 2 tungku Quantum yang efisien',
                 'category' => 'Review',
             ],
             [
                 'image' => asset('images/article-4.jpg'),
                 'title' => 'Resep Nasi Goreng Spesial dengan Quantum',
+                'slug' => 'resep-nasi-goreng-spesial-dengan-quantum',
                 'excerpt' => 'Coba resep nasi goreng spesial yang mudah dan cepat, dimasak',
                 'category' => 'Resep',
             ],

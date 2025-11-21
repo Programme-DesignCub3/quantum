@@ -74,7 +74,7 @@
                     </x-displays.accordion>
                     <x-displays.accordion title="Updates">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>
+                            <a href="{{ route('updates.news') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Event</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Resep</a>
                         </div>

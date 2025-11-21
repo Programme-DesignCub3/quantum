@@ -1,6 +1,7 @@
 import Splide from '@splidejs/splide';
 import {
-    slideShow, slidePagination, swipeable
+    slideShow, slidePagination, swipeable,
+    swipeNormal
 } from '../utils/options-slide';
 import '@splidejs/splide/css';
 
@@ -88,6 +89,29 @@ if (document.querySelector('#product-detail')) {
     main.sync(thumbnails)
     main.mount()
     thumbnails.mount()
+}
+
+// News Event Page Slides
+if (document.querySelector('#news-event')) {
+    new Splide('.splide.news-event', {
+        ...swipeable,
+        gap: '0.8rem',
+        padding: '1rem'
+    }).mount();
+}
+
+// News Event Detail Page Slides
+if (document.querySelector('#news-event-detail')) {
+    new Splide('.splide.other-news-event', {
+        ...swipeable,
+        gap: '2rem',
+        padding: '1rem'
+    }).mount();
+    new Splide('.splide.recommendation-products-news-event', {
+        ...swipeNormal,
+        gap: '2rem',
+        padding: '1rem'
+    }).mount();
 }
 
 // Customer Service Page Slides

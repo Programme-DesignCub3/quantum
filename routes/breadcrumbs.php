@@ -32,6 +32,18 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, 
     $trail->push($slug, route('product.detail', [$category, $slug]));
 });
 
+// Beranda > Berita dan Event
+Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Berita dan Event', route('updates.news'));
+});
+
+// Beranda > Berita dan Event > [Detail Berita]
+Breadcrumbs::for('updates.news.detail', function (BreadcrumbTrail $trail, $slug) {
+    $trail->parent('updates.news');
+    $trail->push($slug, route('updates.news.detail', $slug));
+});
+
 // Beranda > Layanan Pelanggan
 Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

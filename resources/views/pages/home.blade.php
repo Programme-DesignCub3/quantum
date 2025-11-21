@@ -136,7 +136,7 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach($articles as $article)
-                                <li class="splide__slide">
+                                <li class="splide__slide w-[260px]">
                                     <x-displays.article-card :payload="$article" />
                                 </li>
                             @endforeach

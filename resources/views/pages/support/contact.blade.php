@@ -17,14 +17,14 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactCall.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactCallDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
                             <x-inputs.button type="button" class="rounded-2xl!">
                                 Call
                             </x-inputs.button>
                         </div>
                     </x-slot:button>
                 </x-displays.simple-card>
-                <x-displays.drawer store="contactCall">
+                <x-displays.drawer store="contactCallDrawer">
                     <div class="flex flex-col gap-5 px-4">
                         <div class="flex justify-between gap-7">
                             <div class="space-y-2">
@@ -63,14 +63,14 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactWhatsApp.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactWhatsAppDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
                             <x-inputs.button type="button" class="rounded-2xl!">
                                 Chat
                             </x-inputs.button>
                         </div>
                     </x-slot:button>
                 </x-displays.simple-card>
-                <x-displays.drawer store="contactWhatsApp">
+                <x-displays.drawer store="contactWhatsAppDrawer">
                     <div class="flex flex-col gap-5 px-4">
                         <div class="flex justify-between gap-7">
                             <div class="space-y-2">
@@ -106,14 +106,14 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactEmail.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactEmailDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
                             <x-inputs.button type="button" class="rounded-2xl!">
                                 Email
                             </x-inputs.button>
                         </div>
                     </x-slot:button>
                 </x-displays.simple-card>
-                <x-displays.drawer store="contactEmail">
+                <x-displays.drawer store="contactEmailDrawer">
                     <div class="flex flex-col gap-5 px-4">
                         <div class="flex justify-between gap-7">
                             <div class="space-y-2">
@@ -149,14 +149,14 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactOffice.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactOfficeDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
                             <x-inputs.button type="button" class="rounded-2xl!">
                                 Maps
                             </x-inputs.button>
                         </div>
                     </x-slot:button>
                 </x-displays.simple-card>
-                <x-displays.drawer store="contactOffice">
+                <x-displays.drawer store="contactOfficeDrawer">
                     <div class="flex flex-col gap-5 px-4">
                         <div class="flex justify-between items-center gap-7">
                             <h3>Office</h3>
@@ -197,7 +197,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactSocmed.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactSocmedDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
                             <div class="flex gap-2">
                                 <a href="https://www.instagram.com/quantum_indonesia" target="_blank" class="flex justify-center items-center size-[58px] bg-[#E7F1F2] rounded-2xl">
                                     <span class="icon-[mdi--instagram] text-qt-green-normal text-3xl"></span>
@@ -212,7 +212,7 @@
                         </div>
                     </x-slot:button>
                 </x-displays.simple-card>
-                <x-displays.drawer store="contactSocmed">
+                <x-displays.drawer store="contactSocmedDrawer">
                     <div class="flex flex-col gap-5 px-4">
                         <div class="flex justify-between items-center gap-7">
                             <h3>Social Media</h3>

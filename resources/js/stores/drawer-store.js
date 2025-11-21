@@ -26,27 +26,32 @@ document.addEventListener('alpine:init', () => {
             this.data = null
         },
     }),
-    Alpine.store('contactCall', {
+    Alpine.store('contactCallDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
     }),
-    Alpine.store('contactWhatsApp', {
+    Alpine.store('contactWhatsAppDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
     }),
-    Alpine.store('contactEmail', {
+    Alpine.store('contactEmailDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
     }),
-    Alpine.store('contactOffice', {
+    Alpine.store('contactOfficeDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
     }),
-    Alpine.store('contactSocmed', {
+    Alpine.store('contactSocmedDrawer', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    })
+    Alpine.store('shareDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },

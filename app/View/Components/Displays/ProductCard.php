@@ -10,10 +10,11 @@ use Illuminate\Contracts\View\View;
 class ProductCard extends Component
 {
     // Props
-
-    // DATA = data from controller
+    // PAYLOAD = data from controller
     // SIZE = 'lg' | 'md' | 'sm' (default: 'md')
     // DIRECTION = 'row' | 'col' (default: 'col')
+    // DISABLE_VIEW = true | false (default: false) // disable view button
+    // DISABLE_SPECS = true | false (default: false) // disable specs
 
     public array $dataDrawer = [];
 
