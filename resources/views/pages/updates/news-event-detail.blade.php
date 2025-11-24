@@ -2,7 +2,7 @@
 
 @section('content')
     <main x-data id="news-event-detail" class="bg-[#FFFFFF]">
-        <section>
+        <section class="flex flex-col">
             <div class="flex flex-col gap-4 px-6 pt-[60px] pb-8">
                 <div class="space-y-2">
                     <h2>5 Cara Hemat Energi dengan Kompor Quantum</h2>

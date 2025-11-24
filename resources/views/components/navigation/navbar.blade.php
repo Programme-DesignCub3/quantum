@@ -21,30 +21,30 @@
         </button>
         <x-displays.drawer store="menuDrawer">
             <div class="relative space-y-9">
-                <div x-show="isMenuOpen" class="flex flex-col gap-1">
-                    <button type="button" @click="openMenu('about')" class="menu-nav-link">
+                <div x-show="$store.menuDrawer.isMenuOpen" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.openMenu('about')" class="menu-nav-link">
                         Tentang
                         <span class="icon-[lucide--chevron-right]"></span>
                     </button>
-                    <button type="button" @click="openMenu('product')" class="menu-nav-link">
+                    <button type="button" @click="$store.menuDrawer.openMenu('product')" class="menu-nav-link">
                         Produk
                         <span class="icon-[lucide--chevron-right]"></span>
                     </button>
-                    <button type="button" @click="openMenu('distributor')" class="menu-nav-link">
+                    <button type="button" @click="$store.menuDrawer.openMenu('distributor')" class="menu-nav-link">
                         Distributor
                         <span class="icon-[lucide--chevron-right]"></span>
                     </button>
-                    <button type="button" @click="openMenu('updates')" class="menu-nav-link">
+                    <button type="button" @click="$store.menuDrawer.openMenu('updates')" class="menu-nav-link">
                         Updates
                         <span class="icon-[lucide--chevron-right]"></span>
                     </button>
-                    <button type="button" @click="openMenu('support')" class="menu-nav-link">
+                    <button type="button" @click="$store.menuDrawer.openMenu('support')" class="menu-nav-link">
                         Bantuan
                         <span class="icon-[lucide--chevron-right]"></span>
                     </button>
                 </div>
-                <div x-show="currentMenu === 'about'" class="flex flex-col gap-1">
-                    <button type="button" @click="closeMenu" class="menu-nav-back">
+                <div x-show="$store.menuDrawer.currentMenu === 'about'" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                         <span class="icon-[lucide--chevron-left]"></span>
                         Tentang
                     </button>
@@ -61,8 +61,8 @@
                         Marketplace
                     </a>
                 </div>
-                <div x-show="currentMenu === 'product'" class="flex flex-col gap-1">
-                    <button type="button" @click="closeMenu" class="menu-nav-back">
+                <div x-show="$store.menuDrawer.currentMenu === 'product'" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                         <span class="icon-[lucide--chevron-left]"></span>
                         Produk
                     </button>
@@ -79,8 +79,8 @@
                         Suku Cadang
                     </a>
                 </div>
-                <div x-show="currentMenu === 'distributor'" class="flex flex-col gap-1">
-                    <button type="button" @click="closeMenu" class="menu-nav-back">
+                <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                         <span class="icon-[lucide--chevron-left]"></span>
                         Distributor
                     </button>
@@ -93,8 +93,8 @@
                         Katalog
                     </a>
                 </div>
-                <div x-show="currentMenu === 'updates'" class="flex flex-col gap-1">
-                    <button type="button" @click="closeMenu" class="menu-nav-back">
+                <div x-show="$store.menuDrawer.currentMenu === 'updates'" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                         <span class="icon-[lucide--chevron-left]"></span>
                         Updates
                     </button>
@@ -111,8 +111,8 @@
                         Resep
                     </a>
                 </div>
-                <div x-show="currentMenu === 'support'" class="flex flex-col gap-1">
-                    <button type="button" @click="closeMenu" class="menu-nav-back">
+                <div x-show="$store.menuDrawer.currentMenu === 'support'" class="flex flex-col gap-1">
+                    <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                         <span class="icon-[lucide--chevron-left]"></span>
                         Bantuan
                     </button>
@@ -161,10 +161,8 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('navbar', () => ({
             isWhite: false,
-            isMenuOpen: true,
             sticky: @json($sticky),
             position: true,
-            currentMenu: null,
 
             init() {
                 let yprev;
@@ -177,15 +175,6 @@
                     yprev = y;
                 });
             },
-
-            openMenu(menu) {
-                this.isMenuOpen = false;
-                this.currentMenu = menu;
-            },
-            closeMenu() {
-                this.isMenuOpen = true;
-                this.currentMenu = null;
-            }
         }))
     })
 </script>

@@ -9,8 +9,9 @@ use Illuminate\View\Component;
 class ArticleCard extends Component
 {
     // Props
-    // DATA = data from controller
+    // PAYLOAD = data from controller
     // BORDER = true | false (default: false)
+    // FOR = 'article' | 'guidance' (default: 'article')
 
     /**
      * Create a new component instance.
@@ -18,6 +19,7 @@ class ArticleCard extends Component
     public function __construct(
         public array $payload,
         public ?bool $border = false,
+        public ?string $for = 'article',
     ) {}
 
     /**

@@ -6,17 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SwipeCard extends Component
+class GuidanceArticleCard extends Component
 {
     // Props
-    // IMAGE = 'string' (image path)
+    // PAYLOAD = data from controller
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $image,
-        public ?string $video
+        public array $payload,
     ) {}
 
     /**
@@ -24,6 +23,6 @@ class SwipeCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.displays.swipe-card');
+        return view('components.displays.guidance-article-card');
     }
 }

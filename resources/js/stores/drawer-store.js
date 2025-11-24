@@ -1,8 +1,18 @@
 document.addEventListener('alpine:init', () => {
     Alpine.store('menuDrawer', {
         open: false,
+        isMenuOpen: true,
+        currentMenu: null,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
+        openMenu(menu) {
+            this.isMenuOpen = false;
+            this.currentMenu = menu;
+        },
+        closeMenu() {
+            this.isMenuOpen = true;
+            this.currentMenu = null;
+        }
     })
     Alpine.store('searchDrawer', {
         open: false,
@@ -25,27 +35,27 @@ document.addEventListener('alpine:init', () => {
             this.open = false
             this.data = null
         },
-    }),
+    })
     Alpine.store('contactCallDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
-    }),
+    })
     Alpine.store('contactWhatsAppDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
-    }),
+    })
     Alpine.store('contactEmailDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
-    }),
+    })
     Alpine.store('contactOfficeDrawer', {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
-    }),
+    })
     Alpine.store('contactSocmedDrawer', {
         open: false,
         openDrawer() { this.open = true },
@@ -55,6 +65,21 @@ document.addEventListener('alpine:init', () => {
         open: false,
         openDrawer() { this.open = true },
         closeDrawer() { this.open = false },
+    })
+    Alpine.store('numberModelDrawer', {
+        open: false,
+        isMenuOpen: true,
+        currentMenu: null,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+        openMenu(menu) {
+            this.isMenuOpen = false;
+            this.currentMenu = menu;
+        },
+        closeMenu() {
+            this.isMenuOpen = true;
+            this.currentMenu = null;
+        }
     })
 })
 

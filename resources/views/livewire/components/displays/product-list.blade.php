@@ -30,7 +30,7 @@
                 'hover:bg-[#0B474D]/30' => !(Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'suku-cadang'),
                 'flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5'
             ])>
-                <x-icons.target-icon class="fill-white stroke-white" />
+                <x-icons.target-icon class="fill-white stroke-white p-1" />
                 <span class="font-semibold leading-[133%]">Suku Cadang</span>
             </a>
         </div>

@@ -61,7 +61,6 @@ if (document.querySelector('#product-detail')) {
         gap: '2rem',
         padding: '1rem'
     }).mount();
-
     let main = new Splide('.splide.main-product-detail', {
         type: 'fade',
         heightRatio: 0.75,
@@ -102,13 +101,27 @@ if (document.querySelector('#news-event')) {
 
 // News Event Detail Page Slides
 if (document.querySelector('#news-event-detail')) {
+    new Splide('.splide.recommendation-products-news-event', {
+        ...swipeNormal,
+        gap: '2rem',
+        padding: '1rem'
+    }).mount();
     new Splide('.splide.other-news-event', {
         ...swipeable,
         gap: '2rem',
         padding: '1rem'
     }).mount();
-    new Splide('.splide.recommendation-products-news-event', {
-        ...swipeNormal,
+}
+
+// Education Guidance Detail Page Slides
+if (document.querySelector('#guidance-detail')) {
+    new Splide('.splide.guidance-step', {
+        ...swipeable,
+        gap: '2rem',
+        padding: '1.5rem'
+    }).mount();
+    new Splide('.splide.other-guidance', {
+        ...swipeable,
         gap: '2rem',
         padding: '1rem'
     }).mount();

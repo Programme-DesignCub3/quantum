@@ -334,15 +334,7 @@
         <section id="bantuan" class="flex flex-col gap-[42px] py-[60px] px-4">
             <div class="flex flex-col gap-4">
                 <h2>Panduan</h2>
-                <div class="flex justify-center items-center gap-4 p-2 bg-[#F4F4F4] rounded-2xl">
-                    <div class="rounded-2xl shrink-0 bg-white overflow-hidden">
-                        <img class="w-[120px] h-[100px] object-cover object-bottom" src="{{ asset('images/product-1.jpg') }}" alt="">
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <h5>Kompor Gas QGC - 101 AB</h5>
-                        <x-inputs.button-icon type="hyperlink" icon="icon-[material-symbols--download-rounded]" size="md" class="size-14 rounded-2xl!" />
-                    </div>
-                </div>
+                <x-displays.guidance-card :payload="$guidance" />
             </div>
             <div class="flex flex-col gap-4">
                 <h2>Info Lainnya</h2>

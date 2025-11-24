@@ -79,6 +79,12 @@ class ProductController extends Controller
             ],
         ];
 
+        $guidance = [
+            'image' => asset('images/product-1.jpg'),
+            'category' => 'Kompor Gas',
+            'name' => 'QGC - 101 AB Putih'
+        ];
+
         $currentProduct = [
                 'image' => asset('images/product-1.jpg'),
                 'category' => 'Kompor Gas',
@@ -129,6 +135,7 @@ class ProductController extends Controller
 
         return view('pages.product.product-detail', [
             'recommendationProducts' => $recommendationProducts,
+            'guidance' => $guidance,
             'currentProduct' => $currentProduct,
             'compareProduct' => $compareProduct,
             'dataDrawer' => $dataDrawer,
