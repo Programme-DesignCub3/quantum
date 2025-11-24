@@ -74,6 +74,12 @@ Breadcrumbs::for('support.guidance.detail', function (BreadcrumbTrail $trail, $s
     $trail->push($slug, route('support.guidance.detail', $slug));
 });
 
+// Beranda > Tutorial Video
+Breadcrumbs::for('support.tutorial-video', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Tutorial Video', route('support.tutorial-video'));
+});
+
 // Beranda > Syarat & Ketentuan
 Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

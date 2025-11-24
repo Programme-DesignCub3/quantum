@@ -10,6 +10,7 @@ use App\Http\Controllers\GuidanceController;
 use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\TermsConditionsController;
+use App\Http\Controllers\TutorialVideoController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -45,6 +46,8 @@ Route::name('support')->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('.faq');
     // (Contact)
     Route::get('/kontak', [ContactController::class, 'index'])->name('.contact');
+    // (Video & Tutorial)
+    Route::get('/tutorial-video', [TutorialVideoController::class, 'index'])->name('.tutorial-video');
     // (Education & Guidance)
     Route::prefix('edukasi-dan-panduan')->name('.guidance')->group(function () {
         Route::controller(GuidanceController::class)->group(function () {

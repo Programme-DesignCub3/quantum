@@ -98,7 +98,7 @@
                 </div>
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-col gap-3">
-                        <div class="aspect-17/10 rounded-3xl overflow-hidden">
+                        <div class="rounded-3xl overflow-hidden">
                             <img class="aspect-17/10 object-cover" src="{{ asset('images/guidance-1.jpg') }}" alt="">
                         </div>
                         <div class="space-y-1 p-3">

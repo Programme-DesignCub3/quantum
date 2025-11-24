@@ -12,7 +12,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-VariableFont.woff2") format("woff2");
 }
 
 @font-face {
@@ -20,7 +20,7 @@
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
 }
 
 @layer base {
@@ -107,7 +107,7 @@
         }
     }
     button.tab {
-        @apply py-2.5 px-5 font-semibold text-qt-green-normal rounded-full cursor-pointer text-xs hover:bg-[#E7F1F2] hover:text-qt-green-hover;
+        @apply py-2.5 px-5 font-semibold text-qt-green-normal rounded-full cursor-pointer text-xs whitespace-nowrap hover:bg-[#E7F1F2] hover:text-qt-green-hover;
         &.active {
             @apply text-qt-green-hover bg-[#E7F1F2];
         }
@@ -119,7 +119,7 @@
         }
     }
     a.tab {
-        @apply py-2.5 px-5 font-semibold text-qt-green-normal rounded-full cursor-pointer text-xs inline-block hover:bg-[#E7F1F2] hover:text-qt-green-hover;
+        @apply py-2.5 px-5 font-semibold text-qt-green-normal rounded-full cursor-pointer text-xs whitespace-nowrap inline-block hover:bg-[#E7F1F2] hover:text-qt-green-hover;
         &.active {
             @apply text-qt-green-hover bg-[#E7F1F2];
         }
