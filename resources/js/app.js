@@ -1,7 +1,7 @@
 import './init/slides';
 import './init/scrollspy';
+import './stores/store';
 import './stores/drawer-store';
-import './stores/video-store';
 import './bootstrap';
 
 // const container = document.querySelector('.zoom-container');

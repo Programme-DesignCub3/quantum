@@ -15,7 +15,7 @@
                 'aspect-41/35 object-contain' => $size === 'sm',
             ]) src="{{ $payload['image'] }}" alt="">
             @if(isset($payload['label']))
-                <div class="absolute top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
+                <div class="absolute flex items-center justify-center top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
                     <span>{{ $payload['label'] }}</span>
                 </div>
             @endif

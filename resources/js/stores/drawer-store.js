@@ -81,5 +81,20 @@ document.addEventListener('alpine:init', () => {
             this.currentMenu = null;
         }
     })
+    Alpine.store('premiumRecipeDrawer', {
+        open: false,
+        isPremium: true,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+        registerPremium(status) {
+            this.isPremium = status;
+            this.open = false;
+        }
+    })
+    Alpine.store('brochureCatalogDrawer', {
+        open: false,
+        openDrawer() { this.open = true },
+        closeDrawer() { this.open = false },
+    })
 })
 

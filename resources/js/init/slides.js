@@ -113,6 +113,34 @@ if (document.querySelector('#news-event-detail')) {
     }).mount();
 }
 
+// Recipe Page Slides
+if (document.querySelector('#recipe')) {
+    new Splide('.splide.recipe-articles', {
+        ...swipeable,
+        gap: '0.8rem',
+        padding: '1rem'
+    }).mount();
+}
+
+// Recipe Detail Page Slides
+if (document.querySelector('#recipe-detail')) {
+    new Splide('.splide.how-to-step', {
+        ...swipeable,
+        gap: '1rem',
+        padding: '1.5rem'
+    }).mount();
+    new Splide('.splide.recommendation-products-recipe', {
+        ...swipeNormal,
+        gap: '2rem',
+        padding: '1rem'
+    }).mount();
+    new Splide('.splide.other-recipe', {
+        ...swipeable,
+        gap: '2rem',
+        padding: '1rem'
+    }).mount();
+}
+
 // Education Guidance Detail Page Slides
 if (document.querySelector('#guidance-detail')) {
     new Splide('.splide.guidance-step', {

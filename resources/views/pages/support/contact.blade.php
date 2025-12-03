@@ -167,7 +167,7 @@
                                 <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" src="{{ asset('images/quantum-office-tower.jpg') }}" alt="">
                                 <h5>Quantum Office Tower</h5>
                                 <div class="flex gap-4">
-                                    <span class="icon-[lucide--map-pin] text-lg"></span>
+                                    <span class="icon-[lucide--map-pin] shrink-0 text-lg"></span>
                                     <span class="text-[#6D6D6D]">Gedung Office 8<br> Jl. Senopati no 8B Level 18A Senayan, Keb. Baru, Jakarta 12190</span>
                                 </div>
                             </div>

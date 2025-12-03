@@ -32,6 +32,18 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, 
     $trail->push($slug, route('product.detail', [$category, $slug]));
 });
 
+// Beranda > Distributor
+Breadcrumbs::for('distributor.list-distributor', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Distributor', route('distributor.list-distributor'));
+});
+
+// Beranda > Katalog
+Breadcrumbs::for('distributor.catalog', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Katalog', route('distributor.catalog'));
+});
+
 // Beranda > Berita dan Event
 Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -42,6 +54,18 @@ Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('updates.news.detail', function (BreadcrumbTrail $trail, $slug) {
     $trail->parent('updates.news');
     $trail->push($slug, route('updates.news.detail', $slug));
+});
+
+// Beranda > Resep
+Breadcrumbs::for('updates.recipe', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Resep', route('updates.recipe'));
+});
+
+// Beranda > Resep > [Detail Resep]
+Breadcrumbs::for('updates.recipe.detail', function (BreadcrumbTrail $trail, $slug) {
+    $trail->parent('updates.recipe');
+    $trail->push($slug, route('updates.recipe.detail', $slug));
 });
 
 // Beranda > Layanan Pelanggan
@@ -90,6 +114,12 @@ Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('privacy-policy', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Kebijakan Privasi', route('privacy-policy'));
+});
+
+// Search Page
+Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Search', route('search'));
 });
 
 // 404 Error Page

@@ -1,17 +1,21 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CustomerServiceController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GuidanceController;
 use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\PrivacyPolicyController;
-use App\Http\Controllers\TermsConditionsController;
 use App\Http\Controllers\TutorialVideoController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TermsConditionsController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,10 +32,22 @@ Route::prefix('produk')->name('product')->group(function () {
     });
 });
 
+// Distributor
+Route::name('distributor')->group(function () {
+    Route::get('/katalog', [CatalogController::class, 'index'])->name('.catalog');
+    Route::get('/distributor', [DistributorController::class, 'index'])->name('.list-distributor');
+});
+
 // Updates
 Route::name('updates')->group(function () {
     Route::prefix('berita-dan-event')->name('.news')->group(function () {
         Route::controller(NewsEventController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/{slug}', 'detail')->name('.detail');
+        });
+    });
+    Route::prefix('resep')->name('.recipe')->group(function () {
+        Route::controller(RecipeController::class)->group(function () {
             Route::get('/', 'index');
             Route::get('/{slug}', 'detail')->name('.detail');
         });
@@ -62,3 +78,6 @@ Route::get('/syarat-dan-ketentuan', [TermsConditionsController::class, 'index'])
 
 // Privacy Policy
 Route::get('/kebijakan-privasi', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
+
+// Search
+Route::get('/search', [SearchController::class, 'index'])->name('search');

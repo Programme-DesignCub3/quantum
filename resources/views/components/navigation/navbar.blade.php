@@ -84,11 +84,11 @@
                         <span class="icon-[lucide--chevron-left]"></span>
                         Distributor
                     </button>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('distributor.list-distributor') }}" class="menu-nav-sublink">
                         <x-icons.store-icon class="fill-qt-green-normal" />
                         Daftar Distributor
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('distributor.catalog') }}" class="menu-nav-sublink">
                         <span class="icon-[proicons--book]"></span>
                         Katalog
                     </a>
@@ -106,7 +106,7 @@
                         <span class="icon-[lucide--calendar-check]"></span>
                         Event
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('updates.recipe') }}" class="menu-nav-sublink">
                         <x-icons.recipe-book-icon class="fill-qt-green-normal" />
                         Resep
                     </a>

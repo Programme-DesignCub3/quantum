@@ -1,4 +1,9 @@
 document.addEventListener('alpine:init', () => {
+    Alpine.store('scroll', {
+        scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    })
     Alpine.store('videoModal', {
         open: false,
         data: null,

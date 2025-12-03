@@ -6,7 +6,7 @@
             <div class="px-6 pt-[60px] pb-8">
                 <h2>5 Cara Hemat Energi dengan Kompor Quantum</h2>
             </div>
-            <div class="aspect-49/30">
+            <div class="relative">
                 <img class="aspect-49/30 object-cover" src="{{ asset('images/guidance-1.jpg') }}" alt="">
             </div>
             <div class="px-6 pt-[42px] pb-9">

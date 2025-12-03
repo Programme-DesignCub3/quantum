@@ -34,3 +34,14 @@
         </div>
     </div>
 </x-displays.drawer>
+<x-displays.drawer store="shareDrawer">
+    <div class="flex flex-col gap-4 justify-center items-center px-4">
+        <h3>Bagikan Artikel</h3>
+        <div class="flex gap-2 py-4">
+            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[jam--linkedin]" />
+            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[ri--facebook-fill]" />
+            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
+            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[lucide--mail]" />
+        </div>
+    </div>
+</x-displays.drawer>

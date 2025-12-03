@@ -15,16 +15,22 @@
                 <p class="text-[#9A9A9A]">{{ $payload['excerpt'] }}</p>
             @endif
         </div>
-        <div class="flex justify-center items-center">
-            @if ($for === 'guidance')
-                <x-inputs.button type="hyperlink" href="{{ route('support.guidance.detail', $payload['slug']) }}" size="md" color="white">
-                    Selengkapnya
-                </x-inputs.button>
-            @else
-                <x-inputs.button type="hyperlink" href="{{ route('updates.news.detail', $payload['slug']) }}" size="md" color="white">
-                    Selengkapnya
-                </x-inputs.button>
+        <div @class([
+            'justify-between gap-2' => isset($payload['premium']) && $payload['premium'],
+            'justify-center' => !isset($payload['premium']) || !$payload['premium'],
+            'flex items-center'
+        ])>
+            @if (isset($payload['premium']))
+                <div class="flex items-center gap-1 px-2 py-1 bg-[#FBD752] rounded-full">
+                    <x-icons.premium-icon class="fill-qt-green-normal size-5" />
+                    <span class="small text-qt-green-normal">Premium</span>
+                </div>
             @endif
+            <x-inputs.button type="hyperlink" href="{{ route($routeName, $payload['slug']) }}" size="md" color="white" @class([
+                'p-3!' => isset($payload['premium']) && $payload['premium'],
+            ])>
+                Selengkapnya
+            </x-inputs.button>
         </div>
     </div>
 </div>

@@ -1,16 +1,12 @@
 <div x-data="{ isOpen: @json($open), last: @json($last), type: '{{ $type }}', init() {
     if (this.isOpen) {
-        this.$nextTick(() => {
-            this.$refs.content.style.maxHeight = this.$refs.content.scrollHeight + 'px';
-        });
+        this.$refs.content.style.maxHeight = this.$refs.content.scrollHeight + 'px';
     }
 }, toggleAccordion() {
     this.isOpen = !this.isOpen;
 
     if (this.isOpen) {
-        this.$nextTick(() => {
-            this.$refs.content.style.maxHeight = this.$refs.content.scrollHeight + 'px';
-        });
+        this.$refs.content.style.maxHeight = this.$refs.content.scrollHeight + 'px';
     } else {
         this.$refs.content.style.maxHeight = null;
     }

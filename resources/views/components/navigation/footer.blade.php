@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer x-data x-cloak x-show="$store.premiumRecipeDrawer.isPremium" id="footer">
     @if (Route::currentRouteName() !== 'contact')
         <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
             <h2>Quantum Care</h2>
@@ -68,15 +68,15 @@
                     </x-displays.accordion>
                     <x-displays.accordion title="Distributor">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Daftar Jadi Distributor</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Katalog</a>
+                            <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Daftar Jadi Distributor</a>
+                            <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Katalog</a>
                         </div>
                     </x-displays.accordion>
                     <x-displays.accordion title="Updates">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('updates.news') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>
                             <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Event</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Resep</a>
+                            <a href="{{ route('updates.recipe') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Resep</a>
                         </div>
                     </x-displays.accordion>
                     <x-displays.accordion title="Bantuan" :last="true">
