@@ -74,6 +74,18 @@ Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) {
     $trail->push('Layanan Pelanggan', route('support.customer-service'));
 });
 
+// Beranda > Informasi Garansi
+Breadcrumbs::for('support.guarantee-information', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Informasi Garansi', route('support.guarantee-information'));
+});
+
+// Beranda > Service Center
+Breadcrumbs::for('support.service-center', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Service Center', route('support.service-center'));
+});
+
 // Beranda > FAQ
 Breadcrumbs::for('support.faq', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

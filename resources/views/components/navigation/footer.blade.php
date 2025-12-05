@@ -81,8 +81,8 @@
                     </x-displays.accordion>
                     <x-displays.accordion title="Bantuan" :last="true">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Informasi Garansi</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Service Center</a>
+                            <a href="{{ route('support.guarantee-information') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Informasi Garansi</a>
+                            <a href="{{ route('support.service-center') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Service Center</a>
                             <a href="{{ route('support.faq') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">FAQ</a>
                             <a href="{{ route('support.contact') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kontak Kami</a>
                             <a href="{{ route('support.guidance') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Edukasi dan Panduan</a>

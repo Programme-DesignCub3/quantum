@@ -120,11 +120,11 @@
                         <x-icons.customer-care-icon class="fill-qt-green-normal size-7" />
                         Layanan Pelanggan
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('support.guarantee-information') }}" class="menu-nav-sublink">
                         <span class="icon-[humbleicons--document]"></span>
                         Informasi Garansi
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('support.service-center') }}" class="menu-nav-sublink">
                         <span class="icon-[lucide--map-pin]"></span>
                         Service Center
                     </a>

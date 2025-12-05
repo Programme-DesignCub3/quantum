@@ -51,9 +51,9 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4">
-                    @for ($i = 1; $i <= 3; $i++)
-                        <x-displays.place-card />
-                    @endfor
+                    @foreach ($distributors as $distributor)
+                        <x-displays.place-card :payload="$distributor" />
+                    @endforeach
                 </div>
             </div>
             <div class="flex justify-center">

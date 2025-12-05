@@ -14,7 +14,9 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\TutorialVideoController;
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\GuaranteeInformationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ServiceCenterController;
 use App\Http\Controllers\TermsConditionsController;
 
 // Home
@@ -58,6 +60,10 @@ Route::name('updates')->group(function () {
 Route::name('support')->group(function () {
     // (Customer Service)
     Route::get('/layanan-pelanggan', [CustomerServiceController::class, 'index'])->name('.customer-service');
+    // (Guarantee Information)
+    Route::get('/informasi-garansi', [GuaranteeInformationController::class, 'index'])->name('.guarantee-information');
+    // (Service Center)
+    Route::get('/service-center', [ServiceCenterController::class, 'index'])->name('.service-center');
     // (FAQ)
     Route::get('/faq', [FaqController::class, 'index'])->name('.faq');
     // (Contact)
