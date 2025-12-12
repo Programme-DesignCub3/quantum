@@ -66,18 +66,12 @@
                         <span class="icon-[lucide--chevron-left]"></span>
                         Produk
                     </button>
-                    <a href="{{ route('product.category', 'kompor') }}" class="menu-nav-sublink">
-                        <x-icons.stove-icon class="fill-qt-green-normal stroke-qt-green-normal" />
-                        Kompor
-                    </a>
-                    <a href="{{ route('product.category', 'regulator-dan-selang-gas') }}" class="menu-nav-sublink">
-                        <x-icons.regulator-icon class="fill-qt-green-normal" />
-                        Regulator & Selang Gas
-                    </a>
-                    <a href="{{ route('product.category', 'suku-cadang') }}" class="menu-nav-sublink">
-                        <x-icons.target-icon class="fill-qt-green-normal" />
-                        Suku Cadang
-                    </a>
+                    @foreach ($product_categories as $category)
+                        <a href="{{ route('product.category', $category->slug) }}" class="menu-nav-sublink">
+                            <img class="size-[30px]" src="{{ $category->icon_green }}" alt="">
+                            {{ $category->name }}
+                        </a>
+                    @endforeach
                 </div>
                 <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
                     <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
@@ -175,6 +169,12 @@
                     yprev = y;
                 });
             },
+            currentMenuInit(routeGroup) {
+                if (routeGroup) {
+                    this.$store.menuDrawer.isMenuOpen = false;
+                    this.$store.menuDrawer.currentMenu = routeGroup;
+                }
+            }
         }))
     })
 </script>

@@ -11,12 +11,7 @@ class ProductController extends Controller
         return view('pages.product.product');
     }
 
-    public function category($category)
-    {
-        return view('pages.product.product');
-    }
-
-    public function detail($category, $slug)
+    public function detail()
     {
         $recommendationProducts = [
             [

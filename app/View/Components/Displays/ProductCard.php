@@ -16,7 +16,7 @@ class ProductCard extends Component
     // DISABLE_VIEW = true | false (default: false) // disable view button
     // DISABLE_SPECS = true | false (default: false) // disable specs
 
-    public array $dataDrawer = [];
+    public $data_drawer;
 
     /**
      * Create a new component instance.
@@ -28,9 +28,9 @@ class ProductCard extends Component
         public ?bool $disableView = false,
         public ?bool $disableSpecs = false,
     ) {
-        $this->dataDrawer = [
-            'image' => $this->payload['image'],
-            'category' => $this->payload['category'],
+        $this->data_drawer = [
+            'image' => asset($this->payload['image']),
+            'category' => $this->payload['variant'] ?? $this->payload['category'],
             'name' => $this->payload['name'],
             'price' => $this->payload['price'],
             'marketplace' => $this->payload['marketplace'],

@@ -12,18 +12,10 @@
         <section>
             <div id="tabs-anchor" :class="isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-30 px-5 py-3.5 transition-all ease-in-out bg-white border-[#DBDBDB] overflow-x-auto">
                 <div class="flex justify-between gap-0.5 w-max min-[420px]:w-full">
-                    <a href="#sejarah" class="tab active">
-                        Sejarah
-                    </a>
-                    <a href="#visi-misi" class="tab">
-                        Visi & Misi
-                    </a>
-                    <a href="#award" class="tab">
-                        Award
-                    </a>
-                    <a href="#marketplace" class="tab">
-                        Marketplace
-                    </a>
+                    <a href="#sejarah" class="tab active">Sejarah</a>
+                    <a href="#visi-misi" class="tab">Visi & Misi</a>
+                    <a href="#award" class="tab">Award</a>
+                    <a href="#marketplace" class="tab">Marketplace</a>
                 </div>
             </div>
             <div id="sejarah" class="scrollspy space-y-4 text-center scroll-mt-20 px-6 pt-[76px] pb-12">
@@ -33,7 +25,7 @@
                     <p>Komitmen kami terhadap inovasi tak pernah pudar. Kami terus mengembangkan produk unggulan, seperti kompor gas yang mampu menghemat energi, dirancang dengan daya tahan tinggi dan kualitas terbaik. Penghargaan atas inovasi teknologi yang kami kembangkan adalah bukti nyata dedikasi untuk terus menyediakan produk berkualitas terbaik yang aman dan efisien untuk setiap dapur keluarga Indonesia.</p>
                 </div>
             </div>
-            <div>
+            <div class="relative">
                 <img src="{{ asset('images/bg-about.jpg') }}" alt="">
             </div>
             <div class="flex flex-col gap-8 px-4 py-[92px] bg-[#F4F4F4]">

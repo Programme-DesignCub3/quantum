@@ -5,7 +5,7 @@
         $variantClass,
         $colorClass,
         $class
-    ]) @disabled($disabled)>
+    ]) :class="direction && (direction === 'row' || direction === 'col') && 'w-full'"  @disabled($disabled)>
         {{ $slot }}
     </a>
 @else
@@ -15,7 +15,7 @@
         $variantClass,
         $colorClass,
         $class
-    ]) @disabled($disabled)>
+    ]) :class="direction && (direction === 'row' || direction === 'col') && 'w-full'" @disabled($disabled)>
         {{ $slot }}
     </button>
 @endif

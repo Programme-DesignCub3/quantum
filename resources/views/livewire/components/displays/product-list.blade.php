@@ -9,30 +9,16 @@
                 <span class="icon-[mingcute--grid-line] text-[28px]"></span>
                 <span class="font-semibold leading-[133%]">Semua</span>
             </a>
-            <a href="{{ route('product.category', 'kompor') }}" @class([
-                'bg-[#0B474D]' => Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'kompor',
-                'hover:bg-[#0B474D]/30' => !(Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'kompor'),
-                'flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5'
-            ])>
-                <x-icons.stove-icon class="fill-white stroke-white" />
-                <span class="font-semibold leading-[133%]">Kompor</span>
-            </a>
-            <a href="{{ route('product.category', 'regulator-dan-selang-gas') }}" @class([
-                'bg-[#0B474D]' => Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'regulator-dan-selang-gas',
-                'hover:bg-[#0B474D]/30' => !(Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'regulator-dan-selang-gas'),
-                'flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5'
-            ])>
-                <x-icons.regulator-icon class="fill-white stroke-white" />
-                <span class="font-semibold leading-[133%]">Regulator & Selang Gas</span>
-            </a>
-            <a href="{{ route('product.category', 'suku-cadang') }}" @class([
-                'bg-[#0B474D]' => Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'suku-cadang',
-                'hover:bg-[#0B474D]/30' => !(Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === 'suku-cadang'),
-                'flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5'
-            ])>
-                <x-icons.target-icon class="fill-white stroke-white p-1" />
-                <span class="font-semibold leading-[133%]">Suku Cadang</span>
-            </a>
+            @foreach ($categories as $category)
+                <a href="{{ route('product.category', $category->slug) }}" @class([
+                    'bg-[#0B474D]' => Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === $category->slug,
+                    'hover:bg-[#0B474D]/30' => !(Route::currentRouteName() === 'product.category' && Route::current()->parameter('category') === $category->slug),
+                    'flex flex-col gap-3 justify-start items-center rounded-2xl text-white w-[90px] text-center cursor-pointer px-2 py-2.5'
+                ])>
+                    <img class="size-[30px]" src="{{ $category->icon_white }}" alt="">
+                    <span class="font-semibold leading-[133%]">{{ $category->name }}</span>
+                </a>
+            @endforeach
         </div>
         <div class="flex flex-col bg-white">
             <div class="flex gap-2 py-2 px-4">
@@ -56,43 +42,35 @@
                     <p class="text-[#6D6D6D]">Terbaru</p>
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
-                <div class="flex border border-[#F4F4F4] rounded-xl">
-                    <button type="button" class="p-2.5 cursor-pointer">
+                <div class="flex border border-[#F4F4F4] rounded-xl overflow-hidden">
+                    <button type="button" @click="changeLayout('square')" class="p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'square' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-square-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
-                    <button type="button" class="border-x border-[#E9E9E9] p-2.5 cursor-pointer bg-[#F4F4F4]">
+                    <button type="button" @click="changeLayout('row')" class="border-x p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'row' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-row-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
-                    <button type="button" class="p-2.5 cursor-pointer">
+                    <button type="button" @click="changeLayout('col')" class="p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'col' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-col-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="bg-[#F4F4F4] px-4 pt-1 pb-8">
-        <p class="text-[#6D6D6D] p-2">12 Produk</p>
+    <div id="list-products" class="scroll-mt-[300px] bg-[#F4F4F4] px-4 pt-1 pb-8">
+        <p class="text-[#6D6D6D] p-2">8 Produk</p>
         <div :class="{
             'grid-cols-2': layout === 'row',
             'grid-cols-1': layout !== 'row'
         }" class="grid grid-cols-2 gap-4 pt-4 pb-6">
-            @foreach($products as $product)
-                <x-displays.product-card size="sm" direction="col" :payload="$product" />
+            @foreach($products as $key => $product)
+                <div wire:key="product-{{ $product['id'] ?? $key }}">
+                    <x-displays.product-card :payload="$product" />
+                </div>
             @endforeach
         </div>
-        <div class="flex justify-center items-center">
-            <div class="flex rounded-xl overflow-hidden border border-[#E9E9E9]">
-                <button type="button" class="flex justify-center items-center cursor-pointer size-11 p-2.5">
-                    <span class="icon-[lucide--chevron-left] text-2xl text-[#6D6D6D]"></span>
-                </button>
-                <button type="button" class="size-11 p-2.5 cursor-pointer font-bold bg-[#E9E9E9] text-[#6D6D6D] text-lg not-last:border-r not-last:border-[#E9E9E9]">1</button>
-                <button type="button" class="size-11 p-2.5 cursor-pointer font-bold text-[#6D6D6D] text-lg not-last:border-r not-last:border-[#E9E9E9]">2</button>
-                <button type="button" class="size-11 p-2.5 cursor-pointer font-bold text-[#6D6D6D] text-lg not-last:border-r not-last:border-[#E9E9E9]">3</button>
-                <button type="button" class="flex justify-center items-center cursor-pointer size-11 p-2.5">
-                    <span class="icon-[lucide--chevron-right] text-2xl text-[#6D6D6D]"></span>
-                </button>
-            </div>
-        </div>
+        {{-- <div class="flex justify-center items-center">
+            {{ $products->links(data: ['scrollTo' => '#list-products']) }}
+        </div> --}}
     </div>
 </section>
 

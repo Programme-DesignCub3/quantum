@@ -2,16 +2,16 @@
     <div class="flex flex-col gap-6 px-2">
         <div class="flex items-center gap-4">
             <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
-                <img class="size-[100px] object-cover object-center" :src="$store.productDrawer.data?.image || ''" alt="">
+                <img class="size-[100px] object-cover object-center" :src="$store.productDrawer.data?.image" alt="">
             </div>
             <div class="flex flex-col gap-2.5">
                 <div class="space-y-0">
-                    <span x-text="$store.productDrawer.data?.category || ''" class="text-[#9A9A9A]"></span>
-                    <h4 x-text="$store.productDrawer.data?.name || ''" class="text-qt-green-normal"></h4>
+                    <span x-text="$store.productDrawer.data?.category" class="text-[#9A9A9A]"></span>
+                    <h4 x-text="$store.productDrawer.data?.name" class="text-qt-green-normal"></h4>
                 </div>
                 <div class="flex items-center gap-1">
                     <span>Rp</span>
-                    <p x-text="$store.productDrawer.data?.price || ''"></p>
+                    <p x-text="$store.productDrawer.data?.price"></p>
                 </div>
             </div>
         </div>

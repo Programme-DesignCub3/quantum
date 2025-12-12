@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center items-center px-4">
-                    <x-inputs.button type="hyperlink" size="lg" variant="secondary" color="white" class="w-max">
+                    <x-inputs.button type="hyperlink" href="{{ route('updates.news') }}" size="lg" variant="secondary" color="white" class="w-max">
                         Lihat Lebih Banyak
                     </x-inputs.button>
                 </div>

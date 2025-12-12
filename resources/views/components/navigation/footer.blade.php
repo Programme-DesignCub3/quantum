@@ -33,19 +33,7 @@
             <h2>Jangan Lewatkan Penawaran Spesial dari Quantum</h2>
             <p>Nantikan berbagai info produk terbaru dan promo menarik untuk para pelanggan Quantum.</p>
         </div>
-        <div class="space-y-4">
-            <livewire:components.inputs.text-field
-                label="Email"
-                id="email"
-                type="email"
-                error="error"
-                placeholder="Email"
-                color="green"
-                :showLabel="false" />
-            <x-inputs.button type="button" size="md" color="white" class="w-[200px]!">
-                Infokan Saya
-            </x-inputs.button>
-        </div>
+        <livewire:forms.offer-form />
     </div>
     <div class="px-4 py-[60px] bg-[#F4F4F4]">
         <div class="flex flex-col gap-[42px]">
@@ -61,9 +49,11 @@
                     </x-displays.accordion>
                     <x-displays.accordion title="Produk">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="{{ route('product.category', 'kompor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Kompor</a>
-                            <a href="{{ route('product.category', 'regulator-dan-selang-gas') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Selang dan Regulator Gas</a>
-                            <a href="{{ route('product.category', 'suku-cadang') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Suku Cadang</a>
+                            @foreach ($product_categories as $category)
+                                <a href="{{ route('product.category', $category->slug) }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">
+                                    {{ $category->name }}
+                                </a>
+                            @endforeach
                         </div>
                     </x-displays.accordion>
                     <x-displays.accordion title="Distributor">

@@ -29,7 +29,7 @@ Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 Route::prefix('produk')->name('product')->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/', 'index');
-        Route::get('/{category}', 'category')->name('.category');
+        Route::get('/{category}', 'index')->name('.category');
         Route::get('/{category}/{slug}', 'detail')->name('.detail');
     });
 });

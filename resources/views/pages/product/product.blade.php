@@ -98,7 +98,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-start">
-                            <x-inputs.button type="button" size="lg">
+                            <x-inputs.button type="hyperlink" href="{{ route('support.guidance') }}" size="lg">
                                 Lihat
                             </x-inputs.button>
                         </div>
@@ -112,7 +112,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-start">
-                            <x-inputs.button type="button" size="lg">
+                            <x-inputs.button type="hyperlink" href="{{ route('support.tutorial-video') }}" size="lg">
                                 Lihat
                             </x-inputs.button>
                         </div>
