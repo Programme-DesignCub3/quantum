@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Product\Variants;
 
-use App\Filament\Enum\NavigationGroup;
+use App\Enum\NavigationGroup;
 use App\Filament\Resources\Product\Variants\Pages\ManageVariants;
 use App\Models\Product\Variant;
 use Filament\Actions\BulkActionGroup;
@@ -22,7 +22,7 @@ class VariantResource extends Resource
 {
     protected static string | UnitEnum | null $navigationGroup = NavigationGroup::Product;
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $modelLabel = 'Jenis';
 
@@ -35,7 +35,6 @@ class VariantResource extends Resource
                 Select::make('product_category_id')
                     ->label('Kategori')
                     ->relationship('productCategory', 'name')
-                    ->searchable()
                     ->preload()
                     ->columnSpanFull()
                     ->required(),
@@ -53,8 +52,7 @@ class VariantResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->label('Nama Jenis Produk')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 TextColumn::make('productCategory.name')
                     ->label('Kategori')
                     ->placeholder('Tidak ada kategori')

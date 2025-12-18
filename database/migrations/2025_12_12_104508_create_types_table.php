@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_category_id')->nullable()->constrained('product_categories')->onDelete('set null');
             $table->string('name');
             $table->string('slug')->unique();
             $table->timestamps();

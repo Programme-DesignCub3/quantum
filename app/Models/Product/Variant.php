@@ -15,6 +15,11 @@ class Variant extends Model
         'slug'
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'variant_id');
+    }
+
     public function productCategory()
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');

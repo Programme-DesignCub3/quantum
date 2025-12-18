@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <main x-data="about" id="about" class="bg-white">
+    <main x-data id="about" class="bg-white">
         <section class="relative">
             <img class="w-full h-[560px] object-cover object-top" src="{{ asset('images/about-mobile.jpg') }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
@@ -9,8 +9,8 @@
                 <p class="large">Quantum telah menjadi pilihan utama jutaan keluarga di Indonesia dalam menghadirkan kompor dan peralatan dapur berkualitas tinggi.</p>
             </div>
         </section>
-        <section>
-            <div id="tabs-anchor" :class="isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-30 px-5 py-3.5 transition-all ease-in-out bg-white border-[#DBDBDB] overflow-x-auto">
+        <section class="space-y-0">
+            <div id="tabs-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] border-y duration-150 delay-200' : 'top-0 border-b duration-50'" class="sticky z-30 px-5 py-3.5 transition-all ease-in-out bg-white border-[#DBDBDB] overflow-x-auto">
                 <div class="flex justify-between gap-0.5 w-max min-[420px]:w-full">
                     <a href="#sejarah" class="tab active">Sejarah</a>
                     <a href="#visi-misi" class="tab">Visi & Misi</a>
@@ -147,23 +147,3 @@
         </section>
     </main>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('about', () => ({
-            isTop: false,
-
-            init() {
-                let yprev;
-
-                document.addEventListener('scroll', () => {
-                    let y = window.pageYOffset;
-                    this.isTop = y > yprev ? false : true;
-                    yprev = y;
-                });
-            },
-        }))
-    })
-</script>
-@endpush

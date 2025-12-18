@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Product\ProductCategories;
 
 use App\Constant\AcceptedFileConstant;
-use App\Filament\Enum\NavigationGroup;
+use App\Enum\NavigationGroup;
 use App\Filament\Resources\Product\ProductCategories\Pages\ManageProductCategories;
 use App\Models\Product\ProductCategory;
 use Filament\Actions\BulkActionGroup;
@@ -14,7 +14,6 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Fieldset;
-use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -25,7 +24,7 @@ class ProductCategoryResource extends Resource
 {
     protected static string | UnitEnum | null $navigationGroup = NavigationGroup::Product;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $modelLabel = 'Kategori';
 
@@ -44,17 +43,17 @@ class ProductCategoryResource extends Resource
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('icon_white')
                             ->label('Warna Putih (#FFFFFF)')
-                            ->belowContent('File berupa format gambar dengan latar belakang transparan. Maks ukuran file maksimal 2MB.')
+                            ->belowContent('File berupa format gambar .jpeg .jpg .png .webp .svg dengan latar belakang transparan. Maksimal ukuran file 2MB.')
                             ->image()
                             ->maxSize(2048)
-                            ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                            ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE_ICON)
                             ->collection('icon_white')
                             ->columns(1),
                         SpatieMediaLibraryFileUpload::make('icon_green')
                             ->label('Warna Hijau (#127681)')
                             ->image()
                             ->maxSize(2048)
-                            ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                            ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE_ICON)
                             ->collection('icon_green')
                             ->columns(1),
                     ])->columnSpanFull(),
@@ -68,17 +67,16 @@ class ProductCategoryResource extends Resource
                 SpatieMediaLibraryImageColumn::make('icon_white')
                     ->label('Ikon (Putih)')
                     ->collection('icon_white')
-                    ->width(50)
+                    ->imageSize(50)
                     ->defaultImageUrl(asset('icons/default-image-white.svg')),
-                SpatieMediaLibraryImageColumn::make('icons_green')
+                SpatieMediaLibraryImageColumn::make('icon_green')
                     ->label('Ikon (Hijau)')
                     ->collection('icon_green')
-                    ->width(50)
+                    ->imageSize(50)
                     ->defaultImageUrl(asset('icons/default-image-green.svg')),
                 TextColumn::make('name')
                     ->label('Nama Kategori')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable(),
@@ -94,7 +92,8 @@ class ProductCategoryResource extends Resource
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

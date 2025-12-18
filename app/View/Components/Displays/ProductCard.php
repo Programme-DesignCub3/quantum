@@ -28,13 +28,17 @@ class ProductCard extends Component
         public ?bool $disableView = false,
         public ?bool $disableSpecs = false,
     ) {
-        $this->data_drawer = [
+        $raw = [
             'image' => asset($this->payload['image']),
             'category' => $this->payload['variant'] ?? $this->payload['category'],
             'name' => $this->payload['name'],
             'price' => $this->payload['price'],
             'marketplace' => $this->payload['marketplace'],
         ];
+
+        $this->data_drawer = $raw;
+
+        // dd($this->data_drawer);
     }
 
     /**

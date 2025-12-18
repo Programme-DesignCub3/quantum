@@ -43,13 +43,13 @@
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
                 <div class="flex border border-[#F4F4F4] rounded-xl overflow-hidden">
-                    <button type="button" @click="changeLayout('square')" class="p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'square' && 'bg-[#F4F4F4]'">
+                    <button type="button" @click="changeLayout('square')" class="p-2.5 border-[#E9E9E9] rounded-l-xl cursor-pointer" :class="layout === 'square' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-square-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
                     <button type="button" @click="changeLayout('row')" class="border-x p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'row' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-row-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
-                    <button type="button" @click="changeLayout('col')" class="p-2.5 border-[#E9E9E9] cursor-pointer" :class="layout === 'col' && 'bg-[#F4F4F4]'">
+                    <button type="button" @click="changeLayout('col')" class="p-2.5 border-[#E9E9E9] rounded-r-xl cursor-pointer" :class="layout === 'col' && 'bg-[#F4F4F4]'">
                         <x-icons.grid-col-icon class="stroke-[#6D6D6D] fill-none" />
                     </button>
                 </div>

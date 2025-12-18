@@ -1,29 +1,29 @@
 <div wire:key="card-{{ $payload['id'] ?? $payload['slug'] }}" x-data="{ data: @js($data_drawer) }" @class([
     'gap-2 p-2' => $direction === 'row',
     'flex flex-col rounded-2xl overflow-hidden justify-between size-full bg-white'
-]) :class="{
+]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
     'gap-2 p-2': direction === 'row'
-}">
+}" @endif>
     <div @class([
         'flex-row gap-4' => $direction === 'row',
         'flex-col' => $direction === 'col',
         'flex'
-    ]) :class="{
+    ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
         'flex-row gap-4': direction === 'row',
         'flex-col': direction === 'col'
-    }">
+    }" @endif>
         <div class="flex-1 relative bg-white">
             <img @class([
                 'rounded-2xl' => $direction === 'row',
                 'aspect-17/13 size-full object-cover' => $size === 'lg',
                 'aspect-6/5 size-full object-cover' => $size === 'md',
                 'aspect-41/35 object-contain' => $size === 'sm',
-            ]) :class="{
+            ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                 'rounded-2xl': direction === 'row',
                 'aspect-17/13 size-full object-cover': size === 'lg',
                 'aspect-6/5 size-full object-cover': size === 'md',
                 'aspect-41/35 object-contain': size === 'sm',
-            }" src="{{ asset($payload['image']) }}" alt="">
+            }" @endif src="{{ asset($payload['image']) }}" alt="">
             @if(isset($payload['label']))
                 <div class="absolute flex items-center justify-center top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
                     <span>{{ $payload['label'] }}</span>
@@ -35,11 +35,11 @@
             'p-2' => $size === 'sm' && $direction === 'col',
             'p-4' => $size !== 'sm' && $direction === 'col',
             'flex flex-col flex-1 justify-between h-full gap-4 bg-white'
-        ]) :class="{
+        ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
             'py-4 pr-2 ': direction === 'row',
             'p-2': size === 'sm' && direction === 'col',
             'p-4': size !== 'sm' && direction === 'col'
-        }">
+        }" @endif>
             <div class="flex flex-col gap-2">
                 <div class="space-y-0">
                     @switch($size)
@@ -62,10 +62,10 @@
                         'gap-3' => $size !== 'sm',
                         'gap-2' => $size === 'sm',
                         'flex flex-wrap'
-                    ]) :class="{
+                    ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                         'gap-3': size !== 'sm',
                         'gap-2': size === 'sm'
-                    }">
+                    }" @endif>
                         @if(isset($payload['specs']['furnace_type']))
                             <div class="flex justify-center items-center gap-1">
                                 <x-icons.target-icon @class([
@@ -93,11 +93,11 @@
                                     'text-[10px]' => $size === 'md',
                                     'text-[8px]' => $size === 'sm',
                                     'icon-[pajamas--power]'
-                                ]) :class="{
+                                ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                                     'text-xs': size === 'lg',
                                     'text-[10px]': size === 'md',
                                     'text-[8px]': size === 'sm'
-                                }"></span>
+                                }" @endif></span>
                                 @switch($size)
                                     @case('lg')
                                         <p class="small text-[#868686]">{{ $payload['specs']['power_type'] }}</p>
@@ -118,11 +118,11 @@
                                     'text-[10px]' => $size === 'md',
                                     'text-[8px]' => $size === 'sm',
                                     'icon-[el--fire]'
-                                ]) :class="{
+                                ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                                     'text-xs': size === 'lg',
                                     'text-[10px]': size === 'md',
                                     'text-[8px]': size === 'sm'
-                                }"></span>
+                                }" @endif></span>
                                 @switch($size)
                                     @case('lg')
                                         <p class="small text-[#868686]">{{ $payload['specs']['fuel_type'] }}</p>
@@ -163,16 +163,16 @@
                 <div class="flex items-start gap-1">
                     <span @class([
                         'extrasmall' => $size === 'sm',
-                    ]) :class="{
+                    ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                         'extrasmall': size === 'sm'
-                    }">Rp</span>
+                    }" @endif>Rp</span>
                     <p @class([
                         'large' => $size === 'lg',
                         'small' => $size === 'sm',
-                    ]) :class="{
+                    ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                         'large': size === 'lg',
                         'small': size === 'sm'
-                    }">{{ $payload['price'] }}</p>
+                    }" @endif>{{ $payload['price'] }}</p>
                 </div>
             </div>
         </div>
@@ -182,22 +182,18 @@
         'px-4 pb-4' => $size !== 'sm' && $direction === 'col',
         'flex-col px-2 pb-2 min-[420px]:flex-row' => $size === 'sm' && $direction === 'col',
         'flex justify-between text-center'
-    ]) :class="{
+    ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
         'gap-3': direction === 'row' || direction === 'col',
         'px-4 pb-4': size !== 'sm' && direction === 'col',
         'flex-col px-2 pb-2 min-[420px]:flex-row': size === 'sm' && direction === 'col'
-    }">
+    }" @endif>
         @if(!$disableView)
-            <x-inputs.button type="hyperlink" href="{{ route('product.detail', [$payload['category_slug'], $payload['slug']]) }}" size="md" color="white" @class([
-                'w-full' => $direction === 'row',
-            ])>
+            <a href="{{ route('product.detail', [$payload['category_slug'], $payload['slug']]) }}" class="transition-all duration-300 ease-in-out inline-block w-full cursor-pointer border disabled:cursor-not-allowed py-3 px-6 rounded-xl font-semibold tracking-[0.5px] leading-[114%] text-sm border-transparent bg-white text-qt-green-normal hover:bg-qt-green-normal hover:text-white disabled:bg-[#F4F4F4] disabled:text-[#DBDBDB]">
                 Lihat
-            </x-inputs.button>
+            </a>
         @endif
-        <x-inputs.button type="button" size="md" event="$store.productDrawer.openDrawer(data)" @class([
-            'w-full' => $disableView || $direction === 'row',
-        ])>
+        <button type="button" @click="$store.productDrawer.openDrawer(data)" class="transition-all duration-300 ease-in-out w-full cursor-pointer border disabled:cursor-not-allowed py-3 px-6 rounded-xl font-semibold tracking-[0.5px] leading-[114%] text-sm border-transparent bg-qt-green-normal text-white hover:bg-qt-green-hover disabled:bg-[#E9E9E9] disabled:text-[#C7C7C7]">
             Beli
-        </x-inputs.button>
+        </button>
     </div>
 </div>

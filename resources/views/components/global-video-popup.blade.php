@@ -13,7 +13,7 @@
                 </video>
                 @break
             @case('youtube') --}}
-                <iframe class="w-full aspect-video rounded-2xl" src="https://www.youtube.com/embed/FdhuwORtG48" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe class="w-full aspect-video rounded-2xl" :src="$store.videoModal.open ? 'https://www.youtube.com/embed/FdhuwORtG48' : ''" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 {{-- @break
         @endswitch --}}
     </div>

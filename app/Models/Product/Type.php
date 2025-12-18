@@ -15,15 +15,15 @@ class Type extends Model
         'slug'
     ];
 
-    public function productCategory()
-    {
-        return $this->belongsTo(ProductCategory::class, 'product_category_id');
-    }
-
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_type', 'type_id', 'product_id');
     }
 }

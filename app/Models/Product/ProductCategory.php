@@ -4,19 +4,23 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\Tags\HasTags;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class ProductCategory extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasTags, HasSlug;
+    use InteractsWithMedia, HasSlug;
 
     protected $fillable = [
         'name',
         'slug',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'product_category_id');
+    }
 
     public function variants()
     {

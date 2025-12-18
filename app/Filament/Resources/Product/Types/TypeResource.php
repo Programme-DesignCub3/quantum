@@ -2,19 +2,17 @@
 
 namespace App\Filament\Resources\Product\Types;
 
-use App\Filament\Enum\NavigationGroup;
+use App\Enum\NavigationGroup;
 use App\Filament\Resources\Product\Types\Pages\ManageTypes;
 use App\Models\Product\Type;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use UnitEnum;
 
@@ -22,7 +20,7 @@ class TypeResource extends Resource
 {
     protected static string | UnitEnum | null $navigationGroup = NavigationGroup::Product;
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $modelLabel = 'Tipe';
 
@@ -32,13 +30,6 @@ class TypeResource extends Resource
     {
         return $schema
             ->components([
-                Select::make('product_category_id')
-                    ->label('Kategori')
-                    ->relationship('productCategory', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->columnSpanFull()
-                    ->required(),
                 TextInput::make('name')
                     ->label('Nama Tipe')
                     ->autocomplete(false)
@@ -53,21 +44,10 @@ class TypeResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->label('Nama Tipe')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('productCategory.name')
-                    ->label('Kategori')
-                    ->placeholder('Tidak ada kategori')
-                    ->badge()
-                    ->color('gray')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
             ])
             ->filters([
-                SelectFilter::make('product_category_id')
-                    ->label('Kategori')
-                    ->relationship('productCategory', 'name')
-                    ->preload(),
+                //
             ])
             ->recordActions([
                 EditAction::make(),

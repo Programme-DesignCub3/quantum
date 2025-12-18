@@ -9,7 +9,7 @@
                 <p class="large">Andalkan kompor Quantum yang bikin setiap ide masak jadi sempurna</p>
             </div>
         </section>
-        <livewire:components.displays.product-list />
+        <livewire:displays.product-list />
         <section class="flex flex-col gap-[42px] py-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto">
                 <h2>Kenapa Kompor Quantum Jadi Andalan?</h2>
