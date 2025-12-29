@@ -19,7 +19,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-VariableFont.woff2") format("woff2");
 }
 
 @font-face {
@@ -27,7 +27,7 @@
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
 }
 
 @layer base {
@@ -178,6 +178,30 @@
             @apply border-b border-[#DBDBDB];
         }
     }
+    /* Floating Label Input */
+    .floating-label-input {
+        label {
+            @apply absolute transition-all duration-200 ease-in-out text-xs left-3 text-[#6D6D6D]/60 px-1;
+            &.floating {
+                @apply visible bg-white -top-2 opacity-100;
+            }
+            &.not-floating {
+                @apply invisible top-1 opacity-0;
+            }
+        }
+        input {
+            @apply w-full p-3 rounded-xl border outline-offset-2 text-[#6D6D6D] text-sm border-[#E9E9E9] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60;
+        }
+        button#select-form {
+            @apply flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] outline-none cursor-pointer focus:border-[#6D6D6D];
+            &.filled {
+                @apply text-[#6D6D6D];
+            }
+            &.not-filled {
+                @apply text-[#6D6D6D]/60;
+            }
+        }
+    }
 }
 
 @layer utilities {
@@ -215,22 +239,14 @@
     .scrollbar-gutter-stable {
         scrollbar-gutter: stable;
     }
-    .zoom-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;  /* ukuran tampilan */
-  height: 312px;
-  cursor: crosshair;
+    .capitalize-first {
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
 }
 
-.zoom-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  transition: transform 0.2s ease, transform-origin 0.2s ease;
-}
-
-}
+/* Customization */
 
 [x-cloak] {
     @apply hidden!;
@@ -302,4 +318,40 @@
 
 .splide__track--nav>.splide__list>.splide__slide.is-active {
     @apply rounded-lg overflow-hidden border! border-[#6D6D6D]!;
+}
+
+.datepicker {
+    @apply w-full!;
+    .datepicker-header {
+        @apply mb-4!;
+    }
+    .datepicker-controls {
+        button.button {
+            &.view-switch {
+                @apply text-left pl-3.5 order-1! cursor-pointer!;
+            }
+            &.prev-button.prev-btn {
+                @apply block! flex-none! size-8! order-2! p-0! cursor-pointer!;
+            }
+            &.next-button.next-btn {
+                @apply block! flex-none! size-8! order-3! p-0! cursor-pointer!;
+            }
+        }
+    }
+    .datepicker-view {
+        @apply w-full!;
+    }
+    .datepicker-cell.today.focused:not(.selected) {
+        @apply bg-black! text-white!;
+    }
+    .datepicker-cell.today:not(.selected) {
+        @apply bg-white! text-black! border! border-black!;
+    }
+    .datepicker-cell.selected, .datepicker-cell.selected:hover {
+        @apply bg-black! text-white!;
+    }
+    .datepicker-cell.prev:not(.disabled),
+    .datepicker-cell.next:not(.disabled) {
+        @apply text-black/30!;
+    }
 }

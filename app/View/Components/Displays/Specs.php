@@ -8,6 +8,10 @@ use Illuminate\View\Component;
 
 class Specs extends Component
 {
+    // Props
+
+    // LABEL = label for the spec item
+
     /**
      * Create a new component instance.
      */

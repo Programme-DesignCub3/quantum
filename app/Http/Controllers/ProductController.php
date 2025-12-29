@@ -7,9 +7,28 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index($category = null)
     {
-        return view('pages.product.product');
+        $current_category = $category;
+
+        switch ($category) {
+            case 'kompor':
+                $product_banner = asset('images/product-mobile-2.jpg');
+                break;
+            case 'regulator-selang-gas':
+                $product_banner = asset('images/product-mobile-3.jpg');
+                break;
+            case 'sparepart':
+                $product_banner = asset('images/product-mobile-4.jpg');
+                break;
+            default:
+                $product_banner = asset('images/product-mobile-1.jpg');
+        }
+
+        return view('pages.product.product', [
+            'current_category' => $current_category,
+            'product_banner' => $product_banner,
+        ]);
     }
 
     public function detail()

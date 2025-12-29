@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class ArticleCard extends Component
 {
     // Props
+
     // PAYLOAD = data from controller
     // BORDER = true | false (default: false)
     // FOR = 'article' | 'guidance' | 'recipe' (default: 'article')

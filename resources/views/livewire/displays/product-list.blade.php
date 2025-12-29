@@ -1,5 +1,5 @@
 <section x-data="productList">
-    <div :class="isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-40 flex flex-col transition-all ease-in-out">
+    <div :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-40 flex flex-col transition-all ease-in-out">
         <div wire:ignore class="flex justify-evenly gap-2 p-2 bg-[#106B75]">
             <a href="{{ route('product') }}" @class([
                 'bg-[#0B474D]' => Route::currentRouteName() === 'product',
@@ -22,23 +22,20 @@
         </div>
         <div class="flex flex-col bg-white">
             <div class="flex gap-2 py-2 px-4">
-                <button type="button" class="flex justify-center items-center size-9 cursor-pointer">
+                <button type="button" @click="$store.productFilterDrawer.openDrawer()" class="flex justify-center items-center size-9 cursor-pointer">
                     <span class="icon-[mage--filter] text-2xl"></span>
                 </button>
                 <div class="flex gap-2 overflow-auto w-full">
-                    <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] cursor-pointer whitespace-nowrap w-max min-[375px]:flex-auto">
+                    <button type="button" @click="$store.productVariantDrawer.openDrawer()" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] cursor-pointer whitespace-nowrap w-max min-[375px]:flex-auto focus:border-[#6D6D6D]">
                         Jenis
                     </button>
-                    <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] cursor-pointer whitespace-nowrap w-max min-[375px]:flex-auto">
+                    <button type="button" @click="$store.productTypeDrawer.openDrawer()" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] cursor-pointer whitespace-nowrap w-max min-[375px]:flex-auto focus:border-[#6D6D6D]">
                         Tipe Kategori
-                    </button>
-                    <button type="button" class="font-semibold text-xs py-2.5 px-5 rounded-full border border-[#E9E9E9] cursor-pointer whitespace-nowrap w-max min-[375px]:flex-auto">
-                        Harga
                     </button>
                 </div>
             </div>
             <div class="flex justify-between gap-4 py-2 px-4">
-                <button type="button" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9]">
+                <button type="button" @click="$store.productSortDrawer.openDrawer()" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9] focus:border-[#6D6D6D]">
                     <p class="text-[#6D6D6D]">Terbaru</p>
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
@@ -56,22 +53,119 @@
             </div>
         </div>
     </div>
-    <div id="list-products" class="scroll-mt-[300px] bg-[#F4F4F4] px-4 pt-1 pb-8">
-        <p class="text-[#6D6D6D] p-2">8 Produk</p>
-        <div :class="{
-            'grid-cols-2': layout === 'row',
-            'grid-cols-1': layout !== 'row'
-        }" class="grid grid-cols-2 gap-4 pt-4 pb-6">
-            @foreach($products as $key => $product)
-                <div wire:key="product-{{ $product['id'] ?? $key }}">
-                    <x-displays.product-card :payload="$product" />
-                </div>
-            @endforeach
-        </div>
-        {{-- <div class="flex justify-center items-center">
-            {{ $products->links(data: ['scrollTo' => '#list-products']) }}
-        </div> --}}
+    <div id="list-products" @class([
+        'scroll-mt-[300px] bg-[#F4F4F4] px-4',
+        'pt-1 pb-8' => $count_products > 0,
+        'py-8' => $count_products == 0,
+    ]) class="scroll-mt-[300px] bg-[#F4F4F4] px-4 pt-1 pb-8">
+        @if(!$products->isEmpty())
+            <p class="text-[#6D6D6D] p-2">{{ $count_products }} Produk</p>
+            <div :class="{
+                'grid-cols-2': layout === 'row',
+                'grid-cols-1': layout !== 'row'
+            }" class="grid grid-cols-2 gap-4 pt-4 pb-6">
+                @foreach($products as $key => $product)
+                    <div wire:key="product-{{ $product['id'] ?? $key }}">
+                        <x-displays.product-card :payload="$product" />
+                    </div>
+                @endforeach
+            </div>
+            <div class="flex justify-center items-center">
+                {{ $products->links(data: ['scrollTo' => '#list-products']) }}
+            </div>
+        @else
+            <div class="min-h-[100px] flex justify-center items-center">
+                <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+            </div>
+        @endif
     </div>
+    <x-displays.drawer store="productFilterDrawer">
+        <div class="flex flex-col gap-6">
+            <h4 class="text-center">Filter</h4>
+            <div class="flex flex-col gap-4">
+                <x-displays.accordion title="Jenis" :open="true">
+                    <div class="flex flex-col gap-2.5 pb-4 pt-2.5">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="kompor-gas" class="shrink-0">
+                            <label for="kompor-gas" class="size-full cursor-pointer">Kompor Gas</label>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="kompor-tanam" class="shrink-0">
+                            <label for="kompor-tanam" class="size-full cursor-pointer">Kompor Tanam</label>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="kompor-lifestyle" class="shrink-0">
+                            <label for="kompor-lifestyle" class="size-full cursor-pointer">Kompor Lifestyle</label>
+                        </div>
+                    </div>
+                </x-displays.accordion>
+                <x-displays.accordion title="Tipe Kategori" :open="true">
+                    <div class="flex flex-col gap-2.5 pb-4 pt-2.5">
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="3-tungku" class="shrink-0">
+                            <label for="3-tungku" class="size-full cursor-pointer">3 Tungku</label>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="2-tungku" class="shrink-0">
+                            <label for="2-tungku" class="size-full cursor-pointer">2 Tungku</label>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="checkbox" id="1-tungku" class="shrink-0">
+                            <label for="1-tungku" class="size-full cursor-pointer">1 Tungku</label>
+                        </div>
+                    </div>
+                </x-displays.accordion>
+            </div>
+            <div class="flex mt-3 gap-4">
+                <x-inputs.button type="button" size="lg" color="white" variant="secondary" class="w-full">
+                    Atur Ulang
+                </x-inputs.button>
+                <x-inputs.button type="button" size="lg" class="w-full">
+                    Terapkan
+                </x-inputs.button>
+            </div>
+        </div>
+    </x-displays.drawer>
+    <x-displays.drawer store="productVariantDrawer">
+        <div class="flex flex-col gap-1 py-4">
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="kompor-gas" class="shrink-0">
+                <label for="kompor-gas" class="size-full cursor-pointer py-4">Kompor Gas</label>
+            </div>
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="kompor-tanam" class="shrink-0">
+                <label for="kompor-tanam" class="size-full cursor-pointer py-4">Kompor Tanam</label>
+            </div>
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="kompor-lifestyle" class="shrink-0">
+                <label for="kompor-lifestyle" class="size-full cursor-pointer py-4">Kompor Lifestyle</label>
+            </div>
+        </div>
+    </x-displays.drawer>
+    <x-displays.drawer store="productTypeDrawer">
+        <div class="flex flex-col gap-1 py-4">
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="3-tungku" class="shrink-0">
+                <label for="3-tungku" class="size-full cursor-pointer py-4">3 Tungku</label>
+            </div>
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="2-tungku" class="shrink-0">
+                <label for="2-tungku" class="size-full cursor-pointer py-4">2 Tungku</label>
+            </div>
+            <div class="flex items-center gap-4 px-4">
+                <input type="checkbox" id="1-tungku" class="shrink-0">
+                <label for="1-tungku" class="size-full cursor-pointer py-4">1 Tungku</label>
+            </div>
+        </div>
+    </x-displays.drawer>
+    <x-displays.drawer store="productSortDrawer">
+        <div class="flex flex-col gap-1 py-4">
+            <button type="button" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
+            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling tinggi ke paling rendah</button>
+            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling rendah ke paling tinggi</button>
+            <button type="button" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
+        </div>
+    </x-displays.drawer>
 </section>
 
 @push('scripts')

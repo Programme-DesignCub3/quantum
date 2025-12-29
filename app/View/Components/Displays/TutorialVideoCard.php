@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class TutorialVideoCard extends Component
 {
     // Props
+
     // PAYLOAD = data from controller
 
     /**

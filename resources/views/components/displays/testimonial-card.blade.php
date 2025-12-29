@@ -5,7 +5,7 @@
     <div class="flex justify-between items-end">
         <div>
             <p>{{ $payload['name'] }}</p>
-            <p>{{ $payload['role'] }}</p>
+            <p>{{ $payload['city'] }}</p>
         </div>
         <div>
             <x-icons.double-quote-icon class="fill-qt-green-normal/90" />

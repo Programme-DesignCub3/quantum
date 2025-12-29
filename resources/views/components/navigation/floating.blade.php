@@ -48,10 +48,10 @@
             <div class="space-y-4">
                 <span class="block max-w-44 mx-auto">atau untuk Informasi lengkap hubungi Customer Care Kami</span>
                 <div class="flex gap-4 justify-center">
-                    <x-inputs.button type="button" size="sm" variant="secondary" color="white">
+                    <x-inputs.button type="hyperlink" href="{{ route('support.service-center') }}" size="sm" variant="secondary" color="white">
                         Service Center
                     </x-inputs.button>
-                    <x-inputs.button type="button" size="sm" variant="secondary" color="white">
+                    <x-inputs.button type="hyperlink" href="{{ route('support.contact') }}" size="sm" variant="secondary" color="white">
                         Kontak Kami
                     </x-inputs.button>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Product\Products\Schemas;
 
 use App\Constant\AcceptedFileConstant;
+use App\Models\Product\Type;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
@@ -74,14 +75,14 @@ class ProductForm
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->required(),
-                            TextInput::make('price')
-                                ->label('Harga Produk')
-                                ->prefix('Rp')
-                                ->mask(RawJs::make('$money($input)'))
-                                ->stripCharacters('.')
-                                ->autocomplete(false)
-                                ->columnSpanFull()
-                                ->required(),
+                            // TextInput::make('price')
+                            //     ->label('Harga Produk')
+                            //     ->prefix('Rp')
+                            //     ->mask(RawJs::make('$money($input)'))
+                            //     ->stripCharacters('.')
+                            //     ->autocomplete(false)
+                            //     ->columnSpanFull()
+                            //     ->required(),
                             Builder::make('specs')
                                 ->label('Spesifikasi')
                                 ->blockNumbers(false)
@@ -95,9 +96,9 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Tungku')
-                                                ->relationship('types', 'name')
-                                                ->prefixIcon(Heroicon::Lifebuoy)
+                                                ->options(Type::pluck('name', 'id'))
                                                 ->preload()
+                                                ->prefixIcon(Heroicon::Lifebuoy)
                                                 ->searchable()
                                                 ->required(),
                                         ]),
@@ -108,9 +109,9 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Power')
-                                                ->relationship('types', 'name')
-                                                ->prefixIcon(Heroicon::Power)
+                                                ->options(Type::pluck('name', 'id'))
                                                 ->preload()
+                                                ->prefixIcon(Heroicon::Power)
                                                 ->searchable()
                                                 ->required(),
                                         ]),
@@ -121,9 +122,9 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Gas')
-                                                ->relationship('types', 'name')
-                                                ->prefixIcon(Heroicon::Fire)
+                                                ->options(Type::pluck('name', 'id'))
                                                 ->preload()
+                                                ->prefixIcon(Heroicon::Fire)
                                                 ->searchable()
                                                 ->required(),
                                         ]),
@@ -134,9 +135,9 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Panjang')
-                                                ->relationship('types', 'name')
-                                                ->prefixIcon(Heroicon::ArrowLongRight)
+                                                ->options(Type::pluck('name', 'id'))
                                                 ->preload()
+                                                ->prefixIcon(Heroicon::ArrowLongRight)
                                                 ->searchable()
                                                 ->required(),
                                         ])

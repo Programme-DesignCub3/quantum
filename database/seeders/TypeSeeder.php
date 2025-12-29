@@ -27,10 +27,6 @@ class TypeSeeder extends Seeder
                 'slug' => '3-tungku',
             ],
             [
-                'name' => '4 Tungku',
-                'slug' => '4-tungku',
-            ],
-            [
                 'name' => 'Elektrik',
                 'slug' => 'elektrik',
             ],

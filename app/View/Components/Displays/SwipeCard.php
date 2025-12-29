@@ -9,7 +9,9 @@ use Illuminate\View\Component;
 class SwipeCard extends Component
 {
     // Props
+
     // IMAGE = 'string' (image path)
+    // VIDEO = 'string|null' (video path or null)
 
     /**
      * Create a new component instance.

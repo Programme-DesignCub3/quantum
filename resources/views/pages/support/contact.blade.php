@@ -13,7 +13,7 @@
                     <h3>Call Center</h3>
                     <p>Hubungi tim layanan Quantum untuk info dan bantuan</p>
                     <x-slot:icon>
-                        <x-icons.customer-care-icon class="fill-qt-green-normal size-10" />
+                        <x-icons.customer-care-icon id="contact-customer-care" class="fill-qt-green-normal size-10" />
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">

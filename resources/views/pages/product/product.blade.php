@@ -3,13 +3,13 @@
 @section('content')
     <main x-data="product" id="product" class="bg-white">
         <section class="relative">
-            <img class="w-full h-[560px] object-cover" src="{{ asset('images/product-mobile.jpg') }}" alt="">
+            <img class="w-full h-[560px] object-cover" src="{{ $product_banner }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
                 <h1>Kompor Andalan Buat Setiap Kreasi Masakan</h1>
                 <p class="large">Andalkan kompor Quantum yang bikin setiap ide masak jadi sempurna</p>
             </div>
         </section>
-        <livewire:displays.product-list />
+        <livewire:displays.product-list :current_category="$current_category" />
         <section class="flex flex-col gap-[42px] py-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto">
                 <h2>Kenapa Kompor Quantum Jadi Andalan?</h2>

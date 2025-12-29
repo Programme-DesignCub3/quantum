@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class StepCard extends Component
 {
     // Props
+
     // NUMBER = number step
     // PAYLOAD = data from controller
 

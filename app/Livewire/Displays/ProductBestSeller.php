@@ -2,19 +2,23 @@
 
 namespace App\Livewire\Displays;
 
+use App\Models\Product\Product;
 use Livewire\Component;
 
 class ProductBestSeller extends Component
 {
-    public $products;
+    public $bestSellerOnly = false;
 
-    public function mount($products)
+    public function productsFilter($status)
     {
-        $this->products = $products;
+        $this->bestSellerOnly = $status;
+        $this->dispatch('products-home-reinit');
     }
 
-    public function render()
+    public function render(Product $product)
     {
-        return view('livewire.displays.product-best-seller');
+        return view('livewire.displays.product-best-seller', [
+            'products' => $product->getProductForHome(3, $this->bestSellerOnly)
+        ]);
     }
 }

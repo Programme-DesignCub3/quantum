@@ -5,7 +5,7 @@
             <div class="grid grid-cols-2 gap-4">
                 <x-inputs.button-icon type="hyperlink">
                     <x-slot:image>
-                        <x-icons.customer-care-icon class="fill-qt-green-normal group-hover:fill-white" />
+                        <x-icons.customer-care-icon id="footer-customer-care" class="fill-qt-green-normal group-hover:fill-white" />
                     </x-slot:image>
                     Call Center
                 </x-inputs.button-icon>
@@ -33,7 +33,7 @@
             <h2>Jangan Lewatkan Penawaran Spesial dari Quantum</h2>
             <p>Nantikan berbagai info produk terbaru dan promo menarik untuk para pelanggan Quantum.</p>
         </div>
-        <livewire:forms.offer-form />
+        <livewire:forms.subscription-form />
     </div>
     <div class="px-4 py-[60px] bg-[#F4F4F4]">
         <div class="flex flex-col gap-[42px]">
@@ -56,12 +56,12 @@
                             @endforeach
                         </div>
                     </x-displays.accordion>
-                    <x-displays.accordion title="Distributor">
+                    {{-- <x-displays.accordion title="Distributor">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Daftar Jadi Distributor</a>
                             <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Katalog</a>
                         </div>
-                    </x-displays.accordion>
+                    </x-displays.accordion> --}}
                     <x-displays.accordion title="Updates">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('updates.news') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>

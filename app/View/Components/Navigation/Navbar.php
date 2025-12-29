@@ -5,6 +5,7 @@ namespace App\View\Components\Navigation;
 use App\Models\Product\ProductCategory;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
 class Navbar extends Component
@@ -15,6 +16,7 @@ class Navbar extends Component
     // STICKY = true | false (default: true)
 
     public $product_categories;
+    public ?string $route_group;
 
     /**
      * Create a new component instance.
@@ -25,6 +27,13 @@ class Navbar extends Component
         ProductCategory $productCategory
     ) {
         $this->product_categories = $productCategory->getAllCategory();
+
+        $get_routes = request()->route()?->getName() ? explode('.', request()->route()?->getName())[0] : null;
+        if (in_array($get_routes, ['about', 'product', 'distributor', 'updates', 'support'])) {
+            $this->route_group = $get_routes;
+        } else {
+            $this->route_group = null;
+        }
     }
 
     /**

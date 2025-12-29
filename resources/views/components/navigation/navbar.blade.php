@@ -1,4 +1,4 @@
-<nav x-data="navbar"
+<nav x-data="navbar" x-init="currentMenuInit(@js($route_group))"
     :class="{
         'bg-white': isWhite,
         'top-0': position,
@@ -111,7 +111,7 @@
                         Bantuan
                     </button>
                     <a href="{{ route('support.customer-service') }}" class="menu-nav-sublink">
-                        <x-icons.customer-care-icon class="fill-qt-green-normal size-7" />
+                        <x-icons.customer-care-icon id="navbar-customer-care" class="fill-qt-green-normal size-7" />
                         Layanan Pelanggan
                     </a>
                     <a href="{{ route('support.guarantee-information') }}" class="menu-nav-sublink">

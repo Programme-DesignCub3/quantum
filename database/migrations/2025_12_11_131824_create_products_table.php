@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('price');
+            $table->string('price')->nullable();
             $table->json('specs')->nullable();
             $table->json('marketplace');
             $table->json('specs_detail');

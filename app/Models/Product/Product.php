@@ -103,15 +103,16 @@ class Product extends Model implements HasMedia
                 $product->images = $product->getMedia('products')->map(function ($media) {
                     return $media->getUrl();
                 })->toArray();
-
                 // Price
-                $product->price = str_replace(',', '.', $product->price);
-
+                // $product->price = str_replace(',', '.', $product->price);
                 // Specs
-                // $product->specs = collect($product->specs)->map(function ($spec) {
-
-                // });
-
+                $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
+                    if (isset($spec['data']['types'])) {
+                        $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
+                        $spec['data']['types'] = $get_type;
+                    }
+                    return $spec;
+                });
                 // Specs Detail
                 $product->specs_detail = collect($product->specs_detail)->map(function ($spec) use ($product) {
                     if ($spec['type'] === 'dimension_image') {

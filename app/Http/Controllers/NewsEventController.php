@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
 class NewsEventController extends Controller
@@ -159,8 +160,21 @@ class NewsEventController extends Controller
             ],
         ];
 
+        $products = Product::where('is_published', true)->inRandomOrder()->take(3)->get();
+
+        $products->transform(function ($product) {
+            $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
+                if (isset($spec['data']['types'])) {
+                    $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
+                    $spec['data']['types'] = $get_type;
+                }
+                return $spec;
+            });
+            return $product;
+        });
+
         return view('pages.updates.news-event-detail', [
-            'recommendationProducts' => $recommendationProducts,
+            'recommendationProducts' => $products,
             'otherNews' => $otherNews,
         ]);
     }

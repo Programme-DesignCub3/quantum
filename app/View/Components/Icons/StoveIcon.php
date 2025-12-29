@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class StoveIcon extends Component
 {
+    // Props
+
+    // CLASS = TailwindCSS classes to apply to the SVG element
+    // ID = optional ID attribute for the SVG element
+
     /**
      * Create a new component instance.
      */
     public function __construct(
         public ?string $class,
-        public ?string $color,
+        public ?string $id,
     ) {}
 
     /**

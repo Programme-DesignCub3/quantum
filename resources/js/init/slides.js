@@ -5,25 +5,40 @@ import {
 } from '../utils/options-slide';
 import '@splidejs/splide/css';
 
+// Function to initialize or reinitialize
+const productsHomeSlide = () => {
+    if(document.querySelector('.splide.products-home')) {
+        new Splide('.splide.products-home', {
+            ...swipeable,
+            gap: '1rem',
+            padding: '1.5rem'
+        }).mount();
+    }
+}
+
 // Homepage Slides
 if (document.querySelector('#homepage')) {
     new Splide('.splide.slideshow-home', slideShow).mount();
-    new Splide('.splide.products-home', {
-        ...swipeable,
-        gap: '1rem',
-        padding: '1.5rem'
-    }).mount();
+
+    productsHomeSlide();
+
     new Splide('.splide.articles-home', {
         ...swipeable,
         gap: '0.65rem',
         padding: '1.5rem'
     }).mount();
+
     new Splide('.splide.testimonial-home', slidePagination).mount();
+
     new Splide('.splide.why-choose-home', {
         ...swipeable,
         gap: '2rem',
         padding: '1rem'
     }).mount();
+
+    Livewire.on('products-home-reinit', () => {
+        productsHomeSlide();
+    });
 }
 
 // About Page Slides

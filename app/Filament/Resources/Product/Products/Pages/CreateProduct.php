@@ -4,47 +4,46 @@ namespace App\Filament\Resources\Product\Products\Pages;
 
 use App\Filament\Resources\Product\Products\ProductResource;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class CreateProduct extends CreateRecord
 {
     protected static string $resource = ProductResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        unset($data['specs']);
-
-        return $data;
-    }
-
     protected function afterCreate(): void
     {
-        $this->syncSpecs();
-    }
+        // Cek dulu apakah data specs masuk ke sini
+        // dd($this->data['specs']);
 
-    protected function afterSave(): void
-    {
-        $this->syncSpecs();
-    }
+        $typeIds = collect($this->data['specs'] ?? [])
+            ->map(function ($block) {
+                // Builder menyimpan data di dalam key 'data'
+                return $block['data']['types'] ?? null;
+            })
+            ->filter()
+            ->values() // Pastikan index array berurutan
+            ->toArray();
 
-    protected function syncSpecs(): void
-    {
-        $record = $this->record;
-
-        $specs = $this->data['specs'] ?? [];
-
-        $syncData = [];
-
-        foreach ($specs as $spec) {
-            $typeId = $spec['data']['types'] ?? null;
-
-            if ($typeId) {
-                $syncData[$typeId] = [
-                    'spec_type' => $spec['type'], // optional
-                ];
-            }
+        // Pastikan $this->record adalah model Product
+        if ($this->record) {
+            $this->record->types()->sync($typeIds);
         }
+    }
 
-        // 🔥 INI YANG BENAR
-        $record->types()->sync($syncData);
+    public static function afterSave(Model $record, array $data): void
+    {
+        self::syncSpecsToTypes($record, $data);
+    }
+
+    protected static function syncSpecsToTypes(Model $record, array $data): void
+    {
+        // Ambil semua type_id dari dalam array 'specs'
+        $typeIds = collect($data['specs'] ?? [])
+            ->pluck('data.type_id') // Sesuaikan dengan key di Select::make
+            ->filter()
+            ->toArray();
+
+        // Sinkronkan ke tabel pivot
+        $record->types()->sync($typeIds);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Displays;
 
-use App\Models\Product\Category;
+use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,51 +11,54 @@ class ProductList extends Component
 {
     use WithPagination;
 
-    public string $layout = 'row';
-    public string $size = 'sm';
-    public string $direction = 'col';
-
     public $categories;
-    public $all_product;
-    public $categorized_product;
+    public $current_category;
 
     public function paginationView()
     {
         return 'components.displays.pagination';
     }
 
-    public function mount(ProductCategory $productCategory)
+    public function mount(ProductCategory $productCategory, $current_category = null)
     {
         $this->categories = $productCategory->getAllCategory();
-        $this->all_product = collect(config('product.products'));
-    }
-
-    public function changeLayout($layout)
-    {
-        $this->layout = $layout;
-
-        switch ($layout) {
-            case 'square':
-                $this->size = 'lg';
-                $this->direction = 'col';
-                break;
-            case 'row':
-                $this->size = 'sm';
-                $this->direction = 'col';
-                break;
-            case 'col':
-                $this->size = 'md';
-                $this->direction = 'row';
-                break;
-        }
+        $this->current_category = $current_category;
     }
 
     public function render()
     {
+        $count_products = Product::where('is_published', true)
+            ->when($this->current_category, function ($query) {
+                $query->whereHas('category', function ($q) {
+                    $q->where('slug', $this->current_category);
+                });
+            })
+            ->count();
+
+        $products = Product::with('category', 'media', 'variant', 'types')
+            ->where('is_published', true)
+            ->when($this->current_category, function ($query) {
+                $query->whereHas('category', function ($q) {
+                    $q->where('slug', $this->current_category);
+                });
+            })
+            ->latest()
+            ->paginate(6);
+
+        $products->transform(function ($product) {
+            $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
+                if (isset($spec['data']['types'])) {
+                    $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
+                    $spec['data']['types'] = $get_type;
+                }
+                return $spec;
+            });
+            return $product;
+        });
+
         return view('livewire.displays.product-list', [
-            'products' => $this->all_product,
+            'count_products' => $count_products,
+            'products' => $products,
         ]);
     }
-
-
 }

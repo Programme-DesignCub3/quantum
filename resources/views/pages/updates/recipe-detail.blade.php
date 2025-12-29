@@ -1,18 +1,7 @@
 @extends('app')
 
 @section('content')
-    <main x-data="{ init() {
-        if (false) {
-            this.$store.premiumRecipeDrawer.registerPremium(true)
-            this.$refs.recipeContent.classList.remove('h-[800px]')
-        } else {
-            this.$store.premiumRecipeDrawer.registerPremium(false)
-            this.$refs.recipeContent.classList.add('h-[800px]')
-        }
-    }, openLimit() {
-        this.$store.premiumRecipeDrawer.registerPremium(true)
-        this.$refs.recipeContent.classList.remove('h-[800px]')
-    } }" x-ref="recipeContent" id="recipe-detail" class="relative bg-[#FFFFFF] h-[800px] overflow-hidden">
+    <main x-data="recipeDetail" x-ref="recipeContent" id="recipe-detail" class="relative bg-[#FFFFFF] h-[800px] overflow-hidden">
         <div x-cloak x-show="!$store.premiumRecipeDrawer.isPremium" class="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 bg-linear-to-t flex flex-col gap-[70px] justify-end-safe items-center from-white to-transparent max-w-md mx-auto h-[375px] w-full px-4 pb-5">
             <x-inputs.button type="button" event="$store.premiumRecipeDrawer.openDrawer()" size="lg">
                 Lihat Resep Premium
@@ -134,3 +123,29 @@
         </section>
     </main>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('recipeDetail', () => ({
+            registeredPremium: @json(session()->get('registered_premium')),
+            init() {
+                if (this.registeredPremium) {
+                    this.$store.premiumRecipeDrawer.registerPremium(true)
+                    this.$refs.recipeContent.classList.remove('h-[800px]')
+                } else {
+                    this.$store.premiumRecipeDrawer.registerPremium(false)
+                    this.$refs.recipeContent.classList.add('h-[800px]')
+                }
+            }
+        }));
+    });
+
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('open-limit', () => {
+            Alpine.store('premiumRecipeDrawer').registerPremium(true)
+            document.getElementById('recipe-detail').classList.remove('h-[800px]')
+        });
+    });
+</script>
+@endpush

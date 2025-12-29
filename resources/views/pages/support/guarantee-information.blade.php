@@ -214,44 +214,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="flex flex-col gap-4 my-8 px-5">
-                    <h3 class="text-center">Daftarkan Produk Quantum Anda Sekarang dan Nikmati Perlindungan Garansi Resmi!</h3>
-                    <div class="flex flex-col gap-5">
-                        <div class="flex flex-col gap-2">
-                            <p>Data Pribadi</p>
-                            <input type="text" placeholder="Nama Lengkap" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <input type="tel" placeholder="Nomor Handphone" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <input type="email" placeholder="Email" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <input type="email" placeholder="Alamat Lengkap" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <p>Data Produk</p>
-                            <input type="text" placeholder="Nomor Seri Produk" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <button type="button" class="w-max text-[#6D6D6D] underline text-xs cursor-pointer">Cara menemukan Nomor Seri dan Model?</button>
-                            <button type="button" class="flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D]">
-                                Pilih Provinsi
-                                <span class="icon-[lucide--chevron-down] text-xl text-[#6D6D6D]"></span>
-                            </button>
-                            <button type="button" class="flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D]">
-                                Pilih Provinsi
-                                <span class="icon-[lucide--chevron-down] text-xl text-[#6D6D6D]"></span>
-                            </button>
-                            <input type="date" placeholder="Nomor Seri Produk" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <button type="button" class="flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D]">
-                                Tempat Pembelian
-                                <span class="icon-[lucide--chevron-down] text-xl text-[#6D6D6D]"></span>
-                            </button>
-                            <input type="text" placeholder="Pesan" autocomplete="off" class="w-full p-3 rounded-xl border outline-offset-2 text-sm border-[#E9E9E9] text-[#6D6D6D] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60">
-                            <div class="flex justify-start gap-3">
-                                <input type="checkbox" id="tnc" class="shrink-0">
-                                <label for="tnc" class="text-sm leading-4">Saya menyetujui syarat & ketentuan garansi Quantum Indonesia.</label>
-                            </div>
-                        </div>
-                    </div>
-                    <x-inputs.button type="button" size="lg">
-                        Daftarkan Garansi Sekarang
-                    </x-inputs.button>
-                </div>
+                <livewire:forms.guarantee-form />
             </div>
         </section>
     </main>

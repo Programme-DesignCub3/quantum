@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <section class="px-4 py-[60px]">
+    <section class="px-4 py-[60px] bg-white">
         <div class="flex flex-col items-center justify-center text-center gap-[42px] py-[62px]">
             <div class="space-y-4">
                 <h1 class="max-w-xs mx-auto">Halaman Tidak Ditemukan</h1>

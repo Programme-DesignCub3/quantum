@@ -187,21 +187,29 @@ class HomeController extends Controller
 
         $testimonials = [
             [
-                'name' => 'Hanna (35)',
-                'role' => 'Pengguna Quantum',
+                'name' => 'Hanna (35 Tahun)',
+                'city' => 'Jakarta',
                 'feedback' => 'Kompor gas Quantum ini life saver banget! Nggak cuma hemat gas, desainnya juga simple dan modern. Bikin dapur jadi elegan. Recommended pokoknya!',
             ],
             [
-                'name' => 'Danang (55)',
-                'role' => 'Distributor Quantum',
+                'name' => 'Danang (55 Tahun)',
+                'city' => 'Jakarta',
                 'feedback' => 'Saya puas jadi distributor Quantum selama hampir 6 tahun. Produknya berkualitas tinggi, penjualannya stabil, dan jadi pilihan utama banyak orang.',
             ],
         ];
 
+        $video = [
+            'type' => 'local',
+            'src' => asset('videos/quantum-voxpop.mp4'),
+
+            // 'type' => 'youtube',
+            // 'src' => 'FdhuwORtG48',
+        ];
+
         return view('pages.home', [
-            'products' => $products,
             'articles' => $articles,
             'testimonials' => $testimonials,
+            'video' => $video,
         ]);
     }
 }

@@ -7,11 +7,6 @@
                 <div class="splide main-product-detail" role="group" aria-label="Main Product Detail Slides">
                     <div class="splide__track">
                         <ul class="splide__list">
-                            {{-- <li class="splide__slide">
-                                <div class="zoom-container">
-                                    <img class="zoom-image" class="w-full h-[300px]" src="{{ asset('images/product-1.jpg') }}" alt="">
-                                </div>
-                            </li> --}}
                             <li class="splide__slide">
                                 <img class="w-full h-[300px] object-cover" src="{{ asset('images/product-1.jpg') }}" alt="">
                             </li>
@@ -82,7 +77,7 @@
             </div>
         </section>
         <section>
-            <div id="tabs-border-anchor" :class="isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
+            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
                 <a href="#fitur" class="tab-border active">Fitur</a>
                 <a href="#spesifikasi" class="tab-border">Spesifikasi</a>
                 <a href="#galeri" class="tab-border">Galeri</a>
@@ -341,13 +336,13 @@
                 <div class="flex gap-4">
                     <div class="w-full space-y-4 py-6 px-4 rounded-3xl border border-[#DBDBDB]">
                         <h3>Tips dan Edukasi</h3>
-                        <x-inputs.button type="button" size="lg" variant="secondary" color="white">
+                        <x-inputs.button type="hyperlink" href="{{ route('support.guidance') }}" size="lg" variant="secondary" color="white">
                             Lihat
                         </x-inputs.button>
                     </div>
                     <div class="w-full space-y-4 py-6 px-4 rounded-3xl border border-[#DBDBDB]">
                         <h3>Tutorial Video</h3>
-                        <x-inputs.button type="button" size="lg" variant="secondary" color="white">
+                        <x-inputs.button type="hyperlink" href="{{ route('support.tutorial-video') }}" size="lg" variant="secondary" color="white">
                             Lihat
                         </x-inputs.button>
                     </div>

@@ -21,8 +21,18 @@ class VariantSeeder extends Seeder
             ],
             [
                 'product_category_id' => 1,
+                'name' => 'Kompor Cor',
+                'slug' => 'kompor-cor'
+            ],
+            [
+                'product_category_id' => 1,
                 'name' => 'Kompor Tanam',
                 'slug' => 'kompor-tanam'
+            ],
+            [
+                'product_category_id' => 1,
+                'name' => 'Kompor Nova',
+                'slug' => 'kompor-nova'
             ],
             [
                 'product_category_id' => 2,
@@ -43,11 +53,6 @@ class VariantSeeder extends Seeder
                 'product_category_id' => 2,
                 'name' => 'Regulator & Selang Gas',
                 'slug' => 'regulator-selang-gas'
-            ],
-            [
-                'product_category_id' => 1,
-                'name' => 'Kompor Lifestyle',
-                'slug' => 'kompor-lifestyle'
             ],
         ];
 

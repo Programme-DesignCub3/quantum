@@ -6,7 +6,7 @@
             <img class="w-full h-[560px] object-cover object-top" src="{{ asset('images/about-mobile.jpg') }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
                 <h1>Tentang Quantum: Visi, Misi, dan Dedikasi Kami</h1>
-                <p class="large">Quantum telah menjadi pilihan utama jutaan keluarga di Indonesia dalam menghadirkan kompor dan peralatan dapur berkualitas tinggi.</p>
+                <p class="large">Quantum sebagai produk Indonesia telah menjadi pilihan utama jutaan keluarga dalam menghadirkan kompor dan peralatan dapur berkualitas tinggi.</p>
             </div>
         </section>
         <section class="space-y-0">
@@ -34,7 +34,7 @@
                     <p class="text-[#6D6D6D]">Inilah jejak Quantum mengukir inovasi dan prestasi dari masa ke masa.</p>
                 </div>
                 <div class="flex flex-col gap-6">
-                    <div class="flex justify-center items-center px-4">
+                    {{-- <div class="flex justify-center items-center px-4">
                         <div class="flex gap-0.5 bg-white p-1 rounded-full">
                             <button type="button" class="py-2.5 px-5 font-semibold text-qt-green-hover bg-[#E7F1F2] rounded-full cursor-pointer text-xs">
                                 1993
@@ -49,7 +49,7 @@
                                 2025
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                     <x-displays.inside-card image="images/history-1.jpg">
                         <h4>Awal Berdiri</h4>
                         <p class="small">Awal berdirinya Quantum sebagai perusahaan kompor Indonesia</p>
@@ -67,7 +67,7 @@
                 <div class="absolute top-0 px-6 pt-[66px] text-center">
                     <div class="space-y-4">
                         <h2>Visi</h2>
-                        <p>Bisnis yang berkelanjutan dan menjadi brand yang diandalkan oleh masyarakat</p>
+                        <p>Bisnis yang berkelanjutan dan menjadi brand andalan keluarga Indonesia.</p>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <div class="absolute top-0 px-6 pt-[66px] text-center">
                     <div class="space-y-4">
                         <h2>Misi</h2>
-                        <p>Memenuhi kebutuhan peralatan rumah tangga dengan cara melakukan inovasi yang berkesinambungan untuk menghasilkan peralatan rumah tangga yang semakin aman, efisien dan ramah lingkungan</p>
+                        <p>Memenuhi kebutuhan peralatan rumah tangga Indonesia dengan melakukan inovasi yang berkesinambungan guna meningkatkan kepuasan pelanggan—lebih aman, efisien, dan ramah lingkungan. After sales dan penanganan masalah pelanggan berjalan baik sehingga pelanggan puas dengan produk maupun pelayanannya.</p>
                     </div>
                 </div>
             </div>

@@ -3,13 +3,14 @@
 namespace App\View\Components\Displays;
 
 use Closure;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 
 class ProductCard extends Component
 {
     // Props
+
     // PAYLOAD = data from controller
     // SIZE = 'lg' | 'md' | 'sm' (default: 'md')
     // DIRECTION = 'row' | 'col' (default: 'col')
@@ -22,23 +23,26 @@ class ProductCard extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public array $payload,
+        public $payload,
         public ?string $size = 'md',
         public ?string $direction = 'col',
         public ?bool $disableView = false,
         public ?bool $disableSpecs = false,
     ) {
-        $raw = [
-            'image' => asset($this->payload['image']),
-            'category' => $this->payload['variant'] ?? $this->payload['category'],
-            'name' => $this->payload['name'],
-            'price' => $this->payload['price'],
-            'marketplace' => $this->payload['marketplace'],
+
+        $marketplaces = [];
+
+        foreach ($this->payload->marketplace as $marketplace) {
+            $marketplaces[$marketplace['type']] = $marketplace['data']['value'];
+        }
+
+        $this->data_drawer  = [
+            'image' => $this->payload->media->first()->getUrl(),
+            'category' => $this->payload->variant->name ?? $this->payload->category->name,
+            'name' => $this->payload->name,
+            // 'price' => $this->payload->price,
+            'marketplace' => $marketplaces,
         ];
-
-        $this->data_drawer = $raw;
-
-        // dd($this->data_drawer);
     }
 
     /**

@@ -12,7 +12,7 @@ class SimpleCard extends Component
 
     // SIMETRIC = true | false (default: false)
     // BACKGROUND = 'transparent' | 'white' (default: 'transparent')
-    // BACKGROUND-ICON = true | false (default: true)
+    // BACKGROUND_ICON = true | false (default: true)
     // BORDER = true | false (default: true)
 
     /**

@@ -7,8 +7,8 @@
         <span class="icon-[lucide--map-pin] shrink-0 text-lg text-qt-green-normal"></span>
         <div class="flex flex-col gap-4">
             <span class="block text-[#6D6D6D]">{{ $payload['address'] }}</span>
-            <div class="flex gap-2">
-                <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[material-symbols--info-outline-rounded]" />
+            <div x-data class="flex flex-wrap gap-2">
+                <x-inputs.button-icon type="button" event="$store.distributorDetailDrawer.openDrawer()" class="rounded-2xl!" icon="icon-[material-symbols--info-outline-rounded]" />
                 <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[lucide--phone]" />
                 <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
                 <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[lucide--map-pin]" />

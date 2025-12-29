@@ -10,7 +10,7 @@ class TestimonialCard extends Component
 {
     // Props
 
-    // DATA = data from controller
+    // PAYLOAD = data from controller
 
     /**
      * Create a new component instance.

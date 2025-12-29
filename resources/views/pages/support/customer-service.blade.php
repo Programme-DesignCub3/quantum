@@ -13,7 +13,7 @@
                         <x-icons.service-center-icon class="shrink-0 size-10 fill-qt-green-normal" />
                         <h3>Service Center</h3>
                     </div>
-                    <x-inputs.button type="hyperlink" size="lg">
+                    <x-inputs.button type="hyperlink" href="{{ route('support.service-center') }}" size="lg">
                         Lihat
                     </x-inputs.button>
                 </div>
@@ -22,7 +22,7 @@
                         <x-icons.faq-icon class="shrink-0 size-10 fill-qt-green-normal" />
                         <h3>FAQ</h3>
                     </div>
-                    <x-inputs.button type="hyperlink" size="lg">
+                    <x-inputs.button type="hyperlink" href="{{ route('support.faq') }}" size="lg">
                         Lihat
                     </x-inputs.button>
                 </div>
@@ -31,7 +31,7 @@
                         <x-icons.guarantee-icon class="shrink-0 size-10 fill-qt-green-normal" />
                         <h3>Informasi Garansi</h3>
                     </div>
-                    <x-inputs.button type="hyperlink" size="lg">
+                    <x-inputs.button type="hyperlink" href="{{ route('support.guarantee-information') }}" size="lg">
                         Lihat
                     </x-inputs.button>
                 </div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="flex justify-center items-center px-4">
-                <x-inputs.button type="hyperlink" size="lg">
+                <x-inputs.button type="hyperlink" href="{{ route('support.guidance') }}" size="lg">
                     Lebih banyak
                 </x-inputs.button>
             </div>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="flex justify-center items-center px-4">
-                <x-inputs.button type="hyperlink" size="lg">
+                <x-inputs.button type="hyperlink" href="{{ route('support.tutorial-video') }}" size="lg">
                     Lebih banyak
                 </x-inputs.button>
             </div>

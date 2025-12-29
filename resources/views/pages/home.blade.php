@@ -14,9 +14,9 @@
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
-                    @for($i = 1; $i <= 3; $i++)
+                    @for($i = 1; $i <= 5; $i++)
                         <li class="splide__slide">
-                            <img class="brightness-90" src="{{ asset('images/home-mobile.jpg') }}" alt="">
+                            <img class="brightness-90" src="{{ asset('images/home-mobile-' . $i . '.jpg') }}" alt="">
                         </li>
                     @endfor
                 </ul>
@@ -28,7 +28,7 @@
                 <h2>Pilihan Produk Quantum Solusi Efisien Dapur Anda</h2>
                 <p class="large text-[#6D6D6D]">Quantum hadirkan kompor, selang, dan regulator gas dengan desain modern dan telah teruji performanya.</p>
             </div>
-            <livewire:displays.product-best-seller :$products />
+            <livewire:displays.product-best-seller />
         </section>
         <section class="flex flex-col gap-[42px] py-[92px] bg-white">
             <div class="max-w-72 mx-auto text-center space-y-4">
@@ -38,7 +38,7 @@
             <div class="flex flex-col gap-8">
                 <div class="px-4">
                     <x-displays.inside-card image="images/hemat-gas-thumbnail.jpg">
-                        <h4>Hemat dan Efisien</h4>
+                        <h4>Produk Indonesia</h4>
                         <p class="small">Teknologi inovatif Quantum membantu mengurangi konsumsi gas, sehingga lebih efisien dan ramah di kantong.</p>
                     </x-displays.inside-card>
                 </div>
@@ -58,12 +58,6 @@
                                 </x-displays.swipe-card>
                             </li>
                             <li class="splide__slide">
-                                <x-displays.swipe-card image="images/why-3.jpg">
-                                    <h4>Mudah & Praktis</h4>
-                                    <p class="small text-[#9A9A9A]">Desain yang mudah digunakan  membuat pengalaman memasak jadi lebih simpel, nyaman, dan tanpa ribet.</p>
-                                </x-displays.swipe-card>
-                            </li>
-                            <li class="splide__slide">
                                 <x-displays.swipe-card image="images/why-4.jpg">
                                     <h4>Awet & Tahan Lama</h4>
                                     <p class="small text-[#9A9A9A]">Quantum terus berinovasi untuk selalu menghasilkan produk yang mampu menghemat konsumsi gas hingga 30%.</p>
@@ -79,7 +73,7 @@
             <div class="absolute w-full h-[400px] bottom-0 left-0 bg-gradient-qt-green"></div>
             <div class="absolute flex flex-col gap-[55px] bottom-0 left-0 size-full pt-22">
                 <div class="flex justify-center items-center p-6">
-                    <button x-data type="button" @click="$store.videoModal.openVideo()" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
+                    <button x-data="{ video: @js($video) }" type="button" @click="$store.videoModal.openVideo(video)" class="flex justify-center items-center size-[60px] bg-white text-[#106B75] rounded-full cursor-pointer">
                         <span class="icon-[ph--play-bold] text-3xl"></span>
                     </button>
                 </div>

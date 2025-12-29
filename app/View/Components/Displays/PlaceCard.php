@@ -8,6 +8,10 @@ use Illuminate\View\Component;
 
 class PlaceCard extends Component
 {
+    // Props
+
+    // PAYLOAD = data from controller
+
     /**
      * Create a new component instance.
      */
