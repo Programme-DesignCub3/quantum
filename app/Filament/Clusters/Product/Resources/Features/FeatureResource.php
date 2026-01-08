@@ -23,7 +23,6 @@ use UnitEnum;
 
 class FeatureResource extends Resource
 {
-    // trigger
     protected static string | UnitEnum | null $navigationGroup = 'Manajemen Produk';
 
     protected static ?int $navigationSort = 6;
