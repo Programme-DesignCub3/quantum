@@ -36,6 +36,7 @@ class ButtonIcon extends Component
         public ?string $class,
         public ?string $icon,
         public ?string $event,
+        public ?bool $newTab = false,
     ) {
         // Set size class
         switch($this->size) {

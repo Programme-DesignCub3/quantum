@@ -31,4 +31,19 @@ class Variant extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    /**
+     * Get all variants
+     * @param ?string $category
+     */
+    public function getAllVariant(?string $category = null)
+    {
+        return self::when($category, function ($query) use ($category) {
+                $query->whereHas('productCategory', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->orderBy('name', 'asc')
+            ->get();
+    }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $awards = [
             [
@@ -48,6 +49,10 @@ class AboutController extends Controller
         ];
 
         return view('pages.about.about', [
+            'meta_title' => $pageSettings->about_meta_title,
+            'meta_description' => $pageSettings->about_meta_description,
+            'meta_keywords' => $pageSettings->about_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->about_meta_image),
             'awards' => $awards,
         ]);
     }

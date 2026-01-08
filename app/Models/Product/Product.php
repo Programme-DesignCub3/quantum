@@ -71,10 +71,10 @@ class Product extends Model implements HasMedia
     /**
      * Get each product group by category depending on the number specified and automatically query by all categories.
      * (For Homepage)
-     * @param int $number
-     * @param bool $is_best_seller
+     * @param ?int $number
+     * @param ?bool $is_best_seller
      */
-    public function getProductForHome($number = 3, $is_best_seller = false)
+    public function getProductForHome(?int $number = 3, ?bool $is_best_seller = false)
     {
         $categories = ProductCategory::pluck('id')->toArray();
 
@@ -103,8 +103,33 @@ class Product extends Model implements HasMedia
                 $product->images = $product->getMedia('products')->map(function ($media) {
                     return $media->getUrl();
                 })->toArray();
-                // Price
-                // $product->price = str_replace(',', '.', $product->price);
+                // Specs
+                $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
+                    if (isset($spec['data']['types'])) {
+                        $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
+                        $spec['data']['types'] = $get_type;
+                    }
+                    return $spec;
+                });
+                return $product;
+            });
+    }
+
+    /**
+     * Get detail product by slug
+     * @param string $slug
+     */
+    public function getDetailProduct(string $slug)
+    {
+        $detail = self::where('is_published', true)
+            ->where('slug', $slug)
+            ->with('category', 'variant', 'types', 'superiorities', 'features', 'media')
+            ->get()
+            ->map(function ($product) {
+                // Images
+                $product->images = $product->getMedia('products')->map(function ($media) {
+                    return $media->getUrl();
+                })->toArray();
                 // Specs
                 $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
                     if (isset($spec['data']['types'])) {
@@ -117,6 +142,46 @@ class Product extends Model implements HasMedia
                 $product->specs_detail = collect($product->specs_detail)->map(function ($spec) use ($product) {
                     if ($spec['type'] === 'dimension_image') {
                         $spec['data']['value'] = $product->getFirstMediaUrl('dimension_product');
+                    }
+                    return $spec;
+                });
+                return $product;
+            });
+
+        return $detail->first();
+    }
+
+    /**
+     * Get random products for recommendation
+     * @param ?int $number
+     * @param ?string $category
+     * @param ?int $exclude_id
+     */
+    public function getRecommendationProduct(?int $number = 3, ?string $category = null, ?int $exclude_id = null)
+    {
+        return self::where('is_published', true)
+            ->inRandomOrder()
+            ->with('category', 'media', 'variant', 'types')
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->when($exclude_id, function ($q) use ($exclude_id) {
+                $q->where('id', '!=', $exclude_id);
+            })
+            ->take($number)
+            ->get()
+            ->map(function ($product) {
+                // Images
+                $product->images = $product->getMedia('products')->map(function ($media) {
+                    return $media->getUrl();
+                })->toArray();
+                // Specs
+                $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
+                    if (isset($spec['data']['types'])) {
+                        $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
+                        $spec['data']['types'] = $get_type;
                     }
                     return $spec;
                 });

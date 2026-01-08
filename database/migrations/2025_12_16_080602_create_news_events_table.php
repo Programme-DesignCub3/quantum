@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('excerpt');
-            $table->json('content');
+            $table->longText('content');
             $table->string('read_time');
             $table->boolean('is_published');
             $table->foreignId('news_event_category_id')->nullable()->constrained('news_event_categories')->onDelete('set null');

@@ -12,7 +12,8 @@ class GuidanceController extends Controller
             [
                 'image' => asset('images/product-1.jpg'),
                 'category' => 'Kompor Gas',
-                'name' => 'QGC - 101 AB Putih'
+                'name' => 'QGC - 101 AB Putih',
+                // 'slug' => 'qgc-101-ab-putih',
             ],
         ];
 

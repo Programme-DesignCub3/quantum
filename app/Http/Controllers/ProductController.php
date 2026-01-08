@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product\Product;
+use App\Models\Product\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($category = null)
+    public function index(ProductCategory $productCategory, $category = null)
     {
-        $current_category = $category;
+        $categories = $productCategory->getAllCategory();
+        if($category) {
+            $check_category = $categories->firstWhere('slug', $category);
+            if(!$check_category) return abort(404);
+        }
 
         switch ($category) {
             case 'kompor':
@@ -26,134 +31,58 @@ class ProductController extends Controller
         }
 
         return view('pages.product.product', [
-            'current_category' => $current_category,
+            'current_category' => $category,
             'product_banner' => $product_banner,
         ]);
     }
 
-    public function detail()
+    public function detail(Product $product, $category = null, $slug)
     {
-        $recommendationProducts = [
-            [
-                'image' => asset('images/product-1.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Putih',
-                'slug' => 'qgc-101-ab-putih',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'label' => 'Best Seller',
-                'image' => asset('images/product-2.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Hitam',
-                'slug' => 'qgc-101-ab-hitam',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-3.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 A',
-                'slug' => 'qgc-101-a',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Mekanik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '180.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-        ];
+        $detail = $product->getDetailProduct($slug);
+        if(!$detail) return abort(404);
+
+        $compare_product = $product->getRecommendationProduct(1, $detail->category->slug, $detail->id);
+        $compare_product = $compare_product->first();
+
+        $recommendation_products = $product->getRecommendationProduct(4, null, $detail->id);
 
         $guidance = [
-            'image' => asset('images/product-1.jpg'),
-            'category' => 'Kompor Gas',
-            'name' => 'QGC - 101 AB Putih'
+            'image' => $detail->media->first()->getUrl(),
+            'category' => $detail->variant->name ?? $detail->category->name,
+            'name' => $detail->name,
+            'slug' => $detail->slug,
         ];
 
-        $currentProduct = [
-                'image' => asset('images/product-1.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Putih',
-                'slug' => 'qgc-101-ab-putih',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-        ];
+        $marketplaces = [];
+        foreach ($detail->marketplace as $marketplace) {
+            $marketplaces[$marketplace['type']] = $marketplace['data']['value'];
+        }
 
-        $compareProduct = [
-                'image' => asset('images/product-2.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Hitam',
-                'slug' => 'qgc-101-ab-hitam',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-        ];
-
-        $dataDrawer = [
-            'image' => $currentProduct['image'],
-            'category' => $currentProduct['category'],
-            'name' => $currentProduct['name'],
-            'price' => $currentProduct['price'],
-            'marketplace' => $currentProduct['marketplace'],
+        $data_drawer = [
+            'image' => $detail->media->first()->getUrl(),
+            'category' => $detail->variant->name ?? $detail->category->name,
+            'name' => $detail->name,
+            'marketplace' => $marketplaces,
         ];
 
         return view('pages.product.product-detail', [
-            'recommendationProducts' => $recommendationProducts,
+            'detail' => $detail,
+            'data_drawer' => $data_drawer,
+            'compare_product' => $compare_product,
             'guidance' => $guidance,
-            'currentProduct' => $currentProduct,
-            'compareProduct' => $compareProduct,
-            'dataDrawer' => $dataDrawer,
+            'recommendation_products' => $recommendation_products,
         ]);
+    }
+
+    public function downloadGuidance(Product $product, $slug)
+    {
+        $detail = $product->getDetailProduct($slug);
+
+        if ($detail && $detail->getFirstMedia('guidance_product')) {
+            $file_name = 'Panduan - ' . $detail->variant->name . ' Quantum ' . $detail->name . '.' . $detail->getFirstMedia('guidance_product')->extension;
+            return response()->download($detail->getFirstMedia('guidance_product')->getPath(), $file_name);
+        }
+
+        return abort(404);
     }
 }

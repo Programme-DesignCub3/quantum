@@ -92,8 +92,10 @@ class RecipeController extends Controller
         ]);
     }
 
-    public function detail()
+    public function detail(Product $product)
     {
+        $recommendation_products = $product->getRecommendationProduct(3);
+
         $steps = [
             [
                 'image' => asset('images/step-recipe-1.jpg'),
@@ -114,67 +116,6 @@ class RecipeController extends Controller
             [
                 'image' => asset('images/step-recipe-5.jpg'),
                 'description' => 'Angkat, taburi dengan parsley cincang dan keju parmesan bila suka. Sajikan hangat.',
-            ],
-        ];
-
-        $recommendationProducts = [
-            [
-                'image' => asset('images/product-1.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Putih',
-                'slug' => 'qgc-101-ab-putih',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'label' => 'Best Seller',
-                'image' => asset('images/product-2.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Hitam',
-                'slug' => 'qgc-101-ab-hitam',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-3.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 A',
-                'slug' => 'qgc-101-a',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Mekanik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '180.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
             ],
         ];
 
@@ -202,22 +143,9 @@ class RecipeController extends Controller
             ],
         ];
 
-        $products = Product::where('is_published', true)->inRandomOrder()->take(3)->get();
-
-        $products->transform(function ($product) {
-            $product->specs = collect($product->specs)->map(function ($spec) use ($product) {
-                if (isset($spec['data']['types'])) {
-                    $get_type = $product->types->firstWhere('id', $spec['data']['types']) ?? null;
-                    $spec['data']['types'] = $get_type;
-                }
-                return $spec;
-            });
-            return $product;
-        });
-
         return view('pages.updates.recipe-detail', [
             'steps' => $steps,
-            'recommendationProducts' => $products,
+            'recommendation_products' => $recommendation_products,
             'otherRecipe' => $otherRecipe,
         ]);
     }

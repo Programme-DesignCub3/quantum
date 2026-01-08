@@ -1,5 +1,10 @@
 @extends('app')
 
+@section('meta_title', $meta_title ?? config('app.name'))
+@section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
+@section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
+@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+
 @section('content')
     <main x-data="serviceCenter" class="bg-white">
         <section class="flex flex-col">
@@ -27,7 +32,7 @@
                     </div>
                     <div class="grid grid-cols-1 gap-4">
                         @foreach ($service_centers as $service_center)
-                            <x-displays.place-card :payload="$service_center" />
+                            <x-displays.place-card for="service_center" :payload="$service_center" />
                         @endforeach
                     </div>
                 </div>

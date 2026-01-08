@@ -31,7 +31,6 @@ class ProductCard extends Component
     ) {
 
         $marketplaces = [];
-
         foreach ($this->payload->marketplace as $marketplace) {
             $marketplaces[$marketplace['type']] = $marketplace['data']['value'];
         }
@@ -40,7 +39,6 @@ class ProductCard extends Component
             'image' => $this->payload->media->first()->getUrl(),
             'category' => $this->payload->variant->name ?? $this->payload->category->name,
             'name' => $this->payload->name,
-            // 'price' => $this->payload->price,
             'marketplace' => $marketplaces,
         ];
     }

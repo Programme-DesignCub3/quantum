@@ -1,10 +1,15 @@
 @extends('app')
 
+@section('meta_title', $meta_title ?? config('app.name'))
+@section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
+@section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
+@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+
 @section('content')
     <main id="homepage" class="bg-white">
         <section class="splide slideshow-home relative" role="group" aria-label="Quantum Home Slides">
             <div class="absolute z-10 flex flex-col justify-end size-full">
-                <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-28 min-[375px]:px-12">
+                <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-20 min-[400px]:pt-28 min-[375px]:px-12">
                     <h1>Pilihan Andalan Buat Dapur Impian</h1>
                     <p class="large">Wujudkan dapur idaman dengan performa teruji kompor Quantum.</p>
                     <x-inputs.button type="button" size="lg" color="white">
@@ -14,11 +19,19 @@
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
-                    @for($i = 1; $i <= 5; $i++)
-                        <li class="splide__slide">
-                            <img class="brightness-90" src="{{ asset('images/home-mobile-' . $i . '.jpg') }}" alt="">
-                        </li>
-                    @endfor
+                    @if(count($banners) > 0)
+                        @foreach($banners as $banner)
+                            <li class="splide__slide">
+                                <img class="brightness-90" src="{{ asset('storage/' . $banner) }}" alt="">
+                            </li>
+                        @endforeach
+                    @else
+                        @for($i = 1; $i <= 2; $i++)
+                            <li class="splide__slide">
+                                <img class="brightness-90" src="{{ asset('images/home-mobile-placeholder.jpg') }}" alt="">
+                            </li>
+                        @endfor
+                    @endif
                 </ul>
             </div>
             <ul class="splide__pagination slide-home"></ul>
@@ -99,17 +112,23 @@
                 <h3>Artikel Terbaru untuk Dapur Anda</h3>
             </div>
             <div class="flex flex-col gap-9">
-                <div class="splide articles-home" role="group" aria-label="Products Home Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach($articles as $article)
-                                <li class="splide__slide w-[260px]">
-                                    <x-displays.article-card :payload="$article" />
-                                </li>
-                            @endforeach
-                        </ul>
+                @if(!$articles->isEmpty())
+                    <div class="splide articles-home" role="group" aria-label="Products Home Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($articles as $article)
+                                    <li class="splide__slide w-[260px]">
+                                        <x-displays.article-card :payload="$article" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                    </div>
+                @endif
                 <div class="flex justify-center items-center px-4">
                     <x-inputs.button type="hyperlink" href="{{ route('updates.news') }}" size="lg" variant="secondary" color="white" class="w-max">
                         Lihat Lebih Banyak

@@ -66,100 +66,96 @@
                         'gap-3': size !== 'sm',
                         'gap-2': size === 'sm'
                     }" @endif>
-                        @foreach($payload->specs as $spec)
-                            @switch($spec['type'])
-                                @case('furnace_type')
-                                    <div class="flex justify-center items-center gap-1">
-                                        <x-icons.target-icon @class([
-                                            'size-3' => $size === 'lg',
-                                            'size-2.5' => $size === 'md',
-                                            'size-2' => $size === 'sm',
-                                        ]) />
-                                        @switch($size)
-                                            @case('lg')
-                                                <p class="small text-[#868686]">{{ $spec['data']['types']['name'] }}</p>
-                                                @break
-                                            @case('md')
-                                                <span class="extrasmall text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                            @case('sm')
-                                                <span class="extrasmall text-[8px]! text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                        @endswitch
-                                    </div>
-                                    @break
-                                @case('power_type')
-                                    <div class="flex justify-center items-center gap-1">
-                                        <span @class([
-                                            'text-xs' => $size === 'lg',
-                                            'text-[10px]' => $size === 'md',
-                                            'text-[8px]' => $size === 'sm',
-                                            'icon-[pajamas--power]'
-                                        ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
-                                            'text-xs': size === 'lg',
-                                            'text-[10px]': size === 'md',
-                                            'text-[8px]': size === 'sm'
-                                        }" @endif></span>
-                                        @switch($size)
-                                            @case('lg')
-                                                <p class="small text-[#868686]">{{ $spec['data']['types']['name'] }}</p>
-                                                @break
-                                            @case('md')
-                                                <span class="extrasmall text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                            @case('sm')
-                                                <span class="extrasmall text-[8px]! text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                        @endswitch
-                                    </div>
-                                    @break
-                                @case('fuel_type')
-                                    <div class="flex justify-center items-center gap-1">
-                                        <span @class([
-                                            'text-xs' => $size === 'lg',
-                                            'text-[10px]' => $size === 'md',
-                                            'text-[8px]' => $size === 'sm',
-                                            'icon-[el--fire]'
-                                        ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
-                                            'text-xs': size === 'lg',
-                                            'text-[10px]': size === 'md',
-                                            'text-[8px]': size === 'sm'
-                                        }" @endif></span>
-                                        @switch($size)
-                                            @case('lg')
-                                                <p class="small text-[#868686]">{{ $spec['data']['types']['name'] }}</p>
-                                                @break
-                                            @case('md')
-                                                <span class="extrasmall text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                            @case('sm')
-                                                <span class="extrasmall text-[8px]! text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                        @endswitch
-                                    </div>
-                                    @break
-                                @case('length_type')
-                                    <div class="flex justify-center items-center gap-1">
-                                        <x-icons.spiral-icon @class([
-                                            'size-3' => $size === 'lg',
-                                            'size-2.5' => $size === 'md',
-                                            'size-2' => $size === 'sm',
-                                        ]) />
-                                        @switch($size)
-                                            @case('lg')
-                                                <p class="small text-[#868686]">{{ $spec['data']['types']['name'] }}</p>
-                                                @break
-                                            @case('md')
-                                                <span class="extrasmall text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                            @case('sm')
-                                                <span class="extrasmall text-[8px]! text-[#868686]">{{ $spec['data']['types']['name'] }}</span>
-                                                @break
-                                        @endswitch
-                                    </div>
-                                    @break
-                            @endswitch
-                        @endforeach
+                        @if(in_array('furnace_type', array_column($payload->specs, 'type')))
+                            <div class="flex justify-center items-center gap-1">
+                                <x-icons.target-icon @class([
+                                    'size-3' => $size === 'lg',
+                                    'size-2.5' => $size === 'md',
+                                    'size-2' => $size === 'sm',
+                                ]) />
+                                @switch($size)
+                                    @case('lg')
+                                        <p class="small text-[#868686]">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</p>
+                                        @break
+                                    @case('md')
+                                        <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                    @case('sm')
+                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                @endswitch
+                            </div>
+                        @endif
+                        @if(in_array('power_type', array_column($payload->specs, 'type')))
+                            <div class="flex justify-center items-center gap-1">
+                                <span @class([
+                                    'text-xs' => $size === 'lg',
+                                    'text-[10px]' => $size === 'md',
+                                    'text-[8px]' => $size === 'sm',
+                                    'icon-[pajamas--power]'
+                                ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
+                                    'text-xs': size === 'lg',
+                                    'text-[10px]': size === 'md',
+                                    'text-[8px]': size === 'sm'
+                                }" @endif></span>
+                                @switch($size)
+                                    @case('lg')
+                                        <p class="small text-[#868686]">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</p>
+                                        @break
+                                    @case('md')
+                                        <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                    @case('sm')
+                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                @endswitch
+                            </div>
+                        @endif
+                        @if(in_array('fuel_type', array_column($payload->specs, 'type')))
+                            <div class="flex justify-center items-center gap-1">
+                                <span @class([
+                                    'text-xs' => $size === 'lg',
+                                    'text-[10px]' => $size === 'md',
+                                    'text-[8px]' => $size === 'sm',
+                                    'icon-[el--fire]'
+                                ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
+                                    'text-xs': size === 'lg',
+                                    'text-[10px]': size === 'md',
+                                    'text-[8px]': size === 'sm'
+                                }" @endif></span>
+                                @switch($size)
+                                    @case('lg')
+                                        <p class="small text-[#868686]">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</p>
+                                        @break
+                                    @case('md')
+                                        <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                    @case('sm')
+                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                @endswitch
+                            </div>
+                        @endif
+                        @if(in_array('length_type', array_column($payload->specs, 'type')))
+                            <div class="flex justify-center items-center gap-1">
+                                <x-icons.spiral-icon @class([
+                                    'size-3' => $size === 'lg',
+                                    'size-2.5' => $size === 'md',
+                                    'size-2' => $size === 'sm',
+                                ]) />
+                                @switch($size)
+                                    @case('lg')
+                                        <p class="small text-[#868686]">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</p>
+                                        @break
+                                    @case('md')
+                                        <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                    @case('sm')
+                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        @break
+                                @endswitch
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>
@@ -200,4 +196,4 @@
             Beli
         </button>
     </div>
-</@div>
+</div>

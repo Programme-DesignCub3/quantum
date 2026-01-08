@@ -6,7 +6,8 @@
         $sizeClass,
         $hoverColorClass,
         $class
-    ])>
+    ])
+    @if($newTab) target="_blank" @endif>
         @if($icon)
             <span @class([
                 $icon,

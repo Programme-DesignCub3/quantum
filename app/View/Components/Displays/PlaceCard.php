@@ -11,12 +11,14 @@ class PlaceCard extends Component
     // Props
 
     // PAYLOAD = data from controller
+    // FOR = 'distributor' | 'service_center' (default: 'distributor')
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public array $payload
+        public array $payload,
+        public ?string $for = 'distributor',
     ) {}
 
     /**

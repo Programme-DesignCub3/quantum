@@ -31,16 +31,16 @@
             <div class="space-y-4">
                 <h5>Hubungi Kami melalui Channel Berikut</h5>
                 <div class="flex gap-4">
-                    <a href="#" target="_blank" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ $settings['phone_number'] ? 'tel:' . $settings['phone_number'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[lucide--phone] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="#" target="_blank" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ $settings['email_address'] ? 'mailto:' . $settings['email_address'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[lucide--mail] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="#" target="_blank" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ $settings['whatsapp_number'] ? 'https://wa.me/' . $settings['whatsapp_number'] : '#' }}" @if($settings['whatsapp_number']) target="_blank" @endif class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[ic--baseline-whatsapp] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="#" target="_blank" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ $settings['customer_care'] ? 'tel:' . $settings['customer_care'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <x-icons.customer-care-icon class="fill-qt-green-normal size-6" />
                     </a>
                 </div>

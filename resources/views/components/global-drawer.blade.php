@@ -38,14 +38,14 @@
     <div class="flex flex-col gap-4 justify-center items-center px-4">
         <h3>Bagikan Artikel</h3>
         <div class="flex gap-2 py-4">
-            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[jam--linkedin]" />
-            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[ri--facebook-fill]" />
-            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
-            <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[lucide--mail]" />
+            <x-inputs.button-icon type="hyperlink" :newTab="true" href="https://www.linkedin.com/sharing/share-offsite/?url={{ URL::current() }}" class="rounded-2xl!" icon="icon-[jam--linkedin]" />
+            <x-inputs.button-icon type="hyperlink" :newTab="true" href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}" class="rounded-2xl!" icon="icon-[ri--facebook-fill]" />
+            <x-inputs.button-icon type="hyperlink" :newTab="true" href="https://wa.me/?text={{ URL::current() }}" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
+            <x-inputs.button-icon type="hyperlink" href="mailto:?body={{ URL::current() }}" class="rounded-2xl!" icon="icon-[lucide--mail]" />
         </div>
     </div>
 </x-displays.drawer>
-<x-displays.drawer store="distributorDetailDrawer">
+<x-displays.drawer store="placeDetailDrawer">
     <div class="flex flex-col gap-5 px-4">
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-4">
@@ -54,11 +54,11 @@
                 </div>
                 <div class="space-y-0">
                     <span class="block text-[#6D6D6D]">Banten</span>
-                    <h5>Nama Toko Distributor</h5>
+                    <h5>Nama Toko Distributor/Service Center</h5>
                 </div>
                 <div class="flex gap-4">
                     <span class="icon-[lucide--map-pin] shrink-0 text-lg text-qt-green-normal"></span>
-                    <span class="text-[#6D6D6D]">Alamat detil toko distributor</span>
+                    <span class="text-[#6D6D6D]">Alamat detil toko distributor/service center</span>
                 </div>
             </div>
             <div class="flex flex-col gap-1">

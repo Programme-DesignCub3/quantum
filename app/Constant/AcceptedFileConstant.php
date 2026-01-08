@@ -8,5 +8,5 @@ final class AcceptedFileConstant
     public const ACCEPTED_IMAGE_VIDEO = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'video/mp4'];
     public const ACCEPTED_IMAGE = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     public const ACCEPTED_IMAGE_ICON = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'];
-    public const ACCEPTED_FILE = ['application/pdf'];
+    public const ACCEPTED_DOCUMENT = ['application/pdf'];
 }

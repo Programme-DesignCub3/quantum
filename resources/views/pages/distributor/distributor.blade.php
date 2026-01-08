@@ -1,5 +1,10 @@
 @extends('app')
 
+@section('meta_title', $meta_title ?? config('app.name'))
+@section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
+@section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
+@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+
 @section('content')
     <main class="bg-white">
         <section class="bg-[#F4F4F4]">
@@ -13,7 +18,7 @@
             <div class="flex flex-col gap-20 py-20 px-4">
                 <div class="flex flex-col gap-12">
                     <div class="space-y-4">
-                        <h2>Headline Benefit jadi di stributor</h2>
+                        <h2>Headline Benefit jadi distributor</h2>
                         <p>Body text lorem ipsum dolor sit amet lorem ipsum dolores sit amet</p>
                     </div>
                     <div class="grid grid-cols-1">

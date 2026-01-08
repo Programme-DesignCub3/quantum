@@ -96,7 +96,7 @@
                         <x-icons.newspaper-folded-icon class="fill-qt-green-normal" />
                         Artikel
                     </a>
-                    <a href="#" class="menu-nav-sublink">
+                    <a href="{{ route('updates.news', ['kategori' => 'event']) }}" class="menu-nav-sublink">
                         <span class="icon-[lucide--calendar-check]"></span>
                         Event
                     </a>

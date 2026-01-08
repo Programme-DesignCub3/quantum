@@ -21,7 +21,7 @@ class ArticleCard extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public array $payload,
+        public $payload,
         public ?bool $border = false,
         public ?string $for = 'article',
         public ?bool $premium = false,

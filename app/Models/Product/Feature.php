@@ -15,6 +15,11 @@ class Feature extends Model implements HasMedia
         'description',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('feature_image');
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_feature', 'feature_id', 'product_id');

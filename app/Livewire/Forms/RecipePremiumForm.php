@@ -26,7 +26,6 @@ class RecipePremiumForm extends Component
         $this->validate();
         $this->reset();
 
-        // dd($this->all(), 'download');
         session()->put('registered_premium', true);
         $this->dispatch('open-limit');
     }
@@ -36,7 +35,6 @@ class RecipePremiumForm extends Component
         $this->validate();
         $this->reset();
 
-        // dd($this->all(), 'view');
         session()->put('registered_premium', true);
         $this->dispatch('open-limit');
     }

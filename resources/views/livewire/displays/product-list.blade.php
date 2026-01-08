@@ -1,6 +1,6 @@
 <section x-data="productList">
-    <div :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-40 flex flex-col transition-all ease-in-out">
-        <div wire:ignore class="flex justify-evenly gap-2 p-2 bg-[#106B75]">
+    <div wire:ignore :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-40 flex flex-col transition-all ease-in-out">
+        <div class="flex justify-evenly gap-2 p-2 bg-[#106B75]">
             <a href="{{ route('product') }}" @class([
                 'bg-[#0B474D]' => Route::currentRouteName() === 'product',
                 'hover:bg-[#0B474D]/30' => Route::currentRouteName() !== 'product',
@@ -36,7 +36,13 @@
             </div>
             <div class="flex justify-between gap-4 py-2 px-4">
                 <button type="button" @click="$store.productSortDrawer.openDrawer()" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9] focus:border-[#6D6D6D]">
-                    <p class="text-[#6D6D6D]">Terbaru</p>
+                    <p class="text-[#6D6D6D]">
+                        @if($sort === 'best_seller')
+                            Paling populer
+                        @else
+                            Terbaru
+                        @endif
+                    </p>
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
                 <div class="flex border border-[#F4F4F4] rounded-xl overflow-hidden">
@@ -80,90 +86,74 @@
         @endif
     </div>
     <x-displays.drawer store="productFilterDrawer">
-        <div class="flex flex-col gap-6">
+        <div wire:ignore class="flex flex-col gap-6">
             <h4 class="text-center">Filter</h4>
             <div class="flex flex-col gap-4">
                 <x-displays.accordion title="Jenis" :open="true">
-                    <div class="flex flex-col gap-2.5 pb-4 pt-2.5">
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="kompor-gas" class="shrink-0">
-                            <label for="kompor-gas" class="size-full cursor-pointer">Kompor Gas</label>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="kompor-tanam" class="shrink-0">
-                            <label for="kompor-tanam" class="size-full cursor-pointer">Kompor Tanam</label>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="kompor-lifestyle" class="shrink-0">
-                            <label for="kompor-lifestyle" class="size-full cursor-pointer">Kompor Lifestyle</label>
-                        </div>
+                    <div class="flex flex-col max-h-36 overflow-y-auto gap-2.5 pb-4 pt-2.5">
+                        @foreach($variants as $variant)
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" wire:model="form_variant" value="{{ $variant->slug }}" id="{{ $variant->slug }}" class="shrink-0">
+                                <label for="{{ $variant->slug }}" class="size-full cursor-pointer">{{ $variant->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </x-displays.accordion>
                 <x-displays.accordion title="Tipe Kategori" :open="true">
-                    <div class="flex flex-col gap-2.5 pb-4 pt-2.5">
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="3-tungku" class="shrink-0">
-                            <label for="3-tungku" class="size-full cursor-pointer">3 Tungku</label>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="2-tungku" class="shrink-0">
-                            <label for="2-tungku" class="size-full cursor-pointer">2 Tungku</label>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <input type="checkbox" id="1-tungku" class="shrink-0">
-                            <label for="1-tungku" class="size-full cursor-pointer">1 Tungku</label>
-                        </div>
+                    <div class="flex flex-col max-h-36 overflow-y-auto gap-2.5 pb-4 pt-2.5">
+                        @foreach($types as $type)
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" wire:model="form_type" value="{{ $type->slug }}" id="{{ $type->slug }}" class="shrink-0">
+                                <label for="{{ $type->slug }}" class="size-full cursor-pointer">{{ $type->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </x-displays.accordion>
             </div>
             <div class="flex mt-3 gap-4">
-                <x-inputs.button type="button" size="lg" color="white" variant="secondary" class="w-full">
-                    Atur Ulang
-                </x-inputs.button>
-                <x-inputs.button type="button" size="lg" class="w-full">
-                    Terapkan
-                </x-inputs.button>
+                <div wire:click="resetFilter" class="w-full">
+                    <x-inputs.button type="button" size="lg" color="white" variant="secondary" class="w-full">
+                        Atur Ulang
+                    </x-inputs.button>
+                </div>
+                <div wire:click="applyFilter" class="w-full">
+                    <x-inputs.button type="button" size="lg" class="w-full">
+                        Terapkan
+                    </x-inputs.button>
+                </div>
             </div>
         </div>
     </x-displays.drawer>
     <x-displays.drawer store="productVariantDrawer">
-        <div class="flex flex-col gap-1 py-4">
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="kompor-gas" class="shrink-0">
-                <label for="kompor-gas" class="size-full cursor-pointer py-4">Kompor Gas</label>
-            </div>
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="kompor-tanam" class="shrink-0">
-                <label for="kompor-tanam" class="size-full cursor-pointer py-4">Kompor Tanam</label>
-            </div>
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="kompor-lifestyle" class="shrink-0">
-                <label for="kompor-lifestyle" class="size-full cursor-pointer py-4">Kompor Lifestyle</label>
-            </div>
+        <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
+            @for($i = 0; $i < 2; $i++)
+                @foreach($variants as $variant)
+                    <div class="flex items-center gap-4 px-4">
+                        <input type="checkbox" wire:click="refreshFilter" wire:model="variant" value="{{ $variant->slug }}" id="{{ $variant->slug }}-variant-filter" class="shrink-0">
+                        <label for="{{ $variant->slug }}-variant-filter" class="size-full cursor-pointer py-4">{{ $variant->name }}</label>
+                    </div>
+                @endforeach
+            @endfor
         </div>
     </x-displays.drawer>
     <x-displays.drawer store="productTypeDrawer">
-        <div class="flex flex-col gap-1 py-4">
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="3-tungku" class="shrink-0">
-                <label for="3-tungku" class="size-full cursor-pointer py-4">3 Tungku</label>
-            </div>
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="2-tungku" class="shrink-0">
-                <label for="2-tungku" class="size-full cursor-pointer py-4">2 Tungku</label>
-            </div>
-            <div class="flex items-center gap-4 px-4">
-                <input type="checkbox" id="1-tungku" class="shrink-0">
-                <label for="1-tungku" class="size-full cursor-pointer py-4">1 Tungku</label>
-            </div>
+        <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
+            @for($i = 0; $i < 2; $i++)
+                @foreach($types as $type)
+                    <div class="flex items-center gap-4 px-4">
+                        <input type="checkbox" wire:click="refreshFilter" wire:model="type" value="{{ $type->slug }}" id="{{ $type->slug }}-type-filter" class="shrink-0">
+                        <label for="{{ $type->slug }}-type-filter" class="size-full cursor-pointer py-4">{{ $type->name }}</label>
+                    </div>
+                @endforeach
+            @endfor
         </div>
     </x-displays.drawer>
     <x-displays.drawer store="productSortDrawer">
         <div class="flex flex-col gap-1 py-4">
-            <button type="button" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
-            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling tinggi ke paling rendah</button>
-            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling rendah ke paling tinggi</button>
-            <button type="button" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
+            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
+            {{-- <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling tinggi ke paling rendah</button>
+            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling rendah ke paling tinggi</button> --}}
+            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best_seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
         </div>
     </x-displays.drawer>
 </section>

@@ -31,6 +31,7 @@ Route::prefix('produk')->name('product')->group(function () {
         Route::get('/', 'index');
         Route::get('/{category}', 'index')->name('.category');
         Route::get('/{category}/{slug}', 'detail')->name('.detail');
+        Route::get('/download/panduan/{slug}', 'downloadGuidance')->name('.download-guidance');
     });
 });
 

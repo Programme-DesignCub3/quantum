@@ -6,7 +6,7 @@
             </button>
         </div>
         <template x-if="$store.videoModal.data?.type === 'local'">
-            <video x-ref="videoPlayer" class="w-full aspect-video rounded-2xl bg-black" controls>
+            <video x-ref="videoPlayer" class="w-full aspect-video rounded-2xl bg-black" controls playsinline webkit-playsinline>
                 <source :src="$store.videoModal.data?.src" type="video/mp4">
                 Your browser does not support the video tag.
             </video>

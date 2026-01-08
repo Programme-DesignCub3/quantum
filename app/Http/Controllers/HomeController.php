@@ -2,214 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewsEvent\NewsEvent;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings, NewsEvent $newsEvent)
     {
-        $products = [
-            [
-                'image' => asset('images/product-1.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Putih',
-                'slug' => 'qgc-101-ab-putih',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'label' => 'Best Seller',
-                'image' => asset('images/product-2.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 AB Hitam',
-                'slug' => 'qgc-101-ab-hitam',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Elektrik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-3.jpg'),
-                'category' => 'Kompor Gas',
-                'category_slug' => 'kompor',
-                'name' => 'QGC - 101 A',
-                'slug' => 'qgc-101-a',
-                'specs' => [
-                    'furnace_type' => '1 Tungku',
-                    'power_type' => 'Mekanik',
-                    'fuel_type' => 'LPG',
-                ],
-                'price' => '180.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-4.jpg'),
-                'category' => 'Regulator',
-                'category_slug' => 'regulator-dan-selang-gas',
-                'name' => 'QRL-03',
-                'slug' => 'qrl-03',
-                'specs' => [
-                    'power_type' => 'Kunci Tunggal',
-                    'fuel_type' => 'Tekanan Rendah',
-                ],
-                'price' => '60.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-5.jpg'),
-                'category' => 'Regulator',
-                'category_slug' => 'regulator-dan-selang-gas',
-                'name' => 'QRH-09',
-                'slug' => 'qrh-09',
-                'specs' => [
-                    'power_type' => 'Kunci Tunggal',
-                    'fuel_type' => 'Tekanan Rendah',
-                ],
-                'price' => '256.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-6.jpg'),
-                'category' => 'Regulator dan Selang Gas',
-                'category_slug' => 'regulator-dan-selang-gas',
-                'name' => 'QRH-032',
-                'slug' => 'qrh-032',
-                'specs' => [
-                    'length_type' => '1,8 Meter',
-                    'fuel_type' => 'Tekanan Rendah',
-                ],
-                'price' => '180.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-7.jpg'),
-                'category' => 'Sparepart',
-                'category_slug' => 'suku-cadang',
-                'name' => 'Burner Kuningan',
-                'slug' => 'burner-kuningan',
-                'price' => '100.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-            [
-                'image' => asset('images/product-8.jpg'),
-                'category' => 'Sparepart',
-                'category_slug' => 'suku-cadang',
-                'name' => 'Tatakan Kompor',
-                'slug' => 'tatakan-kompor',
-                'specs' => [
-                    'furnace_type' => '5 Kaki',
-                ],
-                'price' => '50.000',
-                'marketplace' => [
-                    'lazada' => 'https://www.lazada.co.id/',
-                    'blibli' => 'https://www.blibli.com/',
-                    'shopee' => 'https://shopee.co.id/',
-                    'tokopedia' => 'https://www.tokopedia.com/',
-                ]
-            ],
-        ];
-
-        $articles = [
-            [
-                'image' => asset('images/article-1.jpg'),
-                'title' => '5 Cara Hemat Energi dengan Kompor Quantum',
-                'slug' => '5-cara-hemat-energi-dengan-kompor-quantum',
-                'excerpt' => 'Pelajari cara mengoptimalkan penggunaan kompor untuk',
-                'category' => 'Tips',
-            ],
-            [
-                'image' => asset('images/article-2.jpg'),
-                'title' => 'Desain Dapur Modern dengan Kompor Quantum',
-                'slug' => 'desain-dapur-modern-dengan-kompor-quantum',
-                'excerpt' => 'Dapatkan ide desain dapur minimalis dan modern dengan',
-                'category' => 'Inspirasi',
-            ],
-            [
-                'image' => asset('images/article-3.jpg'),
-                'title' => 'Keunggulan Kompor Quantum QGC 201 DEP',
-                'slug' => 'keunggulan-kompor-quantum-qgc-201-dep',
-                'excerpt' => 'Mengenal lebih dekat kompor gas 2 tungku Quantum yang efisien',
-                'category' => 'Review',
-            ],
-            [
-                'image' => asset('images/article-4.jpg'),
-                'title' => 'Resep Nasi Goreng Spesial dengan Quantum',
-                'slug' => 'resep-nasi-goreng-spesial-dengan-quantum',
-                'excerpt' => 'Coba resep nasi goreng spesial yang mudah dan cepat, dimasak',
-                'category' => 'Resep',
-            ],
-        ];
-
-        $testimonials = [
-            [
-                'name' => 'Hanna (35 Tahun)',
-                'city' => 'Jakarta',
-                'feedback' => 'Kompor gas Quantum ini life saver banget! Nggak cuma hemat gas, desainnya juga simple dan modern. Bikin dapur jadi elegan. Recommended pokoknya!',
-            ],
-            [
-                'name' => 'Danang (55 Tahun)',
-                'city' => 'Jakarta',
-                'feedback' => 'Saya puas jadi distributor Quantum selama hampir 6 tahun. Produknya berkualitas tinggi, penjualannya stabil, dan jadi pilihan utama banyak orang.',
-            ],
-        ];
-
         $video = [
             'type' => 'local',
             'src' => asset('videos/quantum-voxpop.mp4'),
-
-            // 'type' => 'youtube',
-            // 'src' => 'FdhuwORtG48',
         ];
 
+        $articles = $newsEvent->getNewsByNumber(4);
+
+        $testimonials = count($pageSettings->home_testimonials) > 0 ? $pageSettings->home_testimonials : $this->testimonialPlaceholder();
+
         return view('pages.home', [
-            'articles' => $articles,
+            'meta_title' => $pageSettings->home_meta_title,
+            'meta_description' => $pageSettings->home_meta_description,
+            'meta_keywords' => $pageSettings->home_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->home_meta_image),
+            'banners' => $pageSettings->home_banner,
             'testimonials' => $testimonials,
+            'articles' => $articles,
             'video' => $video,
         ]);
+    }
+
+    protected function testimonialPlaceholder()
+    {
+        return [
+            [
+                'name' => 'Hanna',
+                'age' => 35,
+                'origin' => 'Jakarta',
+                'testimonial' => 'Kompor gas Quantum ini life saver banget! Nggak cuma hemat gas, desainnya juga simple dan modern. Bikin dapur jadi elegan. Recommended pokoknya!',
+            ],
+            [
+                'name' => 'Danang',
+                'age' => 55,
+                'origin' => 'Jakarta',
+                'testimonial' => 'Saya puas jadi distributor Quantum selama hampir 6 tahun. Produknya berkualitas tinggi, penjualannya stabil, dan jadi pilihan utama banyak orang.',
+            ],
+        ];
     }
 }

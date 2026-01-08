@@ -26,4 +26,13 @@ class Type extends Model
     {
         return $this->belongsToMany(Product::class, 'product_type', 'type_id', 'product_id');
     }
+
+    /**
+     * Get all types
+     */
+    public function getAllType()
+    {
+        return self::orderBy('name', 'asc')
+            ->get();
+    }
 }

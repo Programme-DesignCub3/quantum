@@ -1,18 +1,23 @@
 <footer x-data x-cloak x-show="$store.premiumRecipeDrawer.isPremium" id="footer">
     @if (Route::currentRouteName() !== 'contact')
         <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
+            <div class="grid grid-cols-3 gap-4">
+                @for($i = 1; $i <= 6; $i++)
+                    <img src="{{ asset('images/certify-' . $i . '.png') }}" alt="">
+                @endfor
+            </div>
             <h2>Quantum Care</h2>
             <div class="grid grid-cols-2 gap-4">
-                <x-inputs.button-icon type="hyperlink">
+                <x-inputs.button-icon type="hyperlink" href="{{ $settings['customer_care'] ? 'tel:' . $settings['customer_care'] : '#' }}">
                     <x-slot:image>
                         <x-icons.customer-care-icon id="footer-customer-care" class="fill-qt-green-normal group-hover:fill-white" />
                     </x-slot:image>
                     Call Center
                 </x-inputs.button-icon>
-                <x-inputs.button-icon type="hyperlink" icon="icon-[ic--baseline-whatsapp]">
+                <x-inputs.button-icon type="hyperlink" href="{{ $settings['whatsapp_number'] ? 'https://wa.me/' . $settings['whatsapp_number'] : '#' }}" icon="icon-[ic--baseline-whatsapp]" :newTab="$settings['whatsapp_number'] ? true : false">
                     WhatsApp
                 </x-inputs.button-icon>
-                <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--mail]">
+                <x-inputs.button-icon type="hyperlink" href="{{ $settings['email_address'] ? 'mailto:' . $settings['email_address'] : '#' }}" icon="icon-[lucide--mail]">
                     Email
                 </x-inputs.button-icon>
                 <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--map-pin]">
@@ -65,7 +70,7 @@
                     <x-displays.accordion title="Updates">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('updates.news') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>
-                            <a href="#" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Event</a>
+                            <a href="{{ route('updates.news', ['kategori' => 'event']) }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Event</a>
                             <a href="{{ route('updates.recipe') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Resep</a>
                         </div>
                     </x-displays.accordion>
@@ -83,19 +88,19 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <a href="https://www.linkedin.com/company/quantum-home-appliances" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $settings['linkedin_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[jam--linkedin] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="https://www.facebook.com/QuantumIDN" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $settings['facebook_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ri--facebook-fill] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="https://www.youtube.com/@quantumindonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $settings['youtube_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--youtube] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="https://www.instagram.com/quantum_indonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $settings['instagram_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--instagram] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="https://www.tiktok.com/@quantum_indonesia" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $settings['tiktok_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ic--baseline-tiktok] text-qt-green-normal text-[32px]"></span>
                 </a>
             </div>

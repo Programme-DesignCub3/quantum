@@ -1,5 +1,10 @@
 @extends('app')
 
+@section('meta_title', $meta_title ?? config('app.name'))
+@section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
+@section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
+@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+
 @section('content')
     <main x-data="recipeDetail" x-ref="recipeContent" id="recipe-detail" class="relative bg-[#FFFFFF] h-[800px] overflow-hidden">
         <div x-cloak x-show="!$store.premiumRecipeDrawer.isPremium" class="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 bg-linear-to-t flex flex-col gap-[70px] justify-end-safe items-center from-white to-transparent max-w-md mx-auto h-[375px] w-full px-4 pb-5">
@@ -98,9 +103,9 @@
             <div class="splide recommendation-products-recipe" role="group" aria-label="Recommendation Product Slides">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        @foreach($recommendationProducts as $item)
+                        @foreach($recommendation_products as $product)
                             <li class="splide__slide w-[260px]">
-                                <x-displays.product-card direction="row" :payload="$item" />
+                                <x-displays.product-card direction="row" :payload="$product" />
                             </li>
                         @endforeach
                     </ul>

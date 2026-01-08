@@ -19,12 +19,11 @@ return new class extends Migration
             $table->json('specs')->nullable();
             $table->json('marketplace');
             $table->json('specs_detail');
-            $table->json('gallery');
+            $table->json('gallery')->nullable();
             $table->boolean('is_published');
             $table->boolean('is_best_seller');
             $table->foreignId('product_category_id')->nullable()->constrained('product_categories')->onDelete('set null');
             $table->foreignId('variant_id')->nullable()->constrained('variants')->onDelete('set null');
-            $table->foreignId('compare_id')->nullable()->constrained('products')->onDelete('set null');
             $table->timestamps();
         });
     }

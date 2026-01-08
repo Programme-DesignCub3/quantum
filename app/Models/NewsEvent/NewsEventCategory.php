@@ -26,4 +26,12 @@ class NewsEventCategory extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    /**
+     * Get all news event category
+     */
+    public function getAllCategory()
+    {
+        return self::all();
+    }
 }

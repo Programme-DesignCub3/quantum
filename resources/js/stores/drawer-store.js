@@ -60,7 +60,7 @@ Alpine.store('distributorProvinceDrawer', {
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
 })
-Alpine.store('distributorDetailDrawer', {
+Alpine.store('placeDetailDrawer', {
     open: false,
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
@@ -112,7 +112,7 @@ Alpine.store('contactSocmedDrawer', {
 })
 Alpine.store('shareDrawer', {
     open: false,
-    openDrawer() { this.open = true },
+    openDrawer() {this.open = true },
     closeDrawer() { this.open = false },
 })
 Alpine.store('numberModelDrawer', {
