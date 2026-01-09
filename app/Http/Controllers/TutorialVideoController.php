@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class TutorialVideoController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $tutorials = [
             [
@@ -48,6 +49,10 @@ class TutorialVideoController extends Controller
         ];
 
         return view('pages.support.tutorial-video', [
+            'meta_title' => $pageSettings->video_meta_title,
+            'meta_description' => $pageSettings->video_meta_description,
+            'meta_keywords' => $pageSettings->video_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->video_meta_image),
             'tutorials' => $tutorials,
         ]);
     }

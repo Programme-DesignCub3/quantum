@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $catalogs = [
             [
@@ -37,6 +38,10 @@ class CatalogController extends Controller
         ];
 
         return view('pages.distributor.catalog', [
+            'meta_title' => $pageSettings->catalog_meta_title,
+            'meta_description' => $pageSettings->catalog_meta_description,
+            'meta_keywords' => $pageSettings->catalog_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->catalog_meta_image),
             'catalogs' => $catalogs
         ]);
     }

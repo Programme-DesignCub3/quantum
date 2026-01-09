@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(ProductCategory $productCategory, $category = null)
+    public function index(ProductCategory $productCategory, PageSettings $pageSettings, $category = null)
     {
         $categories = $productCategory->getAllCategory();
         if($category) {
@@ -31,6 +32,10 @@ class ProductController extends Controller
         }
 
         return view('pages.product.product', [
+            'meta_title' => $pageSettings->product_meta_title,
+            'meta_description' => $pageSettings->product_meta_description,
+            'meta_keywords' => $pageSettings->product_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->product_meta_image),
             'current_category' => $category,
             'product_banner' => $product_banner,
         ]);
@@ -66,7 +71,8 @@ class ProductController extends Controller
         ];
 
         return view('pages.product.product-detail', [
-            'detail' => $detail,
+            'meta_title' => $detail->title,
+            'meta_image' => $detail->media->first()->getUrl(),
             'data_drawer' => $data_drawer,
             'compare_product' => $compare_product,
             'guidance' => $guidance,

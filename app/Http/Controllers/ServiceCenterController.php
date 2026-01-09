@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class ServiceCenterController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $serviceCenters = [
             [
@@ -83,6 +84,10 @@ class ServiceCenterController extends Controller
         ];
 
         return view('pages.support.service-center', [
+            'meta_title' => $pageSettings->sc_meta_title,
+            'meta_description' => $pageSettings->sc_meta_description,
+            'meta_keywords' => $pageSettings->sc_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->sc_meta_image),
             'service_centers' => $serviceCenters,
             'mitra_services' => $mitraServices,
         ]);

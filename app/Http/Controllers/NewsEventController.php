@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsEvent\NewsEvent;
 use App\Models\Product\Product;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class NewsEventController extends Controller
 {
-    public function index(NewsEvent $newsEvent)
+    public function index(NewsEvent $newsEvent, PageSettings $pageSettings)
     {
         $latest_news = $newsEvent->getNewsByNumber(4);
 
         return view('pages.updates.news-event', [
+            'meta_title' => $pageSettings->news_meta_title,
+            'meta_description' => $pageSettings->news_meta_description,
+            'meta_keywords' => $pageSettings->news_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->news_meta_image),
             'latest_news' => $latest_news,
         ]);
     }

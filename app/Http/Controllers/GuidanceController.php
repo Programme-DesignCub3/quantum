@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class GuidanceController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $guidances = [
             [
@@ -39,6 +40,10 @@ class GuidanceController extends Controller
         ];
 
         return view('pages.support.guidance', [
+            'meta_title' => $pageSettings->guidance_meta_title,
+            'meta_description' => $pageSettings->guidance_meta_description,
+            'meta_keywords' => $pageSettings->guidance_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->guidance_meta_image),
             'guidances' => $guidances,
             'guidanceArticles' => $guidanceArticles,
         ]);

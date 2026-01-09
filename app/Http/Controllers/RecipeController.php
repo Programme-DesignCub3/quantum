@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product\Product;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    public function index()
+    public function index(PageSettings $pageSettings)
     {
         $recipes = [
             [
@@ -88,6 +89,10 @@ class RecipeController extends Controller
         ];
 
         return view('pages.updates.recipe', [
+            'meta_title' => $pageSettings->recipe_meta_title,
+            'meta_description' => $pageSettings->recipe_meta_description,
+            'meta_keywords' => $pageSettings->recipe_meta_keywords,
+            'meta_image' => asset('storage/' . $pageSettings->recipe_meta_image),
             'recipes' => collect($recipes),
         ]);
     }

@@ -32,7 +32,10 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $cluster = ProductCluster::class;
 
-    protected static bool $shouldRegisterNavigation = false;
+    public static function shouldRegisterNavigation(): bool
+    {
+        return env('FILAMENT_PRODUCT_CATEGORY', false);
+    }
 
     public static function form(Schema $schema): Schema
     {
