@@ -29,7 +29,6 @@ class ProductCard extends Component
         public ?bool $disableView = false,
         public ?bool $disableSpecs = false,
     ) {
-
         $marketplaces = [];
         foreach ($this->payload->marketplace as $marketplace) {
             $marketplaces[$marketplace['type']] = $marketplace['data']['value'];

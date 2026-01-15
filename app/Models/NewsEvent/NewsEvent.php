@@ -70,6 +70,20 @@ class NewsEvent extends Model implements HasMedia
     }
 
     /**
+     * Count all news and event by category
+     * @param ?string $category
+     */
+    public function getCountAllNews(?string $category = null)
+    {
+        return self::where('is_published', true)
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })->count();
+    }
+
+    /**
      * Get detail news and event by slug
      * @param string $slug
      */
@@ -93,6 +107,22 @@ class NewsEvent extends Model implements HasMedia
             ->when($exclude_id, function ($q) use ($exclude_id) {
                 $q->where('id', '!=', $exclude_id);
             })
+            ->take($number)
+            ->get();
+    }
+
+    /**
+     * Search news and event by title
+     * @param ?int $number
+     * @param ?string $query
+     */
+    public function searchNews(?int $number = 3, ?string $query = null)
+    {
+        return self::where('is_published', true)
+            ->when($query, function ($q) use ($query) {
+                $q->where('title', 'like', '%' . $query . '%');
+            })
+            ->latest()
             ->take($number)
             ->get();
     }

@@ -12,12 +12,27 @@ class TutorialVideoCard extends Component
 
     // PAYLOAD = data from controller
 
+    public $video;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public array $payload,
-    ) {}
+        public $payload,
+    ) {
+        if($payload->video[0]['type'] === 'local') {
+            $src = asset('/storage/' . $payload->video[0]['data']['value']);
+        } else {
+            $src = $payload->video[0]['data']['value'];
+        }
+
+        $video_src = [
+            'type' => $payload->video[0]['type'],
+            'src' => $src
+        ];
+
+        $this->video = $video_src;
+    }
 
     /**
      * Get the view / contents that represent the component.

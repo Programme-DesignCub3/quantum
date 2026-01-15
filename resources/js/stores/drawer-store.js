@@ -132,11 +132,14 @@ Alpine.store('numberModelDrawer', {
 })
 Alpine.store('premiumRecipeDrawer', {
     open: false,
-    isPremium: true,
+    isPremium: false,
+    formShown: false,
+    footerShown: false,
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
-    registerPremium(status) {
-        this.isPremium = status;
+    registerPremium() {
+        this.formShown = false;
+        this.footerShown = true;
         this.open = false;
     }
 })

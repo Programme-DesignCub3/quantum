@@ -33,10 +33,13 @@ class NewsList extends Component
 
     public function render(NewsEvent $newsEvent)
     {
-        $news = $newsEvent->getAllNews($this->amount, 4, $this->category);
+        $skip = $this->category == null ? 4 : 0;
+        $total_count = $newsEvent->getCountAllNews($this->category) - $skip;
+        $news = $newsEvent->getAllNews($this->amount, $skip, $this->category);
 
         return view('livewire.displays.news-list', [
             'news' => $news,
+            'total_count' => $total_count,
         ]);
     }
 }

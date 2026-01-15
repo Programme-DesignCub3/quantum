@@ -5,7 +5,6 @@ namespace App\View\Components\Inputs;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use VARIANT;
 
 class Button extends Component
 {

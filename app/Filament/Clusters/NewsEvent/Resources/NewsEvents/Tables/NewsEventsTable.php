@@ -25,12 +25,12 @@ class NewsEventsTable
                 TextColumn::make('category.name')
                     ->label('Kategori')
                     ->placeholder('Tidak ada kategori')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('title')
                     ->label('Judul')
                     ->searchable()
-                    ->limit(30)
-                    ->sortable(),
+                    ->limit(30),
                 ToggleColumn::make('is_published')
                     ->label('Status Publikasi')
                     ->sortable(),

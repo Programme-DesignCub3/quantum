@@ -139,13 +139,7 @@
             </div>
         </x-displays.drawer>
         <x-displays.drawer store="searchDrawer">
-            <div class="space-y-4 text-center">
-                <h4>Temukan Sesuatu</h4>
-                <div class="relative">
-                    <input type="text" placeholder="Cari sesuatu" class="w-full bg-[#F4F4F4] rounded-3xl text-lg outline-none font-medium pl-16 pr-8 py-[18px] placeholder:font-medium placeholder:text-[#868686]">
-                    <span class="icon-[iconamoon--search] absolute top-1/2 -translate-y-1/2 left-4 text-[30px] text-qt-green-normal"></span>
-                </div>
-            </div>
+            <livewire:displays.search-list />
         </x-displays.drawer>
     </div>
 </nav>

@@ -3,7 +3,7 @@
     'bottom-5' => Route::currentRouteName() !== 'product.detail',
     'fixed ml-[82%] min-[375px]:ml-[84%] min-[410px]:ml-[86%] min-[450px]:ml-[390px]'
 ])>
-    <div x-cloak x-show="$store.premiumRecipeDrawer.isPremium" class="flex flex-col gap-2">
+    <div x-cloak x-show="$store.premiumRecipeDrawer.footerShown" class="flex flex-col gap-2">
         @if(
             Route::currentRouteName() === 'updates.news.detail' ||
             Route::currentRouteName() === 'updates.recipe.detail'

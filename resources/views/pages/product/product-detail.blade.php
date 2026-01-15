@@ -123,7 +123,7 @@
                 </div>
                 <div class="flex flex-col gap-8">
                     <div class="px-4">
-                        <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ?? asset('images/og-image.jpg')">
+                        <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ? $detail->features[0]->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')">
                             <h4>{{ $detail->features[0]->name }}</h4>
                             @if($detail->features[0]->description)
                                 <p class="small">{{ $detail->features[0]->description }}</p>
@@ -136,7 +136,7 @@
                                 <ul class="splide__list">
                                     @foreach($detail->features->skip(1) as $feature)
                                         <li class="splide__slide">
-                                            <x-displays.swipe-card :image="$feature->getFirstMediaUrl('feature_image') ?? asset('images/og-image.jpg')">
+                                            <x-displays.swipe-card :image="$feature->getFirstMediaUrl('feature_image') ? $feature->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')">
                                                 <h4>{{ $feature->name }}</h4>
                                                 @if($feature->description)
                                                     <p class="small text-[#9A9A9A]">{{ $feature->description }}</p>
@@ -242,7 +242,9 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <x-displays.product-card size="sm" :disableView="true" :disableSpecs="true" :payload="$detail" />
-                        <x-displays.product-card size="sm" :disableSpecs="true" :payload="$compare_product" />
+                        @if($compare_product)
+                            <x-displays.product-card size="sm" :disableSpecs="true" :payload="$compare_product" />
+                        @endif
                     </div>
                 </div>
                 <div class="flex flex-col gap-8">
@@ -257,36 +259,44 @@
                                 </x-displays.specs>
                             @endforeach
                         </div>
-                        <div class="flex flex-col gap-4">
-                            @foreach($compare_product->specs_detail[array_search('detail', array_column($compare_product->specs_detail, 'type'))]['data']['value'] as $label => $spec)
-                                <x-displays.specs :label="$label">
-                                    <p>{{ $spec }}</p>
-                                </x-displays.specs>
-                            @endforeach
-                        </div>
+                        @if($compare_product)
+                            <div class="flex flex-col gap-4">
+                                @foreach($compare_product->specs_detail[array_search('detail', array_column($compare_product->specs_detail, 'type'))]['data']['value'] as $label => $spec)
+                                    <x-displays.specs :label="$label">
+                                        <p>{{ $spec }}</p>
+                                    </x-displays.specs>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </section>
         <section class="flex flex-col gap-8 bg-[#F4F4F4] py-[60px]">
             <h2 class="max-w-60 px-4">Rekomendasi Produk Lainnya</h2>
-            <div class="splide recommendation-product" role="group" aria-label="Recommendation Products Slides">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        @foreach($recommendation_products as $product)
-                            <li class="splide__slide">
-                                <x-displays.product-card :payload="$product" />
-                            </li>
-                        @endforeach
-                    </ul>
+            @if(!$recommendation_products->isEmpty())
+                <div class="splide recommendation-product" role="group" aria-label="Recommendation Products Slides">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            @foreach($recommendation_products as $product)
+                                <li class="splide__slide">
+                                    <x-displays.product-card :payload="$product" />
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="min-h-[100px] flex justify-center items-center">
+                    <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                </div>
+            @endif
         </section>
         <section id="bantuan" class="flex flex-col gap-[42px] py-[60px] px-4">
             <div class="flex flex-col gap-4">
                 <h2>Panduan</h2>
                 @if($detail->getFirstMedia('guidance_product'))
-                    <x-displays.guidance-card :payload="$guidance" />
+                    <x-displays.guidance-card :payload="$detail" />
                 @else
                     <div class="min-h-20 flex justify-center items-center">
                         <p class="text-center text-gray-500">Panduan belum tersedia</p>

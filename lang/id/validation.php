@@ -127,6 +127,7 @@ return [
         'symbols' => 'Kolom :attribute harus berisi setidaknya satu simbol.',
         'uncompromised' => ':attribute yang diberikan telah muncul dalam kebocoran data. Silakan pilih :attribute yang berbeda.',
     ],
+    'phone' => 'Kolom :attribute harus berupa nomor telepon yang valid.',
     'present' => 'Kolom :attribute harus ada.',
     'present_if' => 'Kolom :attribute harus ada ketika :other bernilai :value.',
     'present_unless' => 'Kolom :attribute harus ada kecuali :other bernilai :value.',

@@ -75,12 +75,12 @@ class ProductCategoryResource extends Resource
                     ->label('Ikon (Putih)')
                     ->collection('icon_white')
                     ->imageSize(50)
-                    ->defaultImageUrl(asset('icons/default-image-white.svg')),
+                    ->defaultImageUrl(asset('images/default-icons/default-image-white.svg')),
                 SpatieMediaLibraryImageColumn::make('icon_green')
                     ->label('Ikon (Hijau)')
                     ->collection('icon_green')
                     ->imageSize(50)
-                    ->defaultImageUrl(asset('icons/default-image-green.svg')),
+                    ->defaultImageUrl(asset('images/default-icons/default-image-green.svg')),
                 TextColumn::make('name')
                     ->label('Nama Kategori')
                     ->searchable(),

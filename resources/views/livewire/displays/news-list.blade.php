@@ -25,10 +25,12 @@
         @endif
     </div>
     <div class="flex justify-center">
-        @if($news->count() >= $this->amount)
-            <button type="button" wire:click="loadMore" class="transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed py-4 px-8 rounded-2xl font-semibold tracking-[0.5px] leading-[125%] border-transparent bg-white text-qt-green-normal hover:bg-qt-green-normal hover:text-white disabled:bg-[#F4F4F4] disabled:text-[#DBDBDB] ">
-                Lebih banyak
-            </button>
+        @if($news->count() < $total_count)
+            <div wire:click="loadMore">
+                <x-inputs.button type="button" size="lg" color="white">
+                    Lebih banyak
+                </x-inputs.button>
+            </div>
         @endif
     </div>
 </div>

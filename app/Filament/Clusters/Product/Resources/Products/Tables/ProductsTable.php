@@ -31,11 +31,11 @@ class ProductsTable
                 TextColumn::make('category.name')
                     ->label('Kategori')
                     ->placeholder('Tidak ada kategori')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
                     ->label('Nama Produk')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 ToggleColumn::make('is_published')
                     ->label('Status Publikasi')
                     ->sortable(),

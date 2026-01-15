@@ -51,13 +51,6 @@ class ProductController extends Controller
 
         $recommendation_products = $product->getRecommendationProduct(4, null, $detail->id);
 
-        $guidance = [
-            'image' => $detail->media->first()->getUrl(),
-            'category' => $detail->variant->name ?? $detail->category->name,
-            'name' => $detail->name,
-            'slug' => $detail->slug,
-        ];
-
         $marketplaces = [];
         foreach ($detail->marketplace as $marketplace) {
             $marketplaces[$marketplace['type']] = $marketplace['data']['value'];
@@ -70,12 +63,14 @@ class ProductController extends Controller
             'marketplace' => $marketplaces,
         ];
 
+        $meta_title = $detail->variant->name . ' ' . $detail->name;
+
         return view('pages.product.product-detail', [
-            'meta_title' => $detail->title,
+            'meta_title' => $meta_title,
             'meta_image' => $detail->media->first()->getUrl(),
             'data_drawer' => $data_drawer,
+            'detail' => $detail,
             'compare_product' => $compare_product,
-            'guidance' => $guidance,
             'recommendation_products' => $recommendation_products,
         ]);
     }
@@ -83,10 +78,15 @@ class ProductController extends Controller
     public function downloadGuidance(Product $product, $slug)
     {
         $detail = $product->getDetailProduct($slug);
+        if(!$detail) return abort(404);
 
-        if ($detail && $detail->getFirstMedia('guidance_product')) {
+        $media = $detail->getFirstMedia('guidance_product');
+        $file_path = $media->getPath();
+
+        if(file_exists($file_path)) {
             $file_name = 'Panduan - ' . $detail->variant->name . ' Quantum ' . $detail->name . '.' . $detail->getFirstMedia('guidance_product')->extension;
-            return response()->download($detail->getFirstMedia('guidance_product')->getPath(), $file_name);
+
+            return response()->download($file_path, $file_name);
         }
 
         return abort(404);

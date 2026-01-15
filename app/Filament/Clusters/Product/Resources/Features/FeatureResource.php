@@ -66,7 +66,7 @@ class FeatureResource extends Resource
                     ->label('Gambar')
                     ->collection('feature_image')
                     ->imageSize(100)
-                    ->defaultImageUrl(asset('icons/default-image-green.svg')),
+                    ->defaultImageUrl(asset('images/default-icons/default-image-green.svg')),
                 TextColumn::make('name')
                     ->label('Nama Fitur')
                     ->searchable(),

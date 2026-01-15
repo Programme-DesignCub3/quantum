@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\Recipe\CategorySeeder as RecipeCategorySeeder;
 use Database\Seeders\NewsEvent\CategorySeeder as NewsEventCategorySeeder;
 use Database\Seeders\Product\CategorySeeder as ProductCategorySeeder;
 use Database\Seeders\Product\FeatureSeeder;
@@ -37,6 +38,9 @@ class DatabaseSeeder extends Seeder
 
             // News & Event Seeder
             NewsEventCategorySeeder::class,
+
+            // Recipe Seeder
+            RecipeCategorySeeder::class,
         ]);
     }
 }

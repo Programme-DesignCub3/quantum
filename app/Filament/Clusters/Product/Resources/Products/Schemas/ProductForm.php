@@ -76,14 +76,14 @@ class ProductForm
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->required(),
-                            TextInput::make('price')
-                                ->label('Harga Produk')
-                                ->prefix('Rp')
-                                ->mask(RawJs::make('$money($input)'))
-                                ->stripCharacters('.')
-                                ->autocomplete(false)
-                                ->columnSpanFull()
-                                ->required(),
+                            // TextInput::make('price')
+                            //     ->label('Harga Produk')
+                            //     ->prefix('Rp')
+                            //     ->mask(RawJs::make('$money($input)'))
+                            //     ->stripCharacters('.')
+                            //     ->autocomplete(false)
+                            //     ->columnSpanFull()
+                            //     ->required(),
                             Builder::make('specs')
                                 ->label('Spesifikasi')
                                 ->blockNumbers(false)

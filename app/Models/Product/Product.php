@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Catalog\Catalog;
 use App\Models\ProductType;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -59,6 +60,11 @@ class Product extends Model implements HasMedia
     public function features()
     {
         return $this->belongsToMany(Feature::class, 'product_feature', 'product_id', 'feature_id');
+    }
+
+    public function catalogs()
+    {
+        return $this->hasMany(Catalog::class, 'product_id');
     }
 
     public function getSlugOptions() : SlugOptions
@@ -187,5 +193,51 @@ class Product extends Model implements HasMedia
                 });
                 return $product;
             });
+    }
+
+    /**
+     * Search products by name or category variant
+     * @param ?int $number
+     * @param ?string $query
+     */
+    public function searchProduct(?int $number = 3, ?string $query = null)
+    {
+        return self::where('is_published', true)
+            ->when($query, function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                  ->orWhereHas('category', function ($q2) use ($query) {
+                      $q2->where('name', 'like', '%' . $query . '%');
+                  })
+                  ->orWhereHas('variant', function ($q3) use ($query) {
+                      $q3->where('name', 'like', '%' . $query . '%');
+                  });
+            })
+            ->with('category', 'media', 'variant')
+            ->latest()
+            ->take($number)
+            ->get();
+    }
+
+    /**
+     * Search products guidance by name or category variant
+     * @param ?int $number
+     * @param ?string $query
+     */
+    public function searchProductGuidance(?int $number = 6, ?string $query = null)
+    {
+        return self::where('is_published', true)
+            ->when($query, function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                  ->orWhereHas('category', function ($q2) use ($query) {
+                      $q2->where('name', 'like', '%' . $query . '%');
+                  })
+                  ->orWhereHas('variant', function ($q3) use ($query) {
+                      $q3->where('name', 'like', '%' . $query . '%');
+                  });
+            })
+            ->with('category', 'media', 'variant')
+            ->latest()
+            ->take($number)
+            ->get();
     }
 }

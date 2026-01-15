@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\NewsEvent\Resources\NewsEvents\Schemas;
 
 use App\Constant\AcceptedFileConstant;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -50,8 +51,9 @@ class NewsEventForm
                                 ->fileAttachmentsMaxSize(2048)
                                 ->fileAttachmentsAcceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
                                 ->fileAttachmentsDirectory('news-event-contents')
-                                ->required()
-                        ])->columnSpan(8),
+                                ->required(),
+                            Hidden::make('excerpt')
+                        ])->columnSpan(7),
                         Section::make([
                             ToggleButtons::make('is_published')
                                 ->label('Status Publikasi')
@@ -84,8 +86,9 @@ class NewsEventForm
                                 ->label('Tag')
                                 ->type('news-event')
                                 ->placeholder('Tambah tag')
-                                ->hint('Tekan enter untuk menambahkan tag.'),
-                        ])->columnSpan(4),
+                                ->hint('Tekan enter untuk menambahkan tag.')
+                                ->required(),
+                        ])->columnSpan(5),
                     ])
             ]);
     }

@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('meta_title', $meta_title ?? config('app.name'))
+@section('meta_title', $meta_title ?? 'Resep')
 @section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image ?? asset('images/og-image.png'))
@@ -13,60 +13,25 @@
                     <h1>Kreasi Resep Quantum</h1>
                     <p class="large">Hadirkan kehangatan untuk keluarga di setiap sajian.</p>
                 </div>
-                <div class="splide recipe-articles" role="group" aria-label="Recipe Article Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach($recipes->take(4) as $item)
-                                <li class="splide__slide w-[260px]">
-                                    <x-displays.article-card for="recipe" :payload="$item" />
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col gap-8 px-4">
-                <div class="flex flex-col gap-12">
-                    <div class="px-2">
-                        <div class="flex gap-0.5 bg-white p-1 rounded-full overflow-x-auto">
-                            <button type="button" class="tab active">
-                                Semua
-                            </button>
-                            <button type="button" class="tab">
-                                Nusantara
-                            </button>
-                            <button type="button" class="tab">
-                                Korean
-                            </button>
-                            <button type="button" class="tab">
-                                Timur Tengah
-                            </button>
-                            <button type="button" class="tab">
-                                Western
-                            </button>
-                            <button type="button" class="tab">
-                                Chinese
-                            </button>
-                            <button type="button" class="tab">
-                                Thailand
-                            </button>
-                            <button type="button" class="tab">
-                                India
-                            </button>
+                @if(!$latest_recipes->isEmpty())
+                    <div class="splide recipe-articles" role="group" aria-label="Recipe Article Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($latest_recipes->take(4) as $item)
+                                    <li class="splide__slide w-[260px]">
+                                        <x-displays.article-card for="recipe" :payload="$item" />
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-4">
-                        @foreach($recipes->skip(4) as $item)
-                            <x-displays.article-card for="recipe" :payload="$item" />
-                        @endforeach
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                     </div>
-                </div>
-                <div class="flex justify-center">
-                    <x-inputs.button type="button" size="lg" color="white">
-                        Lebih banyak
-                    </x-inputs.button>
-                </div>
+                @endif
             </div>
+            <livewire:displays.recipe-list />
         </section>
     </main>
 @endsection

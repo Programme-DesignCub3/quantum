@@ -67,7 +67,7 @@ class SuperiorityResource extends Resource
                     ->label('Ikon')
                     ->collection('icon_green')
                     ->imageSize(50)
-                    ->defaultImageUrl(asset('icons/default-image-green.svg')),
+                    ->defaultImageUrl(asset('images/default-icons/default-image-green.svg')),
                 TextColumn::make('title')
                     ->label('Keunggulan')
                     ->searchable(),

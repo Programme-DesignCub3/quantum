@@ -1,4 +1,4 @@
-<footer x-data x-cloak x-show="$store.premiumRecipeDrawer.isPremium" id="footer">
+<footer x-data @if(Route::currentRouteName() == 'updates.recipe.detail') x-cloak x-show="$store.premiumRecipeDrawer.footerShown" @endif id="footer">
     @if (Route::currentRouteName() !== 'contact')
         <div class="px-4 py-[60px] bg-[#F4F4F4] flex flex-col gap-8">
             <div class="grid grid-cols-3 gap-4">

@@ -3,155 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product\Product;
+use App\Models\Recipe\Recipe;
 use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    public function index(PageSettings $pageSettings)
+    public function index(Recipe $recipe, PageSettings $pageSettings)
     {
-        $recipes = [
-            [
-                'premium' => true,
-                'image' => asset('images/recipe-1.jpg'),
-                'title' => 'Coto Makassar',
-                'slug' => 'coto-makassar',
-                'excerpt' => 'Sup daging khas Makassar yang kaya rempah',
-                'category' => 'Nusantara',
-            ],
-            [
-                'premium' => true,
-                'image' => asset('images/recipe-2.jpg'),
-                'title' => 'Chicken Fried Steak',
-                'slug' => 'chicken-fried-steak',
-                'excerpt' => 'Daging sapi goreng tepung dengan saus creamy',
-                'category' => 'Western',
-            ],
-            [
-                'premium' => true,
-                'image' => asset('images/recipe-3.jpg'),
-                'title' => 'Okonomiyaki',
-                'slug' => 'okonomiyaki',
-                'excerpt' => 'Pancake asin Jepang dengan topping melimpah',
-                'category' => 'Japanese',
-            ],
-            [
-                'premium' => true,
-                'image' => asset('images/recipe-4.jpg'),
-                'title' => 'Mapo Tofu',
-                'slug' => 'mapo-tofu',
-                'excerpt' => 'Tahu lembut dengan saus pedas khas Sichuan',
-                'category' => 'Chinese',
-            ],
-            [
-                'premium' => true,
-                'image' => asset('images/recipe-5.jpg'),
-                'title' => 'Soto Betawi',
-                'slug' => 'soto-betawi',
-                'excerpt' => 'Kuah santan gurih khas Jakarta',
-                'category' => 'Nusantara',
-            ],
-            [
-                'image' => asset('images/recipe-6.jpg'),
-                'title' => 'Spaghetti Aglio e Olio',
-                'slug' => 'spaghetti-aglio-e-olio',
-                'excerpt' => 'Olahan pasta simpel dengan bawang putih dan minyak zaitun',
-                'category' => 'Western',
-            ],
-            [
-                'image' => asset('images/recipe-7.jpg'),
-                'title' => 'Kimchi Jjigae',
-                'slug' => 'kimchi-jjigae',
-                'excerpt' => 'Sup pedas hangat dengan kimchi fermentasi',
-                'category' => 'Korean',
-            ],
-            [
-                'image' => asset('images/recipe-8.jpg'),
-                'title' => 'Falafel',
-                'slug' => 'falafel',
-                'excerpt' => 'Bola kacang khas Arab yang renyah dan lezat',
-                'category' => 'Timur Tengah',
-            ],
-            [
-                'image' => asset('images/recipe-9.jpg'),
-                'title' => 'Ayam Kung Pao',
-                'slug' => 'ayam-kung-pao',
-                'excerpt' => 'Tumis ayam pedas manis khas Sichuan',
-                'category' => 'Chinese',
-            ],
-            [
-                'image' => asset('images/recipe-10.jpg'),
-                'title' => 'Ebi Furai',
-                'slug' => 'ebi-furai',
-                'excerpt' => 'Udang goreng tepung renyah khas Jepang',
-                'category' => 'Japanese',
-            ],
-        ];
+        $latest_recipes = $recipe->getRecipeByNumber(4);
 
         return view('pages.updates.recipe', [
             'meta_title' => $pageSettings->recipe_meta_title,
             'meta_description' => $pageSettings->recipe_meta_description,
             'meta_keywords' => $pageSettings->recipe_meta_keywords,
             'meta_image' => asset('storage/' . $pageSettings->recipe_meta_image),
-            'recipes' => collect($recipes),
+            'latest_recipes' => $latest_recipes,
         ]);
     }
 
-    public function detail(Product $product)
+    public function detail(Recipe $recipe, Product $product, $slug)
     {
+        $detail = $recipe->getDetailRecipe($slug);
+        if(!$detail) return abort(404);
+
         $recommendation_products = $product->getRecommendationProduct(3);
 
-        $steps = [
-            [
-                'image' => asset('images/step-recipe-1.jpg'),
-                'description' => 'Rebus spaghetti dalam air mendidih yang sudah diberi garam. Masak hingga al dente (sekitar 8–10 menit), lalu tiriskan. Sisakan sedikit air rebusan pasta (±50 ml).',
-            ],
-            [
-                'image' => asset('images/step-recipe-2.jpg'),
-                'description' => 'Panaskan minyak zaitun dalam wajan, tumis bawang putih hingga keemasan dan harum (jangan sampai gosong).',
-            ],
-            [
-                'image' => asset('images/step-recipe-3.jpg'),
-                'description' => 'Masukkan irisan cabai, aduk sebentar hingga layu. Masukkan spaghetti yang sudah direbus, aduk rata dengan minyak bawang putih. Tambahkan sedikit air rebusan pasta bila terasa kering.',
-            ],
-            [
-                'image' => asset('images/step-recipe-4.jpg'),
-                'description' => 'Bumbui dengan garam dan merica sesuai selera.',
-            ],
-            [
-                'image' => asset('images/step-recipe-5.jpg'),
-                'description' => 'Angkat, taburi dengan parsley cincang dan keju parmesan bila suka. Sajikan hangat.',
-            ],
-        ];
+        $other_recipes = $recipe->getRecommendationRecipe(3, $detail->id);
 
-        $otherRecipe = [
-            [
-                'image' => asset('images/recipe-5.jpg'),
-                'title' => 'Soto Betawi',
-                'slug' => 'soto-betawi',
-                'excerpt' => 'Kuah santan gurih khas Jakarta',
-                'category' => 'Nusantara',
-            ],
-            [
-                'image' => asset('images/recipe-7.jpg'),
-                'title' => 'Kimchi Jjigae',
-                'slug' => 'kimchi-jjigae',
-                'excerpt' => 'Sup pedas hangat dengan kimchi fermentasi',
-                'category' => 'Korean',
-            ],
-            [
-                'image' => asset('images/recipe-8.jpg'),
-                'title' => 'Falafel',
-                'slug' => 'falafel',
-                'excerpt' => 'Bola kacang khas Arab yang renyah dan lezat',
-                'category' => 'Timur Tengah',
-            ],
-        ];
+        $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
 
         return view('pages.updates.recipe-detail', [
-            'steps' => $steps,
+            'meta_title' => $detail->title,
+            'meta_description' => $detail->description,
+            'meta_keywords' => $meta_keywords,
+            'meta_image' => $detail->media->first()->getUrl(),
+            'detail' => $detail,
             'recommendation_products' => $recommendation_products,
-            'otherRecipe' => $otherRecipe,
+            'other_recipes' => $other_recipes,
         ]);
     }
 }

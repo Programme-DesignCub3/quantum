@@ -2,6 +2,8 @@
 
 namespace App\Models\Product;
 
+use App\Models\Guidance;
+use App\Models\Tutorial;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\HasSlug;
@@ -27,6 +29,16 @@ class ProductCategory extends Model implements HasMedia
         return $this->hasMany(Variant::class, 'product_category_id');
     }
 
+    public function guidances()
+    {
+        return $this->hasMany(Guidance::class, 'product_category_id');
+    }
+
+    public function tutorials()
+    {
+        return $this->hasMany(Tutorial::class, 'product_category_id');
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -37,8 +49,8 @@ class ProductCategory extends Model implements HasMedia
     public function getAllCategory()
     {
         return self::with('media')->get()->map(function ($category) {
-            $category->icon_white = $category->getFirstMediaUrl('icon_white') ?: asset('icons/default-image-white.svg');
-            $category->icon_green = $category->getFirstMediaUrl('icon_green') ?: asset('icons/default-image-green.svg');
+            $category->icon_white = $category->getFirstMediaUrl('icon_white') ?: asset('images/default-icons/default-image-white.svg');
+            $category->icon_green = $category->getFirstMediaUrl('icon_green') ?: asset('images/default-icons/default-image-green.svg');
             return $category;
         });
     }
