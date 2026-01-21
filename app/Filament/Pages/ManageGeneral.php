@@ -4,8 +4,13 @@ namespace App\Filament\Pages;
 
 use App\Settings\GeneralSettings;
 use BackedEnum;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
 use Filament\Pages\SettingsPage;
+use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -29,56 +34,79 @@ class ManageGeneral extends SettingsPage
     {
         return $schema
             ->components([
-                Section::make('Sosial Media')
-                    ->description('Atur tautan sosial media yang akan ditampilkan di website.')
-                    ->aside()
+                Section::make('Pengaturan Umum')
+                    ->description('Atur pengaturan umum yang akan diterapkan di website.')
                     ->columnSpanFull()
                     ->schema([
-                        TextInput::make('linkedin_url')
-                            ->label('LinkedIn URL')
-                            ->url()
-                            ->prefixIcon(Heroicon::Link)
-                            ->required(),
-                        TextInput::make('facebook_url')
-                            ->label('Facebook URL')
-                            ->url()
-                            ->prefixIcon(Heroicon::Link)
-                            ->required(),
-                        TextInput::make('youtube_url')
-                            ->label('YouTube URL')
-                            ->url()
-                            ->prefixIcon(Heroicon::Link)
-                            ->required(),
-                        TextInput::make('instagram_url')
-                            ->label('Instagram URL')
-                            ->url()
-                            ->prefixIcon(Heroicon::Link)
-                            ->required(),
-                        TextInput::make('tiktok_url')
-                            ->label('Tiktok URL')
-                            ->url()
-                            ->prefixIcon(Heroicon::Link)
+                        Repeater::make('operational_hours')
+                            ->label('Jam Operasional')
+                            ->columnSpanFull()
+                            ->minItems(1)
+                            ->required()
+                            ->schema([
+                                Flex::make([
+                                    Select::make('from_day')
+                                        ->label('Hari (From)')
+                                        ->prefix('Dari')
+                                        ->options([
+                                            'Senin' => 'Senin',
+                                            'Selasa' => 'Selasa',
+                                            'Rabu' => 'Rabu',
+                                            'Kamis' => 'Kamis',
+                                            'Jumat' => 'Jumat',
+                                            'Sabtu' => 'Sabtu',
+                                            'Minggu' => 'Minggu',
+                                        ])
+                                        ->columnSpan(1)
+                                        ->required(),
+                                    Select::make('to_day')
+                                        ->label('Hari (To)')
+                                        ->prefix('Sampai')
+                                        ->options([
+                                            'Senin' => 'Senin',
+                                            'Selasa' => 'Selasa',
+                                            'Rabu' => 'Rabu',
+                                            'Kamis' => 'Kamis',
+                                            'Jumat' => 'Jumat',
+                                            'Sabtu' => 'Sabtu',
+                                            'Minggu' => 'Minggu',
+                                        ])
+                                        ->columnSpan(1)
+                                        ->required(),
+                                ]),
+                                Flex::make([
+                                    TimePicker::make('from_hour')
+                                        ->label('Jam (From)')
+                                        ->prefix('Dari')
+                                        ->seconds(false)
+                                        ->columnSpan(1)
+                                        ->required(),
+                                    TimePicker::make('to_hour')
+                                        ->label('Jam (To)')
+                                        ->prefix('Sampai')
+                                        ->seconds(false)
+                                        ->columnSpan(1)
+                                        ->required(),
+                                    Select::make('timezone')
+                                        ->label('Zona Waktu')
+                                        ->options([
+                                            'WIB' => 'WIB',
+                                            'WITA' => 'WITA',
+                                            'WIT' => 'WIT',
+                                        ])
+                                        ->default('WIB')
+                                        ->selectablePlaceholder(false)
+                                        ->columnSpan(1)
+                                        ->required(),
+                                ])
+                            ]),
+                        Textarea::make('footer_description')
+                            ->label('Deskripsi')
+                            ->belowLabel('Deskripsi yang akan ditampilkan di bagian footer website.')
+                            ->rows(3)
+                            ->columnSpanFull()
                             ->required(),
                     ]),
-                Section::make('Informasi Kontak')
-                    ->description('Atur informasi kontak yang akan ditampilkan di website.')
-                    ->aside()
-                    ->columnSpanFull()
-                    ->schema([
-                        TextInput::make('phone_number')
-                            ->label('Nomor Telepon')
-                            ->required(),
-                        TextInput::make('email_address')
-                            ->label('Alamat Email')
-                            ->email()
-                            ->required(),
-                        TextInput::make('whatsapp_number')
-                            ->label('Nomor WhatsApp')
-                            ->required(),
-                        TextInput::make('customer_care')
-                            ->label('Customer Care')
-                            ->required(),
-                    ])
             ]);
     }
 }

@@ -3,25 +3,28 @@
 namespace App\View\Components\Navigation;
 
 use App\Settings\GeneralSettings;
+use App\Settings\PageSettings;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Floating extends Component
 {
-    public array $settings;
+    public $page_settings;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(GeneralSettings $generalSettings)
+    public function __construct(PageSettings $pageSettings)
     {
-        $this->settings = [
-            'phone_number' => $generalSettings->phone_number,
-            'email_address' => $generalSettings->email_address,
-            'whatsapp_number' => $generalSettings->whatsapp_number,
-            'customer_care' => $generalSettings->customer_care,
-        ];
+        $this->page_settings = $pageSettings;
+
+        $call_center = new PhoneNumber($pageSettings->contact_cc_number, 'ID');
+        $whatsapp = new PhoneNumber($pageSettings->contact_wa_number, 'ID');
+
+        $this->page_settings->contact_cc_number_formatted = $call_center->formatE164();
+        $this->page_settings->contact_wa_number_formatted = $whatsapp->formatE164();
     }
 
     /**

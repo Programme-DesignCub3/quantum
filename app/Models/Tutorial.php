@@ -69,4 +69,17 @@ class Tutorial extends Model implements HasMedia
             })
             ->count();
     }
+
+    /**
+     * Get tutorial video by number
+     * @param int $number
+     */
+    public function getTutorialByNumber(int $number)
+    {
+        return self::where('is_published', true)
+            ->with('category', 'media')
+            ->latest()
+            ->take($number)
+            ->get();
+    }
 }

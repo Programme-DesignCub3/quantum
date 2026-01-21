@@ -7,6 +7,8 @@ use App\Filament\Clusters\PageSettings\PageSettingsCluster;
 use App\Settings\PageSettings;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -33,13 +35,13 @@ class ManageFaq extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $oldFiles = app(PageSettings::class)->faq_meta_image;
-        $newFiles = $data['faq_meta_image'] ?? null;
+        $old_files = app(PageSettings::class)->faq_meta_image;
+        $new_files = $data['faq_meta_image'] ?? null;
 
-        $oldFiles = collect($oldFiles)->first();
+        $old_files = collect($old_files)->first();
 
-        if ($oldFiles && $oldFiles !== $newFiles) {
-            Storage::disk('public')->delete($oldFiles);
+        if ($old_files && $old_files !== $new_files) {
+            Storage::disk('public')->delete($old_files);
         }
 
         return $data;
@@ -74,6 +76,106 @@ class ManageFaq extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman FAQ.')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('faq_title')
+                            ->label('Judul')
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                        Textarea::make('faq_description')
+                            ->label('Deskripsi')
+                            ->rows(3)
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                        Section::make('Produk')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('faq_sub_title_product')
+                                    ->label('Sub Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Repeater::make('faq_product')
+                                    ->label('Daftar Pertanyaan')
+                                    ->columnSpanFull()
+                                    ->reorderableWithButtons()
+                                    ->minItems(1)
+                                    ->required()
+                                    ->schema([
+                                        TextInput::make('question')
+                                            ->label('Pertanyaan')
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Textarea::make('answer')
+                                            ->label('Jawaban')
+                                            ->rows(3)
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                    ])
+                            ]),
+                        Section::make('Pembelian')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('faq_sub_title_purchase')
+                                    ->label('Sub Judul Pembelian')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Repeater::make('faq_purchase')
+                                    ->label('Daftar Pertanyaan')
+                                    ->columnSpanFull()
+                                    ->reorderableWithButtons()
+                                    ->minItems(1)
+                                    ->required()
+                                    ->schema([
+                                        TextInput::make('question')
+                                            ->label('Pertanyaan')
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Textarea::make('answer')
+                                            ->label('Jawaban')
+                                            ->rows(3)
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                    ])
+                            ]),
+                        Section::make('Garansi')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('faq_sub_title_guarantee')
+                                    ->label('Sub Judul Garansi')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Repeater::make('faq_guarantee')
+                                    ->label('Daftar Pertanyaan')
+                                    ->columnSpanFull()
+                                    ->reorderableWithButtons()
+                                    ->minItems(1)
+                                    ->required()
+                                    ->schema([
+                                        TextInput::make('question')
+                                            ->label('Pertanyaan')
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Textarea::make('answer')
+                                            ->label('Jawaban')
+                                            ->rows(3)
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                    ])
+                            ])
                     ])
             ]);
     }

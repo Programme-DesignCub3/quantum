@@ -8,27 +8,31 @@
             </div>
             <h2>Quantum Care</h2>
             <div class="grid grid-cols-2 gap-4">
-                <x-inputs.button-icon type="hyperlink" href="{{ $settings['customer_care'] ? 'tel:' . $settings['customer_care'] : '#' }}">
+                <x-inputs.button-icon type="hyperlink" href="{{ 'tel:' . $page_settings->contact_cc_number_formatted }}">
                     <x-slot:image>
                         <x-icons.customer-care-icon id="footer-customer-care" class="fill-qt-green-normal group-hover:fill-white" />
                     </x-slot:image>
                     Call Center
                 </x-inputs.button-icon>
-                <x-inputs.button-icon type="hyperlink" href="{{ $settings['whatsapp_number'] ? 'https://wa.me/' . $settings['whatsapp_number'] : '#' }}" icon="icon-[ic--baseline-whatsapp]" :newTab="$settings['whatsapp_number'] ? true : false">
+                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ 'https://wa.me/' . $page_settings->contact_wa_number_formatted }}" icon="icon-[ic--baseline-whatsapp]">
                     WhatsApp
                 </x-inputs.button-icon>
-                <x-inputs.button-icon type="hyperlink" href="{{ $settings['email_address'] ? 'mailto:' . $settings['email_address'] : '#' }}" icon="icon-[lucide--mail]">
+                <x-inputs.button-icon type="hyperlink" href="{{ 'mailto:' . $page_settings->contact_email }}" icon="icon-[lucide--mail]">
                     Email
                 </x-inputs.button-icon>
-                <x-inputs.button-icon type="hyperlink" icon="icon-[lucide--map-pin]">
+                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_office_map }}" icon="icon-[lucide--map-pin]">
                     Location
                 </x-inputs.button-icon>
             </div>
             <div class="space-y-1">
                 <h5>Jam Operasional</h5>
-                <div class="space-y-1">
-                    <span class="extrasmall">Senin - Jumat</span>
-                    <p>08.00 - 17.00 WIB</p>
+                <div class="grid grid-cols-2">
+                    @foreach($general_settings->operational_hours as $operational)
+                        <div class="space-y-1">
+                            <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
+                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -88,24 +92,24 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <a href="{{ $settings['linkedin_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $page_settings->contact_socmed_linkedin }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[jam--linkedin] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="{{ $settings['facebook_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $page_settings->contact_socmed_facebook }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ri--facebook-fill] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="{{ $settings['youtube_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $page_settings->contact_socmed_youtube }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--youtube] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="{{ $settings['instagram_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $page_settings->contact_socmed_instagram }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[mdi--instagram] text-qt-green-normal text-[32px]"></span>
                 </a>
-                <a href="{{ $settings['tiktok_url'] ?? '#' }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
+                <a href="{{ $page_settings->contact_socmed_tiktok }}" target="_blank" class="flex justify-center items-center size-[54px] bg-[#E7F1F2] rounded-full">
                     <span class="icon-[ic--baseline-tiktok] text-qt-green-normal text-[32px]"></span>
                 </a>
             </div>
             <div class="text-[#6D6D6D]">
-                <p>Quantum adalah merek terkemuka dalam menyediakan produk dapur berkualitas, seperti kompor gas, regulator, dan selang gas. Kami berkomitmen untuk menghadirkan inovasi yang mempermudah aktivitas memasak Anda, dengan desain yang modern dan efisien.</p>
+                <p>{{ $general_settings->footer_description }}</p>
             </div>
         </div>
     </div>

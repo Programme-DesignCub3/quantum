@@ -19,6 +19,7 @@ class ButtonIcon extends Component
     // ICON = icon class name
     // IMAGE = image as icon
     // EVENT = event to trigger
+    // NEWTAB = true | false (for hyperlink type only, default: false)
 
     public string $sizeClass = '';
     public string $iconClass = '';

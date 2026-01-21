@@ -1,9 +1,9 @@
 @extends('app')
 
-@section('meta_title', $meta_title ?? 'Search')
-@section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
-@section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
-@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+@section('meta_title', 'Pencarian')
+@section('meta_description', 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
+@section('meta_keywords', 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
+@section('meta_image', asset('images/og-image.jpg'))
 
 @section('content')
     <livewire:displays.page-search-list />

@@ -3,7 +3,7 @@
 @section('meta_title', $meta_title ?? 'Katalog')
 @section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
-@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+@section('meta_image', $meta_image)
 
 @section('content')
     <main x-data class="bg-[#F4F4F4]">

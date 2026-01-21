@@ -87,7 +87,8 @@ class ServiceCenterController extends Controller
             'meta_title' => $pageSettings->sc_meta_title,
             'meta_description' => $pageSettings->sc_meta_description,
             'meta_keywords' => $pageSettings->sc_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->sc_meta_image),
+            'meta_image' => $pageSettings->sc_meta_image ? asset('storage/' . $pageSettings->sc_meta_image) : asset('images/og-image.jpg'),
+            'page_settings' => $pageSettings,
             'service_centers' => $serviceCenters,
             'mitra_services' => $mitraServices,
         ]);

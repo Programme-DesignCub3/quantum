@@ -3,7 +3,7 @@
     'bottom-5' => Route::currentRouteName() !== 'product.detail',
     'fixed ml-[82%] min-[375px]:ml-[84%] min-[410px]:ml-[86%] min-[450px]:ml-[390px]'
 ])>
-    <div x-cloak x-show="$store.premiumRecipeDrawer.footerShown" class="flex flex-col gap-2">
+    <div x-cloak @if(Route::currentRouteName() === 'updates.recipe.detail') x-show="$store.premiumRecipeDrawer.footerShown" @endif class="flex flex-col gap-2">
         @if(
             Route::currentRouteName() === 'updates.news.detail' ||
             Route::currentRouteName() === 'updates.recipe.detail'
@@ -31,16 +31,16 @@
             <div class="space-y-4">
                 <h5>Hubungi Kami melalui Channel Berikut</h5>
                 <div class="flex gap-4">
-                    <a href="{{ $settings['phone_number'] ? 'tel:' . $settings['phone_number'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="#" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[lucide--phone] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="{{ $settings['email_address'] ? 'mailto:' . $settings['email_address'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ 'mailto:' . $page_settings->contact_email }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[lucide--mail] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="{{ $settings['whatsapp_number'] ? 'https://wa.me/' . $settings['whatsapp_number'] : '#' }}" @if($settings['whatsapp_number']) target="_blank" @endif class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ 'https://wa.me/' . $page_settings->contact_wa_number_formatted }}" target="_blank" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <span class="icon-[ic--baseline-whatsapp] text-qt-green-normal text-2xl"></span>
                     </a>
-                    <a href="{{ $settings['customer_care'] ? 'tel:' . $settings['customer_care'] : '#' }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <a href="{{ 'tel:' . $page_settings->contact_cc_number_formatted }}" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                         <x-icons.customer-care-icon class="fill-qt-green-normal size-6" />
                     </a>
                 </div>

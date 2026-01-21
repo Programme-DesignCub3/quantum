@@ -7,7 +7,7 @@
             </x-inputs.button>
         </div>
         @if(count($result) > 0)
-            <div class="max-w-sm mx-auto flex flex-col gap-4 py-2.5 max-h-80 overflow-y-auto">
+            <div class="max-w-sm w-full mx-auto flex flex-col gap-4 py-2.5 max-h-80 overflow-y-auto">
                 @foreach($result as $key => $items)
                     @switch($key)
                         @case('products')

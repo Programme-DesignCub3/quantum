@@ -6,17 +6,7 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        // Social Media
-        $this->migrator->add('general.linkedin_url', 'https://www.linkedin.com/company/quantum-home-appliances');
-        $this->migrator->add('general.facebook_url', 'https://www.facebook.com/QuantumIDN');
-        $this->migrator->add('general.youtube_url', 'https://www.youtube.com/@quantumindonesia');
-        $this->migrator->add('general.instagram_url', 'https://www.instagram.com/quantum_indonesia');
-        $this->migrator->add('general.tiktok_url', 'https://www.tiktok.com/@quantum_indonesia');
-
-        // Contact Information
-        $this->migrator->add('general.phone_number', '');
-        $this->migrator->add('general.email_address', '');
-        $this->migrator->add('general.whatsapp_number', '');
-        $this->migrator->add('general.customer_care', '');
+        $this->migrator->add('general.operational_hours', [ [ 'to_day' => 'Jumat', 'to_hour' => '20:00', 'from_day' => 'Senin', 'timezone' => 'WIB', 'from_hour' => '07:00' ] ]);
+        $this->migrator->add('general.footer_description', 'Quantum adalah merek terkemuka dalam menyediakan produk dapur berkualitas, seperti kompor gas, regulator, dan selang gas. Kami berkomitmen untuk menghadirkan inovasi yang mempermudah aktivitas memasak Anda, dengan desain yang modern dan efisien.');
     }
 };

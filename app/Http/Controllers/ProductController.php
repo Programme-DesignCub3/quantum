@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guidance;
 use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
 use App\Settings\PageSettings;
@@ -9,13 +10,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(ProductCategory $productCategory, PageSettings $pageSettings, $category = null)
+    public function index(ProductCategory $productCategory, Guidance $guidance, PageSettings $pageSettings, $category = null)
     {
         $categories = $productCategory->getAllCategory();
         if($category) {
             $check_category = $categories->firstWhere('slug', $category);
             if(!$check_category) return abort(404);
         }
+
+        $guidances = $guidance->getRecommendationGuidance();
 
         switch ($category) {
             case 'kompor':
@@ -35,9 +38,10 @@ class ProductController extends Controller
             'meta_title' => $pageSettings->product_meta_title,
             'meta_description' => $pageSettings->product_meta_description,
             'meta_keywords' => $pageSettings->product_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->product_meta_image),
+            'meta_image' => $pageSettings->product_meta_image ? asset('storage/' . $pageSettings->product_meta_image) : asset('images/og-image.jpg'),
             'current_category' => $category,
             'product_banner' => $product_banner,
+            'guidances' => $guidances,
         ]);
     }
 
@@ -63,10 +67,8 @@ class ProductController extends Controller
             'marketplace' => $marketplaces,
         ];
 
-        $meta_title = $detail->variant->name . ' ' . $detail->name;
-
         return view('pages.product.product-detail', [
-            'meta_title' => $meta_title,
+            'meta_title' => $detail->variant->name . ' ' . $detail->name,
             'meta_image' => $detail->media->first()->getUrl(),
             'data_drawer' => $data_drawer,
             'detail' => $detail,

@@ -77,7 +77,13 @@
             @endforeach
         @else
             <div class="min-h-[100px] flex justify-center items-center">
-                <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                <p class="text-center text-gray-500">
+                    @if($search !== '')
+                        Pencarian tidak ditemukan
+                    @else
+                        Tidak ada data untuk ditampilkan
+                    @endif
+                </p>
             </div>
         @endif
     </section>

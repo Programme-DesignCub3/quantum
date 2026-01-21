@@ -14,7 +14,7 @@ class GuidanceController extends Controller
             'meta_title' => $pageSettings->guidance_meta_title,
             'meta_description' => $pageSettings->guidance_meta_description,
             'meta_keywords' => $pageSettings->guidance_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->guidance_meta_image),
+            'meta_image' => $pageSettings->guidance_meta_image ? asset('storage/' . $pageSettings->guidance_meta_image) : asset('images/og-image.jpg'),
         ]);
     }
 

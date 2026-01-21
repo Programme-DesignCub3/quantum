@@ -3,10 +3,10 @@
 @section('meta_title', $meta_title ?? 'Informasi Garansi')
 @section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
-@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+@section('meta_image', $meta_image)
 
 @section('content')
-    <main x-data="guaranteeInformation" class="bg-white">
+    <main x-data class="bg-white">
         <section class="flex flex-col">
             <div class="flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
                 <div class="max-w-xs mx-auto space-y-4 text-center">
@@ -22,7 +22,7 @@
                     </x-inputs.button>
                 </div>
             </div>
-            <div id="tabs-border-anchor" :class="isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
+            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
                 <a href="#biaya-servis" class="tab-border active">Biaya Servis</a>
                 <a href="#masa-garansi" class="tab-border">Masa Garansi</a>
             </div>
@@ -224,23 +224,3 @@
         </section>
     </main>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('guaranteeInformation', () => ({
-            isTop: false,
-
-            init() {
-                let yprev;
-
-                document.addEventListener('scroll', () => {
-                    let y = window.pageYOffset;
-                    this.isTop = y > yprev ? false : true;
-                    yprev = y;
-                });
-            },
-        }))
-    })
-</script>
-@endpush

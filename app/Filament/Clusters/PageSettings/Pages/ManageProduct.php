@@ -33,13 +33,13 @@ class ManageProduct extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $oldFiles = app(PageSettings::class)->product_meta_image;
-        $newFiles = $data['product_meta_image'] ?? null;
+        $old_files = app(PageSettings::class)->product_meta_image;
+        $new_files = $data['product_meta_image'] ?? null;
 
-        $oldFiles = collect($oldFiles)->first();
+        $old_files = collect($old_files)->first();
 
-        if ($oldFiles && $oldFiles !== $newFiles) {
-            Storage::disk('public')->delete($oldFiles);
+        if ($old_files && $old_files !== $new_files) {
+            Storage::disk('public')->delete($old_files);
         }
 
         return $data;

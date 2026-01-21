@@ -3,7 +3,7 @@
 @section('meta_title', $meta_title ?? 'Tentang Kami')
 @section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
-@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+@section('meta_image', $meta_image)
 
 @section('content')
     <main x-data id="about" class="bg-white">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div id="sejarah" class="scrollspy space-y-4 text-center scroll-mt-20 px-6 pt-[76px] pb-12">
-                <h2 class="max-w-xs mx-auto">Inovasi Tiada Henti Quantum untuk Setiap Generasi</h2>
+                <h2 class="max-w-sm mx-auto">Inovasi Tiada Henti Quantum untuk Setiap Generasi</h2>
                 <div class="space-y-4 text-[#6D6D6D]">
                     <p>Sejak 1993, Quantum telah berdedikasi menjadi produsen peralatan dapur terkemuka dan terpercaya di Indonesia. Kami bangga menghadirkan kompor, selang dan regulator gas 100% buatan Indonesia yang telah menjadi pilihan jutaan keluarga.</p>
                     <p>Komitmen kami terhadap inovasi tak pernah pudar. Kami terus mengembangkan produk unggulan, seperti kompor gas yang mampu menghemat energi, dirancang dengan daya tahan tinggi dan kualitas terbaik. Penghargaan atas inovasi teknologi yang kami kembangkan adalah bukti nyata dedikasi untuk terus menyediakan produk berkualitas terbaik yang aman dan efisien untuk setiap dapur keluarga Indonesia.</p>

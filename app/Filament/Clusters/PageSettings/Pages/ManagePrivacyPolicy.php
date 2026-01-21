@@ -6,7 +6,9 @@ use App\Constant\AcceptedFileConstant;
 use App\Filament\Clusters\PageSettings\PageSettingsCluster;
 use App\Settings\PageSettings;
 use BackedEnum;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -33,13 +35,13 @@ class ManagePrivacyPolicy extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $oldFiles = app(PageSettings::class)->pp_meta_image;
-        $newFiles = $data['pp_meta_image'] ?? null;
+        $old_files = app(PageSettings::class)->pp_meta_image;
+        $new_files = $data['pp_meta_image'] ?? null;
 
-        $oldFiles = collect($oldFiles)->first();
+        $old_files = collect($old_files)->first();
 
-        if ($oldFiles && $oldFiles !== $newFiles) {
-            Storage::disk('public')->delete($oldFiles);
+        if ($old_files && $old_files !== $new_files) {
+            Storage::disk('public')->delete($old_files);
         }
 
         return $data;
@@ -74,7 +76,62 @@ class ManagePrivacyPolicy extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
-                    ])
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman kebijakan privasi.')
+                    ->columnSpanFull()
+                    ->schema([
+                        Section::make('Section Kebijakan Privasi')
+                            ->description('Pengaturan pada section kebijakan privasi di halaman kebijakan privasi.')
+                            ->columnSpanFull()
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('pp_title')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                DatePicker::make('pp_updated_date')
+                                    ->label('Tanggal Diperbarui')
+                                    ->columnSpanFull()
+                                    ->required(),
+                                RichEditor::make('pp_content')
+                                    ->label('Paragraf')
+                                    ->toolbarButtons([
+                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                        ['bulletList', 'orderedList'],
+                                        ['undo', 'redo'],
+                                    ])
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ]),
+                        Section::make('Section Penggunaan Cookies')
+                            ->description('Pengaturan pada section penggunaan cookies di halaman kebijakan privasi.')
+                            ->columnSpanFull()
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('pp_title_cookie')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                DatePicker::make('pp_updated_date_cookie')
+                                    ->label('Tanggal Diperbarui')
+                                    ->columnSpanFull()
+                                    ->required(),
+                                RichEditor::make('pp_content_cookie')
+                                    ->label('Paragraf')
+                                    ->toolbarButtons([
+                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                        ['bulletList', 'orderedList'],
+                                        ['undo', 'redo'],
+                                    ])
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ])
+                    ]),
             ]);
     }
 }

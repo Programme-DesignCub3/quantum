@@ -18,8 +18,21 @@ class SwipeCard extends Component
      */
     public function __construct(
         public string $image,
-        public ?string $video
-    ) {}
+        public ?array $video
+    ) {
+        if(isset($video)) {
+            if($video[0]['type'] === 'local') {
+                $src = asset('/storage/' . $video[0]['data']['value']);
+            } else {
+                $src = $video[0]['data']['value'];
+            }
+
+            $this->video = [
+                'type' => $video[0]['type'],
+                'src' => $src
+            ];
+        }
+    }
 
     /**
      * Get the view / contents that represent the component.

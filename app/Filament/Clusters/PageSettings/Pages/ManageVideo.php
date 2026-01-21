@@ -7,6 +7,7 @@ use App\Filament\Clusters\PageSettings\PageSettingsCluster;
 use App\Settings\PageSettings;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -33,13 +34,13 @@ class ManageVideo extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $oldFiles = app(PageSettings::class)->video_meta_image;
-        $newFiles = $data['video_meta_image'] ?? null;
+        $old_files = app(PageSettings::class)->video_meta_image;
+        $new_files = $data['video_meta_image'] ?? null;
 
-        $oldFiles = collect($oldFiles)->first();
+        $old_files = collect($old_files)->first();
 
-        if ($oldFiles && $oldFiles !== $newFiles) {
-            Storage::disk('public')->delete($oldFiles);
+        if ($old_files && $old_files !== $new_files) {
+            Storage::disk('public')->delete($old_files);
         }
 
         return $data;
@@ -74,6 +75,22 @@ class ManageVideo extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman video dan tutorial.')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('video_title')
+                            ->label('Judul')
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                        Textarea::make('video_description')
+                            ->label('Deskripsi')
+                            ->rows(3)
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
                     ])
             ]);
     }

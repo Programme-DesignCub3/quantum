@@ -6,7 +6,9 @@ use App\Constant\AcceptedFileConstant;
 use App\Filament\Clusters\PageSettings\PageSettingsCluster;
 use App\Settings\PageSettings;
 use BackedEnum;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -33,13 +35,13 @@ class ManageTnc extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $oldFiles = app(PageSettings::class)->tnc_meta_image;
-        $newFiles = $data['tnc_meta_image'] ?? null;
+        $old_files = app(PageSettings::class)->tnc_meta_image;
+        $new_files = $data['tnc_meta_image'] ?? null;
 
-        $oldFiles = collect($oldFiles)->first();
+        $old_files = collect($old_files)->first();
 
-        if ($oldFiles && $oldFiles !== $newFiles) {
-            Storage::disk('public')->delete($oldFiles);
+        if ($old_files && $old_files !== $new_files) {
+            Storage::disk('public')->delete($old_files);
         }
 
         return $data;
@@ -74,6 +76,30 @@ class ManageTnc extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman syarat dan ketentuan.')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('tnc_title')
+                            ->label('Judul')
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                        DatePicker::make('tnc_updated_date')
+                            ->label('Tanggal Diperbarui')
+                            ->columnSpanFull()
+                            ->required(),
+                        RichEditor::make('tnc_content')
+                            ->label('Paragraf')
+                            ->toolbarButtons([
+                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                ['bulletList', 'orderedList'],
+                                ['undo', 'redo'],
+                            ])
+                            ->columnSpanFull()
+                            ->required(),
                     ])
             ]);
     }

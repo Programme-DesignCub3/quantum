@@ -13,7 +13,7 @@ class GuaranteeInformationController extends Controller
             'meta_title' => $pageSettings->guarantee_meta_title,
             'meta_description' => $pageSettings->guarantee_meta_description,
             'meta_keywords' => $pageSettings->guarantee_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->guarantee_meta_image),
+            'meta_image' => $pageSettings->guarantee_meta_image ? asset('storage/' . $pageSettings->guarantee_meta_image) : asset('images/og-image.jpg'),
         ]);
     }
 }

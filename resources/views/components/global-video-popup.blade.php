@@ -1,4 +1,4 @@
-<div x-data x-cloak @keydown.escape.window="$store.videoModal.closeVideo()" :class="$store.videoModal.open ? 'visible bg-black/40' : 'invisible bg-black/0'" class="fixed z-50 left-1/2 top-0 -translate-x-1/2 transition-all duration-300 ease-in-out max-w-md w-full mx-auto min-h-dvh overflow-hidden flex justify-center items-center px-4">
+<div x-data x-cloak x-effect="document.body.style.overflow = $store.videoModal.open ? 'hidden' : 'auto'" @keydown.escape.window="$store.videoModal.closeVideo()" :class="$store.videoModal.open ? 'visible bg-black/40' : 'invisible bg-black/0'" class="fixed z-50 left-1/2 top-0 -translate-x-1/2 transition-all duration-300 ease-in-out max-w-md w-full mx-auto min-h-dvh overflow-hidden flex justify-center items-center px-4">
     <div :class="$store.videoModal.open ? 'visible' : 'invisible'" class="flex grow flex-col gap-2">
         <div class="flex justify-end">
             <button type="button" @click="$store.videoModal.closeVideo()" class="size-6 cursor-pointer">

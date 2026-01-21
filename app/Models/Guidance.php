@@ -103,6 +103,9 @@ class Guidance extends Model implements HasMedia
             ->when($query, function ($q) use ($query) {
                 $q->where('title', 'like', '%' . $query . '%');
             })
+            ->whereHas('media', function ($q2) {
+                $q2->where('collection_name', 'guidance_product');
+            })
             ->latest()
             ->take($number)
             ->get();

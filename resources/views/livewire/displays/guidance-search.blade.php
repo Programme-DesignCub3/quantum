@@ -1,8 +1,8 @@
 <section class="flex flex-col gap-8 px-4 py-[116px]">
     <div class="flex flex-col gap-14">
         <div class="space-y-4 text-center max-w-sm mx-auto">
-            <h1>Edukasi & Panduan Produk Quantum</h1>
-            <p class="large">Temukan tips terbaik memakai produk Quantum untuk pengalaman memasak yang lebih efisien</p>
+            <h1>{{ $page_settings->guidance_title }}</h1>
+            <p class="large">{{ $page_settings->guidance_description }}</p>
         </div>
         <div x-data="{ search: @entangle('search') }" class="flex flex-col gap-4 justify-center items-center">
             <p class="large">Cari Tahu Disini</p>
@@ -24,7 +24,13 @@
         </div>
     @else
         <div class="min-h-[100px] flex justify-center items-center">
-            <p class="text-center text-gray-500">Pencarian tidak ditemukan</p>
+            <p class="text-center text-gray-500">
+                @if($search !== '')
+                    Pencarian tidak ditemukan
+                @else
+                    Tidak ada data untuk ditampilkan
+                @endif
+            </p>
         </div>
     @endif
 </section>

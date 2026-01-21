@@ -13,7 +13,8 @@ class FaqController extends Controller
             'meta_title' => $pageSettings->faq_meta_title,
             'meta_description' => $pageSettings->faq_meta_description,
             'meta_keywords' => $pageSettings->faq_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->faq_meta_image),
+            'meta_image' => $pageSettings->faq_meta_image ? asset('storage/' . $pageSettings->faq_meta_image) : asset('images/og-image.jpg'),
+            'page_settings' => $pageSettings,
         ]);
     }
 }

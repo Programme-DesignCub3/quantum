@@ -3,6 +3,7 @@
 namespace App\Livewire\Displays;
 
 use App\Models\Guidance;
+use App\Settings\PageSettings;
 use Livewire\Component;
 
 class GuidanceList extends Component
@@ -14,7 +15,7 @@ class GuidanceList extends Component
         $this->amount += 3;
     }
 
-    public function render(Guidance $guidance)
+    public function render(Guidance $guidance, PageSettings $pageSettings)
     {
         $total_count = $guidance->getCountAllGuidance() - 1;
         $latest = $guidance->getAllGuidance(1);
@@ -24,6 +25,7 @@ class GuidanceList extends Component
             'latest' => $latest,
             'guidances' => $guidances,
             'total_count' => $total_count,
+            'page_settings' => $pageSettings,
         ]);
     }
 }

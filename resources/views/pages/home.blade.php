@@ -3,82 +3,80 @@
 @section('meta_title', $meta_title ?? config('app.name'))
 @section('meta_description', $meta_description ?? 'Kompor dan regulator berkualitas dari Quantum sebagai solusi kebutuhan dapur Anda. Tersedia di berbagai marketplace, Miliki sekarang juga!')
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
-@section('meta_image', $meta_image ?? asset('images/og-image.png'))
+@section('meta_image', $meta_image)
 
 @section('content')
     <main id="homepage" class="bg-white">
         <section class="splide slideshow-home relative" role="group" aria-label="Quantum Home Slides">
             <div class="absolute z-10 flex flex-col justify-end size-full">
                 <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-20 min-[400px]:pt-28 min-[375px]:px-12">
-                    <h1>Pilihan Andalan Buat Dapur Impian</h1>
-                    <p class="large">Wujudkan dapur idaman dengan performa teruji kompor Quantum.</p>
-                    <x-inputs.button type="button" size="lg" color="white">
-                        LAGI CARI APA?
-                    </x-inputs.button>
+                    <h1>{{ $page_settings->home_title_banner }}</h1>
+                    <p class="large">{{ $page_settings->home_description_banner }}</p>
+                    <div x-data @click="$store.searchDrawer.openDrawer()">
+                        <x-inputs.button type="button" size="lg" color="white">
+                            LAGI CARI APA?
+                        </x-inputs.button>
+                    </div>
                 </div>
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
-                    @if(count($banners) > 0)
-                        @foreach($banners as $banner)
+                    @if(count($page_settings->home_banner) > 0)
+                        @foreach($page_settings->home_banner as $banner)
                             <li class="splide__slide">
                                 <img class="brightness-90" src="{{ asset('storage/' . $banner) }}" alt="">
                             </li>
                         @endforeach
                     @else
-                        @for($i = 1; $i <= 2; $i++)
-                            <li class="splide__slide">
-                                <img class="brightness-90" src="{{ asset('images/home-mobile-placeholder.jpg') }}" alt="">
-                            </li>
-                        @endfor
+                        <li class="splide__slide">
+                            <img class="brightness-90" src="{{ asset('images/home-mobile-placeholder.jpg') }}" alt="">
+                        </li>
                     @endif
                 </ul>
             </div>
             <ul class="splide__pagination slide-home"></ul>
         </section>
         <section class="flex flex-col gap-8 py-[92px] bg-[#F4F4F4]">
-            <div class="px-4 text-center space-y-4 max-w-[340px] mx-auto">
-                <h2>Pilihan Produk Quantum Solusi Efisien Dapur Anda</h2>
-                <p class="large text-[#6D6D6D]">Quantum hadirkan kompor, selang, dan regulator gas dengan desain modern dan telah teruji performanya.</p>
+            <div class="px-4 text-center space-y-4 max-w-sm mx-auto">
+                <h2>{{ $page_settings->home_title_product }}</h2>
+                <p class="large text-[#6D6D6D]">{{ $page_settings->home_description_product }}</p>
             </div>
             <livewire:displays.product-best-seller />
         </section>
         <section class="flex flex-col gap-[42px] py-[92px] bg-white">
-            <div class="max-w-72 mx-auto text-center space-y-4">
-                <h2>Kenapa Memilih Quantum?</h2>
-                <p class="text-[#6D6D6D]">Inovasi Quantum hadir jadi andalan untuk tiap kebutuhan dapur Anda</p>
+            <div class="max-w-sm px-4 mx-auto text-center space-y-4">
+                <h2>{{ $page_settings->home_title_why }}</h2>
+                <p class="text-[#6D6D6D]">{{ $page_settings->home_description_why }}</p>
             </div>
             <div class="flex flex-col gap-8">
-                <div class="px-4">
-                    <x-displays.inside-card image="images/hemat-gas-thumbnail.jpg">
-                        <h4>Produk Indonesia</h4>
-                        <p class="small">Teknologi inovatif Quantum membantu mengurangi konsumsi gas, sehingga lebih efisien dan ramah di kantong.</p>
-                    </x-displays.inside-card>
-                </div>
-                <div class="splide why-choose-home" role="group" aria-label="Why Choose Quantum Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="images/why-1.jpg">
-                                    <h4>Harga Terjangkau</h4>
-                                    <p class="small text-[#9A9A9A]">Kualitas tinggi tidak harus mahal. Produk Quantum hadir dengan harga yang pas untuk semua kalangan.</p>
-                                </x-displays.swipe-card>
-                            </li>
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="images/why-2.jpg">
-                                    <h4>Aman Digunakan</h4>
-                                    <p class="small text-[#9A9A9A]">Dilengkapi fitur keselamatan canggih yang dirancang khusus untuk melindungi Anda dan keluarga saat memasak.</p>
-                                </x-displays.swipe-card>
-                            </li>
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="images/why-4.jpg">
-                                    <h4>Awet & Tahan Lama</h4>
-                                    <p class="small text-[#9A9A9A]">Quantum terus berinovasi untuk selalu menghasilkan produk yang mampu menghemat konsumsi gas hingga 30%.</p>
-                                </x-displays.swipe-card>
-                            </li>
-                        </ul>
+                @if(isset($page_settings->home_why_choose_us_formatted[0]))
+                    <div class="px-4">
+                        <x-displays.inside-card :image="$page_settings->home_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->home_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'">
+                            <h4>{{ $page_settings->home_why_choose_us_formatted[0]['title'] }}</h4>
+                            @if(isset($page_settings->home_why_choose_us_formatted[0]['description']))
+                                <p class="small">{{ $page_settings->home_why_choose_us_formatted[0]['description'] }}</p>
+                            @endif
+                        </x-displays.inside-card>
                     </div>
-                </div>
+                @endif
+                @if(count($page_settings->home_why_choose_us_formatted) > 1)
+                    <div class="splide why-choose-home" role="group" aria-label="Why Choose Quantum Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($page_settings->home_why_choose_us_formatted->skip(1) as $item)
+                                    <li class="splide__slide">
+                                        <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'">
+                                            <h4>{{ $item['title'] }}</h4>
+                                            @if(isset($item['description']))
+                                                <p class="small text-[#9A9A9A]">{{ $item['description'] }}</p>
+                                            @endif
+                                        </x-displays.swipe-card>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
         </section>
         <section class="relative">
@@ -91,11 +89,11 @@
                     </button>
                 </div>
                 <div class="space-y-6">
-                    <h2 class="text-white px-6 text-center max-w-xs mx-auto">Kata Mereka tentang Quantum</h2>
+                    <h2 class="text-white px-6 text-center max-w-sm mx-auto">{{ $page_settings->home_title_testimonial }}</h2>
                     <div class="splide testimonial-home" role="group" aria-label="Testimonial Home Slides">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                @foreach($testimonials as $testimonial)
+                                @foreach($page_settings->home_testimonials as $testimonial)
                                     <li class="splide__slide">
                                         <x-displays.testimonial-card :payload="$testimonial" />
                                     </li>
@@ -108,8 +106,8 @@
             </div>
         </section>
         <section class="flex flex-col gap-9 py-[76px] bg-[#F4F4F4]">
-            <div class="px-4 max-w-52 mx-auto text-center">
-                <h3>Artikel Terbaru untuk Dapur Anda</h3>
+            <div class="px-4 max-w-72 mx-auto text-center">
+                <h3>{{ $page_settings->home_title_article }}</h3>
             </div>
             <div class="flex flex-col gap-9">
                 @if(!$articles->isEmpty())
@@ -141,8 +139,8 @@
             <div class="absolute w-full top-[50px] px-8">
                 <div class="max-w-xs mx-auto space-y-6 text-center text-white">
                     <div class="space-y-4">
-                        <h2>Wujudkan Dapur Idaman Mulai dari Quantum</h2>
-                        <p>Rasakan performa unggul produk Quantum di dapurmu</p>
+                        <h2>{{ $page_settings->home_title_banner_bottom }}</h2>
+                        <p>{{ $page_settings->home_description_banner_bottom }}</p>
                     </div>
                     <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg" color="white">
                         Beli Sekarang

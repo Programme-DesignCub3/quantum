@@ -18,6 +18,7 @@ class Button extends Component
     // HREF = null (for hyperlink type only)
     // CLASS = additional classes
     // EVENT = event to trigger
+    // NEWTAB = true | false (for hyperlink type only, default: false)
 
     public string $sizeClass = '';
     public string $variantClass = '';
@@ -35,6 +36,7 @@ class Button extends Component
         public ?string $href,
         public ?string $class,
         public ?string $event,
+        public ?bool $newTab = false,
     ) {
         // Set size class
         switch($this->size) {

@@ -205,14 +205,30 @@ class Product extends Model implements HasMedia
         return self::where('is_published', true)
             ->when($query, function ($q) use ($query) {
                 $q->where('name', 'like', '%' . $query . '%')
-                  ->orWhereHas('category', function ($q2) use ($query) {
-                      $q2->where('name', 'like', '%' . $query . '%');
-                  })
-                  ->orWhereHas('variant', function ($q3) use ($query) {
-                      $q3->where('name', 'like', '%' . $query . '%');
-                  });
+                    ->orWhereHas('category', function ($q2) use ($query) {
+                        $q2->where('name', 'like', '%' . $query . '%');
+                    })
+                    ->orWhereHas('variant', function ($q3) use ($query) {
+                        $q3->where('name', 'like', '%' . $query . '%');
+                    });
             })
             ->with('category', 'media', 'variant')
+            ->latest()
+            ->take($number)
+            ->get();
+    }
+
+    /**
+     * Get products guidance by number
+     * @param int $number
+     */
+    public function getProductGuidanceByNumber(int $number)
+    {
+        return self::where('is_published', true)
+            ->with('category', 'media', 'variant')
+            ->whereHas('media', function ($q) {
+                $q->where('collection_name', 'guidance_product');
+            })
             ->latest()
             ->take($number)
             ->get();
@@ -228,14 +244,20 @@ class Product extends Model implements HasMedia
         return self::where('is_published', true)
             ->when($query, function ($q) use ($query) {
                 $q->where('name', 'like', '%' . $query . '%')
-                  ->orWhereHas('category', function ($q2) use ($query) {
-                      $q2->where('name', 'like', '%' . $query . '%');
-                  })
-                  ->orWhereHas('variant', function ($q3) use ($query) {
-                      $q3->where('name', 'like', '%' . $query . '%');
-                  });
+                    ->whereHas('media', function ($q1) {
+                        $q1->where('collection_name', 'guidance_product');
+                    })
+                    ->orWhereHas('category', function ($q2) use ($query) {
+                        $q2->where('name', 'like', '%' . $query . '%');
+                    })
+                    ->orWhereHas('variant', function ($q3) use ($query) {
+                        $q3->where('name', 'like', '%' . $query . '%');
+                    });
             })
             ->with('category', 'media', 'variant')
+            ->whereHas('media', function ($q) {
+                $q->where('collection_name', 'guidance_product');
+            })
             ->latest()
             ->take($number)
             ->get();

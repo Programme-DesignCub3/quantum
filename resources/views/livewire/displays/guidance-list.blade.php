@@ -1,8 +1,8 @@
 <section class="flex flex-col gap-8 pt-[76px] pb-[100px] px-4 bg-[#F5F5F5]">
     <div class="flex flex-col gap-12">
         <div class="space-y-4 text-center max-w-sm mx-auto">
-            <h2>Jelajahi Dunia Quantum: Edukasi & Panduan Produk</h2>
-            <p>Temukan tips seputar produk Quantum untuk pengalaman memasak lebih efisien</p>
+            <h2>{{ $page_settings->guidance_title_article }}</h2>
+            <p>{{ $page_settings->guidance_description_article }}</p>
         </div>
         <div class="flex flex-col gap-4">
             @if(!$latest->isEmpty())

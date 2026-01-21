@@ -1,6 +1,6 @@
 @if($type === 'hyperlink')
-    <a href="{{ $href ?? '#' }}" @class([
-        'transition-all duration-300 ease-in-out inline-block cursor-pointer border disabled:cursor-not-allowed',
+    <a href="{{ $href ?? '#' }}" @if($newTab) target="_blank" @endif @class([
+        'transition-all duration-300 ease-in-out inline-flex justify-center items-center cursor-pointer border disabled:cursor-not-allowed',
         $sizeClass,
         $variantClass,
         $colorClass,

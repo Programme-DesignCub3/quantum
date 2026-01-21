@@ -52,7 +52,7 @@ class AboutController extends Controller
             'meta_title' => $pageSettings->about_meta_title,
             'meta_description' => $pageSettings->about_meta_description,
             'meta_keywords' => $pageSettings->about_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->about_meta_image),
+            'meta_image' => $pageSettings->about_meta_image ? asset('storage/' . $pageSettings->about_meta_image) : asset('images/og-image.jpg'),
             'awards' => $awards,
         ]);
     }

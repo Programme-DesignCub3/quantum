@@ -17,7 +17,7 @@ class NewsEventController extends Controller
             'meta_title' => $pageSettings->news_meta_title,
             'meta_description' => $pageSettings->news_meta_description,
             'meta_keywords' => $pageSettings->news_meta_keywords,
-            'meta_image' => asset('storage/' . $pageSettings->news_meta_image),
+            'meta_image' => $pageSettings->news_meta_image ? asset('storage/' . $pageSettings->news_meta_image) : asset('images/og-image.jpg'),
             'latest_news' => $latest_news,
         ]);
     }
