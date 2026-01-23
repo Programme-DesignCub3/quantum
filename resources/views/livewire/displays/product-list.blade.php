@@ -91,22 +91,34 @@
             <div class="flex flex-col gap-4">
                 <x-displays.accordion title="Jenis" :open="true">
                     <div class="flex flex-col max-h-36 overflow-y-auto gap-2.5 pb-4 pt-2.5">
-                        @foreach($variants as $variant)
-                            <div class="flex items-center gap-4">
-                                <input type="checkbox" wire:model="form_variant" value="{{ $variant->slug }}" id="{{ $variant->slug }}" class="shrink-0">
-                                <label for="{{ $variant->slug }}" class="size-full cursor-pointer">{{ $variant->name }}</label>
+                        @if(!$variants->isEmpty())
+                            @foreach($variants as $variant)
+                                <div class="flex items-center gap-4">
+                                    <input type="checkbox" wire:model="form_variant" value="{{ $variant->slug }}" id="{{ $variant->slug }}" class="shrink-0">
+                                    <label for="{{ $variant->slug }}" class="size-full cursor-pointer">{{ $variant->name }}</label>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="min-h-[100px] flex justify-center items-center">
+                                <p class="text-center text-gray-500">Tidak ada pilihan untuk ditampilkan</p>
                             </div>
-                        @endforeach
+                        @endif
                     </div>
                 </x-displays.accordion>
                 <x-displays.accordion title="Tipe Kategori" :open="true">
                     <div class="flex flex-col max-h-36 overflow-y-auto gap-2.5 pb-4 pt-2.5">
-                        @foreach($types as $type)
-                            <div class="flex items-center gap-4">
-                                <input type="checkbox" wire:model="form_type" value="{{ $type->slug }}" id="{{ $type->slug }}" class="shrink-0">
-                                <label for="{{ $type->slug }}" class="size-full cursor-pointer">{{ $type->name }}</label>
+                        @if(!$types->isEmpty())
+                            @foreach($types as $type)
+                                <div class="flex items-center gap-4">
+                                    <input type="checkbox" wire:model="form_type" value="{{ $type->slug }}" id="{{ $type->slug }}" class="shrink-0">
+                                    <label for="{{ $type->slug }}" class="size-full cursor-pointer">{{ $type->name }}</label>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="min-h-[100px] flex justify-center items-center">
+                                <p class="text-center text-gray-500">Tidak ada pilihan untuk ditampilkan</p>
                             </div>
-                        @endforeach
+                        @endif
                     </div>
                 </x-displays.accordion>
             </div>
@@ -126,33 +138,39 @@
     </x-displays.drawer>
     <x-displays.drawer store="productVariantDrawer">
         <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
-            @for($i = 0; $i < 2; $i++)
+            @if(!$variants->isEmpty())
                 @foreach($variants as $variant)
                     <div class="flex items-center gap-4 px-4">
                         <input type="checkbox" wire:click="refreshFilter" wire:model="variant" value="{{ $variant->slug }}" id="{{ $variant->slug }}-variant-filter" class="shrink-0">
                         <label for="{{ $variant->slug }}-variant-filter" class="size-full cursor-pointer py-4">{{ $variant->name }}</label>
                     </div>
                 @endforeach
-            @endfor
+            @else
+                <div class="min-h-[100px] flex justify-center items-center">
+                    <p class="text-center text-gray-500">Tidak ada pilihan untuk ditampilkan</p>
+                </div>
+            @endif
         </div>
     </x-displays.drawer>
     <x-displays.drawer store="productTypeDrawer">
         <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
-            @for($i = 0; $i < 2; $i++)
+            @if(!$types->isEmpty())
                 @foreach($types as $type)
                     <div class="flex items-center gap-4 px-4">
                         <input type="checkbox" wire:click="refreshFilter" wire:model="type" value="{{ $type->slug }}" id="{{ $type->slug }}-type-filter" class="shrink-0">
                         <label for="{{ $type->slug }}-type-filter" class="size-full cursor-pointer py-4">{{ $type->name }}</label>
                     </div>
                 @endforeach
-            @endfor
+            @else
+                <div class="min-h-[100px] flex justify-center items-center">
+                    <p class="text-center text-gray-500">Tidak ada pilihan untuk ditampilkan</p>
+                </div>
+            @endif
         </div>
     </x-displays.drawer>
     <x-displays.drawer store="productSortDrawer">
         <div class="flex flex-col gap-1 py-4">
             <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
-            {{-- <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling tinggi ke paling rendah</button>
-            <button type="button" class="w-full text-left p-4 cursor-pointer">Harga: Paling rendah ke paling tinggi</button> --}}
             <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best_seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
         </div>
     </x-displays.drawer>

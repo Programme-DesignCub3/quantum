@@ -14,6 +14,7 @@ class DistributorController extends Controller
             'meta_description' => $pageSettings->distributor_meta_description,
             'meta_keywords' => $pageSettings->distributor_meta_keywords,
             'meta_image' => $pageSettings->distributor_meta_image ? asset('storage/' . $pageSettings->distributor_meta_image) : asset('images/og-image.jpg'),
+            'page_settings' => $pageSettings,
         ]);
     }
 }

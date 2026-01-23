@@ -18,6 +18,7 @@ class RecipeController extends Controller
             'meta_description' => $pageSettings->recipe_meta_description,
             'meta_keywords' => $pageSettings->recipe_meta_keywords,
             'meta_image' => $pageSettings->recipe_meta_image ? asset('storage/' . $pageSettings->recipe_meta_image) : asset('images/og-image.jpg'),
+            'page_settings' => $pageSettings,
             'latest_recipes' => $latest_recipes,
         ]);
     }

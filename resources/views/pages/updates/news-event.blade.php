@@ -10,8 +10,8 @@
         <section class="flex flex-col gap-14 pt-[116px] pb-6">
             <div class="flex flex-col gap-[62px]">
                 <div class="space-y-4 max-w-sm mx-auto text-center px-4">
-                    <h1>Inspirasi Dapur Quantum</h1>
-                    <p class="large">Jelajahi berbagai artikel menarik Quantum dan dapatkan inspirasi setiap hari.</p>
+                    <h1>{{ $page_settings->news_title }}</h1>
+                    <p class="large">{{ $page_settings->news_description }}</p>
                 </div>
                 @if(!$latest_news->isEmpty())
                     <div class="splide news-event" role="group" aria-label="News Event Slides">

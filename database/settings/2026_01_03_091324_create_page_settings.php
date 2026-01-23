@@ -36,30 +36,51 @@ return new class extends SettingsMigration
         $this->migrator->add('page.product_meta_description', null);
         $this->migrator->add('page.product_meta_keywords', null);
         $this->migrator->add('page.product_meta_image', null);
+        $this->migrator->add('page.product_title', 'Kompor Andalan Buat Setiap Kreasi Masakan');
+        $this->migrator->add('page.product_title_why', 'Kenapa Kompor Quantum Jadi Andalan?');
+        $this->migrator->add('page.product_title_guidance', 'Panduan dan Tutorial');
+        $this->migrator->add('page.product_description', 'Andalkan kompor Quantum yang bikin setiap ide masak jadi sempurna');
+        $this->migrator->add('page.product_description_why', 'Kompor Quantum hadir dengan teknologi andal untuk hasil masakan yang sempurna');
+        $this->migrator->add('page.product_description_guidance', 'Yuk, cek panduan dan tutorial praktis biar pengalaman masak kamu lebih nyaman');
+        $this->migrator->add('page.product_why_choose_us', [ [ 'image' => '', 'title' => 'Apinya Stabil dan Merata', 'description' => 'Kontrol panas lebih mudah dengan masak pakai kompor Quantum' ], [ 'image' => '', 'title' => 'Hemat Gas', 'description' => null ], [ 'image' => '', 'title' => 'Desain Modern dan Fungsional', 'description' => null ], [ 'image' => '', 'title' => 'Fitur Aman, Masak Nyaman', 'description' => null ] ]);
 
         // Distributor Page
         $this->migrator->add('page.distributor_meta_title', null);
         $this->migrator->add('page.distributor_meta_description', null);
         $this->migrator->add('page.distributor_meta_keywords', null);
         $this->migrator->add('page.distributor_meta_image', null);
+        $this->migrator->add('page.distributor_title', 'Raih Peluang Bisnis Bersama Quantum');
+        $this->migrator->add('page.distributor_title_benefit', 'Benefit jadi distributor');
+        $this->migrator->add('page.distributor_title_form', 'Headline gabung jadi distributror');
+        $this->migrator->add('page.distributor_title_location', 'Lokasi Distributor');
+        $this->migrator->add('page.distributor_description', 'Quantum telah menjadi brand terpercaya di Indonesia dalam menghadirkan produk kebutuhan dapur andalan. Saatnya raih keuntungan usaha melalui kemitraan Quantum.');
+        $this->migrator->add('page.distributor_description_benefit', 'Jadilah bagian dari jaringan distributor resmi Quantum dan nikmati berbagai keuntungan menarik yang kami tawarkan untuk mendukung kesuksesan bisnis Anda.');
+        $this->migrator->add('page.distributor_description_location', 'Temukan lokasi distributor resmi Quantum terdekat di kotamu.');
+        $this->migrator->add('page.distributor_benefit', [ [ 'title' => 'Headline benefit 1', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 2', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 3', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 4', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 5', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ] ]);
 
         // Catalog Page
         $this->migrator->add('page.catalog_meta_title', null);
         $this->migrator->add('page.catalog_meta_description', null);
         $this->migrator->add('page.catalog_meta_keywords', null);
         $this->migrator->add('page.catalog_meta_image', null);
+        $this->migrator->add('page.catalog_title', 'Temukan Produk Quantum Andalanmu');
+        $this->migrator->add('page.catalog_description', 'Dapatkan informasi detail setiap produk untuk kebutuhan dapur Anda.');
 
         // News and Event (Articles) Page
         $this->migrator->add('page.news_meta_title', null);
         $this->migrator->add('page.news_meta_description', null);
         $this->migrator->add('page.news_meta_keywords', null);
         $this->migrator->add('page.news_meta_image', null);
+        $this->migrator->add('page.news_title', 'Inspirasi Dapur Quantum');
+        $this->migrator->add('page.news_description', 'Jelajahi berbagai artikel menarik Quantum dan dapatkan inspirasi setiap hari.');
 
         // Recipe Page
         $this->migrator->add('page.recipe_meta_title', null);
         $this->migrator->add('page.recipe_meta_description', null);
         $this->migrator->add('page.recipe_meta_keywords', null);
         $this->migrator->add('page.recipe_meta_image', null);
+        $this->migrator->add('page.recipe_title', 'Kreasi Resep Quantum');
+        $this->migrator->add('page.recipe_description', 'Hadirkan kehangatan untuk keluarga di setiap sajian.');
 
         // Customer Service Page
         $this->migrator->add('page.cs_meta_title', null);
@@ -74,7 +95,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.cs_description_support', 'Dapatkan akses bantuan resmi untuk setiap kebutuhan Anda.');
         $this->migrator->add('page.cs_description_guidance', 'Temukan panduan penggunaan produk Quantum Anda di sini.');
         $this->migrator->add('page.cs_description_video', 'Semua yang perlu Anda tahu dalam penggunaan produk Quantum.');
-        $this->migrator->add('page.cs_support', []);
+        $this->migrator->add('page.cs_support', [ [ 'image' => '', 'title' => 'Respon Cepat & Tepat', 'description' => 'Kami siap menjawab pertanyaan dan menyelesaikan masalah terkait produk.' ], [ 'image' => '', 'title' => 'Dukungan Teknis Resmi', 'description' => 'Bantuan langsung dari tim ahli untuk memastikan keamanan dan kenyamanan Anda.' ], [ 'image' => '', 'title' => 'Akses Mudah ke Berbagai Channel', 'description' => 'Bisa hubungi lewat call center, WhatsApp, email, atau media sosial resmi.' ] ]);
 
 
         // Guarantee Information Page

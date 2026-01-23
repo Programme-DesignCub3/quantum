@@ -43,7 +43,7 @@ class ProductList extends Component
     {
         $this->categories = $productCategory->getAllCategory();
         $this->variants = $variant->getAllVariant($current_category);
-        $this->types = $type->getAllType();
+        $this->types = $type->getAllType($current_category);
         $this->current_category = $current_category;
 
         $this->form_variant = $this->variant;

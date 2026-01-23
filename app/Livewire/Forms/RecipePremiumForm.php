@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Recipe\PremiumMember;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class RecipePremiumForm extends Component
@@ -14,6 +13,7 @@ class RecipePremiumForm extends Component
     public $tnc;
 
     public $payload;
+    public $status = false;
 
     public function rules()
     {
@@ -46,6 +46,7 @@ class RecipePremiumForm extends Component
 
         $this->reset(['nama', 'email', 'whatsapp', 'tnc']);
         $this->dispatch('open-limit');
+        $this->status = true;
         session()->put('registered_premium', true);
 
         $media = $this->payload->getFirstMedia('recipe-files');

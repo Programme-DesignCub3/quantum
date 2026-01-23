@@ -6,8 +6,5 @@
 @section('meta_image', $meta_image)
 
 @section('content')
-    <main x-data class="bg-white">
-        <livewire:displays.guidance-search />
-        <livewire:displays.guidance-list />
-    </main>
+    <livewire:displays.guidance-list />
 @endsection

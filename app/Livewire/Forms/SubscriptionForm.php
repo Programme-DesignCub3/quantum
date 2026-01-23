@@ -11,6 +11,8 @@ class SubscriptionForm extends Component
     #[Validate('required|email|unique:subscriptions,email')]
     public $email;
 
+    public $status = false;
+
     public function submit()
     {
         $this->validate();
@@ -19,7 +21,8 @@ class SubscriptionForm extends Component
             'email' => $this->email,
         ]);
 
-        $this->reset();
+        $this->reset('email');
+        $this->status = true;
     }
 
     public function render()

@@ -2,8 +2,6 @@
 
 namespace App\Models\Product;
 
-use App\Models\Catalog\Catalog;
-use App\Models\ProductType;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\HasSlug;
@@ -60,11 +58,6 @@ class Product extends Model implements HasMedia
     public function features()
     {
         return $this->belongsToMany(Feature::class, 'product_feature', 'product_id', 'feature_id');
-    }
-
-    public function catalogs()
-    {
-        return $this->hasMany(Catalog::class, 'product_id');
     }
 
     public function getSlugOptions() : SlugOptions
@@ -261,5 +254,45 @@ class Product extends Model implements HasMedia
             ->latest()
             ->take($number)
             ->get();
+    }
+
+    /**
+     * Get catalog products by number
+     * @param int $number
+     * @param ?string $category
+     */
+    public function getAllProductCatalog(int $number, ?string $category = null)
+    {
+        return self::where('is_published', true)
+            ->with('category', 'media', 'variant')
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->whereHas('media', function ($q) {
+                $q->where('collection_name', 'catalog_product');
+            })
+            ->latest()
+            ->take($number)
+            ->get();
+    }
+
+    /**
+     * Count all catalog products by category
+     * @param ?string $category
+     */
+    public function getCountAllProductCatalog(?string $category = null)
+    {
+        return self::where('is_published', true)
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->whereHas('media', function ($q) {
+                $q->where('collection_name', 'catalog_product');
+            })
+            ->count();
     }
 }

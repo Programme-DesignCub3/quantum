@@ -34,6 +34,7 @@
         </div>
     </div>
 </x-displays.drawer>
+
 <x-displays.drawer store="shareDrawer">
     <div class="flex flex-col gap-4 justify-center items-center px-4">
         <h3>Bagikan Artikel</h3>
@@ -45,6 +46,7 @@
         </div>
     </div>
 </x-displays.drawer>
+
 <x-displays.drawer store="placeDetailDrawer">
     <div class="flex flex-col gap-5 px-4">
         <div class="flex flex-col gap-4">
@@ -88,6 +90,7 @@
         </div>
     </div>
 </x-displays.drawer>
+
 <x-displays.drawer store="numberModelDrawer">
     <div class="flex flex-col gap-4 px-4">
         <h3>Temukan nomor model produk saya</h3>

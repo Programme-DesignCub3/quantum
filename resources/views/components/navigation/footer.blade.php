@@ -65,12 +65,6 @@
                             @endforeach
                         </div>
                     </x-displays.accordion>
-                    {{-- <x-displays.accordion title="Distributor">
-                        <div class="flex flex-col gap-6 pb-5 pt-2.5">
-                            <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Daftar Jadi Distributor</a>
-                            <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Katalog</a>
-                        </div>
-                    </x-displays.accordion> --}}
                     <x-displays.accordion title="Updates">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('updates.news') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Artikel</a>

@@ -9,12 +9,11 @@ use Livewire\Component;
 
 class GuidanceSearch extends Component
 {
-    #[Url(as: 'q')]
-    public $search = '';
+
 
     public function render(Product $product, PageSettings $pageSettings)
     {
-        $guidances = $product->searchProductGuidance(6, $this->search);
+        $guidances_file = $product->searchProductGuidance(6, $this->search);
 
         return view('livewire.displays.guidance-search', [
             'guidances' => $guidances,

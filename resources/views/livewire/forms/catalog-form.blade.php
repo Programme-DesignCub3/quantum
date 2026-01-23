@@ -1,18 +1,22 @@
 <div class="flex flex-col gap-4 px-4">
     <h3 class="max-w-72 text-center mx-auto">Formulir Download Brosur/Flyer</h3>
-    <form wire:submit="submit" class="flex flex-col gap-4">
+    <form x-data="{ status: @entangle('status') }" wire:submit="submit" class="flex flex-col gap-4">
+        <x-displays.toast>
+            Berhasil unduh!
+        </x-displays.toast>
         <div class="flex flex-col gap-3">
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <input type="hidden" wire:model="catalog_id" x-effect="$wire.catalog_id = $store.catalogDrawer.catalog_id">
+            <div x-data="{ input: @entangle('nama') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama" :class="input ? 'floating' : 'not-floating'">Nama</label>
                 <input wire:model="nama" x-model="input" type="text" id="nama" placeholder="Nama" autocomplete="off" required>
                 @error('nama') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('email') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="email" :class="input ? 'floating' : 'not-floating'">Email</label>
                 <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" required>
                 @error('email') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('whatsapp') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="whatsapp" :class="input ? 'floating' : 'not-floating'">WhatsApp</label>
                 <input wire:model="whatsapp" x-model="input" type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="off" required>
                 @error('whatsapp') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror

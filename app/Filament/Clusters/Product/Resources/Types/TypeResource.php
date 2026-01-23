@@ -9,10 +9,12 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use UnitEnum;
 
@@ -32,6 +34,12 @@ class TypeResource extends Resource
     {
         return $schema
             ->components([
+                Select::make('product_category_id')
+                    ->label('Kategori')
+                    ->relationship('productCategory', 'name')
+                    ->preload()
+                    ->columnSpanFull()
+                    ->required(),
                 TextInput::make('name')
                     ->label('Nama Tipe')
                     ->autocomplete(false)
@@ -47,9 +55,19 @@ class TypeResource extends Resource
                 TextColumn::make('name')
                     ->label('Nama Tipe')
                     ->searchable(),
+                TextColumn::make('productCategory.name')
+                    ->label('Kategori')
+                    ->placeholder('Tidak ada kategori')
+                    ->badge()
+                    ->color('gray')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('product_category_id')
+                    ->label('Kategori')
+                    ->relationship('productCategory', 'name')
+                    ->preload(),
             ])
             ->recordActions([
                 EditAction::make(),

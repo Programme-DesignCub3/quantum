@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Settings\PageSettings;
 use Livewire\Component;
 
 class DistributorForm extends Component
@@ -12,7 +13,6 @@ class DistributorForm extends Component
     public $wilayah_distribusi;
     public $alamat_lengkap;
     public $pesan;
-
     public $tnc;
 
     public function submit()
@@ -30,8 +30,10 @@ class DistributorForm extends Component
         $this->reset();
     }
 
-    public function render()
+    public function render(PageSettings $pageSettings)
     {
-        return view('livewire.forms.distributor-form');
+        return view('livewire.forms.distributor-form', [
+            'page_settings' => $pageSettings,
+        ]);
     }
 }

@@ -6,54 +6,59 @@
 @section('meta_image', $meta_image)
 
 @section('content')
-    <main x-data="product" id="product" class="bg-white">
+    <main x-data id="product" class="bg-white">
         <section class="relative">
             <img class="w-full h-[560px] object-cover" src="{{ $product_banner }}" alt="">
             <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
-                <h1>Kompor Andalan Buat Setiap Kreasi Masakan</h1>
-                <p class="large">Andalkan kompor Quantum yang bikin setiap ide masak jadi sempurna</p>
+                <h1>{{ $page_settings->product_title }}</h1>
+                <p class="large">{{ $page_settings->product_description }}</p>
             </div>
         </section>
         <livewire:displays.product-list :current_category="$current_category" />
         <section class="flex flex-col gap-[42px] py-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto">
-                <h2>Kenapa Kompor Quantum Jadi Andalan?</h2>
-                <p class="text-[#6D6D6D]">Kompor Quantum hadir dengan teknologi andal untuk hasil masakan yang sempurna</p>
+                <h2>{{ $page_settings->product_title_why }}</h2>
+                <p class="text-[#6D6D6D]">{{ $page_settings->product_description_why }}</p>
             </div>
             <div class="flex flex-col gap-8">
-                <div class="px-4">
-                    <x-displays.inside-card image="images/superior-1.jpg">
-                        <h4>Apinya Stabil dan Merata</h4>
-                        <p class="small">Kontrol panas lebih mudah dengan masak pakai kompor Quantum</p>
-                    </x-displays.inside-card>
-                </div>
-                <div class="splide superior-product" role="group" aria-label="Superior Product Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="/images/superior-2.jpg">
-                                    <h4>Hemat Gas</h4>
-                                </x-displays.swipe-card>
-                            </li>
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="/images/superior-3.jpg">
-                                    <h4>Desain Modern dan Fungsional</h4>
-                                </x-displays.swipe-card>
-                            </li>
-                            <li class="splide__slide">
-                                <x-displays.swipe-card image="/images/superior-4.jpg">
-                                    <h4>Fitur Aman, Masak Nyaman</h4>
-                                </x-displays.swipe-card>
-                            </li>
-                        </ul>
+                @if(isset($page_settings->product_why_choose_us_formatted[0]))
+                    <div class="px-4">
+                        <x-displays.inside-card :image="$page_settings->product_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->product_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'">
+                            <h4>{{ $page_settings->product_why_choose_us_formatted[0]['title'] }}</h4>
+                            @if(isset($page_settings->product_why_choose_us_formatted[0]['description']))
+                                <p class="small">{{ $page_settings->product_why_choose_us_formatted[0]['description'] }}</p>
+                            @endif
+                        </x-displays.inside-card>
                     </div>
-                </div>
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                    </div>
+                @endif
+                @if(count($page_settings->product_why_choose_us_formatted) > 1)
+                    <div class="splide superior-product" role="group" aria-label="Superior Product Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($page_settings->product_why_choose_us_formatted->slice(1) as $item)
+                                    <li class="splide__slide">
+                                        <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'">
+                                            <h4>{{ $item['title'] }}</h4>
+                                            @if(isset($item['description']))
+                                                <p class="small text-[#9A9A9A]">{{ $item['description'] }}</p>
+                                            @endif
+                                        </x-displays.swipe-card>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
         </section>
         <section class="flex flex-col gap-[42px] pt-9 pb-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto">
-                <h2>Panduan dan Tutorial</h2>
-                <p class="text-[#6D6D6D]">Yuk, cek panduan dan tutorial praktis biar pengalaman masak kamu lebih nyaman</p>
+                <h2>{{ $page_settings->product_title_guidance }}</h2>
+                <p class="text-[#6D6D6D]">{{ $page_settings->product_description_guidance }}</p>
             </div>
             @if(!$guidances->isEmpty())
                 <div class="splide guide-product" role="group" aria-label="Guide and Tutorial Product">
@@ -115,23 +120,3 @@
         </section>
     </main>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('product', () => ({
-            isTop: false,
-
-            init() {
-                let yprev;
-
-                document.addEventListener('scroll', () => {
-                    let y = window.pageYOffset;
-                    this.isTop = y > yprev ? false : true;
-                    yprev = y;
-                });
-            },
-        }))
-    })
-</script>
-@endpush

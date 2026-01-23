@@ -29,6 +29,11 @@ class ProductCategory extends Model implements HasMedia
         return $this->hasMany(Variant::class, 'product_category_id');
     }
 
+    public function types()
+    {
+        return $this->hasMany(Type::class, 'product_category_id', 'id');
+    }
+
     public function guidances()
     {
         return $this->hasMany(Guidance::class, 'product_category_id');

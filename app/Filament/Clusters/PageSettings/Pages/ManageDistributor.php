@@ -7,6 +7,8 @@ use App\Filament\Clusters\PageSettings\PageSettingsCluster;
 use App\Settings\PageSettings;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -74,7 +76,88 @@ class ManageDistributor extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
-                    ])
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman distributor.')
+                    ->columnSpanFull()
+                    ->schema([
+                        Section::make('Section Distributor')
+                            ->description('Pengaturan pada section utama halaman distributor.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('distributor_title')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Textarea::make('distributor_description')
+                                    ->label('Deskripsi')
+                                    ->rows(3)
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ]),
+                        Section::make('Section Benefit')
+                            ->description('Pengaturan pada section benefit/keuntungan di halaman distributor.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('distributor_title_benefit')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Textarea::make('distributor_description_benefit')
+                                    ->label('Deskripsi')
+                                    ->rows(3)
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Repeater::make('distributor_benefit')
+                                    ->label('Benefit')
+                                    ->minItems(1)
+                                    ->columnSpanFull()
+                                    ->reorderableWithButtons()
+                                    ->schema([
+                                        TextInput::make('title')
+                                            ->label('Judul')
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Textarea::make('description')
+                                            ->label('Deskripsi')
+                                            ->rows(3)
+                                            ->autocomplete(false)
+                                            ->columnSpanFull()
+                                            ->required(),
+                                    ])
+                            ]),
+                        Section::make('Section Form')
+                            ->description('Pengaturan pada section form di halaman distributor.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('distributor_title_form')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ]),
+                        Section::make('Section Lokasi')
+                            ->description('Pengaturan pada section lokasi di halaman distributor.')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('distributor_title_location')
+                                    ->label('Judul')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Textarea::make('distributor_description_location')
+                                    ->label('Deskripsi')
+                                    ->rows(3)
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ]),
+                    ]),
             ]);
     }
 }

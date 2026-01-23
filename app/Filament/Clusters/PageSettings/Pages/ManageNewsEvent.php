@@ -74,7 +74,22 @@ class ManageNewsEvent extends SettingsPage
                             ->directory('og-images')
                             ->columnSpanFull()
                             ->helperText('File berupa format gambar .jpeg .jpg .png .webp Maksimal ukuran file 2MB.')
-                    ])
+                    ]),
+                Section::make('Konten')
+                    ->description('Pengaturan konten untuk halaman artikel.')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('news_title')
+                            ->label('Judul')
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                        TextInput::make('news_description')
+                            ->label('Deskripsi')
+                            ->autocomplete(false)
+                            ->columnSpanFull()
+                            ->required(),
+                    ]),
             ]);
     }
 }

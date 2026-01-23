@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Displays;
 
+use App\Settings\PageSettings;
 use Livewire\Component;
 
 class DistributorLocation extends Component
 {
-    public function render()
+    public function render(PageSettings $pageSettings)
     {
         $distributors = [
             [
@@ -95,6 +96,7 @@ class DistributorLocation extends Component
         ];
 
         return view('livewire.displays.distributor-location', [
+            'page_settings' => $pageSettings,
             'distributors' => $distributors,
             'provinces' => $provinces,
         ]);

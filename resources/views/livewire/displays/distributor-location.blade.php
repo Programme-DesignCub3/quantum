@@ -2,8 +2,8 @@
     <div class="flex flex-col gap-[52px]">
         <div class="flex flex-col gap-[26px]">
             <div class="max-w-sm mx-auto space-y-4 text-center">
-                <h2>Headline Lokasi Distributor</h2>
-                <p class="large">Body text lorem ipsum dolor sit amet lorem ipsum dolores sit amet</p>
+                <h2>{{ $page_settings->distributor_title_location }}</h2>
+                <p class="large">{{ $page_settings->distributor_description_location }}</p>
             </div>
             <div x-data class="flex flex-col gap-8">
                 <button type="button" @click="$store.distributorProvinceDrawer.openDrawer()" class="flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D]">

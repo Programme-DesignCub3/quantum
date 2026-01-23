@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Product\Resources\Products\Schemas;
 
 use App\Constant\AcceptedFileConstant;
+use App\Models\Product\Product;
 use App\Models\Product\Type;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Builder;
@@ -55,7 +56,10 @@ class ProductForm
                                     ->relationship('category', 'name')
                                     ->preload()
                                     ->reactive()
-                                    ->afterStateUpdated(fn(Set $set) => $set('variant_id', null))
+                                    ->afterStateUpdated(function(Set $set) {
+                                        $set('variant_id', null);
+                                        $set('specs', []);
+                                    })
                                     ->required(),
                                 Select::make('variant_id')
                                     ->label('Jenis Produk')
@@ -68,12 +72,14 @@ class ProductForm
                                     )
                                     ->searchable()
                                     ->preload()
-                                    ->belowContent('Pilih kategori produk terlebih dahulu.')
+                                    ->live()
+                                    ->belowContent(fn (Get $get) => blank($get('product_category_id')) ? 'Pilih kategori produk terlebih dahulu.' : null)
                                     ->required(),
                             ]),
                             TextInput::make('name')
                                 ->label('Nama Produk')
                                 ->autocomplete(false)
+                                ->belowContent('Contoh: QGC - 101 A')
                                 ->columnSpanFull()
                                 ->required(),
                             // TextInput::make('price')
@@ -89,6 +95,8 @@ class ProductForm
                                 ->blockNumbers(false)
                                 ->reorderable(false)
                                 ->maxItems(4)
+                                ->belowLabel(fn (Get $get) => blank($get('product_category_id')) ? 'Pilih kategori produk terlebih dahulu.' : null)
+                                ->disabled(fn(Get $get) => blank($get('product_category_id')))
                                 ->blocks([
                                     Block::make('furnace_type')
                                         ->label('Tungku')
@@ -97,11 +105,16 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Tungku')
-                                                ->options(Type::pluck('name', 'id'))
+                                                ->disabled(fn(Get $get) => blank($get('../../../product_category_id')))
+                                                ->relationship(
+                                                    name: 'types',
+                                                    titleAttribute: 'name',
+                                                    modifyQueryUsing: fn($query, Get $get) => $query->where('product_category_id', $get('../../../product_category_id'))
+                                                )
                                                 ->preload()
                                                 ->prefixIcon(Heroicon::Lifebuoy)
                                                 ->searchable()
-                                                ->required(),
+                                                ->required()
                                         ]),
                                     Block::make('power_type')
                                         ->label('Power')
@@ -110,7 +123,12 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Power')
-                                                ->options(Type::pluck('name', 'id'))
+                                                ->disabled(fn(Get $get) => blank($get('../../../product_category_id')))
+                                                ->relationship(
+                                                    name: 'types',
+                                                    titleAttribute: 'name',
+                                                    modifyQueryUsing: fn($query, Get $get) => $query->where('product_category_id', $get('../../../product_category_id'))
+                                                )
                                                 ->preload()
                                                 ->prefixIcon(Heroicon::Power)
                                                 ->searchable()
@@ -123,7 +141,12 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Gas')
-                                                ->options(Type::pluck('name', 'id'))
+                                                ->disabled(fn(Get $get) => blank($get('../../../product_category_id')))
+                                                ->relationship(
+                                                    name: 'types',
+                                                    titleAttribute: 'name',
+                                                    modifyQueryUsing: fn($query, Get $get) => $query->where('product_category_id', $get('../../../product_category_id'))
+                                                )
                                                 ->preload()
                                                 ->prefixIcon(Heroicon::Fire)
                                                 ->searchable()
@@ -136,7 +159,12 @@ class ProductForm
                                         ->schema([
                                             Select::make('types')
                                                 ->label('Panjang')
-                                                ->options(Type::pluck('name', 'id'))
+                                                ->disabled(fn(Get $get) => blank($get('../../../product_category_id')))
+                                                ->relationship(
+                                                    name: 'types',
+                                                    titleAttribute: 'name',
+                                                    modifyQueryUsing: fn($query, Get $get) => $query->where('product_category_id', $get('../../../product_category_id'))
+                                                )
                                                 ->preload()
                                                 ->prefixIcon(Heroicon::ArrowLongRight)
                                                 ->searchable()
@@ -280,13 +308,6 @@ class ProductForm
                                 ->default(0)
                                 ->columnSpanFull()
                                 ->required(),
-                            SpatieMediaLibraryFileUpload::make('guidance_product')
-                                ->label('File Panduan Produk')
-                                ->collection('guidance_product')
-                                ->maxSize(5120)
-                                ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_DOCUMENT)
-                                ->columnSpanFull()
-                                ->belowContent('File berupa format dokumen .pdf. Maksimal ukuran file 5MB.'),
                             Select::make('superiorities')
                                 ->label('Keunggulan')
                                 ->relationship('superiorities', 'title')
@@ -353,7 +374,37 @@ class ProductForm
                                                 ->prefixIcon(Heroicon::Link)
                                                 ->required(),
                                         ]),
-                                ])
+                                ]),
+                            Section::make('Katalog')
+                                ->description('Ditampilkan di halaman Katalog.')
+                                ->schema([
+                                    SpatieMediaLibraryFileUpload::make('thumbnail_catalog')
+                                        ->label('Thumbnail Katalog')
+                                        ->collection('thumbnail_catalog')
+                                        ->image()
+                                        ->maxSize(2048)
+                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                                        ->columnSpanFull()
+                                        ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.'),
+                                    SpatieMediaLibraryFileUpload::make('catalog_product')
+                                        ->label('Katalog Produk')
+                                        ->collection('catalog_product')
+                                        ->maxSize(5120)
+                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_DOCUMENT)
+                                        ->columnSpanFull()
+                                        ->belowContent('File berupa format dokumen .pdf. Maksimal ukuran file 5MB.'),
+                                ]),
+                            Section::make('Edukasi dan Panduan')
+                                ->description('Ditampilkan di halaman Produk dan Edukasi/Panduan.')
+                                ->schema([
+                                    SpatieMediaLibraryFileUpload::make('guidance_product')
+                                        ->label('Panduan Produk')
+                                        ->collection('guidance_product')
+                                        ->maxSize(5120)
+                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_DOCUMENT)
+                                        ->columnSpanFull()
+                                        ->belowContent('File berupa format dokumen .pdf. Maksimal ukuran file 5MB.'),
+                                ]),
                         ])->columnSpan(5),
                     ])
             ]);

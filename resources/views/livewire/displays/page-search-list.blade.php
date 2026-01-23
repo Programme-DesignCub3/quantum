@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    @if ($key <  count($items) - 1)
+                                    @if ($key < count($items) - 1)
                                         <div class="w-full h-px bg-black/10 my-4"></div>
                                     @endif
                                 @endforeach

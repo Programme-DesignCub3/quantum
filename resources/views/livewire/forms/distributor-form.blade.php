@@ -1,6 +1,6 @@
 <div class="bg-white rounded-[20px]">
     <form wire:submit="submit" class="flex flex-col gap-4 px-5 py-8">
-        <h3 class="max-w-72 text-center mx-auto">Headline gabung jadi distributror</h3>
+        <h3 class="max-w-72 text-center mx-auto">{{ $page_settings->distributor_title_form }}</h3>
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-3">
                 <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">

@@ -20,6 +20,8 @@ class ProductController extends Controller
 
         $guidances = $guidance->getRecommendationGuidance();
 
+        $pageSettings->product_why_choose_us_formatted = collect($pageSettings->product_why_choose_us);
+
         switch ($category) {
             case 'kompor':
                 $product_banner = asset('images/product-mobile-2.jpg');
@@ -39,6 +41,7 @@ class ProductController extends Controller
             'meta_description' => $pageSettings->product_meta_description,
             'meta_keywords' => $pageSettings->product_meta_keywords,
             'meta_image' => $pageSettings->product_meta_image ? asset('storage/' . $pageSettings->product_meta_image) : asset('images/og-image.jpg'),
+            'page_settings' => $pageSettings,
             'current_category' => $category,
             'product_banner' => $product_banner,
             'guidances' => $guidances,
@@ -86,7 +89,7 @@ class ProductController extends Controller
         $file_path = $media->getPath();
 
         if(file_exists($file_path)) {
-            $file_name = 'Panduan - ' . $detail->variant->name . ' Quantum ' . $detail->name . '.' . $detail->getFirstMedia('guidance_product')->extension;
+            $file_name = 'Panduan - ' . $detail->variant->name . ' ' . $detail->name . '.' . $detail->getFirstMedia('guidance_product')->extension;
 
             return response()->download($file_path, $file_name);
         }

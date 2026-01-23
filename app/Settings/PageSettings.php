@@ -36,30 +36,51 @@ class PageSettings extends Settings
     public ?string $product_meta_description;
     public ?string $product_meta_keywords;
     public ?string $product_meta_image;
+    public string $product_title;
+    public string $product_title_why;
+    public string $product_title_guidance;
+    public string $product_description;
+    public string $product_description_why;
+    public string $product_description_guidance;
+    public array $product_why_choose_us;
 
     // Distributor Page
     public ?string $distributor_meta_title;
     public ?string $distributor_meta_description;
     public ?string $distributor_meta_keywords;
     public ?string $distributor_meta_image;
+    public string $distributor_title;
+    public string $distributor_title_benefit;
+    public string $distributor_title_form;
+    public string $distributor_title_location;
+    public string $distributor_description;
+    public string $distributor_description_benefit;
+    public string $distributor_description_location;
+    public array $distributor_benefit;
 
     // Catalog Page
     public ?string $catalog_meta_title;
     public ?string $catalog_meta_description;
     public ?string $catalog_meta_keywords;
     public ?string $catalog_meta_image;
+    public string $catalog_title;
+    public string $catalog_description;
 
     // News and Event (Articles) Page
     public ?string $news_meta_title;
     public ?string $news_meta_description;
     public ?string $news_meta_keywords;
     public ?string $news_meta_image;
+    public string $news_title;
+    public string $news_description;
 
     // Recipe Page
     public ?string $recipe_meta_title;
     public ?string $recipe_meta_description;
     public ?string $recipe_meta_keywords;
     public ?string $recipe_meta_image;
+    public string $recipe_title;
+    public string $recipe_description;
 
     // Customer Service Page
     public ?string $cs_meta_title;

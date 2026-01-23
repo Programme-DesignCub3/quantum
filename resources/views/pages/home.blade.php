@@ -58,6 +58,10 @@
                             @endif
                         </x-displays.inside-card>
                     </div>
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                    </div>
                 @endif
                 @if(count($page_settings->home_why_choose_us_formatted) > 1)
                     <div class="splide why-choose-home" role="group" aria-label="Why Choose Quantum Slides">

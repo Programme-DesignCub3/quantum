@@ -10,8 +10,8 @@
         <section class="flex flex-col gap-14 pt-[116px] pb-6">
             <div class="flex flex-col gap-[62px]">
                 <div class="space-y-4 max-w-sm mx-auto text-center px-4">
-                    <h1>Kreasi Resep Quantum</h1>
-                    <p class="large">Hadirkan kehangatan untuk keluarga di setiap sajian.</p>
+                    <h1>{{ $page_settings->recipe_title }}</h1>
+                    <p class="large">{{ $page_settings->recipe_description }}</p>
                 </div>
                 @if(!$latest_recipes->isEmpty())
                     <div class="splide recipe-articles" role="group" aria-label="Recipe Article Slides">

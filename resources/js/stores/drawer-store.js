@@ -143,9 +143,16 @@ Alpine.store('premiumRecipeDrawer', {
         this.open = false;
     }
 })
-Alpine.store('brochureCatalogDrawer', {
+Alpine.store('catalogDrawer', {
     open: false,
-    openDrawer() { this.open = true },
-    closeDrawer() { this.open = false },
+    catalog_id: null,
+    openDrawer(id) {
+        this.open = true
+        this.catalog_id = id
+    },
+    closeDrawer() {
+        this.open = false
+        this.catalog_id = null
+    },
 })
 
