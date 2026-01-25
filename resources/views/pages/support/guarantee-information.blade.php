@@ -5,6 +5,10 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName()) }}
+@endsection
+
 @section('content')
     <main x-data class="bg-white">
         <section class="flex flex-col">
@@ -14,7 +18,7 @@
                     <p class="large">Cek syarat, ketentuan, dan masa garansi produk Quantum.</p>
                 </div>
                 <div class="flex flex-col gap-2 justify-center items-center">
-                    <x-inputs.button type="button" size="lg">
+                    <x-inputs.button type="hyperlink" href="#daftarkan-produk" size="lg">
                         Daftarkan Produk Anda
                     </x-inputs.button>
                     <x-inputs.button type="button" size="lg" color="white">
@@ -51,7 +55,7 @@
                     </div>
                     <ul class="list-disc space-y-4 ml-4">
                         <li>
-                            <p>Harga suku cadang</p>
+                            <p>Harga Sparepart</p>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolores sit amet</p>
                         </li>
                         <li>
@@ -155,13 +159,13 @@
                                     <h4>36 bulan</h4>
                                 </div>
                                 <div class="space-y-1">
-                                    <p>Suku Cadang (Bulan)</p>
+                                    <p>Sparepart (Bulan)</p>
                                     <h4>36 bulan</h4>
                                 </div>
                             </div>
                             <div class="space-y-1">
                                 <p>Rincian</p>
-                                <h4>Penggantian suku cadang lorem ipsum dolor sit amet</h4>
+                                <h4>Penggantian sparepart lorem ipsum dolor sit amet</h4>
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 rounded-2xl bg-[#F4F4F4] p-4">
@@ -172,13 +176,13 @@
                                     <h4>36 bulan</h4>
                                 </div>
                                 <div class="space-y-1">
-                                    <p>Suku Cadang (Bulan)</p>
+                                    <p>Sparepart (Bulan)</p>
                                     <h4>36 bulan</h4>
                                 </div>
                             </div>
                             <div class="space-y-1">
                                 <p>Rincian</p>
-                                <h4>Penggantian suku cadang lorem ipsum dolor sit amet</h4>
+                                <h4>Penggantian sparepart lorem ipsum dolor sit amet</h4>
                             </div>
                         </div>
                         <div class="space-y-1">

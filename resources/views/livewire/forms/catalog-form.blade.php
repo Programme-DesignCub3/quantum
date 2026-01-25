@@ -4,7 +4,7 @@
         <x-displays.toast>
             Berhasil unduh!
         </x-displays.toast>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-4">
             <input type="hidden" wire:model="catalog_id" x-effect="$wire.catalog_id = $store.catalogDrawer.catalog_id">
             <div x-data="{ input: @entangle('nama') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama" :class="input ? 'floating' : 'not-floating'">Nama</label>
@@ -13,12 +13,12 @@
             </div>
             <div x-data="{ input: @entangle('email') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="email" :class="input ? 'floating' : 'not-floating'">Email</label>
-                <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" required>
+                <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" inputmode="email" required>
                 @error('email') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             <div x-data="{ input: @entangle('whatsapp') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="whatsapp" :class="input ? 'floating' : 'not-floating'">WhatsApp</label>
-                <input wire:model="whatsapp" x-model="input" type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="off" required>
+                <input wire:model="whatsapp" x-model="input" type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="off" inputmode="numeric" required>
                 @error('whatsapp') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             <div class="space-y-1.5">

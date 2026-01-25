@@ -29,7 +29,7 @@ use UnitEnum;
 
 class TutorialVideoResource extends Resource
 {
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 7;
 
     protected static string | UnitEnum | null $navigationGroup = 'Data';
 

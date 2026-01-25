@@ -1,5 +1,5 @@
 @if($type === 'hyperlink')
-    <a href="{{ $href ?? '#' }}" @class([
+    <a href="{{ $href ?? '#' }}" @if(isset($event)) @click="{{ $event }}" @endif @class([
         'group transition-all duration-300 ease-in-out inline-flex items-center gap-2 cursor-pointer text-qt-green-normal border border-[#60A3AB] p-4 disabled:cursor-not-allowed',
         'justify-center' => (!$slot->isEmpty() || $icon) || (!$slot->isEmpty() || isset($image)),
         'justify-start' => (!$slot->isEmpty() && $icon) || (!$slot->isEmpty() && isset($image)),

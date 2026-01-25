@@ -5,6 +5,10 @@
 @section('meta_keywords', 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', asset('images/og-image.jpg'))
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName()) }}
+@endsection
+
 @section('content')
     <livewire:displays.page-search-list />
 @endsection

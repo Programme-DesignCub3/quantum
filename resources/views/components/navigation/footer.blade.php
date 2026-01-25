@@ -26,7 +26,7 @@
             </div>
             <div class="space-y-1">
                 <h5>Jam Operasional</h5>
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 gap-2">
                     @foreach($general_settings->operational_hours as $operational)
                         <div class="space-y-1">
                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>

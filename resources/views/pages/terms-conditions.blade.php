@@ -5,6 +5,10 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName()) }}
+@endsection
+
 @section('content')
     <main class="flex flex-col gap-8 py-[60px] px-6 bg-white">
         <div class="space-y-2">

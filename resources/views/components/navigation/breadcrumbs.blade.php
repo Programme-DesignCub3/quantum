@@ -6,13 +6,13 @@
                     @if (!is_null($breadcrumb->url) && !$loop->last)
                         <li>
                             <a href="{{ $breadcrumb->url }}">
-                                <span class="block text-[#106B75] capitalize">{{ $breadcrumb->title }}</span>
+                                <span class="block text-[#106B75]">{{ $breadcrumb->title }}</span>
                             </a>
                         </li>
                         <span class="icon-[lucide--chevron-right] text-[#106B75]"></span>
                     @else
                         <li>
-                            <span class="block capitalize">{{ str_replace('-', ' ', $breadcrumb->title) }}</span>
+                            <span class="block">{{ str_replace('-', ' ', $breadcrumb->title) }}</span>
                         </li>
                     @endif
                 @endforeach

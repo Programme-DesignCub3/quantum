@@ -5,6 +5,10 @@
 @section('meta_keywords', 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', asset('images/og-image.jpg'))
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName()) }}
+@endsection
+
 @section('content')
     <section class="px-4 py-[60px] bg-white">
         <div class="flex flex-col items-center justify-center text-center gap-[42px] py-[62px]">

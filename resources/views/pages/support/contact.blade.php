@@ -5,6 +5,10 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName()) }}
+@endsection
+
 @section('content')
     <main x-data class="bg-[#F4F4F4]">
         <section class="flex flex-col gap-8 pt-[116px] pb-[100px] px-4">
@@ -41,7 +45,7 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-1">
                                 <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach($page_settings->contact_cc_operational as $operational)
                                         <div class="space-y-1">
                                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
@@ -93,7 +97,7 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-1">
                                 <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach($page_settings->contact_wa_operational as $operational)
                                         <div class="space-y-1">
                                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
@@ -142,7 +146,7 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-1">
                                 <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach($page_settings->contact_email_operational as $operational)
                                         <div class="space-y-1">
                                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
@@ -198,7 +202,7 @@
                             </div>
                             <div class="flex flex-col gap-1">
                                 <h6>Jam Operasional Kantor</h6>
-                                <div class="grid grid-cols-2">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach($page_settings->contact_office_operational as $operational)
                                         <div class="space-y-1">
                                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
@@ -252,7 +256,7 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-1">
                                 <h6>Jam Operasional Message over Socmed</h6>
-                                <div class="grid grid-cols-2">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach($page_settings->contact_socmed_operational as $operational)
                                         <div class="space-y-1">
                                             <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>

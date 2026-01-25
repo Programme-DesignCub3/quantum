@@ -32,7 +32,9 @@ Alpine.store('productDrawer', {
     },
     closeDrawer() {
         this.open = false
-        this.data = null
+        setTimeout(() => {
+            this.data = null
+        }, 300);
     },
 })
 Alpine.store('productFilterDrawer', {
@@ -62,8 +64,35 @@ Alpine.store('distributorProvinceDrawer', {
 })
 Alpine.store('placeDetailDrawer', {
     open: false,
-    openDrawer() { this.open = true },
-    closeDrawer() { this.open = false },
+    data: null,
+    embed_map: null,
+    embedMap(map) {
+        this.embed_map = map
+    },
+    closeEmbedMap() {
+        this.embed_map = null
+
+        let currentUrl = new URL(window.location.href)
+        currentUrl.hash = ''
+        window.history.replaceState({}, document.title, currentUrl.toString())
+    },
+    embedMapDrawer(map) {
+        this.open = false
+        this.embed_map = map
+        setTimeout(() => {
+            this.data = null
+        }, 300);
+    },
+    openDrawer(data) {
+        this.open = true
+        this.data = data
+    },
+    closeDrawer() {
+        this.open = false
+        setTimeout(() => {
+            this.data = null
+        }, 300);
+    }
 })
 Alpine.store('guaranteeCategoryProductDrawer', {
     open: false,

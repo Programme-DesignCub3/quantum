@@ -31,6 +31,25 @@ class PageSettings extends Settings
     public ?string $about_meta_keywords;
     public ?string $about_meta_image;
 
+    public string $about_title;
+    public string $about_title_explain;
+    public string $about_title_history;
+    public string $about_title_vision_mission;
+    public string $about_title_vision;
+    public string $about_title_mission;
+    public string $about_title_award;
+    public string $about_title_marketplace;
+    public string $about_description;
+    public string $about_description_explain;
+    public string $about_description_history;
+    public string $about_description_vision_mission;
+    public string $about_description_vision;
+    public string $about_description_mission;
+    public string $about_description_award;
+    public string $about_description_marketplace;
+    public array $about_history;
+    public array $about_award;
+
     // Product Page
     public ?string $product_meta_title;
     public ?string $product_meta_description;

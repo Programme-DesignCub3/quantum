@@ -1,33 +1,33 @@
-<form wire:submit="submit" class="flex flex-col gap-4 my-8 px-5">
+<form wire:submit="submit" id="daftarkan-produk" class="flex flex-col gap-4 my-8 px-5 scroll-mt-32">
     <h3 class="text-center">Daftarkan Produk Quantum Anda Sekarang dan Nikmati Perlindungan Garansi Resmi!</h3>
     <div class="flex flex-col gap-5">
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-4">
             <p>Data Pribadi</p>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('nama_lengkap') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama_lengkap" :class="input ? 'floating' : 'not-floating'">Nama Lengkap</label>
                 <input wire:model="nama_lengkap" x-model="input" type="text" id="nama_lengkap" placeholder="Nama Lengkap" autocomplete="off" required>
                 @error('nama_lengkap') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('nomor_handphone') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nomor_handphone" :class="input ? 'floating' : 'not-floating'">Nomor Handphone</label>
-                <input wire:model="nomor_handphone" x-model="input" type="tel" id="nomor_handphone" placeholder="Nomor Handphone" autocomplete="off" required>
+                <input wire:model="nomor_handphone" x-model="input" type="tel" id="nomor_handphone" placeholder="Nomor Handphone" autocomplete="off" inputmode="numeric" required>
                 @error('nomor_handphone') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('email') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="email" :class="input ? 'floating' : 'not-floating'">Email</label>
-                <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" required>
+                <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" inputmode="email" required>
                 @error('email') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('alamat_lengkap') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="alamat_lengkap" :class="input ? 'floating' : 'not-floating'">Alamat Lengkap</label>
-                <input wire:model="alamat_lengkap" x-model="input" type="text" id="alamat_lengkap" placeholder="Alamat Lengkap" autocomplete="off" required>
+                <textarea wire:model="alamat_lengkap" x-model="input" id="alamat_lengkap" placeholder="Alamat Lengkap" required></textarea>
                 @error('alamat_lengkap') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
         </div>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-4">
             <p>Data Produk</p>
             <div class="space-y-1.5">
-                <div x-data="{ input: null }" class="floating-label-input relative space-y-0">
+                <div x-data="{ input: @entangle('nomor_seri_produk') }" class="floating-label-input relative space-y-0">
                     <label x-cloak for="nomor_seri_produk" :class="input ? 'floating' : 'not-floating'">Nomor Seri Produk</label>
                     <span class="icon-[lucide--info] absolute top-3.5 right-3.5 text-xl text-[#6D6D6D]"></span>
                     <input wire:model="nomor_seri_produk" x-model="input" type="text" id="nomor_seri_produk" placeholder="Nomor Seri Produk" autocomplete="off" required>
@@ -44,9 +44,9 @@
                 @error('kategori_produk') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
                 <x-displays.drawer store="guaranteeCategoryProductDrawer">
                     <div class="flex flex-col gap-1 py-4">
-                        <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', 'Kompor')" class="w-full text-left p-4 cursor-pointer">Kompor</button>
-                        <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', 'Regulator & Selang Gas')" class="w-full text-left p-4 cursor-pointer">Regulator & Selang Gas</button>
-                        <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', 'Suku Cadang')" class="w-full text-left p-4 cursor-pointer">Suku Cadang</button>
+                        @foreach($product_categories as $category)
+                            <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', '{{ $category->name }}')" class="w-full text-left p-4 cursor-pointer">{{ $category->name }}</button>
+                        @endforeach
                     </div>
                 </x-displays.drawer>
             </div>
@@ -94,9 +94,9 @@
                     </div>
                 </x-displays.drawer>
             </div>
-            <div x-data="{ input: null }" class="floating-label-input relative space-y-1.5">
+            <div x-data="{ input: @entangle('pesan') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="pesan" :class="input ? 'floating' : 'not-floating'">Pesan</label>
-                <input wire:model="pesan" x-model="input" type="text" placeholder="Pesan" autocomplete="off" required>
+                <textarea wire:model="pesan" x-model="input" id="pesan" placeholder="Pesan" required></textarea>
                 @error('pesan') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             <div class="space-y-1.5">

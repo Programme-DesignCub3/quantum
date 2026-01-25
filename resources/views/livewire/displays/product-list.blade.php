@@ -35,14 +35,8 @@
                 </div>
             </div>
             <div class="flex justify-between gap-4 py-2 px-4">
-                <button type="button" @click="$store.productSortDrawer.openDrawer()" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9] focus:border-[#6D6D6D]">
-                    <p class="text-[#6D6D6D]">
-                        @if($sort === 'best_seller')
-                            Paling populer
-                        @else
-                            Terbaru
-                        @endif
-                    </p>
+                <button x-data="{ sort: @entangle('sort') }" type="button" @click="$store.productSortDrawer.openDrawer()" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9] focus:border-[#6D6D6D]">
+                    <p class="text-[#6D6D6D]" x-text="sort === 'best-seller' ? 'Paling populer' : 'Terbaru'"></p>
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
                 <div class="flex border border-[#F4F4F4] rounded-xl overflow-hidden">
@@ -171,7 +165,7 @@
     <x-displays.drawer store="productSortDrawer">
         <div class="flex flex-col gap-1 py-4">
             <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
-            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best_seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
+            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best-seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
         </div>
     </x-displays.drawer>
 </section>

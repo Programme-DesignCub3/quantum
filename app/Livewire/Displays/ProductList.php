@@ -106,6 +106,9 @@ class ProductList extends Component
                     $q->whereIn('slug', $this->type);
                 });
             })
+            ->when($this->sort === 'best-seller', function ($query) {
+                $query->orderBy('is_best_seller', 'desc');
+            })
             ->latest()
             ->paginate(6);
 

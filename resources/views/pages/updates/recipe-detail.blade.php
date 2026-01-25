@@ -5,6 +5,10 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName(), $detail) }}
+@endsection
+
 @section('content')
     <main x-data="recipeDetail" x-ref="recipeContent" id="recipe-detail" class="relative bg-[#FFFFFF] h-[800px] overflow-hidden">
         <div x-cloak x-show="$store.premiumRecipeDrawer.formShown" class="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 bg-linear-to-t flex flex-col gap-[70px] justify-end-safe items-center from-white to-transparent max-w-md mx-auto h-[375px] w-full px-4 pb-5">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Distributor\RegisterDistributor;
 use App\Settings\PageSettings;
 use Livewire\Component;
 
@@ -15,19 +16,36 @@ class DistributorForm extends Component
     public $pesan;
     public $tnc;
 
-    public function submit()
+    public $status = false;
+
+    public function rules()
     {
-        $this->validate([
+        return [
             'nama' => 'required|max:255',
             'email' => 'required|email',
-            'whatsapp' => 'required|max:20',
+            'whatsapp' => 'required|max:20|phone:INTERNATIONAL,ID',
             'wilayah_distribusi' => 'required',
             'alamat_lengkap' => 'required',
             'pesan' => 'required',
             'tnc' => 'accepted'
+        ];
+    }
+
+    public function submit()
+    {
+        $this->validate();
+
+        RegisterDistributor::create([
+            'name' => $this->nama,
+            'email' => $this->email,
+            'whatsapp' => $this->whatsapp,
+            'distributed_area' => $this->wilayah_distribusi,
+            'address' => $this->alamat_lengkap,
+            'message' => $this->pesan,
         ]);
 
-        $this->reset();
+        $this->reset(['nama', 'email', 'whatsapp', 'wilayah_distribusi', 'alamat_lengkap', 'pesan', 'tnc']);
+        $this->status = true;
     }
 
     public function render(PageSettings $pageSettings)

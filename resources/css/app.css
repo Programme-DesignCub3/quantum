@@ -189,7 +189,10 @@
                 @apply invisible top-1 opacity-0;
             }
         }
-        input {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
             @apply w-full p-3 rounded-xl border outline-offset-2 text-[#6D6D6D] text-sm border-[#E9E9E9] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60;
         }
         button#select-form {
@@ -241,6 +244,13 @@
             li::marker {
                 @apply text-sm;
             }
+        }
+    }
+    /* Iframe */
+    .map-iframe {
+        @apply rounded-2xl overflow-hidden;
+        iframe {
+            @apply aspect-17/21 size-full;
         }
     }
 }

@@ -31,6 +31,25 @@ return new class extends SettingsMigration
         $this->migrator->add('page.about_meta_keywords', null);
         $this->migrator->add('page.about_meta_image', null);
 
+        $this->migrator->add('page.about_title', 'Tentang Quantum: Visi, Misi, dan Dedikasi Kami');
+        $this->migrator->add('page.about_title_explain', 'Inovasi Tiada Henti Quantum untuk Setiap Generasi');
+        $this->migrator->add('page.about_title_history', 'Jejak Dedikasi Quantum dalam Berinovasi');
+        $this->migrator->add('page.about_title_vision_mission', 'Visi & Misi Quantum Indonesia');
+        $this->migrator->add('page.about_title_vision', 'Visi');
+        $this->migrator->add('page.about_title_mission', 'Misi');
+        $this->migrator->add('page.about_title_award', 'Penghargaan');
+        $this->migrator->add('page.about_title_marketplace', 'Dapatkan Promo Spesial di Official Store Quantum');
+        $this->migrator->add('page.about_description', 'Quantum sebagai produk Indonesia telah menjadi pilihan utama jutaan keluarga dalam menghadirkan kompor dan peralatan dapur berkualitas tinggi.');
+        $this->migrator->add('page.about_description_explain', "Sejak 1993, Quantum telah berdedikasi menjadi produsen peralatan dapur terkemuka dan terpercaya di Indonesia. Kami bangga menghadirkan kompor, selang dan regulator gas 100% buatan Indonesia yang telah menjadi pilihan jutaan keluarga. \n\nKomitmen kami terhadap inovasi tak pernah pudar. Kami terus mengembangkan produk unggulan, seperti kompor gas yang mampu menghemat energi, dirancang dengan daya tahan tinggi dan kualitas terbaik. Penghargaan atas inovasi teknologi yang kami kembangkan adalah bukti nyata dedikasi untuk terus menyediakan produk berkualitas terbaik yang aman dan efisien untuk setiap dapur keluarga Indonesia.");
+        $this->migrator->add('page.about_description_history', 'Inilah jejak Quantum mengukir inovasi dan prestasi dari masa ke masa.');
+        $this->migrator->add('page.about_description_vision_mission', 'Inilah komitmen Quantum hadirkan produk dengan presisi dan kualitas teruji untuk negeri');
+        $this->migrator->add('page.about_description_vision', 'Bisnis yang berkelanjutan dan menjadi brand andalan keluarga Indonesia.');
+        $this->migrator->add('page.about_description_mission', 'Memenuhi kebutuhan peralatan rumah tangga Indonesia dengan melakukan inovasi yang berkesinambungan guna meningkatkan kepuasan pelanggan—lebih aman, efisien, dan ramah lingkungan. After sales dan penanganan masalah pelanggan berjalan baik sehingga pelanggan puas dengan produk maupun pelayanannya.');
+        $this->migrator->add('page.about_description_award', 'Telah dipercaya jutaan masyarakat, Quantum raih berbagai penghargaan dalam menghadirkan produk dengan kualitas unggul.');
+        $this->migrator->add('page.about_description_marketplace', 'Temukan produk terbaik Quantum di toko online resmi kami dan nikmati penawaran eksklusifnya');
+        $this->migrator->add('page.about_history', [ [ 'image' => '', 'title' => 'Awal Berdiri', 'description' => 'Awal berdirinya Quantum sebagai perusahaan kompor Indonesia' ] ]);
+        $this->migrator->add('page.about_award', [ [ 'year' => '2017', 'awards' => [ [ 'image' => '', 'title' => 'Rintek Industri', 'description' => null ], [ 'image' => '', 'title' => 'ICSA 2017', 'description' => null ], [ 'image' => '', 'title' => 'DIgital Popular Award Brand ', 'description' => null ], [ 'image' => '', 'title' => 'Superbrands Indonesia\'s Choice 2017', 'description' => null ], [ 'image' => '', 'title' => 'Top Brands Award 2017', 'description' => 'Kategori Regulator Gas' ] ] ], [ 'year' => '2016', 'awards' => [ [ 'image' => '', 'title' => 'Top Brand Award 2016', 'description' => 'Kategori Home Appliance Kompor dan Regulator Gas' ] ] ], [ 'year' => '2015', 'awards' => [ [ 'image' => '', 'title' => 'Top Brand Award 2015', 'description' => 'Kategori Kompor dan Regulator Gas' ], [ 'image' => '', 'title' => 'ICSA 2015', 'description' => 'Kategori Regulator Gas' ] ] ] ]);
+
         // Product Page
         $this->migrator->add('page.product_meta_title', null);
         $this->migrator->add('page.product_meta_description', null);

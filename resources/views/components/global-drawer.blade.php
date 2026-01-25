@@ -51,41 +51,67 @@
     <div class="flex flex-col gap-5 px-4">
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-4">
-                <div class="relative">
-                    <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" src="{{ asset('images/toko-distributor.jpg') }}" alt="">
-                </div>
+                <template x-if="$store.placeDetailDrawer.data?.image">
+                    <div class="relative">
+                        <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" :src="$store.placeDetailDrawer.data?.image" alt="">
+                    </div>
+                </template>
                 <div class="space-y-0">
-                    <span class="block text-[#6D6D6D]">Banten</span>
-                    <h5>Nama Toko Distributor/Service Center</h5>
+                    <span class="block text-[#6D6D6D]" x-text="$store.placeDetailDrawer.data?.area"></span>
+                    <h5 x-text="$store.placeDetailDrawer.data?.name"></h5>
                 </div>
                 <div class="flex gap-4">
                     <span class="icon-[lucide--map-pin] shrink-0 text-lg text-qt-green-normal"></span>
-                    <span class="text-[#6D6D6D]">Alamat detil toko distributor/service center</span>
+                    <span class="text-[#6D6D6D]" x-text="$store.placeDetailDrawer.data?.address"></span>
                 </div>
             </div>
             <div class="flex flex-col gap-1">
                 <h6>Jam Operasional</h6>
-                <div class="flex justify-between">
-                    <div class="space-y-1">
-                        <span class="extrasmall">Senin - Jumat</span>
-                        <p>07.00-20.00 WIB</p>
-                    </div>
-                    <div class="space-y-1">
-                        <span class="extrasmall">Sabtu-Minggu & Hari Libur</span>
-                        <p>07.00-18.00 WIB</p>
-                    </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <template x-for="operational in $store.placeDetailDrawer.data?.operational">
+                        <div class="space-y-1">
+                            <span class="extrasmall" x-text="operational.from_day + ' - ' + operational.to_day"></span>
+                            <p x-text="operational.from_hour + ' - ' + operational.to_hour + ' ' + operational.timezone"></p>
+                        </div>
+                    </template>
                 </div>
             </div>
-            <div class="space-y-1">
-                <h6>Produk Penjualan</h6>
-                <p class="small">Kompor</p>
-                <p class="small">Regulator</p>
-                <p class="small">Suku Cadang</p>
-            </div>
+            <template x-if="$store.placeDetailDrawer.data?.for === 'distributor'">
+                <div class="space-y-1">
+                    <h6>Produk Penjualan</h6>
+                    <template x-for="item in $store.placeDetailDrawer.data?.provide">
+                        <p class="small" x-text="item"></p>
+                    </template>
+                </div>
+            </template>
+            <template x-if="$store.placeDetailDrawer.data?.for === 'service_center'">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="space-y-1">
+                        <h6>Produk Perbaikan</h6>
+                        <template x-for="service in $store.placeDetailDrawer.data?.provide_service">
+                            <p class="small" x-text="service"></p>
+                        </template>
+                    </div>
+                    <template x-if="$store.placeDetailDrawer.data?.provide_sell?.length > 0">
+                        <div class="space-y-1">
+                            <h6>Penjualan</h6>
+                            <template x-for="sell in $store.placeDetailDrawer.data?.provide_sell">
+                                <p class="small" x-text="sell"></p>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
             <div class="flex gap-2 justify-center py-4">
-                <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[lucide--phone]" />
-                <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
-                <x-inputs.button-icon type="hyperlink" class="rounded-2xl!" icon="icon-[lucide--map-pin]" />
+                <a :href="'tel:' + $store.placeDetailDrawer.data?.phone">
+                    <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[lucide--phone]" />
+                </a>
+                <a :href="'https://wa.me/' + $store.placeDetailDrawer.data?.whatsapp" target="_blank">
+                    <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
+                </a>
+                <a href="#map-embed" @click="$store.placeDetailDrawer.embedMapDrawer($store.placeDetailDrawer.data)">
+                    <x-inputs.button-icon type="button" class="rounded-2xl!" icon="icon-[lucide--map-pin]" />
+                </a>
             </div>
         </div>
     </div>
@@ -107,7 +133,7 @@
                 </button>
                 <button type="button" @click="$store.numberModelDrawer.openMenu('sparepart')" class="group flex flex-col items-center gap-1 border border-[#E9E9E9] rounded-2xl transition-all duration-300 ease-in-out cursor-pointer w-full p-3 hover:bg-qt-green-normal hover:border-qt-green-normal">
                     <x-icons.target-icon class="transition-all duration-300 ease-in-out fill-qt-green-normal stroke-qt-green-normal p-1 size-10 group-hover:stroke-white group-hover:fill-white" />
-                    <span class="transition-all duration-300 ease-in-out font-semibold text-xs group-hover:text-white">Suku Cadang</span>
+                    <span class="transition-all duration-300 ease-in-out font-semibold text-xs group-hover:text-white">Sparepart</span>
                 </button>
             </div>
         </div>
@@ -143,7 +169,7 @@
         </div>
         <div x-show="$store.numberModelDrawer.currentMenu === 'sparepart'" class="flex flex-col gap-4">
             <div class="flex justify-between items-center">
-                <h6>Suku Cadang</h6>
+                <h6>Sparepart</h6>
                 <x-inputs.button type="button" size="sm" event="$store.numberModelDrawer.closeMenu()">
                     Kembali
                 </x-inputs.button>

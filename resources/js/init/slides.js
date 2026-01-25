@@ -16,6 +16,16 @@ const productsHomeSlide = () => {
     }
 }
 
+const awardsAboutSlide = () => {
+    if(document.querySelector('.splide.award-about')) {
+        new Splide('.splide.award-about', {
+            ...swipeable,
+            gap: '2rem',
+            padding: '1.5rem'
+        }).mount();
+    }
+}
+
 // Homepage Slides
 if (document.querySelector('#homepage')) {
     if(document.querySelector('.splide.slideshow-home')) {
@@ -51,13 +61,19 @@ if (document.querySelector('#homepage')) {
 
 // About Page Slides
 if (document.querySelector('#about')) {
-    if(document.querySelector('.splide.award-about')) {
-        new Splide('.splide.award-about', {
+    awardsAboutSlide();
+
+    if(document.querySelector('.splide.history-about')) {
+        new Splide('.splide.history-about', {
             ...swipeable,
             gap: '2rem',
-            padding: '1.5rem'
+            padding: '1rem'
         }).mount();
     }
+
+    Livewire.on('awards-about-reinit', () => {
+        awardsAboutSlide();
+    });
 }
 
 // Product Page Slides

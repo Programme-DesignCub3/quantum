@@ -61,8 +61,6 @@ Route::name('updates')->group(function () {
 Route::name('support')->group(function () {
     // (Customer Service)
     Route::get('/layanan-pelanggan', [CustomerServiceController::class, 'index'])->name('.customer-service');
-    // (Guarantee Information)
-    Route::get('/informasi-garansi', [GuaranteeInformationController::class, 'index'])->name('.guarantee-information');
     // (Service Center)
     Route::get('/service-center', [ServiceCenterController::class, 'index'])->name('.service-center');
     // (FAQ)
@@ -76,6 +74,13 @@ Route::name('support')->group(function () {
         Route::controller(GuidanceController::class)->group(function () {
             Route::get('/', 'index');
             Route::get('/{slug}', 'detail')->name('.detail');
+        });
+    });
+    // (Guarantee Information)
+    Route::prefix('informasi-garansi')->name('.guarantee-information')->group(function () {
+        Route::controller(GuaranteeInformationController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/registrasi-berhasil', 'registrationSuccess')->name('.registration-success');
         });
     });
 });

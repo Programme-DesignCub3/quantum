@@ -42,6 +42,7 @@ class ProductController extends Controller
             'meta_keywords' => $pageSettings->product_meta_keywords,
             'meta_image' => $pageSettings->product_meta_image ? asset('storage/' . $pageSettings->product_meta_image) : asset('images/og-image.jpg'),
             'page_settings' => $pageSettings,
+            'categories' => $categories,
             'current_category' => $category,
             'product_banner' => $product_banner,
             'guidances' => $guidances,

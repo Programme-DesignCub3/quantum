@@ -23,13 +23,13 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail) {
 // Beranda > [Kategori]
 Breadcrumbs::for('product.category', function (BreadcrumbTrail $trail, $category) {
     $trail->parent('home');
-    $trail->push($category, route('product.category', $category));
+    $trail->push($category->name, route('product.category', $category->slug));
 });
 
 // Beranda > [Kategori] > [Detail Produk]
 Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, $slug) {
-    $trail->parent('product.category', $category);
-    $trail->push($slug, route('product.detail', [$category, $slug]));
+    $trail->parent('product.category', $category->category);
+    $trail->push($slug->variant->name . ' ' . $slug->name, route('product.detail', [$category->category->slug, $slug->slug]));
 });
 
 // Beranda > Distributor
@@ -53,7 +53,7 @@ Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) {
 // Beranda > Berita dan Event > [Detail Berita]
 Breadcrumbs::for('updates.news.detail', function (BreadcrumbTrail $trail, $slug) {
     $trail->parent('updates.news');
-    $trail->push($slug, route('updates.news.detail', $slug));
+    $trail->push($slug->title, route('updates.news.detail', $slug->slug));
 });
 
 // Beranda > Resep
@@ -65,7 +65,7 @@ Breadcrumbs::for('updates.recipe', function (BreadcrumbTrail $trail) {
 // Beranda > Resep > [Detail Resep]
 Breadcrumbs::for('updates.recipe.detail', function (BreadcrumbTrail $trail, $slug) {
     $trail->parent('updates.recipe');
-    $trail->push($slug, route('updates.recipe.detail', $slug));
+    $trail->push($slug->title, route('updates.recipe.detail', $slug->slug));
 });
 
 // Beranda > Layanan Pelanggan
@@ -74,10 +74,16 @@ Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) {
     $trail->push('Layanan Pelanggan', route('support.customer-service'));
 });
 
-// Beranda > Informasi Garansi
+// Beranda > Garansi
 Breadcrumbs::for('support.guarantee-information', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Informasi Garansi', route('support.guarantee-information'));
+    $trail->push('Garansi', route('support.guarantee-information'));
+});
+
+// Beranda > Garansi > Terima Kasih
+Breadcrumbs::for('support.guarantee-information.registration-success', function (BreadcrumbTrail $trail) {
+    $trail->parent('support.guarantee-information');
+    $trail->push('Terima Kasih', route('support.guarantee-information.registration-success'));
 });
 
 // Beranda > Service Center
@@ -107,7 +113,7 @@ Breadcrumbs::for('support.guidance', function (BreadcrumbTrail $trail) {
 // Beranda > Edukasi dan Panduan > [Detail Panduan]
 Breadcrumbs::for('support.guidance.detail', function (BreadcrumbTrail $trail, $slug) {
     $trail->parent('support.guidance');
-    $trail->push($slug, route('support.guidance.detail', $slug));
+    $trail->push($slug->title, route('support.guidance.detail', $slug->slug));
 });
 
 // Beranda > Tutorial Video
@@ -131,7 +137,7 @@ Breadcrumbs::for('privacy-policy', function (BreadcrumbTrail $trail) {
 // Search Page
 Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Search', route('search'));
+    $trail->push('Search Result', route('search'));
 });
 
 // 404 Error Page

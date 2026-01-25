@@ -5,6 +5,10 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render(Route::currentRouteName(), $detail, $detail) }}
+@endsection
+
 @section('content')
     <main x-data="productDetail" id="product-detail" class="bg-white">
         <section class="flex flex-col gap-8 pt-4 px-4">
@@ -162,13 +166,13 @@
                                     </div>
                                 @endif
                                 @if(in_array('dimension_text', array_column($detail->specs_detail, 'type')))
-                                    @foreach($detail->specs_detail[array_search('dimension_text', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $dimension)
-                                        <div class="grid grid-cols-2 gap-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        @foreach($detail->specs_detail[array_search('dimension_text', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $dimension)
                                             <x-displays.specs :label="$label">
                                                 <p>{{ $dimension }}</p>
                                             </x-displays.specs>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 @endif
                             </div>
                         </x-displays.accordion>

@@ -5,6 +5,14 @@
 @section('meta_keywords', $meta_keywords ?? 'kompor, kompor gas, kompor quantum, kompor indonesia, regulator gas, selang gas')
 @section('meta_image', $meta_image)
 
+@section('breadcrumbs')
+    @if(Route::currentRouteName() == 'product.category')
+        {{ Breadcrumbs::render(Route::currentRouteName(), $categories->firstWhere('slug', $current_category)) }}
+    @else
+        {{ Breadcrumbs::render(Route::currentRouteName()) }}
+    @endif
+@endsection
+
 @section('content')
     <main x-data id="product" class="bg-white">
         <section class="relative">
@@ -39,7 +47,7 @@
                     <div class="splide superior-product" role="group" aria-label="Superior Product Slides">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                @foreach($page_settings->product_why_choose_us_formatted->slice(1) as $item)
+                                @foreach($page_settings->product_why_choose_us_formatted->skip(1) as $item)
                                     <li class="splide__slide">
                                         <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'">
                                             <h4>{{ $item['title'] }}</h4>

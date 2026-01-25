@@ -7,7 +7,7 @@
         <x-displays.toast>
             Berhasil disimpan!
         </x-displays.toast>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-4">
             <div x-data="{ input: @entangle('nama') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama" :class="input ? 'floating' : 'not-floating'">Nama</label>
                 <input wire:model="nama" wire:loading.attr="disabled" wire:target="submitDownload, submitView" x-model="input" type="text" id="nama" placeholder="Nama" autocomplete="off" required>
@@ -15,12 +15,12 @@
             </div>
             <div x-data="{ input: @entangle('email') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="email" :class="input ? 'floating' : 'not-floating'">Email</label>
-                <input wire:model="email" wire:loading.attr="disabled" wire:target="submitDownload, submitView" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" required>
+                <input wire:model="email" wire:loading.attr="disabled" wire:target="submitDownload, submitView" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" inputmode="email" required>
                 @error('email') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             <div x-data="{ input: @entangle('whatsapp') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="whatsapp" :class="input ? 'floating' : 'not-floating'">WhatsApp</label>
-                <input wire:model="whatsapp" wire:loading.attr="disabled" wire:target="submitDownload, submitView" x-model="input" type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="off" required>
+                <input wire:model="whatsapp" wire:loading.attr="disabled" wire:target="submitDownload, submitView" x-model="input" type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="off" inputmode="numeric" required>
                 @error('whatsapp') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             <div class="space-y-1.5">

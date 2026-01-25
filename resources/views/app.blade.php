@@ -35,7 +35,7 @@
         :transparent="Route::currentRouteName() === 'home'"
         :sticky="Route::currentRouteName() !== 'home'"
     />
-    @if(Route::currentRouteName() !== 'home')
+    {{-- @if(Route::currentRouteName() !== 'home')
         @if(Route::current() && count(Route::current()->parameters()) > 0)
             {{ Breadcrumbs::render(Route::currentRouteName(),
                 ...array_values(Route::current()->parameters())
@@ -43,6 +43,9 @@
         @else
             {{ Breadcrumbs::render(Route::currentRouteName()) }}
         @endif
+    @endif --}}
+    @if(Route::currentRouteName() !== 'home')
+        @yield('breadcrumbs')
     @endif
     @yield('content')
     <x-global-drawer />

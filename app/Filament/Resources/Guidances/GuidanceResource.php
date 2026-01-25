@@ -17,7 +17,7 @@ use UnitEnum;
 
 class GuidanceResource extends Resource
 {
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
 
     protected static string | UnitEnum | null $navigationGroup = 'Data';
 
