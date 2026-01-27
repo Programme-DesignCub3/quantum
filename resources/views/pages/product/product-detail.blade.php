@@ -18,7 +18,7 @@
                         <ul class="splide__list">
                             @foreach($detail->images as $image)
                                 <li class="splide__slide">
-                                    <img class="w-full h-[300px] object-cover" src="{{ $image }}" alt="">
+                                    <img class="w-full h-[300px] object-cover" src="{{ $image }}" alt="{{ $detail->variant->name . ' ' . $detail->name }}">
                                 </li>
                             @endforeach
                         </ul>
@@ -37,7 +37,7 @@
                         <ul class="splide__list">
                             @foreach($detail->images as $image)
                                 <li class="splide__slide">
-                                    <img class="w-[70] h-[60px] object-cover" src="{{ $image }}" alt="">
+                                    <img class="w-[70] h-[60px] object-cover" src="{{ $image }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Foto ' . $loop->iteration }}">
                                 </li>
                             @endforeach
                         </ul>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="flex flex-col gap-8">
                     <div class="px-4">
-                        <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ? $detail->features[0]->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')">
+                        <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ? $detail->features[0]->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')" :alt="$detail->features[0]->name">
                             <h4>{{ $detail->features[0]->name }}</h4>
                             @if($detail->features[0]->description)
                                 <p class="small">{{ $detail->features[0]->description }}</p>
@@ -140,7 +140,7 @@
                                 <ul class="splide__list">
                                     @foreach($detail->features->skip(1) as $feature)
                                         <li class="splide__slide">
-                                            <x-displays.swipe-card :image="$feature->getFirstMediaUrl('feature_image') ? $feature->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')">
+                                            <x-displays.swipe-card :image="$feature->getFirstMediaUrl('feature_image') ? $feature->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')" :alt="$feature->name">
                                                 <h4>{{ $feature->name }}</h4>
                                                 @if($feature->description)
                                                     <p class="small text-[#9A9A9A]">{{ $feature->description }}</p>
@@ -162,7 +162,7 @@
                             <div class="flex flex-col gap-4">
                                 @if(in_array('dimension_image', array_column($detail->specs_detail, 'type')))
                                     <div class="mt-2">
-                                        <img class="w-full object-cover object-center" src="{{ $detail->specs_detail[array_search('dimension_image', array_column($detail->specs_detail, 'type'))]['data']['value'] }}" alt="">
+                                        <img class="w-full object-cover object-center" src="{{ $detail->specs_detail[array_search('dimension_image', array_column($detail->specs_detail, 'type'))]['data']['value'] }}" alt="Dimensi {{ $detail->variant->name . ' ' . $detail->name }}">
                                     </div>
                                 @endif
                                 @if(in_array('dimension_text', array_column($detail->specs_detail, 'type')))
@@ -198,12 +198,12 @@
                             @switch($item['type'])
                                 @case('image')
                                     <div class="rounded-2xl overflow-hidden">
-                                        <img class="w-full h-[230px] object-cover object-center" src="{{ asset('storage/' . $item['data']['value']) }}" alt="">
+                                        <img class="w-full h-[230px] object-cover object-center" src="{{ asset('storage/' . $item['data']['value']) }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Foto Galeri ' . $loop->iteration }}">
                                     </div>
                                     @break
                                 @case('video_upload')
                                     <div class="relative rounded-2xl overflow-hidden">
-                                        <img class="w-full h-[420px] object-cover object-center" src="{{ asset('storage/' . $item['data']['thumbnail']) }}" alt="">
+                                        <img class="w-full h-[420px] object-cover object-center" src="{{ asset('storage/' . $item['data']['thumbnail']) }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Video Galeri ' . $loop->iteration }}">
                                         <div class="absolute top-0 left-0 size-full flex justify-center items-center">
                                             @php
                                                 $video = [
@@ -219,7 +219,7 @@
                                     @break
                                 @case('video_youtube')
                                     <div class="relative rounded-2xl overflow-hidden">
-                                        <img class="w-full h-[420px] object-cover object-center" src="{{ asset('storage/' . $item['data']['thumbnail']) }}" alt="">
+                                        <img class="w-full h-[420px] object-cover object-center" src="{{ asset('storage/' . $item['data']['thumbnail']) }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Video Galeri ' . $loop->iteration }}">
                                         <div class="absolute top-0 left-0 size-full flex justify-center items-center">
                                             @php
                                                 $video = [

@@ -7,7 +7,7 @@
                 </button>
             </div>
         @endif
-        <img class="w-full h-[140px] object-cover object-center" src="{{ asset($image) }}" alt="">
+        <img class="w-full h-[140px] object-cover object-center" src="{{ asset($image) }}" alt="{{ $alt }}">
     </div>
     <div class="p-2 space-y-3">
         {{ $slot }}

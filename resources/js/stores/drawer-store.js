@@ -15,7 +15,12 @@ Alpine.store('menuDrawer', {
 })
 Alpine.store('searchDrawer', {
     open: false,
-    openDrawer() { this.open = true },
+    openDrawer() {
+        this.open = true
+        setTimeout(() => {
+            document.getElementById('search-all').focus();
+        }, 300);
+    },
     closeDrawer() { this.open = false },
 })
 Alpine.store('contactDrawer', {

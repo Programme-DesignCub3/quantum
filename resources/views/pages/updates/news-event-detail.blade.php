@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="aspect-49/30">
-                <img class="aspect-49/30 object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="">
+                <img class="aspect-49/30 object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
             <div class="flex flex-col gap-12 px-6 pt-[42px] pb-24">
                 <div class="article-content">

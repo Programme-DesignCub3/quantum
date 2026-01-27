@@ -153,7 +153,7 @@
             position: true,
 
             init() {
-                let yprev = 0;
+                let yprev;
 
                 document.addEventListener('scroll', () => {
                     this.isWhite = window.scrollY > 0;

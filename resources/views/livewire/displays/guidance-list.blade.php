@@ -45,7 +45,7 @@
                 @if(!$latest->isEmpty())
                     <div class="flex flex-col gap-3">
                         <div class="rounded-3xl overflow-hidden">
-                            <img class="aspect-17/10 object-cover" src="{{ $latest[0]->media->first()->getUrl() }}" alt="">
+                            <img class="aspect-17/10 object-cover" src="{{ $latest[0]->media->first()->getUrl() }}" alt="{{ $latest[0]->title }}">
                         </div>
                         <div class="space-y-1 p-3">
                             <span class="block text-qt-green-normal">{{ $latest[0]->category->name }}</span>

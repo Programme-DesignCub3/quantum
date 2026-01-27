@@ -23,7 +23,7 @@
                 'aspect-17/13 size-full object-cover': size === 'lg',
                 'aspect-6/5 size-full object-cover': size === 'md',
                 'aspect-41/35 object-contain': size === 'sm',
-            }" @endif src="{{ $payload->media->first()->getUrl() }}" alt="">
+            }" @endif src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->variant->name . ' ' . $payload->name }}">
             @if($payload->is_best_seller)
                 <div class="absolute flex items-center justify-center top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
                     <span>Best Seller</span>

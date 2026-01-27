@@ -11,6 +11,7 @@ class SwipeCard extends Component
     // Props
 
     // IMAGE = 'string' (image path)
+    // ALT = 'string' (image alt text)
     // VIDEO = 'string|null' (video path or null)
 
     /**
@@ -18,6 +19,7 @@ class SwipeCard extends Component
      */
     public function __construct(
         public string $image,
+        public ?string $alt = null,
         public ?array $video
     ) {
         if(isset($video)) {

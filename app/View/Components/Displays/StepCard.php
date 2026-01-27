@@ -11,6 +11,7 @@ class StepCard extends Component
     // Props
 
     // NUMBER = number step
+    // NAME = name of the recipe
     // PAYLOAD = data from controller
 
     /**
@@ -18,6 +19,7 @@ class StepCard extends Component
      */
     public function __construct(
         public string $number,
+        public string $name,
         public array $payload,
     ) {}
 

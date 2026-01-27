@@ -17,7 +17,7 @@
                                     @foreach($items as $key => $item)
                                         <a href="{{ route('product.detail', [$item->category->slug, $item->slug]) }}" class="flex items-center gap-4">
                                             <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
-                                                <img class="size-[100px] object-cover object-center" src="{{ $item->media->first()->getUrl() }}" alt="">
+                                                <img class="size-[100px] object-cover object-center" src="{{ $item->media->first()->getUrl() }}" alt="{{ $item->name }}">
                                             </div>
                                             <div class="flex flex-col gap-2.5">
                                                 <div class="space-y-0">

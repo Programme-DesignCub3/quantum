@@ -12,11 +12,9 @@
                 <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-20 min-[400px]:pt-28 min-[375px]:px-12">
                     <h1>{{ $page_settings->home_title_banner }}</h1>
                     <p class="large">{{ $page_settings->home_description_banner }}</p>
-                    <div x-data @click="$store.searchDrawer.openDrawer()">
-                        <x-inputs.button type="button" size="lg" color="white">
-                            LAGI CARI APA?
-                        </x-inputs.button>
-                    </div>
+                    <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg" color="white">
+                        LAGI CARI APA?
+                    </x-inputs.button>
                 </div>
             </div>
             <div class="splide__track">

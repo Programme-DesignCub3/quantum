@@ -11,12 +11,14 @@ class InsideCard extends Component
     // Props
 
     // IMAGE = 'string' (image path)
+    // ALT = 'string' (image alt text)
 
     /**
      * Create a new component instance.
      */
     public function __construct(
         public string $image,
+        public ?string $alt = null,
     ) {}
 
     /**

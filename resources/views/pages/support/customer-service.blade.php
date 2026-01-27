@@ -56,7 +56,7 @@
                     <ul class="splide__list">
                         @foreach($page_settings->cs_support as $support)
                             <li class="splide__slide">
-                                <x-displays.swipe-card :image="$support['image'] ? 'storage/' . $support['image'] : 'images/og-image.jpg'">
+                                <x-displays.swipe-card :image="$support['image'] ? 'storage/' . $support['image'] : 'images/og-image.jpg'" :alt="$support['title']">
                                     <h4>{{ $support['title'] }}</h4>
                                     @if(isset($support['description']))
                                         <p class="small text-[#9A9A9A]">{{ $support['description'] }}</p>
@@ -79,7 +79,7 @@
                         <ul class="splide__list">
                             @foreach($guidances as $guidance)
                                 <li class="splide__slide">
-                                    <x-displays.swipe-card :image="$guidance->media->first()->getUrl()">
+                                    <x-displays.swipe-card :image="$guidance->media->first()->getUrl()" :alt="'Panduan ' . $guidance->variant->name . ' ' . $guidance->name">
                                         <div class="flex items-center gap-2">
                                             <h4>{{ $guidance->variant->name ?? $guidance->variant->name }} {{ $guidance->name }}</h4>
                                             <x-inputs.button-icon type="hyperlink" href="{{ route('product.download-guidance', $guidance->slug) }}" icon="icon-[material-symbols--download-rounded]" size="md" class="size-14 rounded-2xl!" />
@@ -112,7 +112,7 @@
                         <ul class="splide__list">
                             @foreach($tutorials as $tutorial)
                                 <li class="splide__slide">
-                                    <x-displays.swipe-card :image="$tutorial->getMedia('tutorial-video')->first()->getUrl()" :video="$tutorial->video">
+                                    <x-displays.swipe-card :image="$tutorial->getMedia('tutorial-video')->first()->getUrl()" :video="$tutorial->video" :alt="'Tutorial Video ' . $tutorial->title">
                                         <h4>{{ $tutorial->title }}</h4>
                                     </x-displays.swipe-card>
                                 </li>

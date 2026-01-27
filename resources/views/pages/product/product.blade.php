@@ -31,7 +31,7 @@
             <div class="flex flex-col gap-8">
                 @if(isset($page_settings->product_why_choose_us_formatted[0]))
                     <div class="px-4">
-                        <x-displays.inside-card :image="$page_settings->product_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->product_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'">
+                        <x-displays.inside-card :image="$page_settings->product_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->product_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'" :alt="$page_settings->product_why_choose_us_formatted[0]['title']">
                             <h4>{{ $page_settings->product_why_choose_us_formatted[0]['title'] }}</h4>
                             @if(isset($page_settings->product_why_choose_us_formatted[0]['description']))
                                 <p class="small">{{ $page_settings->product_why_choose_us_formatted[0]['description'] }}</p>
@@ -49,7 +49,7 @@
                             <ul class="splide__list">
                                 @foreach($page_settings->product_why_choose_us_formatted->skip(1) as $item)
                                     <li class="splide__slide">
-                                        <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'">
+                                        <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'" :alt="$item['title']">
                                             <h4>{{ $item['title'] }}</h4>
                                             @if(isset($item['description']))
                                                 <p class="small text-[#9A9A9A]">{{ $item['description'] }}</p>
@@ -75,7 +75,7 @@
                             @foreach($guidances as $guidance)
                                 <li class="splide__slide">
                                     <div class="max-w-60">
-                                        <x-displays.inside-card :image="$guidance->media->first()->getUrl()">
+                                        <x-displays.inside-card :image="$guidance->media->first()->getUrl()" :alt="$guidance->title">
                                             <h4>{{ $guidance->title }}</h4>
                                             <x-inputs.button type="hyperlink" href="{{ route('support.guidance.detail', $guidance->slug) }}" size="md" color="white">
                                                 Selengkapnya

@@ -4,6 +4,6 @@
         <h5>{{ $payload->title }}</h5>
     </div>
     <div class="max-w-[120px] shrink-0 aspect-6/5 rounded-2xl overflow-hidden">
-        <img class="aspect-6/5 object-cover" src="{{ $payload->media->first()->getUrl() }}" alt="">
+        <img class="aspect-6/5 object-cover" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
     </div>
 </a>

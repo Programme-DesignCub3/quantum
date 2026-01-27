@@ -107,16 +107,16 @@
                 <div class="flex flex-col gap-6">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="mx-auto px-5 py-8">
-                            <img src="{{ asset('images/shopee-text.png') }}" alt="">
+                            <img src="{{ asset('images/shopee-text.png') }}" alt="Shopee Logo">
                         </div>
                         <div class="mx-auto px-5 py-8">
-                            <img src="{{ asset('images/tokopedia-text.png') }}" alt="">
+                            <img src="{{ asset('images/tokopedia-text.png') }}" alt="Tokopedia Logo">
                         </div>
                         <div class="mx-auto px-5 py-8">
-                            <img src="{{ asset('images/blibli-text.png') }}" alt="">
+                            <img src="{{ asset('images/blibli-text.png') }}" alt="Blibli Logo">
                         </div>
                         <div class="mx-auto px-5 py-8">
-                            <img src="{{ asset('images/lazada-text.png') }}" alt="">
+                            <img src="{{ asset('images/lazada-text.png') }}" alt="Lazada Logo">
                         </div>
                     </div>
                     <div class="flex justify-center">

@@ -192,7 +192,7 @@
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col gap-4">
                                 @if(isset($page_settings->contact_office_image) && $page_settings->contact_office_image != '')
-                                    <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" src="{{ asset('storage/' . $page_settings->contact_office_image) }}" alt="">
+                                    <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" src="{{ asset('storage/' . $page_settings->contact_office_image) }}" alt="{{ $page_settings->contact_office_name }}">
                                 @endif
                                 <h5>{{ $page_settings->contact_office_name }}</h5>
                                 <div class="flex gap-4">

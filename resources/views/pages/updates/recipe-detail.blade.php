@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="relative">
-                <img class="aspect-49/30 object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="">
+                <img class="aspect-49/30 object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
             <div class="flex flex-col gap-12 pt-[42px] pb-24">
                 <div class="flex flex-col gap-[58px]">
@@ -80,7 +80,7 @@
                                 <ul class="splide__list">
                                     @foreach($detail->steps as $index => $item)
                                         <li class="splide__slide w-[260px]">
-                                            <x-displays.step-card number="{{ $index + 1 }}" :payload="$item" />
+                                            <x-displays.step-card number="{{ $index + 1 }}" :name="$detail->title" :payload="$item" />
                                         </li>
                                     @endforeach
                                 </ul>

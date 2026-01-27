@@ -12,9 +12,9 @@
     </div>
     <div class="shrink-0 rounded-2xl overflow-hidden">
         @if($payload->getMedia('thumbnail_catalog')->first() !== null)
-            <img class="aspect-3/4 size-full w-[120px] object-cover" src="{{ $payload->getMedia('thumbnail_catalog')->first()->getUrl() }}" alt="">
+            <img class="aspect-3/4 size-full w-[120px] object-cover" src="{{ $payload->getMedia('thumbnail_catalog')->first()->getUrl() }}" alt="Katalog {{ $payload->variant->name . ' ' .  $payload->name }}">
         @else
-            <img class="aspect-3/4 size-full w-[120px] object-cover" src="{{ asset('images/og-image.jpg') }}" alt="">
+            <img class="aspect-3/4 size-full w-[120px] object-cover" src="{{ asset('images/og-image.jpg') }}" alt="Katalog {{ $payload->variant->name . ' ' .  $payload->name }}">
         @endif
     </div>
 </div>
