@@ -19,7 +19,7 @@ Alpine.store('searchDrawer', {
         this.open = true
         setTimeout(() => {
             document.getElementById('search-all').focus();
-        }, 300);
+        }, 500);
     },
     closeDrawer() { this.open = false },
 })
