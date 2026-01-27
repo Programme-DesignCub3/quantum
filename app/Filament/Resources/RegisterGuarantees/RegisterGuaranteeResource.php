@@ -6,12 +6,14 @@ use App\Filament\Resources\RegisterGuarantees\Pages\ManageRegisterGuarantees;
 use App\Models\RegisterGuarantee;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
@@ -29,11 +31,38 @@ class RegisterGuaranteeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    public static function form(Schema $schema): Schema
+    public static function infolist(Schema $schema): Schema
     {
         return $schema
             ->components([
-                //
+                Fieldset::make('Data Pribadi')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextEntry::make('name')
+                            ->label('Nama Lengkap'),
+                        TextEntry::make('phone')
+                            ->label('Nomor Handphone'),
+                        TextEntry::make('email')
+                            ->label('Email'),
+                        TextEntry::make('address')
+                            ->label('Alamat Lengkap'),
+                    ]),
+                Fieldset::make('Data Produk')
+                    ->columnSpanFull()
+                    ->schema([
+                        TextEntry::make('product_serial_number')
+                            ->label('Nomor Seri Produk'),
+                        TextEntry::make('product_category')
+                            ->label('Kategori Produk'),
+                        TextEntry::make('product_model')
+                            ->label('Model Produk'),
+                        TextEntry::make('purchase_date')
+                            ->label('Tanggal Pembelian'),
+                        TextEntry::make('purchase_place')
+                            ->label('Tempat Pembelian'),
+                        TextEntry::make('message')
+                            ->label('Pesan'),
+                    ]),
             ]);
     }
 
@@ -41,20 +70,26 @@ class RegisterGuaranteeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->label('Nama Lengkap')
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Tanggal Pendaftaran')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ViewAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                //
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

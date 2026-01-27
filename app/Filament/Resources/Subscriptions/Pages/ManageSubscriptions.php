@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Subscriptions\Pages;
 
+use App\Filament\Exports\SubscriptionExporter;
 use App\Filament\Resources\Subscriptions\SubscriptionResource;
-use Filament\Actions\CreateAction;
+use Filament\Actions\ExportAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Resources\Pages\ManageRecords;
 
 class ManageSubscriptions extends ManageRecords
@@ -13,7 +15,13 @@ class ManageSubscriptions extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            //
+            ExportAction::make()
+                ->label('Ekspor Excel')
+                ->exporter(SubscriptionExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx
+                ])
+                ->color('success')
         ];
     }
 }

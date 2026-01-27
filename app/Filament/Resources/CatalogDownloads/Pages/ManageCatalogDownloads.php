@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\CatalogDownloads\Pages;
 
+use App\Filament\Exports\CatalogDownloadExporter;
 use App\Filament\Resources\CatalogDownloads\CatalogDownloadResource;
-use Filament\Actions\CreateAction;
+use Filament\Actions\ExportAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Resources\Pages\ManageRecords;
 
 class ManageCatalogDownloads extends ManageRecords
@@ -13,7 +15,13 @@ class ManageCatalogDownloads extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            ExportAction::make()
+                ->label('Ekspor Excel')
+                ->exporter(CatalogDownloadExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx
+                ])
+                ->color('success')
         ];
     }
 }

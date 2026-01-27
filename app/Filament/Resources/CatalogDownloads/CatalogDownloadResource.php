@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\CatalogDownloads;
 
+use App\Filament\Infolists\Components\CatalogEntry;
 use App\Filament\Resources\CatalogDownloads\Pages\ManageCatalogDownloads;
 use App\Models\CatalogDownload;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -39,8 +38,12 @@ class CatalogDownloadResource extends Resource
                     ->label('Nama'),
                 TextEntry::make('email')
                     ->label('Email'),
+                TextEntry::make('whatsapp')
+                    ->label('WhatsApp'),
                 TextEntry::make('created_at')
                     ->label('Tanggal Unduh'),
+                CatalogEntry::make('downloaded_catalogs')
+                    ->label('Katalog yang diunduh'),
             ]);
     }
 
@@ -62,12 +65,10 @@ class CatalogDownloadResource extends Resource
                 //
             ])
             ->recordActions([
-                //
+                ViewAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    //
-                ]),
+                //
             ])
             ->defaultSort('created_at', 'desc');
     }
