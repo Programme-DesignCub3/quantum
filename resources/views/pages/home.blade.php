@@ -35,7 +35,7 @@
             <ul class="splide__pagination slide-home"></ul>
         </section>
         <section class="flex flex-col gap-8 py-[92px] bg-[#F4F4F4]">
-            <div class="px-4 text-center space-y-4 max-w-sm mx-auto">
+            <div class="px-4 text-center space-y-4 max-w-sm mx-auto md:max-w-full">
                 <h2>{{ $page_settings->home_title_product }}</h2>
                 <p class="large text-[#6D6D6D]">{{ $page_settings->home_description_product }}</p>
             </div>
