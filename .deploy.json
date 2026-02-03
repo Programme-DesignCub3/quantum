@@ -1,5 +1,5 @@
 {
-    "DEPLOYPATH" : "/home/designcube3/demo_projects/quantum",
+    "DEPLOYPATH" : "/home/designcube3/demo_projects/quantum-dev",
     "task" :  [
         "app",
         "bootstrap",
