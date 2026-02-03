@@ -147,11 +147,11 @@
         {{-- Desktop --}}
         <div class="hidden items-center gap-3 md:flex lg:gap-5">
             <div class="flex">
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenu === 'about' ? 'active' : ''" class="desktop-menu-nav">Tentang</button>
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenu === 'product' ? 'active' : ''" class="desktop-menu-nav">Produk</button>
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenu === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button>
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenu === 'updates' ? 'active' : ''" class="desktop-menu-nav">Updates</button>
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenu === 'support' ? 'active' : ''" class="desktop-menu-nav">Bantuan</button>
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'about' ? 'active' : ''" class="desktop-menu-nav">Tentang</button>
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'product' ? 'active' : ''" class="desktop-menu-nav">Produk</button>
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button>
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'updates' ? 'active' : ''" class="desktop-menu-nav">Updates</button>
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'support' ? 'active' : ''" class="desktop-menu-nav">Bantuan</button>
             </div>
             <div class="flex items-center gap-2 lg:gap-6">
                 <button type="button" @click="$store.searchDrawer.openDrawer()" class="circle-menu-search">
@@ -163,8 +163,8 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu || $store.searchDrawer.open" class="fixed left-0 w-full min-h-dvh bg-black/40 hidden md:block"></div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu === 'about'" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop || $store.searchDrawer.open" class="fixed left-0 w-full min-h-dvh bg-black/40 hidden md:block"></div>
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'about'" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
             <p class="large font-bold mb-8">Tentang</p>
             <div class="flex flex-col gap-8">
@@ -174,7 +174,7 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu === 'product'" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'product'" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container grid grid-cols-12 px-6 py-12 lg:px-16">
             <div class="col-span-5 flex flex-col gap-8">
                 <p class="large font-bold">Produk</p>
@@ -206,7 +206,7 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
             <p class="large font-bold mb-8">Distributor</p>
             <div class="flex flex-col gap-8">
@@ -215,7 +215,7 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu === 'updates'" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'updates'" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container grid grid-cols-12 px-6 py-12 lg:px-16">
             <div class="col-span-5 flex flex-col gap-8">
                 <p class="large font-bold">Updates</p>
@@ -238,7 +238,7 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenu === 'support'" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'support'" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
             <p class="large font-bold mb-8">Bantuan</p>
             <div class="flex flex-col gap-8">

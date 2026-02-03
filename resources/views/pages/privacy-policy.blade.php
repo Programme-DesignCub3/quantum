@@ -12,7 +12,7 @@
 @section('content')
     <main x-data>
         <div class="container pt-[60px] pb-8 px-6 md:text-center md:pt-20 md:pb-16 lg:pt-[100px]">
-            <h2>Kebijakan Privasi</h2>
+            <h2 class="md:max-w-5xl md:mx-auto">Kebijakan Privasi</h2>
         </div>
         <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200 md:top-[72px] lg:top-20' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out w-full bg-[#F4F4F4]">
             <div class="container flex gap-8 overflow-x-auto px-8 md:justify-center">

@@ -10,13 +10,13 @@
 @endsection
 
 @section('content')
-    <main class="bg-white">
-        <div class="flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
-            <div class="max-w-xs mx-auto space-y-4 text-center">
+    <main>
+        <div class="container flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
+            <div class="max-w-xs mx-auto space-y-4 text-center sm:max-w-lg xl:max-w-3xl">
                 <h1>Registrasi Selesai! Garansi dalam Proses Aktivasi</h1>
                 <p class="large">Kami sedang memproses aktivasi garansi perlindungan produk Quantum Anda.</p>
             </div>
-            <div class="flex flex-col gap-2 justify-center items-center">
+            <div class="flex flex-col gap-2 justify-center items-center md:flex-row">
                 <x-inputs.button type="hyperlink" href="{{ route('support.contact') }}" size="lg">
                     Hubungi Kami
                 </x-inputs.button>
@@ -28,7 +28,7 @@
         <div class="px-6">
             <div class="w-full h-px bg-black/10"></div>
         </div>
-        <div class="pt-12 pb-[100px] px-6 space-y-4">
+        <div class="container pt-12 pb-[100px] px-6 space-y-4">
             <h4>Informasi Lanjutan</h4>
             <ul class="list-disc ml-5">
                 <li>Aktivasi garansi berlaku dalam 1x24 jam setelah registrasi.</li>
