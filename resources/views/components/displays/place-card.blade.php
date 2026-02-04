@@ -1,4 +1,4 @@
-<div x-data="{ data: @js($data_drawer), embed: @js($payload->maps) }" class="flex flex-col gap-4 rounded-2xl border border-[#E9E9E9] p-4">
+<div x-data="{ data: @js($data_drawer), embed: @js($payload->maps) }" class="flex flex-col gap-4 rounded-2xl border border-[#E9E9E9] p-4 h-max">
     <div class="space-y-0">
         <span class="block text-[#6D6D6D]">
             @if($for === 'distributor')

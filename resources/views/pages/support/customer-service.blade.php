@@ -73,7 +73,7 @@
             </div>
         </section>
         <section class="container flex flex-col gap-[42px] py-[92px]">
-            <div class="flex justify-between items-center px-4 sm:px-6">
+            <div class="flex justify-between items-center px-4 sm:px-6 md:gap-4">
                 <div class="space-y-4 text-center max-w-xs mx-auto sm:max-w-5xl md:mx-0 md:text-left">
                     <h2>{{ $page_settings->cs_title_guidance }}</h2>
                     <p class="text-[#6D6D6D]">{{ $page_settings->cs_description_guidance }}</p>
@@ -111,8 +111,8 @@
             </div>
         </section>
         <section class="container flex flex-col gap-[42px] pt-6 pb-[92px]">
-            <div class="flex justify-between items-center px-4 sm:px-6">
-                <div class="space-y-4 text-center max-w-sm mx-auto px-4 sm:max-w-5xl md:mx-0 md:text-left">
+            <div class="flex justify-between items-center px-4 sm:px-6 md:gap-4">
+                <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:mx-0 md:text-left">
                     <h2>{{ $page_settings->cs_title_video }}</h2>
                     <p class="text-[#6D6D6D]">{{ $page_settings->cs_description_video }}</p>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach($tutorials as $tutorial)
-                                <li class="splide__slide">
+                                <li class="splide__slide" wire:key="tutorial-{{ $tutorial->id }}">
                                     <x-displays.swipe-card :image="$tutorial->getMedia('tutorial-video')->first()->getUrl()" :video="$tutorial->video" :alt="'Tutorial Video ' . $tutorial->title">
                                         <h4>{{ $tutorial->title }}</h4>
                                     </x-displays.swipe-card>

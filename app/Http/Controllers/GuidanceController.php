@@ -23,7 +23,7 @@ class GuidanceController extends Controller
         $detail = $guidance->getDetailGuidance($slug);
         if(!$detail) return abort(404);
 
-        $other_guidance = $guidance->getRecommendationGuidance(3, $detail->id);
+        $other_guidance = $guidance->getRecommendationGuidance(4, $detail->id);
 
         return view('pages.support.guidance-detail', [
             'meta_title' => $detail->title,

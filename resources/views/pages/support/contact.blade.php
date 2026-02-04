@@ -11,15 +11,15 @@
 
 @section('content')
     <main x-data class="bg-[#F4F4F4]">
-        <section class="flex flex-col gap-8 pt-[116px] pb-[100px] px-4">
-            <div class="space-y-4 text-center max-w-sm mx-auto">
+        <section class="container flex flex-col gap-8 pt-[116px] pb-[100px] px-4 sm:px-6 md:gap-16">
+            <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:text-left md:mx-0">
                 <h1>{{ $page_settings->contact_title }}</h1>
                 <p class="large">{{ $page_settings->contact_description }}</p>
             </div>
-            <div class="flex flex-col gap-4">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {{-- Call Center --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
-                    <h3>Call Center</h3>
+                    <h3 class="md:text-2xl">Call Center</h3>
                     <p>Hubungi tim layanan Quantum untuk info dan bantuan</p>
                     <x-slot:icon>
                         <x-icons.customer-care-icon id="contact-customer-care" class="fill-qt-green-normal size-10" />
@@ -71,7 +71,7 @@
                 </x-displays.drawer>
                 {{-- WhatsApp --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
-                    <h3>WhatsApp</h3>
+                    <h3 class="md:text-2xl">WhatsApp</h3>
                     <p>Tanya seputar produk dan garansi di Live Chat WhatsApp.</p>
                     <x-slot:icon>
                         <span class="icon-[ic--baseline-whatsapp] text-qt-green-normal text-[40px]"></span>
@@ -120,7 +120,7 @@
                 </x-displays.drawer>
                 {{-- Email --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
-                    <h3>Email</h3>
+                    <h3 class="md:text-2xl">Email</h3>
                     <p>Sampaikan kebutuhan Anda via email resmi Quantum</p>
                     <x-slot:icon>
                         <span class="icon-[lucide--mail] text-qt-green-normal text-[40px]"></span>
@@ -169,7 +169,7 @@
                 </x-displays.drawer>
                 {{-- Office --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
-                    <h3>Office</h3>
+                    <h3 class="md:text-2xl">Office</h3>
                     <p>Tim layanan Quantum siap menjawab pertanyaan Anda</p>
                     <x-slot:icon>
                         <span class="icon-[ci--building-04] text-qt-green-normal text-[40px]"></span>
@@ -225,7 +225,7 @@
                 </x-displays.drawer>
                 {{-- Social Media --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
-                    <h3>Social Media</h3>
+                    <h3 class="md:text-2xl">Social Media</h3>
                     <p>Dapatkan informasi produk terbaru di media sosial resmi Quantum</p>
                     <x-slot:icon>
                         <span class="icon-[tdesign--share] text-qt-green-normal text-[40px]"></span>
@@ -282,16 +282,19 @@
             </div>
         </section>
         <section class="relative">
-            <img src="{{ asset('images/contact-banner.jpg') }}" alt="">
-            <div class="absolute top-0 left-0 flex flex-col gap-8 size-full py-[60px] px-4">
-                <div class="text-white space-y-4 text-center max-w-sm mx-auto">
-                    <h2>{{ $page_settings->contact_title_service }}</h2>
-                    <p>{{ $page_settings->contact_description_service }}</p>
-                </div>
-                <div class="flex justify-center">
-                    <x-inputs.button type="hyperlink" href="{{ route('support.service-center') }}" size="lg" color="white">
-                        Selengkapnya
-                    </x-inputs.button>
+            <img class="hidden w-full h-[600px] object-cover object-right md:block" src="{{ asset('images/desktop-contact-banner.jpg') }}" alt="">
+            <img class="md:hidden" src="{{ asset('images/contact-banner.jpg') }}" alt="">
+            <div class="absolute top-0 left-0 size-full">
+                <div class="flex flex-col gap-8 py-[60px] px-4 size-full sm:px-6 md:justify-center md:container">
+                    <div class="text-white space-y-4 text-center max-w-sm mx-auto md:text-left md:max-w-xl md:mx-0">
+                        <h2>{{ $page_settings->contact_title_service }}</h2>
+                        <p>{{ $page_settings->contact_description_service }}</p>
+                    </div>
+                    <div class="flex justify-center md:justify-start">
+                        <x-inputs.button type="hyperlink" href="{{ route('support.service-center') }}" size="lg" color="white">
+                            Selengkapnya
+                        </x-inputs.button>
+                    </div>
                 </div>
             </div>
         </section>

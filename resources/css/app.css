@@ -262,7 +262,7 @@
     .map-iframe {
         @apply rounded-2xl overflow-hidden;
         iframe {
-            @apply aspect-17/21 size-full;
+            @apply aspect-17/21 size-full md:aspect-70/53;
         }
     }
 }

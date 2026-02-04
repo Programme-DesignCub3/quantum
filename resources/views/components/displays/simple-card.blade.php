@@ -1,11 +1,11 @@
 <div @class([
     'rounded-2xl p-6' => $simetric,
-    'rounded-3xl py-6 px-4' => !$simetric,
+    'rounded-3xl py-6 px-4 md:p-5' => !$simetric,
     'border border-[#DBDBDB]' => $border,
     'bg-white' => $background === 'white',
     'flex flex-col gap-4'
 ])>
-    <div class="flex gap-2.5">
+    <div class="flex justify-between gap-2.5">
         <div @class([
             'space-y-3' => $simetric,
             'space-y-1' => !$simetric,

@@ -2,7 +2,7 @@
     @if (Route::currentRouteName() !== 'support.contact')
         <div class="bg-[#F4F4F4]">
             <div class="container px-4 py-[60px] flex flex-col gap-8 sm:px-6">
-                <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-x-12 md:gap-6 lg:gap-10 xl:gap-14">
+                <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-x-4 md:gap-6 lg:gap-10 xl:gap-14">
                     @for($i = 1; $i <= 6; $i++)
                         <img src="{{ asset('images/certify-' . $i . '.png') }}" alt="">
                     @endfor
@@ -12,7 +12,7 @@
                     <p class="hidden md:block">
                         Jam Operasional
                         @foreach($general_settings->operational_hours as $operational)
-                            {{ $operational['from_day'] }} - {{ $operational['to_day'] }} {{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}
+                            {{ $operational['day'] }} {{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}
                         @endforeach
                     </p>
                 </div>

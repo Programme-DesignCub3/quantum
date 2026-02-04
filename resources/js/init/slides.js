@@ -226,9 +226,30 @@ if (document.querySelector('#guidance-detail')) {
 
     if(document.querySelector('.splide.other-guidance')) {
         new Splide('.splide.other-guidance', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
@@ -288,9 +309,30 @@ if (document.querySelector('#customer-service')) {
 
     if(document.querySelector('.splide.guide-cs')) {
         new Splide('.splide.guide-cs', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 1,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
