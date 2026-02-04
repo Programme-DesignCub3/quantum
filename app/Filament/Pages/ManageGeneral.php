@@ -44,36 +44,12 @@ class ManageGeneral extends SettingsPage
                             ->minItems(1)
                             ->required()
                             ->schema([
-                                Flex::make([
-                                    Select::make('from_day')
-                                        ->label('Hari (From)')
-                                        ->prefix('Dari')
-                                        ->options([
-                                            'Senin' => 'Senin',
-                                            'Selasa' => 'Selasa',
-                                            'Rabu' => 'Rabu',
-                                            'Kamis' => 'Kamis',
-                                            'Jumat' => 'Jumat',
-                                            'Sabtu' => 'Sabtu',
-                                            'Minggu' => 'Minggu',
-                                        ])
-                                        ->columnSpan(1)
-                                        ->required(),
-                                    Select::make('to_day')
-                                        ->label('Hari (To)')
-                                        ->prefix('Sampai')
-                                        ->options([
-                                            'Senin' => 'Senin',
-                                            'Selasa' => 'Selasa',
-                                            'Rabu' => 'Rabu',
-                                            'Kamis' => 'Kamis',
-                                            'Jumat' => 'Jumat',
-                                            'Sabtu' => 'Sabtu',
-                                            'Minggu' => 'Minggu',
-                                        ])
-                                        ->columnSpan(1)
-                                        ->required(),
-                                ]),
+                                TextInput::make('day')
+                                    ->label('Hari (From - To)')
+                                    ->autocomplete(false)
+                                    ->belowContent('Contoh: Senin - Jumat')
+                                    ->columnSpanFull()
+                                    ->required(),
                                 Flex::make([
                                     TimePicker::make('from_hour')
                                         ->label('Jam (From)')

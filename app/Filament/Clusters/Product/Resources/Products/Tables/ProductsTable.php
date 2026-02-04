@@ -14,6 +14,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsTable
 {
@@ -53,12 +54,28 @@ class ProductsTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->before(function (DeleteAction $action) {
+                        $gallery = $action->getRecord()->gallery ?? [];
+
+                        $files = collect($gallery)
+                            ->filter(fn ($block) =>
+                                isset($block['type']) &&
+                                in_array($block['type'], ['image', 'video_upload', 'video_youtube'])
+                            )
+                            ->map(fn ($block) => $block['data']['value'] ?? null)
+                            ->filter()
+                            ->values();
+
+                        foreach ($files as $file) {
+                            if (Storage::disk('public')->exists($file)) {
+                                Storage::disk('public')->delete($file);
+                            }
+                        }
+                    }),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ])
             ->defaultSort('created_at', 'desc');
     }

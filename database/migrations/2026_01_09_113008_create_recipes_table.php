@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('description');
-            $table->json('materials');
+            $table->longText('materials');
             $table->json('steps');
             $table->string('cook_time');
             $table->string('portion');

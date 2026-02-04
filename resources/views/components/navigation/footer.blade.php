@@ -57,7 +57,7 @@
                     <div class="grid grid-cols-2 gap-2">
                         @foreach($general_settings->operational_hours as $operational)
                             <div class="space-y-1">
-                                <span class="extrasmall">{{ $operational['from_day'] }} - {{ $operational['to_day'] }}</span>
+                                <span class="extrasmall">{{ $operational['day'] }}</span>
                                 <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
                             </div>
                         @endforeach

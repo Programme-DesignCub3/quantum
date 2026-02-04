@@ -67,9 +67,7 @@
                         <div class="flex flex-col gap-4 px-4 py-8 bg-[#F4F4F4] rounded-2xl">
                             <h4>Bahan untuk {{ $detail->portion }} porsi</h4>
                             <div class="recipe-list">
-                                @foreach($detail->materials as $material)
-                                    {!! $material['value'] !!}
-                                @endforeach
+                                {!! $detail->materials !!}
                             </div>
                         </div>
                     </div>
