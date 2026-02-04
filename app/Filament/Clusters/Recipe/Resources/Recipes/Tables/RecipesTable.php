@@ -57,9 +57,8 @@ class RecipesTable
                 DeleteAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                //
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 }

@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class GuidancesTable
 {
@@ -48,12 +49,30 @@ class GuidancesTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->before(function (DeleteAction $action) {
+                        $content = $action->getRecord()->content ?? [];
+
+                        $files = collect($content)
+                            ->filter(fn ($block) =>
+                                isset($block['type']) &&
+                                in_array($block['type'], ['steps'])
+                            )
+                            ->map(fn ($block) => $block['data']['value'] ?? null)
+                            ->filter();
+
+                        foreach ($files as $file) {
+                            foreach ($file as $item) {
+                                if (Storage::disk('public')->exists($item['image'])) {
+                                    Storage::disk('public')->delete($item['image']);
+                                }
+                            }
+                        }
+                    }),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                //
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 }

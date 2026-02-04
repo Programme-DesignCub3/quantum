@@ -45,16 +45,10 @@ class RecipeForm
                                 ->rows(3)
                                 ->belowContent('Deskripsi singkat mengenai resep.')
                                 ->required(),
-                            Repeater::make('materials')
-                                ->label('Bahan-bahan')
-                                ->reorderableWithButtons()
-                                ->required()
-                                ->schema([
-                                    RichEditor::make('value')
-                                        ->label('Bahan')
-                                        ->toolbarButtons(['bold', 'italic', 'underline'])
-                                        ->required(),
-                                ]),
+                            RichEditor::make('value')
+                                ->label('Bahan')
+                                ->toolbarButtons(['bold', 'italic', 'underline'])
+                                ->required(),
                             Repeater::make('steps')
                                 ->label('Langkah-langkah')
                                 ->reorderableWithButtons()

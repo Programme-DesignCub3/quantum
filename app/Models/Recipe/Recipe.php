@@ -26,7 +26,6 @@ class Recipe extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'materials' => 'array',
         'steps' => 'array',
     ];
 

@@ -397,6 +397,14 @@ class ProductForm
                             Section::make('Edukasi dan Panduan')
                                 ->description('Ditampilkan di halaman Produk dan Edukasi/Panduan.')
                                 ->schema([
+                                    SpatieMediaLibraryFileUpload::make('thumbnail_guidance')
+                                        ->label('Thumbnail Panduan')
+                                        ->collection('thumbnail_guidance')
+                                        ->image()
+                                        ->maxSize(2048)
+                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                                        ->columnSpanFull()
+                                        ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.'),
                                     SpatieMediaLibraryFileUpload::make('guidance_product')
                                         ->label('Panduan Produk')
                                         ->collection('guidance_product')

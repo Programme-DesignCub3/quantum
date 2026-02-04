@@ -70,7 +70,7 @@
                 <div class="grid grid-cols-2 gap-2">
                     <template x-for="operational in $store.placeDetailDrawer.data?.operational">
                         <div class="space-y-1">
-                            <span class="extrasmall" x-text="operational.from_day + ' - ' + operational.to_day"></span>
+                            <span class="extrasmall" x-text="operational.day"></span>
                             <p x-text="operational.from_hour + ' - ' + operational.to_hour + ' ' + operational.timezone"></p>
                         </div>
                     </template>

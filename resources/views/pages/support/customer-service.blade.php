@@ -79,7 +79,7 @@
                         <ul class="splide__list">
                             @foreach($guidances as $guidance)
                                 <li class="splide__slide">
-                                    <x-displays.swipe-card :image="$guidance->media->first()->getUrl()" :alt="'Panduan ' . $guidance->variant->name . ' ' . $guidance->name">
+                                    <x-displays.swipe-card :image="$guidance->getMedia('thumbnail_guidance')->first() ? $guidance->getMedia('thumbnail_guidance')->first()->getUrl() : $guidance->media->first()->getUrl()" :alt="'Panduan ' . $guidance->variant->name . ' ' . $guidance->name">
                                         <div class="flex items-center gap-2">
                                             <h4>{{ $guidance->variant->name ?? $guidance->variant->name }} {{ $guidance->name }}</h4>
                                             <x-inputs.button-icon type="hyperlink" href="{{ route('product.download-guidance', $guidance->slug) }}" icon="icon-[material-symbols--download-rounded]" size="md" class="size-14 rounded-2xl!" />

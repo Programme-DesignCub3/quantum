@@ -25,6 +25,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 use UnitEnum;
 
 class TutorialVideoResource extends Resource
@@ -101,7 +102,7 @@ class TutorialVideoResource extends Resource
                             ->label('Video YouTube')
                             ->icon('heroicon-o-play-circle')
                             ->schema([
-                                TextInput::make('value')
+                                TextInput::make('value_url')
                                     ->label('URL YouTube')
                                     ->url()
                                     ->prefixIcon(Heroicon::Link)
@@ -147,9 +148,9 @@ class TutorialVideoResource extends Resource
             ])
             ->recordActions([
                 EditAction::make()
-                    ->mutateDataUsing(function (array $data): array {
+                    ->mutateDataUsing(function (array $data, EditAction $action): array {
                         if(isset($data['video'][0]['type']) && $data['video'][0]['type'] === 'youtube') {
-                            preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $data['video'][0]['data']['value'], $matches);
+                            preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $data['video'][0]['data']['value_url'], $matches);
                             if (isset($matches[1])) {
                                 $data['video'][0]['data']['value'] = $matches[1];
                             } else {
@@ -157,15 +158,58 @@ class TutorialVideoResource extends Resource
                             }
                         }
 
+                        $oldVideo = $action->getRecord()->video ?? [];
+                        $newVideo = $data['video'] ?? [];
+
+                        $oldFiles = collect($oldVideo)
+                            ->filter(fn ($block) =>
+                                isset($block['type']) &&
+                                in_array($block['type'], ['local'])
+                            )
+                            ->map(fn ($block) => $block['data']['value'] ?? null)
+                            ->filter()
+                            ->values();
+                        $newFiles = collect($newVideo)
+                            ->filter(fn ($block) =>
+                                isset($block['type']) &&
+                                in_array($block['type'], ['local'])
+                            )
+                            ->map(fn ($block) => $block['data']['value'] ?? null)
+                            ->filter()
+                            ->values();
+
+                        $deletedFiles = $oldFiles->diff($newFiles);
+
+                        foreach ($deletedFiles as $file) {
+                            Storage::disk('public')->delete($file);
+                        }
+
                         return $data;
                     }),
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->before(function(DeleteAction $action) {
+                        $video = $action->getRecord()->video ?? [];
+
+                        $files = collect($video)
+                            ->filter(fn ($block) =>
+                                isset($block['type']) &&
+                                in_array($block['type'], ['local'])
+                            )
+                            ->map(fn ($block) => $block['data']['value'] ?? null)
+                            ->filter()
+                            ->values();
+
+                        foreach ($files as $file) {
+                            if (Storage::disk('public')->exists($file)) {
+                                Storage::disk('public')->delete($file);
+                            }
+                        }
+                    })
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                //
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array
