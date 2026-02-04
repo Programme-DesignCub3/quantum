@@ -12,12 +12,12 @@
 @section('content')
     <main x-data class="bg-white">
         <section class="flex flex-col">
-            <div class="flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
-                <div class="max-w-xs mx-auto space-y-4 text-center">
+            <div class="container flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
+                <div class="max-w-xs mx-auto space-y-4 text-center sm:max-w-5xl">
                     <h1>Informasi Garansi</h1>
                     <p class="large">Cek syarat, ketentuan, dan masa garansi produk Quantum.</p>
                 </div>
-                <div class="flex flex-col gap-2 justify-center items-center">
+                <div class="flex flex-col gap-2 justify-center items-center md:flex-row">
                     <x-inputs.button type="hyperlink" href="#daftarkan-produk" size="lg">
                         Daftarkan Produk Anda
                     </x-inputs.button>
@@ -26,14 +26,16 @@
                     </x-inputs.button>
                 </div>
             </div>
-            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
-                <a href="#biaya-servis" class="tab-border active">Biaya Servis</a>
-                <a href="#masa-garansi" class="tab-border">Masa Garansi</a>
+            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200 md:top-[72px] lg:top-20' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out w-full bg-[#F4F4F4]">
+                <div class="container flex gap-8 overflow-x-auto px-8 md:justify-center">
+                    <a href="#biaya-servis" class="tab-border active">Biaya Servis</a>
+                    <a href="#masa-garansi" class="tab-border">Masa Garansi</a>
+                </div>
             </div>
-            <div id="biaya-servis" class="scrollspy px-4 pt-20 pb-24 border-b border-[#CECECE] scroll-mt-20">
+            <div id="biaya-servis" class="container scrollspy px-4 pt-20 pb-24 scroll-mt-20 sm:px-6 md:scroll-mt-24">
                 <h2 class="mb-8">Panduan Biaya Servis (Perbaikan Produk)</h2>
                 <div class="flex flex-col gap-11 rounded-2xl bg-[#F4F4F4] px-6 pt-4 pb-12 mb-6">
-                    <div class="flex gap-2 justify-around">
+                    <div class="flex gap-2 justify-around md:max-w-md mx-auto">
                         <div class="flex flex-col gap-2.5 text-center">
                             <span class="icon-[qlementine-icons--settings-24] text-4xl m-4"></span>
                             <span>Harga Suku<br> Cadang</span>
@@ -53,7 +55,7 @@
                             <span>Biaya Servis</span>
                         </div>
                     </div>
-                    <ul class="list-disc space-y-4 ml-4">
+                    <ul class="list-disc space-y-4 ml-4 md:px-4">
                         <li>
                             <p>Harga Sparepart</p>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolores sit amet</p>
@@ -68,7 +70,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="space-y-4 mb-10">
+                <div class="space-y-4 mb-10 md:mb-12">
                     <h4>Informasi Layanan Garansi</h4>
                     <ul class="list-disc ml-6">
                         <li>
@@ -82,14 +84,14 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex flex-col gap-4 mb-10">
+                <div class="flex flex-col gap-4 mb-10 md:mb-12">
                     <h4>Kategori Garansi</h4>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <p>Masa Garansi Produk</p>
                             <h4>1 tahun</h4>
                         </div>
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <p>Masa Garansi Layanan</p>
                             <h4>1 tahun</h4>
                         </div>
@@ -109,50 +111,51 @@
                         </div>
                     </div>
                 </div>
-                <div class="space-y-4 mb-10">
+                <div class="space-y-4 mb-10 md:mb-12">
                     <h4>Layanan Produk diluar Garansi</h4>
                     <p>Lorem ipsum dolor sit amet consectetur. Elit ac sit magna tortor posuere donec ornare etiam. Praesent ipsum turpis libero morbi turpis lorem lacus iaculis sed. Condimentum mauris vestibulum adipiscing in lorem massa sagittis nunc ultrices.</p>
                 </div>
-                <div class="flex flex-col gap-4 mb-10">
+                <div class="flex flex-col gap-4 mb-10 md:mb-12">
                     <h4>Ketentuan Layanan Produk diluar Garansi</h4>
                     <div class="grid grid-cols-1 gap-4">
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <h5>Masa Garansi Produk</h5>
                             <p>Masa garansi sudah habis</p>
                         </div>
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <h5>Headline lorem ipsum sit amet</h5>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet</p>
                         </div>
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <h5>Headline lorem ipsum sit amet</h5>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet</p>
                         </div>
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <h5>Headline lorem ipsum sit amet</h5>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet</p>
                         </div>
-                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4">
+                        <div class="rounded-2xl space-y-1 bg-[#F4F4F4] p-4 md:p-5">
                             <h5>Headline lorem ipsum sit amet</h5>
                             <p>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="masa-garansi" class="scrollspy px-4 pt-20 pb-[60px] scroll-mt-20">
+            <div class="w-full h-px bg-[#CECECE]"></div>
+            <div id="masa-garansi" class="container scrollspy px-4 pt-20 pb-[60px] scroll-mt-20 sm:px-6 md:scroll-mt-24">
                 <div class="mb-28">
                     <h2 class="mb-12">Panduan Masa Garansi</h2>
-                    <div class="space-y-4 mb-10">
+                    <div class="space-y-4 mb-10 md:mb-12">
                         <h4>Standar Estimasi Masa Garansi</h4>
                         <p>Info lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet 3</p>
                     </div>
-                    <div class="space-y-4 mb-10">
+                    <div class="space-y-4 mb-10 md:mb-12">
                         <h4>Masa Garansi Produk</h4>
                         <p>Lorem ipsum dolor sit amet consectetur. Elit ac sit magna tortor posuere donec ornare etiam.</p>
                     </div>
-                    <div class="grid grid-cols-1 gap-4 mb-14">
-                        <div class="flex flex-col gap-4 rounded-2xl bg-[#F4F4F4] p-4">
-                            <h3>Kompor</h3>
+                    <div class="grid grid-cols-1 gap-4 mb-14 md:grid-cols-2">
+                        <div class="flex flex-col gap-4 rounded-2xl bg-[#F4F4F4] p-4 md:p-5">
+                            <h3 class="md:text-2xl">Kompor</h3>
                             <div class="flex gap-4">
                                 <div class="space-y-1">
                                     <p>Servis (Bulan)</p>
@@ -165,11 +168,11 @@
                             </div>
                             <div class="space-y-1">
                                 <p>Rincian</p>
-                                <h4>Penggantian sparepart lorem ipsum dolor sit amet</h4>
+                                <h4 class="md:text-base">Penggantian sparepart lorem ipsum dolor sit amet</h4>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-4 rounded-2xl bg-[#F4F4F4] p-4">
-                            <h3>Regulator Gas</h3>
+                        <div class="flex flex-col gap-4 rounded-2xl bg-[#F4F4F4] p-4 md:p-5">
+                            <h3 class="md:text-2xl">Regulator Gas</h3>
                             <div class="flex gap-4">
                                 <div class="space-y-1">
                                     <p>Servis (Bulan)</p>
@@ -182,7 +185,7 @@
                             </div>
                             <div class="space-y-1">
                                 <p>Rincian</p>
-                                <h4>Penggantian sparepart lorem ipsum dolor sit amet</h4>
+                                <h4 class="md:text-base">Penggantian sparepart lorem ipsum dolor sit amet</h4>
                             </div>
                         </div>
                         <div class="space-y-1">

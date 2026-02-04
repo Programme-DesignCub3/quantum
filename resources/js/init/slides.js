@@ -237,17 +237,52 @@ if (document.querySelector('#guidance-detail')) {
 if (document.querySelector('#customer-service')) {
     if(document.querySelector('.splide.solution-cs')) {
         new Splide('.splide.solution-cs', {
-            ...swipeable,
+            arrows: false,
+            pagination: false,
+            drag: 'free',
             gap: '2rem',
-            padding: '1.5rem'
+            padding: '1.5rem',
+            perPage: 3,
+            breakpoints: {
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                }
+            }
         }).mount();
     }
 
     if(document.querySelector('.splide.education-cs')) {
         new Splide('.splide.education-cs', {
-            ...swipeable,
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
             gap: '2rem',
-            padding: '1rem'
+            padding: '1rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                }
+            }
         }).mount();
     }
 

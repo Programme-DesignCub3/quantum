@@ -1,17 +1,17 @@
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6 md:flex-col-reverse">
     @if($this->search != '')
-        <div class="w-full flex flex-col gap-4 justify-center items-center">
-            <span class="max-w-56 mx-auto text-center">Kesulitan menemukan yang dicari silahkan hubungi Customer Care Kami</span>
+        <div class="w-full flex flex-col gap-4 justify-center items-center md:flex-row">
+            <span class="max-w-56 mx-auto text-center md:text-sm md:mx-0 md:max-w-full">Kesulitan menemukan yang dicari silahkan hubungi Customer Care Kami</span>
             <x-inputs.button type="hyperlink" href="{{ route('support.contact') }}" variant="secondary" color="white" class="w-max">
                 Kontak Kami
             </x-inputs.button>
         </div>
         @if(count($result) > 0)
-            <div class="max-w-sm w-full mx-auto flex flex-col gap-4 py-2.5 max-h-80 overflow-y-auto">
+            <div class="max-w-sm w-full mx-auto flex flex-col gap-4 py-2.5 max-h-80 overflow-y-auto min-[400px]:max-w-full md:flex-row-reverse">
                 @foreach($result as $key => $items)
                     @switch($key)
                         @case('products')
-                            <div class="flex flex-col gap-3">
+                            <div class="flex flex-col gap-3 w-full">
                                 <h4>Rekomendasi Produk</h4>
                                 <div class="flex flex-col gap-3">
                                     @foreach($items as $key => $item)
@@ -78,9 +78,9 @@
             </div>
         @endif
     @endif
-    <div class="space-y-4 text-center">
-        <h4>Temukan Sesuatu</h4>
-        <form wire:submit="searchForm" x-data="{ search: '' }" class="relative">
+    <div class="space-y-4 text-center justify-center items-center md:space-y-0 md:flex">
+        <h4 class="md:shrink-0 md:mr-[60px]">Temukan Sesuatu</h4>
+        <form wire:submit="searchForm" x-data="{ search: '' }" class="relative w-full">
             <button type="submit" class="absolute top-1/2 -translate-y-1/2 left-4 cursor-pointer flex justify-center items-center">
                 <span class="icon-[iconamoon--search] text-[30px] text-qt-green-normal"></span>
             </button>
@@ -89,5 +89,8 @@
                 <span class="icon-[material-symbols--close-rounded] text-2xl text-white"></span>
             </button>
         </form>
+        <x-inputs.button type="button" event="$store.searchDrawer.closeDrawer()" size="lg" class="hidden md:py-5 md:ml-[30px] md:block">
+            Batal
+        </x-inputs.button>
     </div>
 </div>

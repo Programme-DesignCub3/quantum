@@ -1,4 +1,4 @@
-<form wire:submit="submit" id="daftarkan-produk" class="flex flex-col gap-4 my-8 px-5 scroll-mt-32">
+<form wire:submit="submit" id="daftarkan-produk" class="flex flex-col gap-4 my-8 px-5 scroll-mt-32 md:max-w-[560px] md:mx-auto">
     <h3 class="text-center">Daftarkan Produk Quantum Anda Sekarang dan Nikmati Perlindungan Garansi Resmi!</h3>
     <div class="flex flex-col gap-5">
         <div class="flex flex-col gap-4">
@@ -108,7 +108,9 @@
             </div>
         </div>
     </div>
-    <x-inputs.button type="submit" size="lg">
-        Daftarkan Garansi Sekarang
-    </x-inputs.button>
+    <div class="justify-center items-center md:flex">
+        <x-inputs.button type="submit" size="lg" class="w-full md:w-auto">
+            Daftarkan Garansi Sekarang
+        </x-inputs.button>
+    </div>
 </form>

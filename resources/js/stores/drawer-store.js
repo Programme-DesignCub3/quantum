@@ -2,15 +2,18 @@ Alpine.store('menuDrawer', {
     open: false,
     isMenuOpen: true,
     currentMenu: null,
+    currentMenuDesktop: null,
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
     openMenu(menu) {
         this.isMenuOpen = false;
         this.currentMenu = menu;
+        this.currentMenuDesktop = menu;
     },
     closeMenu() {
         this.isMenuOpen = true;
         this.currentMenu = null;
+        this.currentMenuDesktop = null;
     }
 })
 Alpine.store('searchDrawer', {

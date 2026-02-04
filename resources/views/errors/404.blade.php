@@ -10,11 +10,11 @@
 @endsection
 
 @section('content')
-    <section class="px-4 py-[60px] bg-white">
+    <section class="container px-4 py-[60px]">
         <div class="flex flex-col items-center justify-center text-center gap-[42px] py-[62px]">
             <div class="space-y-4">
-                <h1 class="max-w-xs mx-auto">Halaman Tidak Ditemukan</h1>
-                <p class="large max-w-56 mx-auto">Halaman yang Anda tuju tidak dapat kami temukan. Silakan kembali ke beranda.</p>
+                <h1 class="max-w-xs mx-auto sm:max-w-full">Halaman Tidak Ditemukan</h1>
+                <p class="large max-w-56 mx-auto sm:max-w-md">Halaman yang Anda tuju tidak dapat kami temukan. Silakan kembali ke beranda.</p>
             </div>
             <div>
                 <x-inputs.button type="hyperlink" href="{{ route('home') }}" size="lg">

@@ -21,6 +21,7 @@
     <meta property="twitter:title" content="@yield('meta_title')" />
     <meta property="twitter:description" content="@yield('meta_description')" />
     <meta property="twitter:image" content="@yield('meta_image')" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="{{ URL::current() }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
@@ -30,7 +31,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="antialiased max-w-md mx-auto font-sans bg-white">
+<body class="antialiased font-sans bg-white">
     <x-navigation.navbar
         :transparent="Route::currentRouteName() === 'home'"
         :sticky="Route::currentRouteName() !== 'home'"
