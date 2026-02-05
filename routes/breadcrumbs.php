@@ -20,13 +20,13 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail) {
     $trail->push('Produk', route('product'));
 });
 
-// Beranda > [Kategori]
+// Beranda > Produk > [Kategori]
 Breadcrumbs::for('product.category', function (BreadcrumbTrail $trail, $category) {
     $trail->parent('home');
     $trail->push($category->name, route('product.category', $category->slug));
 });
 
-// Beranda > [Kategori] > [Detail Produk]
+// Beranda > Produk > [Kategori] > [Detail Produk]
 Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category, $slug) {
     $trail->parent('product.category', $category->category);
     $trail->push($slug->variant->name . ' ' . $slug->name, route('product.detail', [$category->category->slug, $slug->slug]));

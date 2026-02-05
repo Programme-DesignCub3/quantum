@@ -16,7 +16,7 @@
                 <h2>{{ $detail->title }}</h2>
             </div>
             <div class="relative">
-                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full md:object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
+                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
             @foreach($detail->content as $item)
                 @switch($item['type'])

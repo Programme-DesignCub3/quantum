@@ -10,9 +10,9 @@
 @endsection
 
 @section('content')
-    <main x-data id="news-event-detail" class="bg-[#FFFFFF]">
+    <main x-data id="news-event-detail">
         <section class="flex flex-col">
-            <div class="flex flex-col gap-4 px-6 pt-[60px] pb-8">
+            <div class="container flex flex-col gap-4 px-6 pt-[60px] pb-8">
                 <div class="space-y-2">
                     <h2>{{ $detail->title }}</h2>
                     <div class="flex gap-4">
@@ -34,10 +34,10 @@
                     </div>
                 </div>
             </div>
-            <div class="aspect-49/30">
-                <img class="aspect-49/30 object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
+            <div class="aspect-49/30 md:h-[500px] md:w-full">
+                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
-            <div class="flex flex-col gap-12 px-6 pt-[42px] pb-24">
+            <div class="container flex flex-col gap-12 px-6 pt-[42px] pb-[100px] md:pt-[60px]">
                 <div class="article-content">
                     {!! $detail->content !!}
                 </div>
@@ -54,27 +54,29 @@
                 </div>
             </div>
         </section>
-        <section class="flex flex-col gap-8 bg-[#F4F4F4] pt-[46px] pb-[77px]">
-            <h3 class="px-6">Lihat juga Rekomendasi Produk</h3>
-            @if(!$recommendation_products->isEmpty())
-                <div class="splide recommendation-products-news-event" role="group" aria-label="Recommendation Product Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach($recommendation_products as $product)
-                                <li class="splide__slide w-[260px]">
-                                    <x-displays.product-card direction="row" :payload="$product" />
-                                </li>
-                            @endforeach
-                        </ul>
+        <section class="bg-[#F4F4F4]">
+            <div class="container flex flex-col gap-8 pt-[46px] pb-[77px]">
+                <h3 class="px-6">Lihat juga Rekomendasi Produk</h3>
+                @if(!$recommendation_products->isEmpty())
+                    <div class="splide recommendation-products-news-event" role="group" aria-label="Recommendation Product Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($recommendation_products as $product)
+                                    <li class="splide__slide w-[260px]">
+                                        <x-displays.product-card direction="row" :payload="$product" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            @else
-                <div class="min-h-[100px] flex justify-center items-center">
-                    <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
-                </div>
-            @endif
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                    </div>
+                @endif
+            </div>
         </section>
-        <section class="flex flex-col gap-8 pt-[77px] pb-[100px]">
+        <section class="container flex flex-col gap-8 pt-[77px] pb-[100px]">
             <h3 class="px-6">Lihat Juga Berita atau Event Lainnya</h3>
             @if(!$other_news->isEmpty())
                 <div class="splide other-news-event" role="group" aria-label="Other News Event Slides">
@@ -89,7 +91,7 @@
                     </div>
                 </div>
             @else
-                <div class="min-h-[100px] flex justify-center items-center">
+                <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
                     <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                 </div>
             @endif

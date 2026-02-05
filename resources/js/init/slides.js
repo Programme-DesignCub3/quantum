@@ -150,9 +150,30 @@ if (document.querySelector('#product-detail')) {
 if (document.querySelector('#news-event')) {
     if(document.querySelector('.splide.news-event')) {
         new Splide('.splide.news-event', {
-            ...swipeable,
-            gap: '0.8rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
