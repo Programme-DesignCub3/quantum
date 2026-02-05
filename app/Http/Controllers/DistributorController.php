@@ -9,6 +9,8 @@ class DistributorController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         return view('pages.distributor.distributor', [
             'meta_title' => $pageSettings->distributor_meta_title,
             'meta_description' => $pageSettings->distributor_meta_description,

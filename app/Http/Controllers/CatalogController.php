@@ -9,6 +9,8 @@ class CatalogController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         return view('pages.distributor.catalog', [
             'meta_title' => $pageSettings->catalog_meta_title,
             'meta_description' => $pageSettings->catalog_meta_description,

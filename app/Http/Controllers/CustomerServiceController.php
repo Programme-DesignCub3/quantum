@@ -11,6 +11,8 @@ class CustomerServiceController extends Controller
 {
     public function index(PageSettings $pageSettings, Product $product, Tutorial $tutorial)
     {
+        abort(404);
+
         $guidances = $product->getProductGuidanceByNumber(3);
 
         $tutorials = $tutorial->getTutorialByNumber(3);

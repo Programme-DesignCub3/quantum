@@ -10,6 +10,8 @@ class ContactController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         $call_center = new PhoneNumber($pageSettings->contact_cc_number, 'ID');
         $whatsapp = new PhoneNumber($pageSettings->contact_wa_number, 'ID');
 
