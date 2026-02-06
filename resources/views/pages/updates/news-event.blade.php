@@ -13,7 +13,7 @@
     <main id="news-event" class="bg-[#F4F4F4]">
         <section class="container flex flex-col gap-14 pt-[116px] pb-6">
             <div class="flex flex-col gap-[62px]">
-                <div class="space-y-4 max-w-sm mx-auto text-center px-4 sm:max-w-3xl">
+                <div class="space-y-4 max-w-sm mx-auto text-center px-4 sm:max-w-5xl">
                     <h1>{{ $page_settings->news_title }}</h1>
                     <p class="large">{{ $page_settings->news_description }}</p>
                 </div>

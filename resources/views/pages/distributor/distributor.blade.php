@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <main class="bg-white">
+    <main>
         <section class="bg-[#F4F4F4]">
             <div class="max-w-md mx-auto text-center space-y-4 px-6 pt-[68px] pb-4">
                 <h1>{{ $page_settings->distributor_title }}</h1>

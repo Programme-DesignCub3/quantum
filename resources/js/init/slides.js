@@ -190,9 +190,30 @@ if (document.querySelector('#news-event-detail')) {
 
     if(document.querySelector('.splide.other-news-event')) {
         new Splide('.splide.other-news-event', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
@@ -201,9 +222,30 @@ if (document.querySelector('#news-event-detail')) {
 if (document.querySelector('#recipe')) {
     if(document.querySelector('.splide.recipe-articles')) {
         new Splide('.splide.recipe-articles', {
-            ...swipeable,
-            gap: '0.8rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                },
+                1024: {
+                    perPage: 2,
+                    gap: '0.8rem',
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
@@ -228,9 +270,30 @@ if (document.querySelector('#recipe-detail')) {
 
     if(document.querySelector('.splide.other-recipe')) {
         new Splide('.splide.other-recipe', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
@@ -282,10 +345,13 @@ if (document.querySelector('#customer-service')) {
             arrows: false,
             pagination: false,
             drag: 'free',
-            gap: '2rem',
+            gap: '1.25rem',
             padding: '1.5rem',
             perPage: 3,
             breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
                 1024: {
                     perPage: 2,
                 },
@@ -307,11 +373,12 @@ if (document.querySelector('#customer-service')) {
             pagination: false,
             drag: 'free',
             perPage: 4,
-            gap: '2rem',
-            padding: '1rem',
+            gap: '1.25rem',
+            padding: '1.5rem',
             breakpoints: {
                 1280: {
                     perPage: 3,
+                    gap: '2rem',
                 },
                 1024: {
                     perPage: 2,
@@ -323,6 +390,7 @@ if (document.querySelector('#customer-service')) {
                 550: {
                     perPage: 1,
                     autoWidth: true,
+                    padding: '1rem',
                 }
             }
         }).mount();

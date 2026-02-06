@@ -28,9 +28,9 @@ class RecipeController extends Controller
         $detail = $recipe->getDetailRecipe($slug);
         if(!$detail) return abort(404);
 
-        $recommendation_products = $product->getRecommendationProduct(3);
+        $recommendation_products = $product->getRecommendationProduct(4);
 
-        $other_recipes = $recipe->getRecommendationRecipe(3, $detail->id);
+        $other_recipes = $recipe->getRecommendationRecipe(4, $detail->id);
 
         $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
 

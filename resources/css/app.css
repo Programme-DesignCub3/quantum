@@ -225,12 +225,12 @@
     }
     /* Article Content */
     .article-content {
-        @apply flex flex-col gap-5;
+        @apply flex flex-col gap-5 md:gap-8;
         a {
             @apply border-b-2 border-qt-green-normal;
         }
         img {
-            @apply mx-auto aspect-49/30 object-cover rounded-xl;
+            @apply mx-auto aspect-49/30 object-cover rounded-xl md:rounded-2xl;
         }
         ul {
             @apply list-disc ml-5;

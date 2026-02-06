@@ -28,9 +28,9 @@ class NewsEventController extends Controller
         $detail = $newsEvent->getDetailNews($slug);
         if(!$detail) return abort(404);
 
-        $recommendation_products = $product->getRecommendationProduct(3);
+        $recommendation_products = $product->getRecommendationProduct(4);
 
-        $other_news = $newsEvent->getRecommendationNews(3, $detail->id);
+        $other_news = $newsEvent->getRecommendationNews(4, $detail->id);
 
         $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
 

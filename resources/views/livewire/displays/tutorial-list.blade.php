@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-8">
     <div class="flex flex-col gap-12">
-        <div class="px-2 sm:w-max sm:mx-auto">
+        <div class="px-2 w-full mx-auto max-w-max">
             <div class="flex gap-0.5 bg-white p-1 rounded-full overflow-x-auto">
                 <button type="button" wire:click="recipeFilter('')" class="tab {{ $category === '' ? 'active' : '' }}">
                     Semua

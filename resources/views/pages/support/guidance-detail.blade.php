@@ -33,7 +33,7 @@
                                     <div class="splide__track">
                                         <ul class="splide__list">
                                             @foreach($item['data']['value'] as $i)
-                                                <li class="splide__slide">
+                                                <li wire:key="guidance-step-{{ $i['id'] }}" class="splide__slide">
                                                     <x-displays.guidance-step-card :payload="$i" />
                                                 </li>
                                             @endforeach
@@ -42,7 +42,9 @@
                                 </div>
                                 <div class="hidden grid-cols-3 gap-5 px-6 md:grid">
                                     @foreach($item['data']['value'] as $i)
-                                        <x-displays.guidance-step-card :payload="$i" />
+                                        <div wire:key="guidance-step-{{ $i['id'] }}">
+                                            <x-displays.guidance-step-card :payload="$i" />
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -59,7 +61,7 @@
                         <div class="splide__track">
                             <ul class="splide__list">
                                 @foreach($other_guidance as $item)
-                                    <li class="splide__slide w-[260px]">
+                                    <li wire:key="other-guidance-{{ $item->id }}" class="splide__slide w-[260px]">
                                         <x-displays.article-card for="guidance" :payload="$item" />
                                     </li>
                                 @endforeach

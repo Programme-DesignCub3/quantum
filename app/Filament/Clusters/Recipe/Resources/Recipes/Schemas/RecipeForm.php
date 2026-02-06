@@ -45,7 +45,7 @@ class RecipeForm
                                 ->rows(3)
                                 ->belowContent('Deskripsi singkat mengenai resep.')
                                 ->required(),
-                            RichEditor::make('value')
+                            RichEditor::make('materials')
                                 ->label('Bahan')
                                 ->toolbarButtons(['bold', 'italic', 'underline'])
                                 ->required(),
