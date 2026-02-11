@@ -12,7 +12,7 @@
         'flex-row gap-4': direction === 'row',
         'flex-col': direction === 'col'
     }" @endif>
-        <div class="flex-1 relative bg-white">
+        <div class="flex-1 relative bg-white mx-auto">
             <img @class([
                 'rounded-2xl' => $direction === 'row',
                 'aspect-17/13 size-full object-cover' => $size === 'lg',
@@ -32,12 +32,12 @@
         </div>
         <div @class([
             'py-4 pr-2 ' => $direction === 'row',
-            'p-2' => $size === 'sm' && $direction === 'col',
+            'p-2 md:p-4' => $size === 'sm' && $direction === 'col',
             'p-4' => $size !== 'sm' && $direction === 'col',
             'flex flex-col flex-1 justify-between h-full gap-4 bg-white'
         ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
             'py-4 pr-2 ': direction === 'row',
-            'p-2': size === 'sm' && direction === 'col',
+            'p-2 md:p-4': size === 'sm' && direction === 'col',
             'p-4': size !== 'sm' && direction === 'col'
         }" @endif>
             <div class="flex flex-col gap-2">
@@ -49,7 +49,7 @@
                             @break
                         @case('md')
                             <span class="text-[#9A9A9A]">{{ $payload->variant->name ?? $payload->category->name }}</span>
-                            <h4 class="text-qt-green-normal">{{ $payload->name }}</h4>
+                            <h4 class="text-qt-green-normal md:text-xl">{{ $payload->name }}</h4>
                             @break
                         @case('sm')
                             <span class="extrasmall text-[#9A9A9A]">{{ $payload->variant->name ?? $payload->category->name }}</span>
@@ -180,12 +180,12 @@
     <div @class([
         'gap-3' => $direction === 'row' || $direction === 'col',
         'px-4 pb-4' => $size !== 'sm' && $direction === 'col',
-        'flex-col px-2 pb-2 min-[420px]:flex-row' => $size === 'sm' && $direction === 'col',
+        'flex-col px-2 pb-2 min-[420px]:flex-row md:px-4 md:pb-4' => $size === 'sm' && $direction === 'col',
         'flex justify-between text-center'
     ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
         'gap-3': direction === 'row' || direction === 'col',
         'px-4 pb-4': size !== 'sm' && direction === 'col',
-        'flex-col px-2 pb-2 min-[420px]:flex-row': size === 'sm' && direction === 'col'
+        'flex-col px-2 pb-2 min-[420px]:flex-row md:px-4 md:pb-4': size === 'sm' && direction === 'col'
     }" @endif>
         @if(!$disableView)
             <a href="{{ route('product.detail', [$payload->category->slug, $payload->slug]) }}" class="transition-all duration-300 ease-in-out inline-block w-full cursor-pointer border disabled:cursor-not-allowed py-3 px-6 rounded-xl font-semibold tracking-[0.5px] leading-[114%] text-sm border-transparent bg-white text-qt-green-normal hover:bg-qt-green-normal hover:text-white disabled:bg-[#F4F4F4] disabled:text-[#DBDBDB]">

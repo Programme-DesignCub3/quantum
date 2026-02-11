@@ -13,10 +13,12 @@
     <main id="customer-service" class="bg-white">
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-10 px-4 pb-[84px] pt-[116px] sm:px-6">
+                {{-- Heading --}}
                 <div class="text-center space-y-4 max-w-sm mx-auto sm:max-w-5xl">
                     <h1>{{ $page_settings->cs_title }}</h1>
                     <p class="large">{{ $page_settings->cs_description }}</p>
                 </div>
+                {{-- Shortcut Links --}}
                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
                     <div class="flex justify-between gap-4 pl-6 pr-3 py-3 bg-white rounded-2xl">
                         <div class="flex items-center gap-4">
@@ -48,6 +50,7 @@
                 </div>
             </div>
         </section>
+        {{-- Solution --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 pt-10 pb-[68px]">
                 <div class="text-center space-y-4 max-w-sm mx-auto px-4 sm:max-w-5xl">
@@ -72,6 +75,7 @@
                 </div>
             </div>
         </section>
+        {{-- Guidance --}}
         <section class="container flex flex-col gap-[42px] py-[92px]">
             <div class="flex justify-between items-center px-4 sm:px-6 md:gap-4">
                 <div class="space-y-4 text-center max-w-xs mx-auto sm:max-w-5xl md:mx-0 md:text-left">
@@ -89,8 +93,8 @@
                             @foreach($guidances as $guidance)
                                 <li class="splide__slide">
                                     <x-displays.swipe-card :image="$guidance->getMedia('thumbnail_guidance')->first() ? $guidance->getMedia('thumbnail_guidance')->first()->getUrl() : $guidance->media->first()->getUrl()" :alt="'Panduan ' . $guidance->variant->name . ' ' . $guidance->name">
-                                        <div class="flex items-center gap-2">
-                                            <h4>{{ $guidance->variant->name ?? $guidance->variant->name }} {{ $guidance->name }}</h4>
+                                        <div class="flex items-center gap-2 md:gap-4">
+                                            <h4 class="md:text-xl">{{ $guidance->variant->name ?? $guidance->variant->name }} {{ $guidance->name }}</h4>
                                             <x-inputs.button-icon type="hyperlink" href="{{ route('product.download-guidance', $guidance->slug) }}" icon="icon-[material-symbols--download-rounded]" size="md" class="size-14 rounded-2xl!" />
                                         </div>
                                     </x-displays.swipe-card>
@@ -110,6 +114,7 @@
                 </x-inputs.button>
             </div>
         </section>
+        {{-- Tutorial Video --}}
         <section class="container flex flex-col gap-[42px] pt-6 pb-[92px]">
             <div class="flex justify-between items-center px-4 sm:px-6 md:gap-4">
                 <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:mx-0 md:text-left">
@@ -125,9 +130,9 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach($tutorials as $tutorial)
-                                <li class="splide__slide" wire:key="tutorial-{{ $tutorial->id }}">
+                                <li wire:key="tutorial-{{ $tutorial->id }}" class="splide__slide">
                                     <x-displays.swipe-card :image="$tutorial->getMedia('tutorial-video')->first()->getUrl()" :video="$tutorial->video" :alt="'Tutorial Video ' . $tutorial->title">
-                                        <h4>{{ $tutorial->title }}</h4>
+                                        <h4 class="md:text-xl">{{ $tutorial->title }}</h4>
                                     </x-displays.swipe-card>
                                 </li>
                             @endforeach

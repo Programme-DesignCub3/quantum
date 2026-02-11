@@ -3,21 +3,25 @@
     <div class="flex flex-col gap-5">
         <div class="flex flex-col gap-4">
             <p>Data Pribadi</p>
+            {{-- Nama Lengkap --}}
             <div x-data="{ input: @entangle('nama_lengkap') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama_lengkap" :class="input ? 'floating' : 'not-floating'">Nama Lengkap</label>
                 <input wire:model="nama_lengkap" x-model="input" type="text" id="nama_lengkap" placeholder="Nama Lengkap" autocomplete="off" required>
                 @error('nama_lengkap') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
+            {{-- Nomor Handphone --}}
             <div x-data="{ input: @entangle('nomor_handphone') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nomor_handphone" :class="input ? 'floating' : 'not-floating'">Nomor Handphone</label>
                 <input wire:model="nomor_handphone" x-model="input" type="tel" id="nomor_handphone" placeholder="Nomor Handphone" autocomplete="off" inputmode="numeric" required>
                 @error('nomor_handphone') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
+            {{-- Email --}}
             <div x-data="{ input: @entangle('email') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="email" :class="input ? 'floating' : 'not-floating'">Email</label>
                 <input wire:model="email" x-model="input" type="email" id="email" placeholder="Email" autocomplete="off" inputmode="email" required>
                 @error('email') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
+            {{-- Alamat Lengkap --}}
             <div x-data="{ input: @entangle('alamat_lengkap') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="alamat_lengkap" :class="input ? 'floating' : 'not-floating'">Alamat Lengkap</label>
                 <textarea wire:model="alamat_lengkap" x-model="input" id="alamat_lengkap" placeholder="Alamat Lengkap" required></textarea>
@@ -26,6 +30,7 @@
         </div>
         <div class="flex flex-col gap-4">
             <p>Data Produk</p>
+            {{-- Nomor Seri Produk --}}
             <div class="space-y-1.5">
                 <div x-data="{ input: @entangle('nomor_seri_produk') }" class="floating-label-input relative space-y-0">
                     <label x-cloak for="nomor_seri_produk" :class="input ? 'floating' : 'not-floating'">Nomor Seri Produk</label>
@@ -35,6 +40,7 @@
                 </div>
                 @error('nomor_seri_produk') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
+            {{-- Kategori Produk --}}
             <div class="floating-label-input space-y-1.5">
                 <button type="button" id="select-form" @click="$store.guaranteeCategoryProductDrawer.openDrawer()" class="{{ $kategori_produk ? 'filled' : 'not-filled' }}">
                     {{ $kategori_produk ?? 'Kategori Produk' }}
@@ -50,6 +56,7 @@
                     </div>
                 </x-displays.drawer>
             </div>
+            {{-- Model Produk --}}
             <div class="floating-label-input space-y-1.5">
                 <button type="button" id="select-form" @click="$store.guaranteeModelProductDrawer.openDrawer()" class="{{ $model_produk ? 'filled' : 'not-filled' }}">
                     {{ $model_produk ?? 'Model Produk' }}
@@ -65,6 +72,7 @@
                     </div>
                 </x-displays.drawer>
             </div>
+            {{-- Tanggal Pembelian --}}
             <div class="floating-label-input space-y-1.5">
                 <button type="button" id="select-form" @click="$store.guaranteePurchaseDateDrawer.openDrawer()" class="{{ $tanggal_pembelian ? 'filled' : 'not-filled' }}">
                     {{ $tanggal_pembelian ?? 'Tanggal Pembelian' }}
@@ -76,6 +84,7 @@
                     <div wire:ignore id="purchase-date-picker" class="px-2"></div>
                 </x-displays.drawer>
             </div>
+            {{-- Tempat Pembelian --}}
             <div class="floating-label-input space-y-1.5">
                 <button type="button" id="select-form" @click="$store.guaranteePlacePurchaseDrawer.openDrawer()" class="{{ $tempat_pembelian ? 'filled' : 'not-filled' }}">
                     {{ $tempat_pembelian ?? 'Tempat Pembelian' }}
@@ -94,11 +103,13 @@
                     </div>
                 </x-displays.drawer>
             </div>
+            {{-- Pesan --}}
             <div x-data="{ input: @entangle('pesan') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="pesan" :class="input ? 'floating' : 'not-floating'">Pesan</label>
                 <textarea wire:model="pesan" x-model="input" id="pesan" placeholder="Pesan" required></textarea>
                 @error('pesan') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
+            {{-- Syarat & Ketentuan --}}
             <div class="space-y-1.5">
                 <div class="flex justify-start gap-3">
                     <input wire:model="tnc" type="checkbox" id="tnc" class="shrink-0 mt-1">

@@ -10,8 +10,9 @@
 @endsection
 
 @section('content')
-    <main x-data class="bg-white">
+    <main x-data>
         <section class="flex flex-col">
+            {{-- Heading --}}
             <div class="container flex flex-col gap-8 px-6 pt-[116px] pb-[66px]">
                 <div class="max-w-xs mx-auto space-y-4 text-center sm:max-w-5xl">
                     <h1>Informasi Garansi</h1>
@@ -26,12 +27,14 @@
                     </x-inputs.button>
                 </div>
             </div>
+            {{-- Tabs --}}
             <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200 md:top-[72px] lg:top-20' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out w-full bg-[#F4F4F4]">
                 <div class="container flex gap-8 overflow-x-auto px-8 md:justify-center">
                     <a href="#biaya-servis" class="tab-border active">Biaya Servis</a>
                     <a href="#masa-garansi" class="tab-border">Masa Garansi</a>
                 </div>
             </div>
+            {{-- Biaya Servis --}}
             <div id="biaya-servis" class="container scrollspy px-4 pt-20 pb-24 scroll-mt-20 sm:px-6 md:scroll-mt-24">
                 <h2 class="mb-8">Panduan Biaya Servis (Perbaikan Produk)</h2>
                 <div class="flex flex-col gap-11 rounded-2xl bg-[#F4F4F4] px-6 pt-4 pb-12 mb-6">
@@ -142,6 +145,7 @@
                 </div>
             </div>
             <div class="w-full h-px bg-[#CECECE]"></div>
+            {{-- Masa Garansi --}}
             <div id="masa-garansi" class="container scrollspy px-4 pt-20 pb-[60px] scroll-mt-20 sm:px-6 md:scroll-mt-24">
                 <div class="mb-28">
                     <h2 class="mb-12">Panduan Masa Garansi</h2>

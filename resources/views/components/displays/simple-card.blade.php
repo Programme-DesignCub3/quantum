@@ -3,7 +3,7 @@
     'rounded-3xl py-6 px-4 md:p-5' => !$simetric,
     'border border-[#DBDBDB]' => $border,
     'bg-white' => $background === 'white',
-    'flex flex-col gap-4'
+    'flex flex-col gap-4 w-full'
 ])>
     <div class="flex justify-between gap-2.5">
         <div @class([

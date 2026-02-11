@@ -11,7 +11,7 @@
 
 @section('content')
     <main x-data="productDetail" id="product-detail" class="bg-white">
-        <section class="flex flex-col gap-8 pt-4 px-4">
+        <section class="container grid grid-cols-1 gap-8 pt-4 px-4 sm:px-6 md:gap-24 md:grid-cols-2 md:pb-10 md:pt-16">
             <div class="flex flex-col gap-8">
                 <div class="splide main-product-detail" role="group" aria-label="Main Product Detail Slides">
                     <div class="splide__track">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col gap-2 pb-8">
+            <div class="flex flex-col gap-2 pb-8 md:gap-5 md:pb-0">
                 <div class="space-y-0">
                     <p class="large text-[#9A9A9A]">{{ $detail->variant->name ?? $detail->category->name }}</p>
                     <h2 class="text-qt-green-normal">{{ $detail->name }}</h2>
@@ -75,8 +75,11 @@
                         </div>
                     @endif
                 </div>
+                <x-inputs.button type="button" size="lg" event="$store.productDrawer.openDrawer(data)" class="w-max hidden md:block">
+                    Beli Sekarang
+                </x-inputs.button>
             </div>
-            <div x-cloak x-data="{ data: {{ json_encode($data_drawer) }} }" :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 bg-white p-4 max-w-[416px] w-full rounded-t-2xl drop-shadow-float-lg">
+            <div x-cloak x-data="{ data: {{ json_encode($data_drawer) }} }" :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 bg-white p-4 max-w-full w-full rounded-t-2xl drop-shadow-float-lg md:hidden">
                 {{-- <div class="space-y-0">
                     <span>Harga</span>
                     <div class="flex space-x-1">
@@ -90,21 +93,34 @@
             </div>
         </section>
         <section>
-            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out flex gap-8 w-full overflow-x-auto px-8 bg-[#F4F4F4]">
-                <a href="#fitur" class="tab-border active">Fitur</a>
-                <a href="#spesifikasi" class="tab-border">Spesifikasi</a>
-                @if(!empty($detail->gallery))
-                    <a href="#galeri" class="tab-border">Galeri</a>
-                @endif
-                <a href="#bandingkan" class="tab-border">Bandingkan</a>
-                <a href="#bantuan" class="tab-border">Bantuan</a>
+            <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200 md:top-[72px] lg:top-20' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out w-full bg-[#F4F4F4]">
+                <div class="container overflow-x-auto px-8 md:px-6 md:flex md:justify-between">
+                    <div class="flex gap-8">
+                        <a href="#fitur" class="tab-border active">Fitur</a>
+                        <a href="#spesifikasi" class="tab-border">Spesifikasi</a>
+                        @if(!empty($detail->gallery))
+                            <a href="#galeri" class="tab-border">Galeri</a>
+                        @endif
+                        <a href="#bandingkan" class="tab-border">Bandingkan</a>
+                        <a href="#bantuan" class="tab-border">Bantuan</a>
+                    </div>
+                    <div class="hidden items-center-safe gap-10 lg:flex">
+                        <div class="space-y-0">
+                            <p class="small text-[#9A9A9A]">{{ $detail->variant->name ?? $detail->category->name . ' Quantum' }}</p>
+                            <h5>{{ $detail->name }}</h5>
+                        </div>
+                        <x-inputs.button type="button" size="lg" color="white" event="$store.productDrawer.openDrawer(data)" class="w-max">
+                            Beli Sekarang
+                        </x-inputs.button>
+                    </div>
+                </div>
             </div>
-            <div id="fitur" class="scrollspy flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-24">
-                <div class="space-y-4 text-center max-w-sm mx-auto">
+            <div id="fitur" class="container scrollspy flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-24 sm:px-6 md:pt-[100px]">
+                <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:mx-0 md:text-left">
                     <h2>Apa Keunggulan {{ $detail->category->name . ' Quantum ' . $detail->name . '?' }}</h2>
                     <p class="text-[#6D6D6D]">Pilihan tepat untuk dapur Anda, Quantum hadirkan efisiensi dan kepraktisan dalam setiap masakan.</p>
                 </div>
-                <div class="flex flex-col gap-4">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                     @foreach($detail->superiorities as $superiority)
                         <x-displays.simple-card :simetric="true">
                             <h4>{{ $superiority->title }}</h4>
@@ -120,13 +136,13 @@
                     @endforeach
                 </div>
             </div>
-            <div class="flex flex-col gap-[42px] border-b border-[#CECECE] py-[92px]">
-                <div class="space-y-4 text-center max-w-sm mx-auto px-4">
+            <div class="container flex flex-col gap-[42px] py-[92px]">
+                <div class="space-y-4 text-center max-w-sm mx-auto px-4 sm:px-6 sm:max-w-5xl md:mx-0 md:text-left">
                     <h2>Fitur Utama {{ $detail->category->name . ' Quantum ' . $detail->name }}</h2>
                     <p class="text-[#6D6D6D]">Kompor dengan Kombinasi Sempurna Performa dan Estetika untuk Dapur Anda</p>
                 </div>
                 <div class="flex flex-col gap-8">
-                    <div class="px-4">
+                    <div class="px-4 sm:px-6">
                         <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ? $detail->features[0]->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')" :alt="$detail->features[0]->name">
                             <h4>{{ $detail->features[0]->name }}</h4>
                             @if($detail->features[0]->description)
@@ -154,51 +170,55 @@
                     @endif
                 </div>
             </div>
-            <div id="spesifikasi" class="scrollspy border-b border-[#CECECE] py-[60px] px-4 scroll-mt-24">
-                <div class="flex flex-col gap-8">
+            <div class="w-full h-px bg-[#CECECE] md:hidden"></div>
+            <div id="spesifikasi" class="container scrollspy py-[60px] px-4 scroll-mt-24">
+                <div class="space-y-8">
                     <h2>Spesifikasi</h2>
-                    @if(in_array('dimension_image', array_column($detail->specs_detail, 'type')) || in_array('dimension_text', array_column($detail->specs_detail, 'type')))
-                        <x-displays.accordion type="secondary" title="Dimensi" :open="true">
-                            <div class="flex flex-col gap-4">
-                                @if(in_array('dimension_image', array_column($detail->specs_detail, 'type')))
-                                    <div class="mt-2">
-                                        <img class="w-full object-cover object-center" src="{{ $detail->specs_detail[array_search('dimension_image', array_column($detail->specs_detail, 'type'))]['data']['value'] }}" alt="Dimensi {{ $detail->variant->name . ' ' . $detail->name }}">
-                                    </div>
-                                @endif
-                                @if(in_array('dimension_text', array_column($detail->specs_detail, 'type')))
-                                    <div class="grid grid-cols-2 gap-4">
-                                        @foreach($detail->specs_detail[array_search('dimension_text', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $dimension)
-                                            <x-displays.specs :label="$label">
-                                                <p>{{ $dimension }}</p>
-                                            </x-displays.specs>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
-                        </x-displays.accordion>
-                    @endif
-                    @if(in_array('detail', array_column($detail->specs_detail, 'type')))
-                        <x-displays.accordion type="secondary" title="Spesifikasi Detil" :open="true">
-                            <div class="mt-8 grid grid-cols-2 gap-4">
-                                @foreach($detail->specs_detail[array_search('detail', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $spec)
-                                    <x-displays.specs :label="$label">
-                                        <p>{{ $spec }}</p>
-                                    </x-displays.specs>
-                                @endforeach
-                            </div>
-                        </x-displays.accordion>
-                    @endif
+                    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        @if(in_array('dimension_image', array_column($detail->specs_detail, 'type')) || in_array('dimension_text', array_column($detail->specs_detail, 'type')))
+                            <x-displays.accordion type="secondary" title="Dimensi" :open="true">
+                                <div class="flex flex-col gap-4">
+                                    @if(in_array('dimension_image', array_column($detail->specs_detail, 'type')))
+                                        <div class="mt-2 mx-auto">
+                                            <img class="w-full object-cover object-center max-w-[350px]" src="{{ $detail->specs_detail[array_search('dimension_image', array_column($detail->specs_detail, 'type'))]['data']['value'] }}" alt="Dimensi {{ $detail->variant->name . ' ' . $detail->name }}">
+                                        </div>
+                                    @endif
+                                    @if(in_array('dimension_text', array_column($detail->specs_detail, 'type')))
+                                        <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                                            @foreach($detail->specs_detail[array_search('dimension_text', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $dimension)
+                                                <x-displays.specs :label="$label">
+                                                    <p>{{ $dimension }}</p>
+                                                </x-displays.specs>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                            </x-displays.accordion>
+                        @endif
+                        @if(in_array('detail', array_column($detail->specs_detail, 'type')))
+                            <x-displays.accordion type="secondary" title="Spesifikasi Detil" :open="true">
+                                <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
+                                    @foreach($detail->specs_detail[array_search('detail', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $spec)
+                                        <x-displays.specs :label="$label">
+                                            <p>{{ $spec }}</p>
+                                        </x-displays.specs>
+                                    @endforeach
+                                </div>
+                            </x-displays.accordion>
+                        @endif
+                    </div>
                 </div>
             </div>
+            <div class="w-full h-px bg-[#CECECE]"></div>
             @if(!empty($detail->gallery))
-                <div id="galeri" class="scrollspy border-b border-[#CECECE] flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
+                <div id="galeri" class="container scrollspy border-b border-[#CECECE] flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
                     <h2>Galeri</h2>
-                    <div class="flex flex-col gap-4">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                         @foreach($detail->gallery as $item)
                             @switch($item['type'])
                                 @case('image')
                                     <div class="rounded-2xl overflow-hidden">
-                                        <img class="w-full h-[230px] object-cover object-center" src="{{ asset('storage/' . $item['data']['value']) }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Foto Galeri ' . $loop->iteration }}">
+                                        <img class="w-full h-[230px] object-cover object-center md:h-[420px]" src="{{ asset('storage/' . $item['data']['value']) }}" alt="{{ $detail->variant->name . ' ' . $detail->name . ' - Foto Galeri ' . $loop->iteration }}">
                                     </div>
                                     @break
                                 @case('video_upload')
@@ -238,16 +258,20 @@
                     </div>
                 </div>
             @endif
-            <div id="bandingkan" class="scrollspy flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
+            <div id="bandingkan" class="container scrollspy flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
                 <h2>Bandingkan</h2>
                 <div class="flex flex-col gap-4">
                     <div class="border-b border-[#CECECE] py-3">
                         <h4>Produk</h4>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <x-displays.product-card size="sm" :disableView="true" :disableSpecs="true" :payload="$detail" />
+                    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                        <div>
+                            <x-displays.product-card size="sm" :disableView="true" :disableSpecs="true" :payload="$detail" />
+                        </div>
                         @if($compare_product)
-                            <x-displays.product-card size="sm" :disableSpecs="true" :payload="$compare_product" />
+                            <div>
+                                <x-displays.product-card size="sm" :disableSpecs="true" :payload="$compare_product" />
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -276,52 +300,70 @@
                 </div>
             </div>
         </section>
-        <section class="flex flex-col gap-8 bg-[#F4F4F4] py-[60px]">
-            <h2 class="max-w-60 px-4">Rekomendasi Produk Lainnya</h2>
-            @if(!$recommendation_products->isEmpty())
-                <div class="splide recommendation-product" role="group" aria-label="Recommendation Products Slides">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach($recommendation_products as $product)
-                                <li class="splide__slide">
-                                    <x-displays.product-card :payload="$product" />
-                                </li>
-                            @endforeach
-                        </ul>
+        <section class="bg-[#F4F4F4]">
+            <div class="container flex flex-col gap-8 py-[60px]">
+                <h2 class="max-w-60 px-4 sm:max-w-5xl">Rekomendasi Produk Lainnya</h2>
+                @if(!$recommendation_products->isEmpty())
+                    <div class="splide recommendation-product" role="group" aria-label="Recommendation Products Slides">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                @foreach($recommendation_products as $product)
+                                    <li class="splide__slide">
+                                        <x-displays.product-card :payload="$product" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            @else
-                <div class="min-h-[100px] flex justify-center items-center">
-                    <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
-                </div>
-            @endif
+                @else
+                    <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
+                        <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+                    </div>
+                @endif
+            </div>
         </section>
-        <section id="bantuan" class="flex flex-col gap-[42px] py-[60px] px-4">
-            <div class="flex flex-col gap-4">
+        <section id="bantuan" class="container flex flex-col gap-[42px] py-[60px] px-4">
+            <div class="flex flex-col gap-4 max-w-[676px]">
                 <h2>Panduan</h2>
                 @if($detail->getFirstMedia('guidance_product'))
                     <x-displays.guidance-card :payload="$detail" />
                 @else
-                    <div class="min-h-20 flex justify-center items-center">
+                    <div class="min-h-20 flex justify-center items-center md:min-h-40">
                         <p class="text-center text-gray-500">Panduan belum tersedia</p>
                     </div>
                 @endif
             </div>
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4 md:gap-8">
                 <h2>Info Lainnya</h2>
-                <div class="flex gap-4">
-                    <div class="w-full space-y-4 py-6 px-4 rounded-3xl border border-[#DBDBDB]">
-                        <h3>Tips dan Edukasi</h3>
-                        <x-inputs.button type="hyperlink" href="{{ route('support.guidance') }}" size="lg" variant="secondary" color="white">
-                            Lihat
-                        </x-inputs.button>
-                    </div>
-                    <div class="w-full space-y-4 py-6 px-4 rounded-3xl border border-[#DBDBDB]">
-                        <h3>Tutorial Video</h3>
-                        <x-inputs.button type="hyperlink" href="{{ route('support.tutorial-video') }}" size="lg" variant="secondary" color="white">
-                            Lihat
-                        </x-inputs.button>
-                    </div>
+                <div class="flex flex-col gap-4 md:flex-row">
+                    <x-displays.simple-card>
+                        <h3 class="md:text-2xl">Tips dan Edukasi</h3>
+                        <p>Simak Tips dan Edukasi Penting Seputar Produk Quantum</p>
+                        <x-slot:icon>
+                            <x-icons.tips-idea-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
+                        </x-slot:icon>
+                        <x-slot:button>
+                            <div class="flex justify-start">
+                                <x-inputs.button type="hyperlink" href="{{ route('support.guidance') }}" size="lg">
+                                    Lihat
+                                </x-inputs.button>
+                            </div>
+                        </x-slot:button>
+                    </x-displays.simple-card>
+                    <x-displays.simple-card>
+                        <h3 class="md:text-2xl">Tutorial Video</h3>
+                        <p>Simak berbagai video tutorial praktis seputar produk Quantum</p>
+                        <x-slot:icon>
+                            <x-icons.video-lesson-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
+                        </x-slot:icon>
+                        <x-slot:button>
+                            <div class="flex justify-start">
+                                <x-inputs.button type="hyperlink" href="{{ route('support.tutorial-video') }}" size="lg">
+                                    Lihat
+                                </x-inputs.button>
+                            </div>
+                        </x-slot:button>
+                    </x-displays.simple-card>
                 </div>
             </div>
         </section>

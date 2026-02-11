@@ -11,12 +11,14 @@
 
 @section('content')
     <main x-data>
+        {{-- Heading --}}
         <div class="container pt-[116px] pb-[46px] px-6 md:pt-20 md:pb-16 lg:pt-[100px]">
             <div class="space-y-4 text-center md:max-w-5xl md:mx-auto">
                 <h1>{{ $page_settings->faq_title }}</h1>
                 <p class="large">{{ $page_settings->faq_description }}</p>
             </div>
         </div>
+        {{-- Tabs --}}
         <div id="tabs-border-anchor" :class="$store.scrollStack.isTop ? 'top-[68px] duration-150 delay-200 md:top-[72px] lg:top-20' : 'top-0 duration-50'" class="sticky z-30 transition-all ease-in-out w-full bg-[#F4F4F4]">
             <div class="container flex gap-8 overflow-x-auto px-8 md:justify-center">
                 <a href="#produk" class="tab-border active">Produk</a>
@@ -25,6 +27,7 @@
             </div>
         </div>
         <section class="container flex flex-col gap-[42px] py-20 px-4 sm:px-6 lg:py-[100px]">
+            {{-- FAQ Produk --}}
             <div id="produk" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2 class="md:text-[28px]">{{ $page_settings->faq_sub_title_product }}</h2>
                 <div class="flex flex-col gap-4">
@@ -37,6 +40,7 @@
                     @endforeach
                 </div>
             </div>
+            {{-- FAQ Pembelian --}}
             <div id="pembelian" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2 class="md:text-[28px]">{{ $page_settings->faq_sub_title_purchase }}</h2>
                 <div class="flex flex-col gap-4">
@@ -49,6 +53,7 @@
                     @endforeach
                 </div>
             </div>
+            {{-- FAQ Garansi --}}
             <div id="garansi" class="scrollspy flex flex-col gap-8 scroll-mt-24">
                 <h2 class="md:text-[28px]">{{ $page_settings->faq_sub_title_guarantee }}</h2>
                 <div class="flex flex-col gap-4">

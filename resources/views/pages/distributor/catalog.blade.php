@@ -11,8 +11,9 @@
 
 @section('content')
     <main x-data class="bg-[#F4F4F4]">
-        <section class="flex flex-col gap-[62px] pt-[116px] pb-6">
-            <div class="space-y-4 max-w-sm mx-auto text-center px-4">
+        <section class="container flex flex-col gap-[62px] pt-[116px] px-4 pb-6 sm:px-6">
+            {{-- Heading --}}
+            <div class="space-y-4 max-w-sm mx-auto text-center sm:max-w-5xl">
                 <h1>{{ $page_settings->catalog_title }}</h1>
                 <p class="large">{{ $page_settings->catalog_description }}</p>
             </div>

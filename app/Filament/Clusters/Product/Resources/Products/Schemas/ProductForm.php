@@ -276,6 +276,7 @@ class ProductForm
                                                 ->url()
                                                 ->prefixIcon(Heroicon::Link)
                                                 ->required(),
+                                            Hidden::make('video_id'),
                                         ]),
                                 ])
                         ])->columnSpan(7),

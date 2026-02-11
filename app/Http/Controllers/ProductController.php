@@ -24,16 +24,20 @@ class ProductController extends Controller
 
         switch ($category) {
             case 'kompor':
-                $product_banner = asset('images/product-mobile-2.jpg');
+                $product_banner = asset('images/mobile-product-2.jpg');
+                $product_banner_desktop = asset('images/desktop-product-2.jpg');
                 break;
             case 'regulator-selang-gas':
-                $product_banner = asset('images/product-mobile-3.jpg');
+                $product_banner = asset('images/mobile-product-3.jpg');
+                $product_banner_desktop = asset('images/desktop-product-3.jpg');
                 break;
             case 'sparepart':
-                $product_banner = asset('images/product-mobile-4.jpg');
+                $product_banner = asset('images/mobile-product-4.jpg');
+                $product_banner_desktop = asset('images/desktop-product-4.jpg');
                 break;
             default:
-                $product_banner = asset('images/product-mobile-1.jpg');
+                $product_banner = asset('images/mobile-product-1.jpg');
+                $product_banner_desktop = asset('images/desktop-product-2.jpg');
         }
 
         return view('pages.product.product', [
@@ -45,6 +49,7 @@ class ProductController extends Controller
             'categories' => $categories,
             'current_category' => $category,
             'product_banner' => $product_banner,
+            'product_banner_desktop' => $product_banner_desktop,
             'guidances' => $guidances,
         ]);
     }

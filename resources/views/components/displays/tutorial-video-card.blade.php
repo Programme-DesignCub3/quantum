@@ -9,6 +9,6 @@
     </div>
     <div class="space-y-1 p-3">
         <span class="block text-qt-green-normal">{{ $payload->category->name }}</span>
-        <h4>{{ $payload->title }}</h4>
+        <h4 class="md:text-xl">{{ $payload->title }}</h4>
     </div>
 </div>

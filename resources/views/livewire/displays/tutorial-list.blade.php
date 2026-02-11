@@ -1,6 +1,7 @@
 <div class="flex flex-col gap-8">
     <div class="flex flex-col gap-12">
         <div class="px-2 w-full mx-auto max-w-max">
+            {{-- Tabs --}}
             <div class="flex gap-0.5 bg-white p-1 rounded-full overflow-x-auto">
                 <button type="button" wire:click="recipeFilter('')" class="tab {{ $category === '' ? 'active' : '' }}">
                     Semua
@@ -12,19 +13,20 @@
                 @endforeach
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            @if(!$tutorials->isEmpty())
+        {{-- Tutorial Video List --}}
+        @if(!$tutorials->isEmpty())
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach($tutorials as $tutorial)
                     <div wire:key="tutorial-{{ $tutorial->id }}">
                         <x-displays.tutorial-video-card :payload="$tutorial" />
                     </div>
                 @endforeach
-            @else
-                <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
-                    <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
-                </div>
-            @endif
-        </div>
+            </div>
+        @else
+            <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
+                <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
+            </div>
+        @endif
     </div>
     <div class="flex justify-center">
         @if($tutorials->count() < $total_count)

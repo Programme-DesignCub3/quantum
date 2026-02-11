@@ -1,5 +1,5 @@
 <div id="award" class="scrollspy flex flex-col gap-8 scroll-mt-20 py-[92px] bg-[#F4F4F4]">
-    <div class="space-y-4 text-center max-w-sm mx-auto px-4">
+    <div class="space-y-4 text-center max-w-sm mx-auto px-4 sm:max-w-2xl">
         <h2>{{ $page_settings->about_title_award }}</h2>
         <p class="text-[#6D6D6D]">{{ $page_settings->about_description_award }}</p>
     </div>
@@ -20,7 +20,7 @@
                         @foreach($page_settings->about_award[array_search($year, array_column($page_settings->about_award, 'year'))]['awards'] as $award)
                             <li class="splide__slide">
                                 <x-displays.swipe-card :image="$award['image'] ? 'storage/' . $award['image'] : 'images/og-image.jpg'">
-                                    <h4>{{ $award['title'] }}</h4>
+                                    <h4 class="md:text-xl">{{ $award['title'] }}</h4>
                                     @if(isset($award['description']))
                                         <p class="small text-[#9a9a9a]">{{ $award['description'] }}</p>
                                     @endif

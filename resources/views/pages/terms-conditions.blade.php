@@ -11,10 +11,12 @@
 
 @section('content')
     <main class="container flex flex-col gap-8 py-[60px] px-6 md:py-20 lg:py-[100px]">
+        {{-- Heading --}}
         <div class="space-y-2 md:text-center md:max-w-5xl md:mx-auto">
             <h2>{{ $page_settings->tnc_title }}</h2>
             <p>Terakhir diperbarui: {{ $page_settings->tnc_updated_date_formatted }}</p>
         </div>
+        {{-- Content --}}
         <div class="rules-content">
             {!! $page_settings->tnc_content !!}
         </div>

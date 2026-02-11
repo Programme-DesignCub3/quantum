@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between gap-2 w-[260px] bg-white px-4 py-[21px] rounded-2xl h-full">
+<div class="flex flex-col justify-between gap-2 w-[260px] bg-white px-4 py-[21px] rounded-2xl h-full md:w-full md:p-8">
     <p class="text-[#6D6D6D]">
         {{ $payload['testimonial'] }}
     </p>

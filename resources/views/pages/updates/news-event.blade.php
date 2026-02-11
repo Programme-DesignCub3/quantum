@@ -13,10 +13,12 @@
     <main id="news-event" class="bg-[#F4F4F4]">
         <section class="container flex flex-col gap-14 pt-[116px] pb-6">
             <div class="flex flex-col gap-[62px]">
+                {{-- Heading --}}
                 <div class="space-y-4 max-w-sm mx-auto text-center px-4 sm:max-w-5xl">
                     <h1>{{ $page_settings->news_title }}</h1>
                     <p class="large">{{ $page_settings->news_description }}</p>
                 </div>
+                {{-- News Event (Latest) --}}
                 @if(!$latest_news->isEmpty())
                     <div class="splide news-event" role="group" aria-label="News Event Slides">
                         <div class="splide__track">

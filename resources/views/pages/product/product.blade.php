@@ -16,21 +16,24 @@
 @section('content')
     <main x-data id="product" class="bg-white">
         <section class="relative">
-            <img class="w-full h-[560px] object-cover" src="{{ $product_banner }}" alt="">
-            <div class="absolute bottom-0 space-y-4 text-white text-center px-6 pb-[76px]">
-                <h1>{{ $page_settings->product_title }}</h1>
-                <p class="large">{{ $page_settings->product_description }}</p>
+            <img class="w-full h-[560px] object-cover md:hidden" src="{{ $product_banner }}" alt="">
+            <img class="w-full h-[600px] object-cover hidden md:block" src="{{ $product_banner_desktop }}" alt="">
+            <div class="absolute container text-center bottom-0 left-1/2 -translate-x-1/2 items-center px-6 pb-[76px] md:text-left md:w-full md:h-full md:flex md:top-0 md:p-6">
+                <div class="space-y-4 text-white md:max-w-md">
+                    <h1>{{ $page_settings->product_title }}</h1>
+                    <p class="large">{{ $page_settings->product_description }}</p>
+                </div>
             </div>
         </section>
         <livewire:displays.product-list :current_category="$current_category" />
-        <section class="flex flex-col gap-[42px] py-[92px]">
-            <div class="space-y-4 text-center max-w-xs mx-auto">
+        <section class="container flex flex-col gap-[42px] py-[92px]">
+            <div class="space-y-4 text-center max-w-xs mx-auto px-4 sm:px-6 sm:max-w-5xl md:mx-0 md:text-left">
                 <h2>{{ $page_settings->product_title_why }}</h2>
                 <p class="text-[#6D6D6D]">{{ $page_settings->product_description_why }}</p>
             </div>
             <div class="flex flex-col gap-8">
                 @if(isset($page_settings->product_why_choose_us_formatted[0]))
-                    <div class="px-4">
+                    <div class="px-4 sm:px-6">
                         <x-displays.inside-card :image="$page_settings->product_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->product_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'" :alt="$page_settings->product_why_choose_us_formatted[0]['title']">
                             <h4>{{ $page_settings->product_why_choose_us_formatted[0]['title'] }}</h4>
                             @if(isset($page_settings->product_why_choose_us_formatted[0]['description']))
@@ -39,7 +42,7 @@
                         </x-displays.inside-card>
                     </div>
                 @else
-                    <div class="min-h-[100px] flex justify-center items-center">
+                    <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
                         <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                     </div>
                 @endif
@@ -47,8 +50,8 @@
                     <div class="splide superior-product" role="group" aria-label="Superior Product Slides">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                @foreach($page_settings->product_why_choose_us_formatted->skip(1) as $item)
-                                    <li class="splide__slide">
+                                @foreach($page_settings->product_why_choose_us_formatted->skip(1) as $key => $item)
+                                    <li wire:key="product-why-choose-us-{{ $key }}" class="splide__slide">
                                         <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'" :alt="$item['title']">
                                             <h4>{{ $item['title'] }}</h4>
                                             @if(isset($item['description']))
@@ -63,8 +66,8 @@
                 @endif
             </div>
         </section>
-        <section class="flex flex-col gap-[42px] pt-9 pb-[92px]">
-            <div class="space-y-4 text-center max-w-xs mx-auto">
+        <section class="container flex flex-col gap-[42px] pt-9 pb-[92px]">
+            <div class="space-y-4 text-center max-w-xs mx-auto px-4 sm:px-6 sm:max-w-5xl md:mx-0 md:text-left">
                 <h2>{{ $page_settings->product_title_guidance }}</h2>
                 <p class="text-[#6D6D6D]">{{ $page_settings->product_description_guidance }}</p>
             </div>
@@ -73,8 +76,8 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach($guidances as $guidance)
-                                <li class="splide__slide">
-                                    <div class="max-w-60">
+                                <li wire:key="guidance-{{ $guidance->id }}" class="splide__slide">
+                                    <div class="max-w-60 md:max-w-full">
                                         <x-displays.inside-card :image="$guidance->media->first()->getUrl()" :alt="$guidance->title">
                                             <h4>{{ $guidance->title }}</h4>
                                             <x-inputs.button type="hyperlink" href="{{ route('support.guidance.detail', $guidance->slug) }}" size="md" color="white">
@@ -88,16 +91,16 @@
                     </div>
                 </div>
             @else
-                <div class="min-h-[100px] flex justify-center items-center">
+                <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
                     <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                 </div>
             @endif
         </section>
-        <section class="py-[60px] px-4">
-            <h2 class="mb-4">Info Lainnya</h2>
-            <div class="flex flex-col gap-4">
+        <section class="container py-[60px] px-4 md:pb-20">
+            <h2 class="mb-4 md:mb-8">Info Lainnya</h2>
+            <div class="flex flex-col gap-4 md:flex-row">
                 <x-displays.simple-card>
-                    <h3>Tips dan Edukasi</h3>
+                    <h3 class="md:text-2xl">Tips dan Edukasi</h3>
                     <p>Simak Tips dan Edukasi Penting Seputar Produk Quantum</p>
                     <x-slot:icon>
                         <x-icons.tips-idea-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />
@@ -111,7 +114,7 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.simple-card>
-                    <h3>Tutorial Video</h3>
+                    <h3 class="md:text-2xl">Tutorial Video</h3>
                     <p>Simak berbagai video tutorial praktis seputar produk Quantum</p>
                     <x-slot:icon>
                         <x-icons.video-lesson-icon class="fill-qt-green-normal stroke-qt-green-normal size-8" />

@@ -1,5 +1,6 @@
 <div x-show="currentTab === 'mitra-service'" class="container flex flex-col gap-[42px] px-4 pt-10 pb-[52px] sm:px-6 md:py-16">
     <div class="flex flex-col gap-[52px]">
+        {{-- Search --}}
         <div class="flex flex-col gap-4 justify-center items-center px-2">
             <h3>Temukan Mitra Service</h3>
             <div x-data="{ search: @entangle('search') }" class="relative w-full md:max-w-3xl">
@@ -12,14 +13,17 @@
         </div>
         <div class="flex flex-col gap-8 lg:flex-row">
             <div id="map-embed" class="flex flex-col gap-4 scroll-mt-24 lg:w-full">
+                {{-- Map Embed --}}
                 <template x-if="$store.placeDetailDrawer.embed_map?.maps">
                     <div class="map-iframe" x-html="$store.placeDetailDrawer.embed_map?.maps"></div>
                 </template>
+                {{-- Map Embed (Default) --}}
                 <template x-if="!$store.placeDetailDrawer.embed_map?.maps">
                     <div class="map-iframe">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7932.436417586856!2d106.79015419423138!3d-6.234941809609014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1a04d5ff145%3A0xcbae36e958f80d6a!2sOffice%208%20%40%20Senopati!5e0!3m2!1sid!2sid!4v1770177018993!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </template>
+                {{-- Map Embed Detail --}}
                 <template x-if="$store.placeDetailDrawer?.embed_map">
                     <div class="flex flex-col gap-4 rounded-2xl border border-[#E9E9E9] p-4">
                         <div class="space-y-0">
@@ -40,6 +44,7 @@
                     </div>
                 </template>
             </div>
+            {{-- Divider --}}
             <template x-if="$store.placeDetailDrawer?.embed_map">
                 <div class="flex items-center justify-center lg:hidden">
                     <div class="flex-1 w-full h-px bg-black/10"></div>
@@ -47,6 +52,7 @@
                     <div class="flex-1 w-full h-px bg-black/10"></div>
                 </div>
             </template>
+            {{-- Service Partner List --}}
             <div class="flex flex-col gap-4 lg:w-[60%]">
                 @if(!$service_partners->isEmpty())
                     @foreach ($service_partners as $service_partner)
@@ -62,7 +68,7 @@
                         </div>
                     @endif
                 @else
-                    <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
+                    <div class="min-h-[100px] flex justify-center items-center h-full md:min-h-[200px]">
                         <p class="text-center text-gray-500">
                             @if($search !== '')
                                 Pencarian tidak ditemukan
@@ -75,6 +81,7 @@
             </div>
         </div>
     </div>
+    {{-- Load More Button (Mobile) --}}
     <div class="flex justify-center lg:hidden">
         @if($total_count > 3 && $service_partners->count() < $total_count)
             <div wire:click="loadMore">

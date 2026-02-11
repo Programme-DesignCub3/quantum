@@ -11,6 +11,7 @@
 
 @section('content')
     <main x-data="recipeDetail" x-ref="recipeContent" id="recipe-detail" class="relative bg-[#FFFFFF] h-[800px] overflow-hidden">
+        {{-- Premium Recipe --}}
         <div x-cloak x-show="$store.premiumRecipeDrawer.formShown" class="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 bg-linear-to-t flex flex-col gap-[70px] justify-end-safe items-center from-white to-transparent h-[375px] w-full px-4 pb-5 md:pb-12 md:h-[450px] md:from-25%">
             <x-inputs.button type="button" event="$store.premiumRecipeDrawer.openDrawer()" size="lg">
                 Lihat Resep Premium
@@ -28,7 +29,9 @@
         <x-displays.drawer store="premiumRecipeDrawer">
             <livewire:forms.recipe-premium-form :payload="$detail" />
         </x-displays.drawer>
+        {{--  --}}
         <section class="flex flex-col">
+            {{-- Header --}}
             <div class="container flex flex-col gap-4 px-6 pt-[60px] pb-8">
                 <div class="space-y-2 md:space-y-6">
                     <h2>{{ $detail->title }}</h2>
@@ -59,9 +62,11 @@
                     </div>
                 </div>
             </div>
+            {{-- Primary Image --}}
             <div class="relative md:h-[500px] md:w-full">
                 <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
+            {{-- Content --}}
             <div class="container flex flex-col gap-12 pt-[42px] pb-24 md:px-6">
                 <div class="grid grid-cols-1 gap-[58px] md:grid-cols-12 sm:gap-6 lg:gap-10">
                     <div class="flex flex-col gap-4 col-span-full px-6 md:px-0 md:col-span-4">
@@ -108,6 +113,7 @@
                 </div>
             </div>
         </section>
+        {{-- Recommendation Products --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 pt-[46px] pb-[77px] md:py-20">
                 <h3 class="px-6">Lihat juga Rekomendasi Produk</h3>
@@ -130,6 +136,7 @@
                 @endif
             </div>
         </section>
+        {{-- Other Recipes --}}
         <section class="container flex flex-col gap-8 pt-[77px] pb-[100px] md:py-20">
             <h3 class="px-6">Lihat Juga Resep Masakan Lainnya</h3>
             @if(!$other_recipes->isEmpty())

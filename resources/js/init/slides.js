@@ -9,9 +9,28 @@ import '@splidejs/splide/css';
 const productsHomeSlide = () => {
     if(document.querySelector('.splide.products-home')) {
         new Splide('.splide.products-home', {
-            ...swipeable,
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
             gap: '1rem',
-            padding: '1.5rem'
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                }
+            }
         }).mount();
     }
 }
@@ -36,21 +55,77 @@ if (document.querySelector('#homepage')) {
 
     if(document.querySelector('.splide.articles-home')) {
         new Splide('.splide.articles-home', {
-            ...swipeable,
-            gap: '0.65rem',
-            padding: '1.5rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    perPage: 3,
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    gap: '0.65rem',
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                }
+            }
         }).mount();
     }
 
     if(document.querySelector('.splide.testimonial-home')) {
-        new Splide('.splide.testimonial-home', slidePagination).mount();
+        new Splide('.splide.testimonial-home', {
+            arrows: false,
+            pagination: true,
+            perPage: 1,
+            width: '440px',
+            gap: '0.5rem',
+            padding: '0rem',
+            breakpoints: {
+                767: {
+                    pagination: false,
+                    gap: '0.5rem',
+                    padding: '1.5rem',
+                    autoWidth: true,
+                    width: '100%',
+                }
+            }
+        }).mount();
     }
 
     if(document.querySelector('.splide.why-choose-home')) {
         new Splide('.splide.why-choose-home', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 
@@ -80,17 +155,57 @@ if (document.querySelector('#about')) {
 if (document.querySelector('#product')) {
     if(document.querySelector('.splide.superior-product')) {
         new Splide('.splide.superior-product', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 
     if(document.querySelector('.splide.guide-product')) {
         new Splide('.splide.guide-product', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
@@ -99,9 +214,29 @@ if (document.querySelector('#product')) {
 if (document.querySelector('#product-detail')) {
     if(document.querySelector('.splide.recommendation-product')) {
         new Splide('.splide.recommendation-product', {
-            ...swipeable,
-            gap: '1rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 
@@ -182,9 +317,26 @@ if (document.querySelector('#news-event')) {
 if (document.querySelector('#news-event-detail')) {
     if(document.querySelector('.splide.recommendation-products-news-event')) {
         new Splide('.splide.recommendation-products-news-event', {
-            ...swipeNormal,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 1,
+                },
+                550: {
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 
@@ -262,9 +414,26 @@ if (document.querySelector('#recipe-detail')) {
 
     if(document.querySelector('.splide.recommendation-products-recipe')) {
         new Splide('.splide.recommendation-products-recipe', {
-            ...swipeNormal,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 1,
+                },
+                550: {
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 
@@ -362,6 +531,7 @@ if (document.querySelector('#customer-service')) {
                 550: {
                     perPage: 1,
                     autoWidth: true,
+                    padding: '1rem'
                 }
             }
         }).mount();

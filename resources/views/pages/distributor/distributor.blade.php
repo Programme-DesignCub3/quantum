@@ -12,15 +12,24 @@
 @section('content')
     <main>
         <section class="bg-[#F4F4F4]">
-            <div class="max-w-md mx-auto text-center space-y-4 px-6 pt-[68px] pb-4">
+            {{-- Mobile --}}
+            <div class="max-w-md mx-auto text-center space-y-4 px-6 pt-[68px] pb-4 md:hidden">
                 <h1>{{ $page_settings->distributor_title }}</h1>
                 <p class="large text-[#6D6D6D]">{{ $page_settings->distributor_description }}</p>
             </div>
+            {{-- Desktop --}}
             <div class="relative">
-                <img class="aspect-square" src="{{ asset('images/distributor-image.jpg') }}" alt="">
+                <img class="aspect-square md:hidden" src="{{ asset('images/mobile-distributor.jpg') }}" alt="">
+                <img class="hidden w-full object-cover object-top-right h-[600px] md:block" src="{{ asset('images/desktop-distributor.jpg') }}" alt="">
+                <div class="absolute container top-0 left-1/2 -translate-x-1/2 w-full h-full items-center p-6 hidden md:flex">
+                    <div class="space-y-4 text-white max-w-xl">
+                        <h1>{{ $page_settings->distributor_title }}</h1>
+                        <p class="large">{{ $page_settings->distributor_description }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-col gap-20 py-20 px-4">
-                <div class="flex flex-col gap-12">
+            <div class="container grid grid-cols-1 gap-20 py-20 px-4 sm:px-6 lg:grid-cols-12">
+                <div class="flex flex-col gap-12 col-span-full lg:col-span-6">
                     <div class="space-y-4">
                         <h2>{{ $page_settings->distributor_title_benefit }}</h2>
                         <p>{{ $page_settings->distributor_description_benefit }}</p>

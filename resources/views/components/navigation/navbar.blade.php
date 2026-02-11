@@ -1,23 +1,30 @@
 <nav x-data="navbar" x-init="currentMenuInit(@js($route_group))"
     :class="{
-        'bg-white': isWhite,
+        'bg-white transition-all duration-300 ease-in-out': isWhite,
+        'bg-white ': isWhite || $store.menuDrawer.currentMenuDesktop,
         'top-0': position,
         '-top-full': !position,
         'sticky': sticky,
         'fixed': !sticky
     }" @class([
         'bg-white!' => !$transparent,
-        'transition-all duration-300 ease-in-out z-50'
+        'w-full z-50'
     ])>
     <div class="container px-3 py-3 flex justify-between items-center w-full sm:px-6 md:py-0">
+        {{-- Logo --}}
         <a href="{{ route('home') }}">
-            <img class="w-24 md:w-28 lg:w-[134px]" src="{{ asset('images/logo.png') }}" alt="">
+            <img class="w-24 md:w-28 lg:w-[134px]" src="{{ asset('images/logo.png') }}" alt="Logo Quantum Indonesia">
         </a>
         {{-- Mobile --}}
         <div class="flex gap-3 md:hidden">
+            {{-- Search Button --}}
             <button type="button" @click="$store.searchDrawer.openDrawer()" class="circle-menu-search">
                 <span class="icon-[iconamoon--search] text-[28px]"></span>
             </button>
+            <x-displays.drawer store="searchDrawer">
+                <livewire:displays.search-list />
+            </x-displays.drawer>
+            {{-- Menu Button --}}
             <button type="button" @click="$store.menuDrawer.openDrawer()" class="circle-menu-search">
                 <span class="icon-[gg--menu] text-[28px]"></span>
             </button>
@@ -140,13 +147,13 @@
                     </div>
                 </div>
             </x-displays.drawer>
-            <x-displays.drawer store="searchDrawer">
-                <livewire:displays.search-list />
-            </x-displays.drawer>
         </div>
         {{-- Desktop --}}
         <div class="hidden items-center gap-3 md:flex lg:gap-5">
-            <div class="flex">
+            <div :class="{
+                'text-white': position && !isWhite && transparent,
+                'text-black!': $store.menuDrawer.currentMenuDesktop
+            }" class="flex">
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'about' ? 'active' : ''" class="desktop-menu-nav">Tentang</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'product' ? 'active' : ''" class="desktop-menu-nav">Produk</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button>
@@ -261,8 +268,9 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('navbar', () => ({
-            isWhite: false,
             sticky: @json($sticky),
+            transparent: @json($transparent),
+            isWhite: false,
             position: true,
 
             init() {

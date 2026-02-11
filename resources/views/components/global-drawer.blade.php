@@ -145,7 +145,7 @@
                 </x-inputs.button>
             </div>
             <div class="flex justify-center items-center">
-                <img src="{{ asset('images/stove-barcode.jpg') }}" alt="">
+                <img src="{{ asset('images/barcode.jpg') }}" alt="">
             </div>
             <div class="space-y-1">
                 <h6>Lokasi barcode dan nomor model</h6>
@@ -160,7 +160,7 @@
                 </x-inputs.button>
             </div>
             <div class="flex justify-center items-center">
-                <img src="{{ asset('images/stove-barcode.jpg') }}" alt="">
+                <img src="{{ asset('images/barcode.jpg') }}" alt="">
             </div>
             <div class="space-y-1">
                 <h6>Lokasi barcode dan nomor model</h6>
@@ -175,7 +175,7 @@
                 </x-inputs.button>
             </div>
             <div class="flex justify-center items-center">
-                <img src="{{ asset('images/stove-barcode.jpg') }}" alt="">
+                <img src="{{ asset('images/barcode.jpg') }}" alt="">
             </div>
             <div class="space-y-1">
                 <h6>Lokasi barcode dan nomor model</h6>

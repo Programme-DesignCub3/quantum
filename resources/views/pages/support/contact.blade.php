@@ -12,6 +12,7 @@
 @section('content')
     <main x-data class="bg-[#F4F4F4]">
         <section class="container flex flex-col gap-8 pt-[116px] pb-[100px] px-4 sm:px-6 md:gap-16">
+            {{-- Heading --}}
             <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:text-left md:mx-0">
                 <h1>{{ $page_settings->contact_title }}</h1>
                 <p class="large">{{ $page_settings->contact_description }}</p>
@@ -281,9 +282,10 @@
                 </x-displays.drawer>
             </div>
         </section>
+        {{-- Service Center --}}
         <section class="relative">
             <img class="hidden w-full h-[600px] object-cover object-right md:block" src="{{ asset('images/desktop-contact-banner.jpg') }}" alt="">
-            <img class="md:hidden" src="{{ asset('images/contact-banner.jpg') }}" alt="">
+            <img class="md:hidden" src="{{ asset('images/mobile-contact-banner.jpg') }}" alt="">
             <div class="absolute top-0 left-0 size-full">
                 <div class="flex flex-col gap-8 py-[60px] px-4 size-full sm:px-6 md:justify-center md:container">
                     <div class="text-white space-y-4 text-center max-w-sm mx-auto md:text-left md:max-w-xl md:mx-0">

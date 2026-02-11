@@ -1,10 +1,12 @@
 <main x-data>
     <section class="container flex flex-col gap-8 px-4 py-[116px] sm:px-6">
         <div class="flex flex-col gap-14">
+            {{-- Heading --}}
             <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl">
                 <h1>{{ $page_settings->guidance_title }}</h1>
                 <p class="large">{{ $page_settings->guidance_description }}</p>
             </div>
+            {{-- Search --}}
             <div x-data="{ search: @entangle('search') }" class="flex flex-col gap-4 justify-center items-center md:w-full md:max-w-3xl md:mx-auto">
                 <p class="large">Cari Tahu Disini</p>
                 <div class="relative w-full">
@@ -17,8 +19,9 @@
                 <button type="button" @click="$store.numberModelDrawer.openDrawer()" class="w-max underline underline-offset-2 cursor-pointer">Cara menemukan nomor model?</button>
             </div>
         </div>
+        {{-- Guidance List --}}
         @if(!$guidances_file->isEmpty())
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4 w-full max-w-xl mx-auto">
                 @foreach($guidances_file as $guidance)
                     <div wire:key="guidance-{{ $guidance->id }}">
                         <x-displays.guidance-card :payload="$guidance" />
@@ -40,12 +43,15 @@
     <section class="bg-[#F5F5F5]">
         <div class="container flex flex-col gap-8 pt-[76px] pb-[100px] px-4 sm:px-6">
             <div class="flex flex-col gap-12">
+                {{-- Heading --}}
                 <div class="space-y-4 text-center max-w-sm mx-auto md:text-left md:mx-0 md:max-w-2xl">
                     <h2 class="md:max-w-lg">{{ $page_settings->guidance_title_article }}</h2>
                     <p>{{ $page_settings->guidance_description_article }}</p>
                 </div>
+                {{-- Guidance Article List --}}
                 <div class="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-5">
                     <div class="flex flex-col gap-4 md:col-span-6">
+                        {{-- First Item --}}
                         @if(!$latest->isEmpty())
                             <div class="flex flex-col gap-3">
                                 <div class="rounded-3xl overflow-hidden">
@@ -67,6 +73,7 @@
                             </div>
                         @endif
                     </div>
+                    {{-- Second to Last Items --}}
                     <div class="flex flex-col gap-4 md:col-span-6">
                         @foreach($guidances as $item)
                             <div wire:key="guidance-article-{{ $item->id }}">
@@ -83,6 +90,7 @@
                     </div>
                 </div>
             </div>
+            {{-- Load More Button (Mobile) --}}
             <div class="flex justify-center md:hidden">
                 @if($guidances->count() < $total_count)
                     <div wire:click="loadMore">

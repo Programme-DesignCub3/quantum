@@ -12,6 +12,7 @@
 @section('content')
     <main x-data id="news-event-detail">
         <section class="flex flex-col">
+            {{-- Header --}}
             <div class="container px-6 pt-[60px] pb-8">
                 <div class="space-y-2 md:space-y-6">
                     <h2>{{ $detail->title }}</h2>
@@ -36,9 +37,11 @@
                     </div>
                 </div>
             </div>
+            {{-- Primary Image --}}
             <div class="aspect-49/30 md:h-[500px] md:w-full">
                 <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
             </div>
+            {{-- Content --}}
             <div class="container flex flex-col gap-12 px-6 pt-[42px] pb-[100px] md:pt-[60px]">
                 <div class="article-content">
                     {!! $detail->content !!}
@@ -56,6 +59,7 @@
                 </div>
             </div>
         </section>
+        {{-- Recommendation Products --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 pt-[46px] pb-[77px] md:py-20">
                 <h3 class="px-6">Lihat juga Rekomendasi Produk</h3>
@@ -78,6 +82,7 @@
                 @endif
             </div>
         </section>
+        {{-- Other News/Article --}}
         <section class="container flex flex-col gap-8 pt-[77px] pb-[100px] md:py-20">
             <h3 class="px-6">Lihat Juga Berita atau Event Lainnya</h3>
             @if(!$other_news->isEmpty())

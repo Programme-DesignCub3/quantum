@@ -26,7 +26,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        @if ($key < count($items) - 1)
+                                        @if($key < count($items) - 1)
                                             <div class="w-full h-px bg-black/10 my-1"></div>
                                         @endif
                                     @endforeach
@@ -44,7 +44,7 @@
                                                 <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
                                             </div>
                                         </a>
-                                        @if ($key < count($items) - 1)
+                                        @if($key < count($items) - 1)
                                             <div class="w-full h-px bg-black/10 my-1"></div>
                                         @endif
                                     @endforeach
@@ -62,7 +62,7 @@
                                                 <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
                                             </div>
                                         </a>
-                                        @if ($key < count($items) - 1)
+                                        @if($key < count($items) - 1)
                                             <div class="w-full h-px bg-black/10 my-1"></div>
                                         @endif
                                     @endforeach

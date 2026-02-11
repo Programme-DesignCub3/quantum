@@ -32,8 +32,8 @@
                                 <div class="splide guidance-step md:hidden" role="group" aria-label="Guidance Steps Slides">
                                     <div class="splide__track">
                                         <ul class="splide__list">
-                                            @foreach($item['data']['value'] as $i)
-                                                <li wire:key="guidance-step-{{ $i['id'] }}" class="splide__slide">
+                                            @foreach($item['data']['value'] as $key => $i)
+                                                <li wire:key="guidance-step-{{ $key + 1 }}" class="splide__slide">
                                                     <x-displays.guidance-step-card :payload="$i" />
                                                 </li>
                                             @endforeach
@@ -41,8 +41,8 @@
                                     </div>
                                 </div>
                                 <div class="hidden grid-cols-3 gap-5 px-6 md:grid">
-                                    @foreach($item['data']['value'] as $i)
-                                        <div wire:key="guidance-step-{{ $i['id'] }}">
+                                    @foreach($item['data']['value'] as $key => $i)
+                                        <div wire:key="guidance-step-{{ $key + 1 }}">
                                             <x-displays.guidance-step-card :payload="$i" />
                                         </div>
                                     @endforeach
