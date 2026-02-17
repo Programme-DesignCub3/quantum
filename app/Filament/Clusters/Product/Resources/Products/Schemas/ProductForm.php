@@ -175,6 +175,7 @@ class ProductForm
                                 ->label('Detail Spesifikasi')
                                 ->blockNumbers(false)
                                 ->reorderable(false)
+                                ->minItems(3)
                                 ->maxItems(3)
                                 ->required()
                                 ->blocks([

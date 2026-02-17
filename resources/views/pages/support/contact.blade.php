@@ -27,7 +27,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactCallDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactCallDrawer.openDrawer()" class="rounded-2xl!" />
                             <x-inputs.button type="hyperlink" href="{{ 'tel:' . $page_settings->contact_cc_number_formatted }}" class="rounded-2xl!">
                                 Call
                             </x-inputs.button>
@@ -35,41 +35,18 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactCallDrawer">
-                    <div class="flex flex-col gap-5 px-4">
-                        <div class="flex justify-between gap-7">
-                            <div class="space-y-2">
-                                <h3>Call Center</h3>
-                                <p class="large">{{ $page_settings->contact_cc_number }}</p>
-                            </div>
-                            <x-icons.customer-care-icon class="shrink-0 size-10 fill-qt-green-normal" />
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1">
-                                <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2 gap-2">
-                                    @foreach($page_settings->contact_cc_operational as $operational)
-                                        <div class="space-y-1">
-                                            <span class="extrasmall">{{ $operational['day'] }}</span>
-                                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <h6>Informasi Lainnya</h6>
-                                <p class="small">{{ $page_settings->contact_cc_information }}</p>
-                            </div>
-                            <div class="flex justify-center py-4">
-                                <x-inputs.button-icon type="hyperlink" href="{{ 'tel:' . $page_settings->contact_cc_number_formatted }}" class="rounded-2xl!">
-                                    <x-slot:image>
-                                        <x-icons.customer-care-icon class="fill-qt-green-normal group-hover:fill-white" />
-                                    </x-slot:image>
-                                    Call Now
-                                </x-inputs.button-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <x-layouts.contacts.call-center-layout :settings="$page_settings" />
                 </x-displays.drawer>
+                <x-displays.modal store="contactCallDrawer">
+                    <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactCallDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        <x-layouts.contacts.call-center-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
                 {{-- WhatsApp --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
                     <h3 class="md:text-2xl">WhatsApp</h3>
@@ -79,7 +56,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactWhatsAppDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactWhatsAppDrawer.openDrawer()" class="rounded-2xl!" />
                             <x-inputs.button type="hyperlink" :newTab="true" href="{{ 'https://wa.me/' . $page_settings->contact_wa_number_formatted }}" class="rounded-2xl!">
                                 Chat
                             </x-inputs.button>
@@ -87,38 +64,18 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactWhatsAppDrawer">
-                    <div class="flex flex-col gap-5 px-4">
-                        <div class="flex justify-between gap-7">
-                            <div class="space-y-2">
-                                <h3>WhatsApp</h3>
-                                <p class="large">{{ $page_settings->contact_wa_number }}</p>
-                            </div>
-                            <span class="icon-[ic--baseline-whatsapp] shrink-0 text-qt-green-normal text-[40px]"></span>
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1">
-                                <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2 gap-2">
-                                    @foreach($page_settings->contact_wa_operational as $operational)
-                                        <div class="space-y-1">
-                                            <span class="extrasmall">{{ $operational['day'] }}</span>
-                                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <h6>Informasi Lainnya</h6>
-                                <p class="small">{{ $page_settings->contact_wa_information }}</p>
-                            </div>
-                            <div class="flex justify-center py-4">
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ 'https://wa.me/' . $page_settings->contact_wa_number_formatted }}" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]">
-                                    Chat Now
-                                </x-inputs.button-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <x-layouts.contacts.whatsapp-layout :settings="$page_settings" />
                 </x-displays.drawer>
+                <x-displays.modal store="contactWhatsAppDrawer">
+                    <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactWhatsAppDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        <x-layouts.contacts.whatsapp-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
                 {{-- Email --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
                     <h3 class="md:text-2xl">Email</h3>
@@ -128,7 +85,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactEmailDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactEmailDrawer.openDrawer()" class="rounded-2xl!" />
                             <x-inputs.button type="hyperlink" href="{{ 'mailto:' . $page_settings->contact_email }}" class="rounded-2xl!">
                                 Email
                             </x-inputs.button>
@@ -136,38 +93,18 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactEmailDrawer">
-                    <div class="flex flex-col gap-5 px-4">
-                        <div class="flex justify-between gap-7">
-                            <div class="space-y-2">
-                                <h3>Email</h3>
-                                <p class="large break-all">{{ $page_settings->contact_email }}</p>
-                            </div>
-                            <span class="icon-[lucide--mail] shrink-0 text-qt-green-normal text-[40px]"></span>
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1">
-                                <h6>Jam Operasional</h6>
-                                <div class="grid grid-cols-2 gap-2">
-                                    @foreach($page_settings->contact_email_operational as $operational)
-                                        <div class="space-y-1">
-                                            <span class="extrasmall">{{ $operational['day'] }}</span>
-                                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <h6>Informasi Lainnya</h6>
-                                <p class="small">{{ $page_settings->contact_email_information }}</p>
-                            </div>
-                            <div class="flex justify-center py-4">
-                                <x-inputs.button-icon type="hyperlink" href="{{ 'mailto:' . $page_settings->contact_email }}" class="rounded-2xl!" icon="icon-[lucide--mail]">
-                                    Email Now
-                                </x-inputs.button-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <x-layouts.contacts.email-layout :settings="$page_settings" />
                 </x-displays.drawer>
+                <x-displays.modal store="contactEmailDrawer">
+                    <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactEmailDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        <x-layouts.contacts.email-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
                 {{-- Office --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
                     <h3 class="md:text-2xl">Office</h3>
@@ -177,7 +114,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactOfficeDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactOfficeDrawer.openDrawer()" class="rounded-2xl!" />
                             <x-inputs.button type="hyperlink" :newTab="true" href="{{ $page_settings->contact_office_map }}" class="rounded-2xl!">
                                 Maps
                             </x-inputs.button>
@@ -185,45 +122,27 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactOfficeDrawer">
-                    <div class="flex flex-col gap-5 px-4">
-                        <div class="flex justify-between items-center gap-7">
-                            <h3>Office</h3>
-                            <span class="icon-[ci--building-04] shrink-0 text-qt-green-normal text-[40px]"></span>
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-4">
-                                @if(isset($page_settings->contact_office_image) && $page_settings->contact_office_image != '')
-                                    <img class="w-full object-cover object-bottom h-[150px] rounded-[20px] overflow-hidden" src="{{ asset('storage/' . $page_settings->contact_office_image) }}" alt="{{ $page_settings->contact_office_name }}">
-                                @endif
-                                <h5>{{ $page_settings->contact_office_name }}</h5>
-                                <div class="flex gap-4">
-                                    <span class="icon-[lucide--map-pin] shrink-0 text-lg"></span>
-                                    <span class="text-[#6D6D6D]">{{ $page_settings->contact_office_address }}</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <h6>Jam Operasional Kantor</h6>
-                                <div class="grid grid-cols-2 gap-2">
-                                    @foreach($page_settings->contact_office_operational as $operational)
-                                        <div class="space-y-1">
-                                            <span class="extrasmall">{{ $operational['day'] }}</span>
-                                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <h6>Informasi Lainnya</h6>
-                                <p class="small">{{ $page_settings->contact_office_information }}</p>
-                            </div>
-                            <div class="flex justify-center py-4">
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_office_map }}" class="rounded-2xl!" icon="icon-[lucide--map-pin]">
-                                    Location
-                                </x-inputs.button-icon>
-                            </div>
-                        </div>
-                    </div>
+                    <x-layouts.contacts.office-layout :settings="$page_settings" />
                 </x-displays.drawer>
+                <x-displays.modal store="contactOfficeDrawer">
+                    <div @class([
+                        'grid-cols-2 min-[830px]:w-4xl' => isset($page_settings->contact_office_image) && $page_settings->contact_office_image != '',
+                        'grid-cols-1 min-[830px]:w-xl' => !isset($page_settings->contact_office_image) || $page_settings->contact_office_image == '',
+                        'relative w-full grid bg-white drop-shadow-float-lg rounded-3xl overflow-hidden'
+                    ])>
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactOfficeDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        @if(isset($page_settings->contact_office_image) && $page_settings->contact_office_image != '')
+                            <div class="relative overflow-hidden">
+                                <img class="aspect-square size-full object-cover" src="{{ asset('storage/' . $page_settings->contact_office_image) }}" alt="{{ $page_settings->contact_office_name }}">
+                            </div>
+                        @endif
+                        <x-layouts.contacts.office-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
                 {{-- Social Media --}}
                 <x-displays.simple-card background="white" :background-icon="false" :border="false">
                     <h3 class="md:text-2xl">Social Media</h3>
@@ -233,7 +152,7 @@
                     </x-slot:icon>
                     <x-slot:button>
                         <div class="flex justify-between">
-                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactSocmedDrawer.openDrawer()" class="border-[#D9E9EB] rounded-2xl!" />
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactSocmedDrawer.openDrawer()" class="rounded-2xl!" />
                             <div class="flex gap-2">
                                 <a href="{{ $page_settings->contact_socmed_instagram }}" target="_blank" class="flex justify-center items-center size-[58px] bg-[#E7F1F2] rounded-2xl">
                                     <span class="icon-[mdi--instagram] text-qt-green-normal text-3xl"></span>
@@ -249,37 +168,18 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactSocmedDrawer">
-                    <div class="flex flex-col gap-5 px-4">
-                        <div class="flex justify-between items-center gap-7">
-                            <h3>Social Media</h3>
-                            <span class="icon-[tdesign--share] shrink-0 text-qt-green-normal text-[40px]"></span>
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="flex flex-col gap-1">
-                                <h6>Jam Operasional Message over Socmed</h6>
-                                <div class="grid grid-cols-2 gap-2">
-                                    @foreach($page_settings->contact_socmed_operational as $operational)
-                                        <div class="space-y-1">
-                                            <span class="extrasmall">{{ $operational['day'] }}</span>
-                                            <p>{{ $operational['from_hour'] }} - {{ $operational['to_hour'] }} {{ $operational['timezone'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <h6>Informasi Lainnya</h6>
-                                <p class="small">{{ $page_settings->contact_socmed_information }}</p>
-                            </div>
-                            <div class="flex flex-wrap justify-center gap-2 py-4 max-w-60 mx-auto min-[360px]:max-w-full min-[360px]:flex-nowrap">
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_socmed_tiktok }}" class="rounded-2xl!" icon="icon-[ic--baseline-tiktok]" />
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_socmed_linkedin }}" class="rounded-2xl!" icon="icon-[jam--linkedin]" />
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_socmed_youtube }}" class="rounded-2xl!" icon="icon-[mdi--youtube]" />
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_socmed_instagram }}" class="rounded-2xl!" icon="icon-[mdi--instagram]" />
-                                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ $page_settings->contact_socmed_facebook }}" class="rounded-2xl!" icon="icon-[ri--facebook-fill]" />
-                            </div>
-                        </div>
-                    </div>
+                    <x-layouts.contacts.social-media-layout :settings="$page_settings" />
                 </x-displays.drawer>
+                <x-displays.modal store="contactSocmedDrawer">
+                    <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactSocmedDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        <x-layouts.contacts.social-media-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
             </div>
         </section>
         {{-- Service Center --}}

@@ -40,9 +40,8 @@
         @yield('breadcrumbs')
     @endif
     @yield('content')
-    <x-global-drawer />
-    <x-global-video-popup />
     <x-navigation.floating />
+    <x-global-popup />
     <x-navigation.footer />
     @livewireScripts
     @stack('scripts')

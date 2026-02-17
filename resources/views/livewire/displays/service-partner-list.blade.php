@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="flex flex-col gap-8 lg:flex-row">
-            <div id="map-embed" class="flex flex-col gap-4 scroll-mt-24 lg:w-full">
+            <div id="map-embed-partner" class="flex flex-col gap-4 scroll-mt-24 lg:w-full">
                 {{-- Map Embed --}}
                 <template x-if="$store.placeDetailDrawer.embed_map?.maps">
                     <div class="map-iframe" x-html="$store.placeDetailDrawer.embed_map?.maps"></div>
@@ -28,7 +28,7 @@
                     <div class="flex flex-col gap-4 rounded-2xl border border-[#E9E9E9] p-4">
                         <div class="space-y-0">
                             <span class="block text-[#6D6D6D]" x-text="$store.placeDetailDrawer.embed_map?.area"></span>
-                            <h4 x-text="$store.placeDetailDrawer.embed_map?.name"></h4>
+                            <h4 x-text="$store.placeDetailDrawer.embed_map?.name" class="md:text-xl"></h4>
                         </div>
                         <div class="flex flex-col gap-4">
                             <div class="flex gap-4">

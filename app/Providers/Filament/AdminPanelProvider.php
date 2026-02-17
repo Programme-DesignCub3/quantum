@@ -54,8 +54,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 'Data',
-                'Entri Data',
                 'Pengaturan',
+                'Entri Data',
             ])
             ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('2.5rem')

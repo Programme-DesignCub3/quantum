@@ -8,16 +8,30 @@
             </div>
             <div x-data class="flex flex-col gap-8">
                 {{-- Area (Province) Filter --}}
-                <button type="button" @click="$store.distributorProvinceDrawer.openDrawer()" class="flex justify-between items-center w-full p-3 rounded-xl capitalize text-sm border border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D] md:max-w-xl md:mx-auto">
-                    {{ $province ? str_replace('-', ' ', $province) : 'Pilih Provinsi' }}
-                    <span class="icon-[lucide--chevron-down] shrink-0 text-xl text-[#6D6D6D]"></span>
-                </button>
-                <x-displays.drawer store="distributorProvinceDrawer">
-                    <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
+                <div class="relative w-full md:max-w-xl md:mx-auto">
+                    <button type="button" @click="$store.distributorProvinceDrawer.openDrawer()" class="flex justify-between items-center w-full p-3 rounded-xl capitalize text-sm border border-[#E9E9E9] text-[#6D6D6D]/60 outline-none cursor-pointer focus:border-[#6D6D6D]">
+                        {{ $province ? str_replace('-', ' ', $province) : 'Pilih Provinsi' }}
+                        <span class="icon-[lucide--chevron-down] shrink-0 text-xl text-[#6D6D6D]" :class="{ 'md:rotate-180': $store.distributorProvinceDrawer.open }"></span>
+                    </button>
+                    <x-displays.drawer store="distributorProvinceDrawer">
+                        <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
+                            @if(!$areas->isEmpty())
+                                <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('')" class="w-full text-left p-4 cursor-pointer">Semua</button>
+                                @foreach($areas as $area)
+                                    <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('{{ $area['slug'] }}')" class="w-full text-left p-4 cursor-pointer">{{ $area['area'] }}</button>
+                                @endforeach
+                            @else
+                                <div class="min-h-[100px] flex justify-center items-center">
+                                    <p class="text-center text-gray-500">Tidak ada pilihan untuk ditampilkan</p>
+                                </div>
+                            @endif
+                        </div>
+                    </x-displays.drawer>
+                    <div x-cloak x-show="$store.distributorProvinceDrawer.open" @click.outside="$store.distributorProvinceDrawer.closeDrawer()" class="dropdown-select drop-shadow-float">
                         @if(!$areas->isEmpty())
-                            <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('')" class="w-full text-left p-4 cursor-pointer">Semua</button>
+                            <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('')">Semua</button>
                             @foreach($areas as $area)
-                                <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('{{ $area['slug'] }}')" class="w-full text-left p-4 cursor-pointer">{{ $area['area'] }}</button>
+                                <button type="button" @click="$store.distributorProvinceDrawer.closeDrawer()" wire:click="areaFilter('{{ $area['slug'] }}')">{{ $area['area'] }}</button>
                             @endforeach
                         @else
                             <div class="min-h-[100px] flex justify-center items-center">
@@ -25,7 +39,7 @@
                             </div>
                         @endif
                     </div>
-                </x-displays.drawer>
+                </div>
                 <div class="flex flex-col gap-8 lg:flex-row">
                     <div id="map-embed" class="flex flex-col gap-4 scroll-mt-24 lg:w-full">
                         {{-- Map Embed --}}
@@ -83,7 +97,7 @@
                                 </div>
                             @endif
                         @else
-                            <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
+                            <div class="min-h-[100px] flex justify-center items-center h-full md:min-h-[200px]">
                                 <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                             </div>
                         @endif

@@ -22,7 +22,7 @@
                     <x-inputs.button type="hyperlink" href="#daftarkan-produk" size="lg">
                         Daftarkan Produk Anda
                     </x-inputs.button>
-                    <x-inputs.button type="button" size="lg" color="white">
+                    <x-inputs.button type="hyperlink" href="#biaya-servis" size="lg" color="white">
                         Cek Syarat Garansi
                     </x-inputs.button>
                 </div>

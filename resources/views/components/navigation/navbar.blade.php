@@ -16,14 +16,7 @@
             <img class="w-24 md:w-28 lg:w-[134px]" src="{{ asset('images/logo.png') }}" alt="Logo Quantum Indonesia">
         </a>
         {{-- Mobile --}}
-        <div class="flex gap-3 md:hidden">
-            {{-- Search Button --}}
-            <button type="button" @click="$store.searchDrawer.openDrawer()" class="circle-menu-search">
-                <span class="icon-[iconamoon--search] text-[28px]"></span>
-            </button>
-            <x-displays.drawer store="searchDrawer">
-                <livewire:displays.search-list />
-            </x-displays.drawer>
+        <div class="flex flex-row-reverse gap-3 md:hidden">
             {{-- Menu Button --}}
             <button type="button" @click="$store.menuDrawer.openDrawer()" class="circle-menu-search">
                 <span class="icon-[gg--menu] text-[28px]"></span>
@@ -147,6 +140,13 @@
                     </div>
                 </div>
             </x-displays.drawer>
+            {{-- Search Button --}}
+            <button type="button" @click="$store.searchDrawer.openDrawer()" class="circle-menu-search">
+                <span class="icon-[iconamoon--search] text-[28px]"></span>
+            </button>
+            <x-displays.drawer store="searchDrawer">
+                <livewire:displays.search-list />
+            </x-displays.drawer>
         </div>
         {{-- Desktop --}}
         <div class="hidden items-center gap-3 md:flex lg:gap-5">
@@ -232,17 +232,21 @@
                     <a href="{{ route('updates.recipe') }}" class="desktop-menu-nav-link">Resep</a>
                 </div>
             </div>
-            <div class="col-span-7 grid grid-cols-2 gap-5 rtl">
-                <a href="{{ route('product.category', 'regulator-selang-gas') }}" class="relative order-first flex-1 rounded-3xl overflow-hidden">
-                    <img class="aspect-19/11 size-full object-cover object-top brightness-85" src="{{ asset('images/nav-product-regulator.jpg') }}" alt="">
-                    <div class="absolute bottom-0 flex flex-row-reverse items-end gap-3 p-5">
-                        <h5 class="text-white text-left">Quantum Regulator & Selang Gas, aman ber-SNI</h5>
-                        <div class="shrink-0 hidden justify-center items-center size-14 bg-white rounded-full xl:flex">
-                            <span class="icon-[lucide--chevron-right] text-4xl text-qt-green-normal"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            @if($nav_recipes->count() > 0)
+                <div class="col-span-7 grid grid-cols-2 gap-5 rtl">
+                    @foreach($nav_recipes as $recipe)
+                        <a href="{{ route('updates.recipe.detail', $recipe->slug) }}" class="relative order-first flex-1 rounded-3xl overflow-hidden">
+                            <img class="aspect-19/11 size-full object-cover object-top brightness-85" src="{{ $recipe->media->first()->getUrl() }}" alt="{{ $recipe->title }}">
+                            <div class="absolute bottom-0 w-full flex flex-row-reverse justify-between items-end gap-3 p-5">
+                                <h5 class="text-white text-left">{{ $recipe->title }}</h5>
+                                <div class="shrink-0 hidden justify-center items-center size-14 bg-white rounded-full xl:flex">
+                                    <span class="icon-[lucide--chevron-right] text-4xl text-qt-green-normal"></span>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
     <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'support'" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">

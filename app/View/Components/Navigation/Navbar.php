@@ -3,9 +3,9 @@
 namespace App\View\Components\Navigation;
 
 use App\Models\Product\ProductCategory;
+use App\Models\Recipe\Recipe;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
 class Navbar extends Component
@@ -16,6 +16,7 @@ class Navbar extends Component
     // STICKY = true | false (default: true)
 
     public $product_categories;
+    public $nav_recipes;
     public ?string $route_group;
 
     /**
@@ -24,9 +25,11 @@ class Navbar extends Component
     public function __construct(
         public ?bool $transparent = true,
         public ?bool $sticky = true,
-        ProductCategory $productCategory
+        ProductCategory $productCategory,
+        Recipe $recipe
     ) {
         $this->product_categories = $productCategory->getAllCategory();
+        $this->nav_recipes = $recipe->getRecipeByNumber(2);
 
         $get_routes = request()->route()?->getName() ? explode('.', request()->route()?->getName())[0] : null;
         if (in_array($get_routes, ['about', 'product', 'distributor', 'updates', 'support'])) {

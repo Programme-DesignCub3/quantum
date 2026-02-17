@@ -129,6 +129,12 @@
                     <p class="text-[#6D6D6D]" x-text="sort === 'best-seller' ? 'Paling populer' : 'Terbaru'"></p>
                     <span class="icon-[lucide--chevron-down] text-xl"></span>
                 </button>
+                <x-displays.drawer store="productSortDrawer">
+                    <div class="flex flex-col gap-1 py-4">
+                        <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
+                        <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best-seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
+                    </div>
+                </x-displays.drawer>
                 {{-- Layout --}}
                 <div class="flex border border-[#F4F4F4] rounded-xl overflow-hidden">
                     <button type="button" @click="changeLayout('square')" class="p-2.5 border-[#E9E9E9] rounded-l-xl cursor-pointer" :class="layout === 'square' && 'bg-[#F4F4F4]'">
@@ -201,10 +207,27 @@
                     </div>
                 </div>
             </div>
-            {{-- List Products --}}
+            {{-- List Products (Mobile & Desktop) --}}
             <div class="md:col-span-9">
                 @if(!$products->isEmpty())
-                    <p class="text-[#6D6D6D] p-2">{{ $count_products }} Produk</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-[#6D6D6D] pt-3 pb-2 md:p-0">{{ $count_products }} Produk</p>
+                        {{-- Sort (Desktop) --}}
+                        <div class="hidden items-center gap-2.5 md:flex">
+                            <p class="text-[#6D6D6D]">Urut berdasarkan</p>
+                            <div class="relative">
+                                <button x-data="{ sort: @entangle('sort') }" type="button" @click="$store.productSortDrawer.openDrawer()" class="w-[170px] flex justify-between items-center rounded-xl p-3 cursor-pointer border border-[#E9E9E9] focus:border-[#6D6D6D]">
+                                    <p class="text-[#6D6D6D]" x-text="sort === 'best-seller' ? 'Paling populer' : 'Terbaru'"></p>
+                                    <span class="icon-[lucide--chevron-down] text-xl shrink-0" :class="{ 'md:rotate-180': $store.productSortDrawer.open }"></span>
+                                </button>
+                                <div x-cloak x-show="$store.productSortDrawer.open" @click.outside="$store.productSortDrawer.closeDrawer()" class="dropdown-select drop-shadow-float top-13">
+                                    <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')">Terbaru</button>
+                                    <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best-seller')">Paling populer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Products --}}
                     <div :class="{
                         'grid-cols-2 lg:grid-cols-3': layout === 'row',
                         'grid-cols-1': layout !== 'row'
@@ -226,12 +249,6 @@
             </div>
         </div>
     </div>
-    <x-displays.drawer store="productSortDrawer">
-        <div class="flex flex-col gap-1 py-4">
-            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>
-            <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', 'best-seller')" class="w-full text-left p-4 cursor-pointer">Paling populer</button>
-        </div>
-    </x-displays.drawer>
 </section>
 
 @push('scripts')

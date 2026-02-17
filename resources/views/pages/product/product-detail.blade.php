@@ -79,7 +79,7 @@
                     Beli Sekarang
                 </x-inputs.button>
             </div>
-            <div x-cloak x-data="{ data: {{ json_encode($data_drawer) }} }" :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 bg-white p-4 max-w-full w-full rounded-t-2xl drop-shadow-float-lg md:hidden">
+            <div x-cloak :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 bg-white p-4 max-w-full w-full rounded-t-2xl drop-shadow-float-lg md:hidden">
                 {{-- <div class="space-y-0">
                     <span>Harga</span>
                     <div class="flex space-x-1">
@@ -184,7 +184,7 @@
                                         </div>
                                     @endif
                                     @if(in_array('dimension_text', array_column($detail->specs_detail, 'type')))
-                                        <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                                        <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
                                             @foreach($detail->specs_detail[array_search('dimension_text', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $dimension)
                                                 <x-displays.specs :label="$label">
                                                     <p>{{ $dimension }}</p>
@@ -264,13 +264,13 @@
                     <div class="border-b border-[#CECECE] py-3">
                         <h4>Produk</h4>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-                        <div>
-                            <x-displays.product-card size="sm" :disableView="true" :disableSpecs="true" :payload="$detail" />
+                    <div class="grid grid-cols-2 gap-4 md:max-w-max md:mx-auto">
+                        <div class="md:w-[330px]">
+                            <x-displays.product-card :disableView="true" :disableSpecs="true" :payload="$detail" />
                         </div>
                         @if($compare_product)
-                            <div>
-                                <x-displays.product-card size="sm" :disableSpecs="true" :payload="$compare_product" />
+                            <div class="md:w-[330px]">
+                                <x-displays.product-card :disableSpecs="true" :payload="$compare_product" />
                             </div>
                         @endif
                     </div>
@@ -279,8 +279,8 @@
                     <div class="border-b border-[#CECECE] py-3">
                         <h4>Spesifikasi Detil</h4>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-4">
+                    <div class="grid grid-cols-2 gap-4 md:max-w-max md:mx-auto">
+                        <div class="flex flex-col gap-4 md:px-4 md:w-[330px]">
                             @foreach($detail->specs_detail[array_search('detail', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $spec)
                                 <x-displays.specs :label="$label">
                                     <p>{{ $spec }}</p>
@@ -288,7 +288,7 @@
                             @endforeach
                         </div>
                         @if($compare_product)
-                            <div class="flex flex-col gap-4">
+                            <div class="flex flex-col gap-4 md:px-4 md:w-[330px]">
                                 @foreach($compare_product->specs_detail[array_search('detail', array_column($compare_product->specs_detail, 'type'))]['data']['value'] as $label => $spec)
                                     <x-displays.specs :label="$label">
                                         <p>{{ $spec }}</p>
@@ -323,7 +323,10 @@
             </div>
         </section>
         <section id="bantuan" class="container flex flex-col gap-[42px] py-[60px] px-4">
-            <div class="flex flex-col gap-4 max-w-[676px]">
+            <div @class([
+                'max-w-[676px]' => $detail->getFirstMedia('guidance_product'),
+                'flex flex-col gap-4'
+            ])>
                 <h2>Panduan</h2>
                 @if($detail->getFirstMedia('guidance_product'))
                     <x-displays.guidance-card :payload="$detail" />
@@ -374,6 +377,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('productDetail', () => ({
+            data: @js($data_drawer),
             isVisible: true,
 
             init() {

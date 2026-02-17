@@ -5,7 +5,6 @@ namespace App\View\Components\Displays;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 
 class ProductCard extends Component
 {

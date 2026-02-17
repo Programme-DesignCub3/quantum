@@ -12,12 +12,19 @@ class CatalogCard extends Component
 
     // PAYLOAD = data from controller
 
+    public $data_drawer;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
         public $payload,
-    ) {}
+    ) {
+        $this->data_drawer = [
+            'catalog_id' => $this->payload->id,
+            'image' => ($payload->getMedia('thumbnail_catalog')->first() !== null) ? $payload->getMedia('thumbnail_catalog')->first()->getUrl() : null
+        ];
+    }
 
     /**
      * Get the view / contents that represent the component.

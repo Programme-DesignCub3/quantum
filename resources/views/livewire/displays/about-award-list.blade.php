@@ -3,7 +3,7 @@
         <h2>{{ $page_settings->about_title_award }}</h2>
         <p class="text-[#6D6D6D]">{{ $page_settings->about_description_award }}</p>
     </div>
-    <div class="flex flex-col gap-6">
+    <div class="container flex flex-col gap-6">
         @if(!empty($page_settings->about_award))
             <div class="flex justify-center items-center px-6">
                 <div class="flex gap-0.5 bg-white p-1 rounded-full overflow-x-auto">

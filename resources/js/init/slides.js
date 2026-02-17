@@ -38,17 +38,41 @@ const productsHomeSlide = () => {
 const awardsAboutSlide = () => {
     if(document.querySelector('.splide.award-about')) {
         new Splide('.splide.award-about', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1.5rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 4,
+            gap: '1.5rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                    perPage: 3,
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 }
 
 // Homepage Slides
 if (document.querySelector('#homepage')) {
-    if(document.querySelector('.splide.slideshow-home')) {
-        new Splide('.splide.slideshow-home', slideShow).mount();
+    if(document.querySelector('.splide.slideshow-home-mobile')) {
+        new Splide('.splide.slideshow-home-mobile', slideShow).mount();
+    }
+    if(document.querySelector('.splide.slideshow-home-desktop')) {
+        new Splide('.splide.slideshow-home-desktop', slideShow).mount();
     }
 
     productsHomeSlide();

@@ -198,10 +198,11 @@
     }
     /* Floating Label Input */
     .floating-label-input {
+        @apply relative w-full;
         label {
             @apply absolute transition-all duration-200 ease-in-out text-xs left-3 text-[#6D6D6D]/60 px-1;
             &.floating {
-                @apply visible bg-white -top-2 opacity-100;
+                @apply visible bg-white z-10 -top-2 opacity-100;
             }
             &.not-floating {
                 @apply invisible top-1 opacity-0;
@@ -213,14 +214,24 @@
         textarea {
             @apply w-full p-3 rounded-xl border outline-offset-2 text-[#6D6D6D] text-sm border-[#E9E9E9] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60;
         }
-        button#select-form {
-            @apply flex justify-between items-center w-full p-3 rounded-xl border text-sm border-[#E9E9E9] outline-none cursor-pointer focus:border-[#6D6D6D];
+        button.select-form {
+            @apply relative flex justify-between items-center w-full p-3 rounded-xl border border-[#E9E9E9] outline-none cursor-pointer focus:border-[#6D6D6D];
             &.filled {
                 @apply text-[#6D6D6D];
             }
             &.not-filled {
                 @apply text-[#6D6D6D]/60;
             }
+            span#select-form {
+                @apply text-sm;
+            }
+        }
+    }
+    /* Dropdown Select (Desktop) */
+    .dropdown-select {
+        @apply absolute z-10 top-12 left-0 w-full bg-white rounded-xl max-h-[200px] space-y-2.5 py-4 overflow-y-auto hidden md:block;
+        button {
+            @apply w-full text-left text-sm cursor-pointer px-4;
         }
     }
     /* Article Content */
@@ -320,9 +331,9 @@
 
 .splide__pagination {
     &.slide-home {
-        @apply gap-2 flex-nowrap! z-20!;
+        @apply container gap-2 flex-nowrap! z-20! md:bottom-8 md:justify-start;
         li {
-            @apply w-full ;
+            @apply w-full md:w-[72px];
         }
         button {
             &.splide__pagination__page {

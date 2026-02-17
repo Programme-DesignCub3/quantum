@@ -29,7 +29,20 @@
         <x-displays.drawer store="premiumRecipeDrawer">
             <livewire:forms.recipe-premium-form :payload="$detail" />
         </x-displays.drawer>
-        {{--  --}}
+        <x-displays.modal store="premiumRecipeDrawer">
+            <div class="relative w-full grid grid-cols-2 bg-white drop-shadow-float-lg rounded-3xl overflow-hidden min-[830px]:w-4xl">
+                <div class="absolute top-3 right-3">
+                    <button type="button" @click="$store.premiumRecipeDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                        <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                    </button>
+                </div>
+                <div class="relative overflow-hidden">
+                    <img class="aspect-square size-full object-cover" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
+                </div>
+                <livewire:forms.recipe-premium-form :payload="$detail" />
+            </div>
+        </x-displays.modal>
+        {{-- Recipe Detail --}}
         <section class="flex flex-col">
             {{-- Header --}}
             <div class="container flex flex-col gap-4 px-6 pt-[60px] pb-8">

@@ -7,10 +7,10 @@
 
 @section('content')
     <main id="homepage" class="bg-white">
-        {{-- Banner --}}
-        <section class="splide slideshow-home relative" role="group" aria-label="Quantum Home Slides">
-            <div class="absolute container z-10 flex flex-col justify-end w-full h-full md:justify-normal md:left-1/2 md:-translate-x-1/2">
-                <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-20 min-[400px]:pt-28 min-[375px]:px-12 md:p-6 md:text-left md:h-full md:flex md:flex-col md:justify-center md:max-w-xl">
+        {{-- Banner (Mobile) --}}
+        <section class="splide slideshow-home-mobile relative md:hidden" role="group" aria-label="Quantum Home Slides">
+            <div class="absolute container z-10 flex flex-col justify-end w-full h-full">
+                <div class="w-full h-1/2 text-white space-y-4 text-center pt-16 px-4 min-[375px]:pt-20 min-[400px]:pt-28 min-[375px]:px-12">
                     <h1>{{ $page_settings->home_title_banner }}</h1>
                     <p class="large">{{ $page_settings->home_description_banner }}</p>
                     <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg" color="white" class="w-max">
@@ -23,13 +23,40 @@
                     @if(count($page_settings->home_banner) > 0)
                         @foreach($page_settings->home_banner as $banner)
                             <li class="splide__slide">
-                                <img class="brightness-90" src="{{ asset('storage/' . $banner) }}" alt="">
+                                <img class="brightness-90 w-full object-cover sm:h-[1000px]" src="{{ asset('storage/' . $banner) }}" alt="">
                             </li>
                         @endforeach
                     @else
                         <li class="splide__slide">
-                            <img class="brightness-90 md:hidden" src="{{ asset('images/mobile-home-placeholder.jpg') }}" alt="">
-                            <img class="brightness-90 w-full h-[800px] object-cover hidden md:block" src="{{ asset('images/desktop-home-placeholder.jpg') }}" alt="">
+                            <img class="brightness-90 w-full object-cover sm:h-[1000px]" src="{{ asset('images/mobile-home-placeholder.jpg') }}" alt="">
+                        </li>
+                    @endif
+                </ul>
+            </div>
+            <ul class="splide__pagination slide-home"></ul>
+        </section>
+        {{-- Banner (Desktop) --}}
+        <section class="splide slideshow-home-desktop relative hidden md:block" role="group" aria-label="Quantum Home Slides">
+            <div class="absolute left-1/2 -translate-x-1/2 container z-10 flex flex-col w-full h-full">
+                <div class="flex flex-col justify-center max-w-xl w-full h-full text-white space-y-4 text-left p-6">
+                    <h1>{{ $page_settings->home_title_banner }}</h1>
+                    <p class="large">{{ $page_settings->home_description_banner }}</p>
+                    <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg" color="white" class="w-max">
+                        LAGI CARI APA?
+                    </x-inputs.button>
+                </div>
+            </div>
+            <div class="splide__track">
+                <ul class="splide__list">
+                    @if(count($page_settings->home_banner_desktop) > 0)
+                        @foreach($page_settings->home_banner_desktop as $banner)
+                            <li class="splide__slide">
+                                <img class="brightness-90 w-full h-[800px] object-cover" src="{{ asset('storage/' . $banner) }}" alt="">
+                            </li>
+                        @endforeach
+                    @else
+                        <li class="splide__slide">
+                            <img class="brightness-90 w-full h-[800px] object-cover" src="{{ asset('images/desktop-home-placeholder.jpg') }}" alt="">
                         </li>
                     @endif
                 </ul>

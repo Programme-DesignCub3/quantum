@@ -7,73 +7,82 @@
             </x-inputs.button>
         </div>
         @if(count($result) > 0)
-            <div class="max-w-sm w-full mx-auto flex flex-col gap-4 py-2.5 max-h-80 overflow-y-auto min-[400px]:max-w-full md:flex-row-reverse">
+            <div class="max-w-sm w-full mx-auto grid grid-cols-1 gap-6 py-2.5 max-h-80 overflow-y-auto min-[400px]:max-w-full md:grid-cols-2">
                 @foreach($result as $key => $items)
-                    @switch($key)
-                        @case('products')
-                            <div class="flex flex-col gap-3 w-full">
-                                <h4>Rekomendasi Produk</h4>
-                                <div class="flex flex-col gap-3">
-                                    @foreach($items as $key => $item)
-                                        <a href="{{ route('product.detail', [$item->category->slug, $item->slug]) }}" class="flex items-center gap-4">
-                                            <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
-                                                <img class="size-[100px] object-cover object-center" src="{{ $item->media->first()->getUrl() }}" alt="{{ $item->name }}">
+                    {{-- Products --}}
+                    @if($key == 'products')
+                        <div class="flex flex-col gap-3 w-full md:order-last">
+                            <h4 class="md:text-xl">Rekomendasi Produk</h4>
+                            <div class="flex flex-col gap-1.5">
+                                @foreach($items as $key => $item)
+                                    <a href="{{ route('product.detail', [$item->category->slug, $item->slug]) }}" class="flex items-center gap-4">
+                                        <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
+                                            <img class="size-[100px] object-cover object-center" src="{{ $item->media->first()->getUrl() }}" alt="{{ $item->name }}">
+                                        </div>
+                                        <div class="flex flex-col gap-2.5">
+                                            <div class="space-y-0">
+                                                <span class="text-[#9A9A9A]">{{ $item->variant->name ?? $item->category->name }}</span>
+                                                <h4 class="text-qt-green-normal md:text-xl">{{ $item->name }}</h4>
                                             </div>
-                                            <div class="flex flex-col gap-2.5">
-                                                <div class="space-y-0">
-                                                    <span class="text-[#9A9A9A]">{{ $item->variant->name ?? $item->category->name }}</span>
-                                                    <h4 class="text-qt-green-normal">{{ $item->name }}</h4>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        @if($key < count($items) - 1)
-                                            <div class="w-full h-px bg-black/10 my-1"></div>
-                                        @endif
-                                    @endforeach
-                                </div>
+                                        </div>
+                                    </a>
+                                    @if($key < count($items) - 1)
+                                        <div class="w-full h-px bg-black/10 my-1"></div>
+                                    @endif
+                                @endforeach
                             </div>
-                            @break
-                        @case('news')
-                            <div class="flex flex-col gap-3">
-                                <h4>Artikel</h4>
-                                <div class="flex flex-col gap-3">
-                                    @foreach($items as $key => $item)
-                                        <a href="{{ route('updates.news.detail', $item->slug) }}" class="flex gap-6">
-                                            <p class="large">{{ $item->title }}</p>
-                                            <div class="flex shrink-0 justify-center items-center size-10 rounded-full bg-white">
-                                                <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
-                                            </div>
-                                        </a>
-                                        @if($key < count($items) - 1)
-                                            <div class="w-full h-px bg-black/10 my-1"></div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            @break
-                        @case('guidances')
-                            <div class="flex flex-col gap-3">
-                                <h4>Bantuan</h4>
-                                <div class="flex flex-col gap-3">
-                                    @foreach($items as $key => $item)
-                                        <a href="{{ route('support.guidance.detail', $item->slug) }}" class="flex gap-6">
-                                            <p class="large">{{ $item->title }}</p>
-                                            <div class="flex shrink-0 justify-center items-center size-10 rounded-full bg-white">
-                                                <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
-                                            </div>
-                                        </a>
-                                        @if($key < count($items) - 1)
-                                            <div class="w-full h-px bg-black/10 my-1"></div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            @break
-                    @endswitch
+                        </div>
+                    @endif
                 @endforeach
+                <div class="grid grid-cols-1 gap-6 md:order-first">
+                    @foreach($result as $key => $items)
+                        {{-- Article/News --}}
+                        @if($key == 'news')
+                            <div class="flex flex-col gap-3">
+                                <h4 class="md:text-xl">Artikel</h4>
+                                <div class="flex flex-col gap-1.5">
+                                    @foreach($items as $key => $item)
+                                        <a href="{{ route('updates.news.detail', $item->slug) }}" class="flex justify-between gap-6">
+                                            <div class="flex items-center">
+                                                <p class="large">{{ $item->title }}</p>
+                                            </div>
+                                            <div class="flex shrink-0 justify-center items-center size-10 rounded-full bg-white">
+                                                <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
+                                            </div>
+                                        </a>
+                                        @if($key < count($items) - 1)
+                                            <div class="w-full h-px bg-black/10 my-1"></div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                        {{-- Guidance --}}
+                        @if($key == 'guidances')
+                            <div class="flex flex-col gap-3">
+                                <h4 class="md:text-xl">Bantuan</h4>
+                                <div class="flex flex-col gap-1.5">
+                                    @foreach($items as $key => $item)
+                                        <a href="{{ route('support.guidance.detail', $item->slug) }}" class="flex justify-between gap-6">
+                                            <div class="flex items-center">
+                                                <p class="large">{{ $item->title }}</p>
+                                            </div>
+                                            <div class="flex shrink-0 justify-center items-center size-10 rounded-full bg-white">
+                                                <span class="icon-[lucide--arrow-up-right] text-3xl text-qt-green-normal"></span>
+                                            </div>
+                                        </a>
+                                        @if($key < count($items) - 1)
+                                            <div class="w-full h-px bg-black/10 my-1"></div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         @else
-            <div class="min-h-[100px] flex justify-center items-center">
+            <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">
                 <p class="text-center text-gray-500">Pencarian tidak ditemukan</p>
             </div>
         @endif

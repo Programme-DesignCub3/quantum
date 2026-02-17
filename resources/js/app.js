@@ -8,20 +8,23 @@ import './stores/drawer-store';
 import './bootstrap';
 
 if (document.getElementById('purchase-date-picker')) {
-    const purchaseDatePicker = document.getElementById('purchase-date-picker');
-    const datepicker = new Datepicker(purchaseDatePicker, {
-        todayHighlight: true,
-        maxDate: new Date(),
-    });
+    const purchaseDatePicker = document.querySelectorAll('#purchase-date-picker');
 
-    purchaseDatePicker.addEventListener('changeDate', () => {
-        const dateValue = datepicker.getDate();
-        const year = dateValue.getFullYear();
-        const month = String(dateValue.getMonth() + 1).padStart(2, '0');
-        const day = String(dateValue.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
+    purchaseDatePicker.forEach((picker) => {
+        const datepicker = new Datepicker(picker, {
+            todayHighlight: true,
+            maxDate: new Date(),
+        })
 
-        Livewire.dispatch('purchase-date-selected', { date: formattedDate });
-        Alpine.store('guaranteePurchaseDateDrawer').closeDrawer();
-    });
+        picker.addEventListener('changeDate', () => {
+            const dateValue = datepicker.getDate();
+            const year = dateValue.getFullYear();
+            const month = String(dateValue.getMonth() + 1).padStart(2, '0');
+            const day = String(dateValue.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+    
+            Livewire.dispatch('purchase-date-selected', { date: formattedDate });
+            Alpine.store('guaranteePurchaseDateDrawer').closeDrawer();
+        })
+    })
 }

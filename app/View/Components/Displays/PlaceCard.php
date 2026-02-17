@@ -33,6 +33,7 @@ class PlaceCard extends Component
             $this->data_drawer = [
                 'for' => $this->for,
                 'image' => $this->payload->getFirstMedia('service_centers') ? $this->payload->getFirstMedia('service_centers')->getUrl() : null,
+                'type' => $this->payload->type,
                 'area' => $this->payload->area,
                 'name' => $this->payload->name,
                 'address' => $this->payload->address,

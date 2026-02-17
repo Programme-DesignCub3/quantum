@@ -12,12 +12,14 @@ class CreateProduct extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if(isset($data['gallery'][0]['type']) && $data['gallery'][0]['type'] === 'video_youtube') {
-            preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $data['gallery'][0]['data']['value'], $matches);
-            if (isset($matches[1])) {
-                $data['gallery'][0]['data']['video_id'] = $matches[1];
-            } else {
-                $data['gallery'][0]['data']['video_id'] = '';
+        foreach($data['gallery'] ?? [] as $index => $item) {
+            if(isset($item['type']) && $item['type'] === 'video_youtube') {
+                preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $item['data']['value'], $matches);
+                if (isset($matches[1])) {
+                    $data['gallery'][$index]['data']['video_id'] = $matches[1];
+                } else {
+                    $data['gallery'][$index]['data']['video_id'] = '';
+                }
             }
         }
 
