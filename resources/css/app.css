@@ -9,7 +9,7 @@
 
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --background-image-desktop-subscription: url('http://quantum.test/images/desktop-subscription.jpg');
+    --background-image-desktop-subscription: url('/images/desktop-subscription.jpg');
 
     --color-qt-green-normal: #127681;
     --color-qt-green-hover: #00686B;
@@ -44,7 +44,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-VariableFont.woff2") format("woff2");
 }
 
 @font-face {
@@ -52,7 +52,7 @@
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
-    src: url("http://quantum.test/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
+    src: url("/fonts/Inter-Italic-VariableFont.woff2") format("woff2");
 }
 
 @layer base {
