@@ -125,7 +125,7 @@ class ManageHome extends SettingsPage
                                     ->directory('home-images')
                                     ->columnSpanFull()
                                     ->panelLayout('grid')
-                                    ->helperText('File berupa format gambar .jpeg .jpg .png .webp. Rekomendasi rasio 25:48. Maksimal ukuran file 2MB. Bisa mengunggah lebih dari satu gambar.')
+                                    ->helperText('File berupa format gambar .jpeg .jpg .png .webp. Rekomendasi rasio 144:65. Maksimal ukuran file 2MB. Bisa mengunggah lebih dari satu gambar.')
                                     ->required(),
                                 TextInput::make('home_title_banner')
                                     ->label('Judul')

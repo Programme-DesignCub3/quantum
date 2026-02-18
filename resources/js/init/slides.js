@@ -164,9 +164,29 @@ if (document.querySelector('#about')) {
 
     if(document.querySelector('.splide.history-about')) {
         new Splide('.splide.history-about', {
-            ...swipeable,
-            gap: '2rem',
-            padding: '1rem'
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            perPage: 3,
+            gap: '1.25rem',
+            padding: '1.5rem',
+            breakpoints: {
+                1280: {
+                    gap: '2rem',
+                },
+                1024: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 2,
+                    autoWidth: true,
+                },
+                550: {
+                    perPage: 1,
+                    autoWidth: true,
+                    padding: '1rem',
+                }
+            }
         }).mount();
     }
 

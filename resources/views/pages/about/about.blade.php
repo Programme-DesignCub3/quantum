@@ -57,12 +57,12 @@
                         @if(isset($page_settings->about_history_formatted[0]))
                             <div class="px-4 sm:px-6">
                                 <x-displays.inside-card :image="$page_settings->about_history_formatted[0]['image'] ? 'storage/' . $page_settings->about_history_formatted[0]['image'] : 'images/og-image.jpg'">
-                                    <h4>{{ $page_settings->about_history_formatted[0]['title'] }}</h4>
+                                    <h4 class="md:text-xl">{{ $page_settings->about_history_formatted[0]['title'] }}</h4>
                                     <p class="small">{{ $page_settings->about_history_formatted[0]['description'] }}</p>
                                 </x-displays.inside-card>
                             </div>
                         @else
-                            <div class="min-h-[100px] flex justify-center items-center">
+                            <div class="min-h-[100px] flex justify-center items-center md:min-h-[200pxpx]">
                                 <p class="text-center text-gray-500">Tidak ada data untuk ditampilkan</p>
                             </div>
                         @endif
@@ -73,7 +73,7 @@
                                         @foreach($page_settings->about_history_formatted->skip(1) as $item)
                                             <li class="splide__slide">
                                                 <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'">
-                                                    <h4>{{ $item['title'] }}</h4>
+                                                    <h4 class="md:text-xl">{{ $item['title'] }}</h4>
                                                     @if(isset($item['description']))
                                                         <p class="small text-[#9A9A9A]">{{ $item['description'] }}</p>
                                                     @endif
