@@ -11,6 +11,8 @@ class RecipeController extends Controller
 {
     public function index(Recipe $recipe, PageSettings $pageSettings)
     {
+        abort(404);
+
         $latest_recipes = $recipe->getRecipeByNumber(4);
 
         return view('pages.updates.recipe', [
@@ -25,6 +27,8 @@ class RecipeController extends Controller
 
     public function detail(Recipe $recipe, Product $product, $slug)
     {
+        abort(404);
+
         $detail = $recipe->getDetailRecipe($slug);
         if(!$detail) return abort(404);
 

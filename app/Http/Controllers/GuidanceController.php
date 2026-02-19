@@ -10,6 +10,8 @@ class GuidanceController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         return view('pages.support.guidance', [
             'meta_title' => $pageSettings->guidance_meta_title,
             'meta_description' => $pageSettings->guidance_meta_description,
@@ -20,6 +22,8 @@ class GuidanceController extends Controller
 
     public function detail(Guidance $guidance, $slug)
     {
+        abort(404);
+
         $detail = $guidance->getDetailGuidance($slug);
         if(!$detail) return abort(404);
 

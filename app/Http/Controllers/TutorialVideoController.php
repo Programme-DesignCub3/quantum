@@ -9,6 +9,8 @@ class TutorialVideoController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         return view('pages.support.tutorial-video', [
             'meta_title' => $pageSettings->video_meta_title,
             'meta_description' => $pageSettings->video_meta_description,

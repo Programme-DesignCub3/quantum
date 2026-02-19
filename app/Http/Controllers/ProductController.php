@@ -12,6 +12,8 @@ class ProductController extends Controller
 {
     public function index(ProductCategory $productCategory, Guidance $guidance, PageSettings $pageSettings, $category = null)
     {
+        abort(404);
+
         $categories = $productCategory->getAllCategory();
         if($category) {
             $check_category = $categories->firstWhere('slug', $category);
@@ -56,6 +58,8 @@ class ProductController extends Controller
 
     public function detail(Product $product, $category = null, $slug)
     {
+        abort(404);
+
         $detail = $product->getDetailProduct($slug);
         if(!$detail) return abort(404);
 
@@ -95,6 +99,8 @@ class ProductController extends Controller
 
     public function downloadGuidance(Product $product, $slug)
     {
+        abort(404);
+
         $detail = $product->getDetailProduct($slug);
         if(!$detail) return abort(404);
 

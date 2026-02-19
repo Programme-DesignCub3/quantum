@@ -9,6 +9,8 @@ class ServiceCenterController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
+        abort(404);
+
         return view('pages.support.service-center', [
             'meta_title' => $pageSettings->sc_meta_title,
             'meta_description' => $pageSettings->sc_meta_description,
