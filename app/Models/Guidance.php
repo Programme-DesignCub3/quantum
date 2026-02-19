@@ -8,16 +8,19 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 
 class Guidance extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasSlug;
+    use InteractsWithMedia, HasSlug, HasTags;
 
     protected $fillable = [
         'title',
         'slug',
         'excerpt',
         'content',
+        'meta_title',
+        'meta_description',
         'is_published',
     ];
 
@@ -102,9 +105,6 @@ class Guidance extends Model implements HasMedia
         return self::where('is_published', true)
             ->when($query, function ($q) use ($query) {
                 $q->where('title', 'like', '%' . $query . '%');
-            })
-            ->whereHas('media', function ($q2) {
-                $q2->where('collection_name', 'guidance_product');
             })
             ->latest()
             ->take($number)

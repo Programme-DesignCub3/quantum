@@ -21,6 +21,8 @@ class Recipe extends Model implements HasMedia
         'steps',
         'cook_time',
         'portion',
+        'meta_title',
+        'meta_description',
         'is_published',
         'is_premium',
     ];

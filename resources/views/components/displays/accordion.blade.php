@@ -28,8 +28,10 @@
     ])>
         @if ($type === 'primary')
             <p class="font-semibold text-sm tracking-[0.5px] text-[#0D545C]">{{ $title }}</p>
-        @elseif ($type === 'secondary' || $type === 'tertiary')
+        @elseif ($type === 'secondary')
             <h4 class="text-left">{{ $title }}</h4>
+        @elseif ($type === 'tertiary')
+            <h4 class="text-left md:text-xl md:text-[#0D545C]">{{ $title }}</h4>
         @endif
         <div class="shrink-0 relative col-span-2">
             <div @class([

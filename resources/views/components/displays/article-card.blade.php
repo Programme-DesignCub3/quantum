@@ -4,15 +4,17 @@
 ])>
     <div class="relative bg-white aspect-49/30">
         <img class="aspect-49/30 object-cover" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
-        <span class="absolute bottom-2 right-2 small bg-[#60A3AB] py-0.5 px-2 rounded-full text-white">{{ $payload->category->name }}</span>
+        @if($for !== 'guidance')
+            <span class="absolute bottom-2 right-2 small bg-[#60A3AB] py-0.5 px-2 rounded-full text-white">{{ $payload->category->name }}</span>
+        @endif
     </div>
     <div class="flex flex-col justify-between gap-4 p-4 bg-white h-full">
         <div class="space-y-2">
-            <h4>{{ $payload->title }}</h4>
-            @if(isset($payload->excerpt))
+            <h4 class="md:text-xl">{{ $payload->title }}</h4>
+            @if(isset($payload->excerpt) && $for !== 'guidance')
                 <p class="text-[#9A9A9A]">{{ $payload->excerpt }}</p>
             @endif
-            @if(isset($payload->description))
+            @if(isset($payload->description) && $for !== 'guidance')
                 <p class="text-[#9A9A9A]">{{ $payload->description }}</p>
             @endif
         </div>

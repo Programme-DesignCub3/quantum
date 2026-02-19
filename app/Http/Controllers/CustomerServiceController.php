@@ -13,9 +13,9 @@ class CustomerServiceController extends Controller
     {
         abort(404);
 
-        $guidances = $product->getProductGuidanceByNumber(3);
+        $guidances = $product->getProductGuidanceByNumber(4);
 
-        $tutorials = $tutorial->getTutorialByNumber(3);
+        $tutorials = $tutorial->getTutorialByNumber(4);
 
         return view('pages.support.customer-service', [
             'meta_title' => $pageSettings->cs_meta_title,

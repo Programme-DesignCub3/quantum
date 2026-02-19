@@ -32,15 +32,19 @@ class RecipeController extends Controller
         $detail = $recipe->getDetailRecipe($slug);
         if(!$detail) return abort(404);
 
+        $detail->primary_image_caption = $detail->getFirstMedia('recipes')?->getCustomProperty('caption');
+        $detail->primary_image_alt_text = $detail->getFirstMedia('recipes')?->getCustomProperty('alt_text');
+
         $recommendation_products = $product->getRecommendationProduct(3);
 
-        $other_recipes = $recipe->getRecommendationRecipe(3, $detail->id);
+        $other_recipes = $recipe->getRecommendationRecipe(4, $detail->id);
 
         $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
+        $meta_keywords = $meta_keywords === '' ? null : $meta_keywords;
 
         return view('pages.updates.recipe-detail', [
-            'meta_title' => $detail->title,
-            'meta_description' => $detail->description,
+            'meta_title' => $detail->meta_title ?? $detail->title,
+            'meta_description' => $detail->meta_description ?? $detail->description,
             'meta_keywords' => $meta_keywords,
             'meta_image' => $detail->media->first()->getUrl(),
             'detail' => $detail,

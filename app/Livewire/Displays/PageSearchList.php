@@ -23,7 +23,7 @@ class PageSearchList extends Component
         NewsEvent $newsEvent,
         Guidance $guidance
     ) {
-        $products = $product->searchProduct(3, $this->search);
+        $products = $product->searchProduct(6, $this->search);
         $news = $newsEvent->searchNews(3, $this->search);
         $guidances = $guidance->searchGuidance(3, $this->search);
 

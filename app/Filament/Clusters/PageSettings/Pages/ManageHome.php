@@ -102,7 +102,7 @@ class ManageHome extends SettingsPage
                             ->collapsible()
                             ->schema([
                                 FileUpload::make('home_banner')
-                                    ->label('Banner Utama')
+                                    ->label('Banner Utama (Mobile)')
                                     ->image()
                                     ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
                                     ->multiple()
@@ -113,6 +113,19 @@ class ManageHome extends SettingsPage
                                     ->columnSpanFull()
                                     ->panelLayout('grid')
                                     ->helperText('File berupa format gambar .jpeg .jpg .png .webp. Rekomendasi rasio 25:48. Maksimal ukuran file 2MB. Bisa mengunggah lebih dari satu gambar.')
+                                    ->required(),
+                                FileUpload::make('home_banner_desktop')
+                                    ->label('Banner Utama (Desktop)')
+                                    ->image()
+                                    ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                                    ->multiple()
+                                    ->reorderable()
+                                    ->appendFiles()
+                                    ->maxSize(2048)
+                                    ->directory('home-images')
+                                    ->columnSpanFull()
+                                    ->panelLayout('grid')
+                                    ->helperText('File berupa format gambar .jpeg .jpg .png .webp. Rekomendasi rasio 144:65. Maksimal ukuran file 2MB. Bisa mengunggah lebih dari satu gambar.')
                                     ->required(),
                                 TextInput::make('home_title_banner')
                                     ->label('Judul')

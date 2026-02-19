@@ -14,6 +14,7 @@ use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Fieldset;
@@ -175,6 +176,7 @@ class ProductForm
                                 ->label('Detail Spesifikasi')
                                 ->blockNumbers(false)
                                 ->reorderable(false)
+                                ->minItems(3)
                                 ->maxItems(3)
                                 ->required()
                                 ->blocks([
@@ -276,6 +278,7 @@ class ProductForm
                                                 ->url()
                                                 ->prefixIcon(Heroicon::Link)
                                                 ->required(),
+                                            Hidden::make('video_id'),
                                         ]),
                                 ])
                         ])->columnSpan(7),
@@ -375,8 +378,7 @@ class ProductForm
                                                 ->required(),
                                         ]),
                                 ]),
-                            Section::make('Katalog')
-                                ->description('Ditampilkan di halaman Katalog.')
+                            Fieldset::make('Katalog')
                                 ->schema([
                                     SpatieMediaLibraryFileUpload::make('thumbnail_catalog')
                                         ->label('Thumbnail Katalog')
@@ -394,8 +396,7 @@ class ProductForm
                                         ->columnSpanFull()
                                         ->belowContent('File berupa format dokumen .pdf. Maksimal ukuran file 5MB.'),
                                 ]),
-                            Section::make('Edukasi dan Panduan')
-                                ->description('Ditampilkan di halaman Produk dan Edukasi/Panduan.')
+                            Fieldset::make('Edukasi dan Panduan')
                                 ->schema([
                                     SpatieMediaLibraryFileUpload::make('thumbnail_guidance')
                                         ->label('Thumbnail Panduan')
@@ -413,6 +414,25 @@ class ProductForm
                                         ->columnSpanFull()
                                         ->belowContent('File berupa format dokumen .pdf. Maksimal ukuran file 5MB.'),
                                 ]),
+                            Fieldset::make('Meta Tag (SEO)')
+                                ->schema([
+                                    TextInput::make('meta_title')
+                                        ->label('Title')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull()
+                                        ->belowContent('Secara default, sistem akan menggunakan nama produk yang diinput sebelumnya. Namun, Anda dapat menyesuaikannya untuk tujuan SEO.'),
+                                    TextInput::make('meta_description')
+                                        ->label('Description')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull()
+                                        ->belowContent('Secara default, sistem akan menggunakan deskripsi default. Namun, Anda dapat menyesuaikannya untuk tujuan SEO.'),
+                                    SpatieTagsInput::make('tags')
+                                        ->label('Keywords')
+                                        ->type('product')
+                                        ->placeholder('Tambah keyword')
+                                        ->hint('Tekan enter untuk menambahkan.')
+                                        ->columnSpanFull(),
+                                ])
                         ])->columnSpan(5),
                     ])
             ]);

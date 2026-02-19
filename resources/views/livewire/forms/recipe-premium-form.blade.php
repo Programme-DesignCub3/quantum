@@ -1,9 +1,9 @@
-<div class="flex flex-col gap-4 px-4">
+<div class="flex flex-col gap-4 px-4 md:p-10">
     <div class="flex items-center justify-center gap-4">
-        <x-icons.premium-icon class="size-8 fill-[#FAC70B]" />
-        <h3 class="text-qt-green-normal">Resep Premium</h3>
+        <x-icons.premium-icon class="size-8 fill-[#FAC70B] md:mb-2.5" />
+        <h3 class="text-qt-green-normal md:text-2xl md:font-medium">Resep Premium</h3>
     </div>
-    <form x-data="{ status: @entangle('status') }" wire:submit="submitDownload" class="flex flex-col gap-4">
+    <form x-data="{ status: @entangle('status') }" wire:submit="submitDownload" class="flex flex-col gap-4 md:gap-6">
         <x-displays.toast>
             Berhasil disimpan!
         </x-displays.toast>
@@ -31,11 +31,11 @@
                 @error('tnc') <span class="block capitalize-first text-[#D6301E]">Syarat & ketentuan harus disetujui.</span> @enderror
             </div>
         </div>
-        <div class="flex flex-col justify-center items-center gap-4">
-            <button wire:loading.attr="disabled" wire:target="submitDownload, submitView" type="submit" class="transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed py-4 px-8 rounded-2xl font-semibold tracking-[0.5px] leading-[125%] border-transparent bg-qt-green-normal text-white hover:bg-qt-green-hover disabled:bg-[#F4F4F4] disabled:text-[#DBDBDB]" @if($payload->getFirstMedia('recipe-files') == null) disabled @endif>
+        <div class="flex flex-col justify-center items-center gap-4 md:gap-2.5">
+            <button wire:loading.attr="disabled" wire:target="submitDownload, submitView" type="submit" class="transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed py-4 px-8 rounded-2xl font-semibold tracking-[0.5px] leading-[125%] border-transparent bg-qt-green-normal text-white hover:bg-qt-green-hover disabled:bg-[#F4F4F4] disabled:text-[#DBDBDB] md:w-full" @if($payload->getFirstMedia('recipe-files') == null) disabled @endif>
                 Unduh Resep Premium
             </button>
-            <button wire:click="submitView" wire:loading.attr="disabled" wire:target="submitDownload, submitView" type="button" class="transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed py-4 px-8 rounded-2xl font-semibold tracking-[0.5px] leading-[125%] border-[#B6D5D8] hover:border-[#B6D5D8]/0 disabled:border-[#E9E9E9] disabled:text-[#C7C7C7] bg-transparent text-qt-green-normal hover:text-white hover:bg-qt-green-hover disabled:bg-transparent">
+            <button wire:click="submitView" wire:loading.attr="disabled" wire:target="submitDownload, submitView" type="button" class="transition-all duration-300 ease-in-out cursor-pointer border disabled:cursor-not-allowed py-4 px-8 rounded-2xl font-semibold tracking-[0.5px] leading-[125%] border-[#B6D5D8] hover:border-[#B6D5D8]/0 disabled:border-[#E9E9E9] disabled:text-[#C7C7C7] bg-transparent text-qt-green-normal hover:text-white hover:bg-qt-green-hover disabled:bg-transparent md:w-full">
                 Lihat Selengkapnya
             </button>
         </div>

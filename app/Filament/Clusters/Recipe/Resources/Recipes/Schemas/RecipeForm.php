@@ -12,8 +12,10 @@ use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class RecipeForm
@@ -26,15 +28,32 @@ class RecipeForm
                     ->columnSpanFull()
                     ->schema([
                         Section::make([
-                            SpatieMediaLibraryFileUpload::make('primary_image')
-                                ->label('Gambar Utama')
-                                ->collection('recipes')
-                                ->image()
-                                ->maxSize(2048)
-                                ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
-                                ->columnSpanFull()
-                                ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.')
-                                ->required(),
+                            Fieldset::make('Gambar Utama')
+                                ->schema([
+                                    SpatieMediaLibraryFileUpload::make('primary_image')
+                                        ->label('Gambar')
+                                        ->collection('recipes')
+                                        ->image()
+                                        ->maxSize(2048)
+                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                                        ->columnSpanFull()
+                                        ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.')
+                                        ->required()
+                                        ->customProperties(function (Get $get) {
+                                            return [
+                                                'caption' => $get('primary_image_caption') ?? null,
+                                                'alt_text' => $get('primary_image_alt_text') ?? null,
+                                            ];
+                                        }),
+                                    TextInput::make('primary_image_caption')
+                                        ->label('Keterangan (Caption)')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull(),
+                                    TextInput::make('primary_image_alt_text')
+                                        ->label('Teks Alternatif (Alt Text)')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull(),
+                                ]),
                             TextInput::make('title')
                                 ->label('Judul')
                                 ->autocomplete(false)
@@ -45,7 +64,7 @@ class RecipeForm
                                 ->rows(3)
                                 ->belowContent('Deskripsi singkat mengenai resep.')
                                 ->required(),
-                            RichEditor::make('value')
+                            RichEditor::make('materials')
                                 ->label('Bahan')
                                 ->toolbarButtons(['bold', 'italic', 'underline'])
                                 ->required(),
@@ -54,13 +73,21 @@ class RecipeForm
                                 ->reorderableWithButtons()
                                 ->required()
                                 ->schema([
-                                    FileUpload::make('image')
-                                        ->label('Gambar Langkah')
-                                        ->maxSize(2048)
-                                        ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
-                                        ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.')
-                                        ->directory('recipe-steps')
-                                        ->required(),
+                                    Fieldset::make('Gambar Langkah')
+                                        ->schema([
+                                            FileUpload::make('image')
+                                                ->label('Gambar')
+                                                ->maxSize(2048)
+                                                ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                                                ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.')
+                                                ->directory('recipe-steps')
+                                                ->columnSpanFull()
+                                                ->required(),
+                                            TextInput::make('image_alt_text')
+                                                ->label('Teks Alternatif (Alt Text)')
+                                                ->autocomplete(false)
+                                                ->columnSpanFull(),
+                                        ]),
                                     Textarea::make('explanation')
                                         ->label('Penjelasan Langkah')
                                         ->rows(3)
@@ -123,12 +150,26 @@ class RecipeForm
                                 ->suffix('porsi')
                                 ->minValue(1)
                                 ->required(),
-                            SpatieTagsInput::make('tags')
-                                ->label('Tag')
-                                ->type('recipe')
-                                ->placeholder('Tambah tag')
-                                ->hint('Tekan enter untuk menambahkan tag.')
-                                ->required(),
+                            Fieldset::make('Meta Tag (SEO)')
+                                ->schema([
+                                    TextInput::make('meta_title')
+                                        ->label('Title')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull()
+                                        ->belowContent('Secara default, sistem akan menggunakan judul yang sama dengan judul yang diinput sebelumnya. Namun, Anda dapat menyesuaikannya untuk tujuan SEO.'),
+                                    TextInput::make('meta_description')
+                                        ->label('Description')
+                                        ->autocomplete(false)
+                                        ->columnSpanFull()
+                                        ->belowContent('Secara default, sistem akan menggunakan deskripsi dari konten yang diinput sebelumnya. Namun, Anda dapat menyesuaikannya untuk tujuan SEO.'),
+                                    SpatieTagsInput::make('tags')
+                                        ->label('Keywords')
+                                        ->type('recipe')
+                                        ->placeholder('Tambah keyword')
+                                        ->hint('Tekan enter untuk menambahkan.')
+                                        ->columnSpanFull()
+                                        ->required(),
+                                ])
                         ])->columnSpan(5),
                     ])
             ]);

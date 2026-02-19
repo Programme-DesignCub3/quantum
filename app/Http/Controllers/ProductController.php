@@ -26,16 +26,20 @@ class ProductController extends Controller
 
         switch ($category) {
             case 'kompor':
-                $product_banner = asset('images/product-mobile-2.jpg');
+                $product_banner = asset('images/mobile-product-2.jpg');
+                $product_banner_desktop = asset('images/desktop-product-2.jpg');
                 break;
             case 'regulator-selang-gas':
-                $product_banner = asset('images/product-mobile-3.jpg');
+                $product_banner = asset('images/mobile-product-3.jpg');
+                $product_banner_desktop = asset('images/desktop-product-3.jpg');
                 break;
             case 'sparepart':
-                $product_banner = asset('images/product-mobile-4.jpg');
+                $product_banner = asset('images/mobile-product-4.jpg');
+                $product_banner_desktop = asset('images/desktop-product-4.jpg');
                 break;
             default:
-                $product_banner = asset('images/product-mobile-1.jpg');
+                $product_banner = asset('images/mobile-product-1.jpg');
+                $product_banner_desktop = asset('images/desktop-product-2.jpg');
         }
 
         return view('pages.product.product', [
@@ -47,6 +51,7 @@ class ProductController extends Controller
             'categories' => $categories,
             'current_category' => $category,
             'product_banner' => $product_banner,
+            'product_banner_desktop' => $product_banner_desktop,
             'guidances' => $guidances,
         ]);
     }
@@ -75,8 +80,15 @@ class ProductController extends Controller
             'marketplace' => $marketplaces,
         ];
 
+        $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
+        $meta_keywords = $meta_keywords === '' ? null : $meta_keywords;
+
+        $meta_title = $detail->meta_title ? $detail->meta_title : ($detail->variant->name . ' ' . $detail->name);
+
         return view('pages.product.product-detail', [
-            'meta_title' => $detail->variant->name . ' ' . $detail->name,
+            'meta_title' => $meta_title,
+            'meta_description' => $detail->meta_description,
+            'meta_keywords' => $meta_keywords,
             'meta_image' => $detail->media->first()->getUrl(),
             'data_drawer' => $data_drawer,
             'detail' => $detail,

@@ -22,6 +22,7 @@ class PageSettings extends Settings
     public string $home_description_why;
     public string $home_description_banner_bottom;
     public array $home_banner;
+    public array $home_banner_desktop;
     public array $home_why_choose_us;
     public array $home_testimonials;
 

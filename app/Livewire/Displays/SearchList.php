@@ -5,7 +5,6 @@ namespace App\Livewire\Displays;
 use App\Models\Guidance;
 use App\Models\NewsEvent\NewsEvent;
 use App\Models\Product\Product;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class SearchList extends Component
@@ -28,7 +27,7 @@ class SearchList extends Component
         $result = [];
 
         if($this->search !== '') {
-            $products = $product->searchProduct(3, $this->search);
+            $products = $product->searchProduct(6, $this->search);
             $news = $newsEvent->searchNews(3, $this->search);
             $guidances = $guidance->searchGuidance(3, $this->search);
         }

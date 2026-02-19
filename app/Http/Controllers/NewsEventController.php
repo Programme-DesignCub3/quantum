@@ -28,15 +28,19 @@ class NewsEventController extends Controller
         $detail = $newsEvent->getDetailNews($slug);
         if(!$detail) return abort(404);
 
+        $detail->primary_image_caption = $detail->getFirstMedia('news-events')?->getCustomProperty('caption');
+        $detail->primary_image_alt_text = $detail->getFirstMedia('news-events')?->getCustomProperty('alt_text');
+
         $recommendation_products = $product->getRecommendationProduct(3);
 
-        $other_news = $newsEvent->getRecommendationNews(3, $detail->id);
+        $other_news = $newsEvent->getRecommendationNews(4, $detail->id);
 
         $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
+        $meta_keywords = $meta_keywords === '' ? null : $meta_keywords;
 
         return view('pages.updates.news-event-detail', [
-            'meta_title' => $detail->title,
-            'meta_description' => $detail->excerpt,
+            'meta_title' => $detail->meta_title ?? $detail->title,
+            'meta_description' => $detail->meta_description ?? $detail->excerpt,
             'meta_keywords' => $meta_keywords,
             'meta_image' => $detail->media->first()->getUrl(),
             'detail' => $detail,

@@ -16,7 +16,7 @@ class ManageTutorialVideos extends ManageRecords
             CreateAction::make()
                 ->mutateDataUsing(function (array $data): array {
                     if(isset($data['video'][0]['type']) && $data['video'][0]['type'] === 'youtube') {
-                        preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $data['video'][0]['data']['value'], $matches);
+                        preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $data['video'][0]['data']['value_url'], $matches);
                         if (isset($matches[1])) {
                             $data['video'][0]['data']['value'] = $matches[1];
                         } else {

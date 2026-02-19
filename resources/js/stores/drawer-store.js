@@ -2,15 +2,18 @@ Alpine.store('menuDrawer', {
     open: false,
     isMenuOpen: true,
     currentMenu: null,
+    currentMenuDesktop: null,
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
     openMenu(menu) {
         this.isMenuOpen = false;
         this.currentMenu = menu;
+        this.currentMenuDesktop = menu;
     },
     closeMenu() {
         this.isMenuOpen = true;
         this.currentMenu = null;
+        this.currentMenuDesktop = null;
     }
 })
 Alpine.store('searchDrawer', {
@@ -18,15 +21,22 @@ Alpine.store('searchDrawer', {
     openDrawer() {
         this.open = true
         setTimeout(() => {
-            document.getElementById('search-all').focus();
+            document.querySelectorAll('#search-all').forEach((el) => el.focus());
         }, 300);
     },
     closeDrawer() { this.open = false },
 })
 Alpine.store('contactDrawer', {
     open: false,
-    openDrawer() { this.open = true },
-    closeDrawer() { this.open = false },
+    data: null,
+    openDrawer(data) {
+        this.open = true
+        this.data = data
+    },
+    closeDrawer() {
+        this.open = false
+        this.data = null
+    },
 })
 Alpine.store('productDrawer', {
     open: false,
@@ -179,14 +189,16 @@ Alpine.store('premiumRecipeDrawer', {
 })
 Alpine.store('catalogDrawer', {
     open: false,
-    catalog_id: null,
-    openDrawer(id) {
+    data: null,
+    openDrawer(data) {
         this.open = true
-        this.catalog_id = id
+        this.data = data
     },
     closeDrawer() {
         this.open = false
-        this.catalog_id = null
+        setTimeout(() => {
+            this.data = null
+        }, 300);
     },
 })
 
