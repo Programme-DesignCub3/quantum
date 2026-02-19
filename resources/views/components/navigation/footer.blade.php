@@ -106,6 +106,12 @@
                             <a href="{{ route('updates.recipe') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Resep</a>
                         </div>
                     </x-displays.accordion>
+                    {{-- <x-displays.accordion title="Distributor">
+                        <div class="flex flex-col gap-6 pb-5 pt-2.5">
+                            <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Daftar Jadi Distributor</a>
+                            <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Katalog</a>
+                        </div>
+                    </x-displays.accordion> --}}
                     <x-displays.accordion title="Bantuan" :last="true">
                         <div class="flex flex-col gap-6 pb-5 pt-2.5">
                             <a href="{{ route('support.guarantee-information') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px]">Informasi Garansi</a>
@@ -145,7 +151,7 @@
                     <div class="w-full text-[#6D6D6D] lg:w-[420px] xl:w-[380px]">
                         <p>{{ $general_settings->footer_description }}</p>
                     </div>
-                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 xl:grid-cols-5">
+                    <div class="grid grid-cols-3 gap-x-5 gap-y-10 xl:grid-cols-4">
                         <div class="flex min-w-40 flex-col gap-7">
                             <p class="font-semibold text-[#0D545C]">Tentang</p>
                             <div class="flex flex-col gap-6">
@@ -164,13 +170,13 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="flex min-w-40 flex-col gap-7">
+                        {{-- <div class="flex min-w-40 flex-col gap-7">
                             <p class="font-semibold text-[#0D545C]">Distributor</p>
                             <div class="flex flex-col gap-6">
                                 <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px] lg:w-max">Daftar Jadi Distributor</a>
                                 <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px] lg:w-max">Katalog</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="flex min-w-40 flex-col gap-7">
                             <p class="font-semibold text-[#0D545C]">Updates</p>
                             <div class="flex flex-col gap-6">
