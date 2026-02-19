@@ -23,7 +23,7 @@ class ProductCard extends Component
      */
     public function __construct(
         public $payload,
-        public ?string $size = 'md',
+        public ?string $size = 'sm',
         public ?string $direction = 'col',
         public ?bool $disableView = false,
         public ?bool $disableSpecs = false,

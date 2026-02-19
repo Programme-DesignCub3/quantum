@@ -7,10 +7,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
 
 class Product extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasSlug;
+    use InteractsWithMedia, HasSlug, HasTags;
 
     protected $fillable = [
         'name',
@@ -22,6 +23,8 @@ class Product extends Model implements HasMedia
         'main_feature',
         'specs_detail',
         'gallery',
+        'meta_title',
+        'meta_description',
         'is_published',
         'is_best_seller',
     ];

@@ -76,8 +76,15 @@ class ProductController extends Controller
             'marketplace' => $marketplaces,
         ];
 
+        $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
+        $meta_keywords = $meta_keywords === '' ? null : $meta_keywords;
+
+        $meta_title = $detail->meta_title ? $detail->meta_title : ($detail->variant->name . ' ' . $detail->name);
+
         return view('pages.product.product-detail', [
-            'meta_title' => $detail->variant->name . ' ' . $detail->name,
+            'meta_title' => $meta_title,
+            'meta_description' => $detail->meta_description,
+            'meta_keywords' => $meta_keywords,
             'meta_image' => $detail->media->first()->getUrl(),
             'data_drawer' => $data_drawer,
             'detail' => $detail,

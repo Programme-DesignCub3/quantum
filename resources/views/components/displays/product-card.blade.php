@@ -12,17 +12,17 @@
         'flex-row gap-4': direction === 'row',
         'flex-col': direction === 'col'
     }" @endif>
-        <div class="flex-1 relative bg-white mx-auto">
+        <div class="flex-1 relative bg-white w-full">
             <img @class([
                 'rounded-2xl' => $direction === 'row',
                 'aspect-17/13 size-full object-cover' => $size === 'lg',
                 'aspect-6/5 size-full object-cover' => $size === 'md',
-                'aspect-41/35 object-contain' => $size === 'sm',
+                'aspect-41/35 object-contain mx-auto' => $size === 'sm',
             ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category') :class="{
                 'rounded-2xl': direction === 'row',
                 'aspect-17/13 size-full object-cover': size === 'lg',
                 'aspect-6/5 size-full object-cover': size === 'md',
-                'aspect-41/35 object-contain': size === 'sm',
+                'aspect-41/35 object-contain mx-auto': size === 'sm',
             }" @endif src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->variant->name . ' ' . $payload->name }}">
             @if($payload->is_best_seller)
                 <div class="absolute flex items-center justify-center top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
@@ -52,7 +52,7 @@
                             <h4 class="text-qt-green-normal md:text-xl">{{ $payload->name }}</h4>
                             @break
                         @case('sm')
-                            <span class="extrasmall text-[#9A9A9A]">{{ $payload->variant->name ?? $payload->category->name }}</span>
+                            <span class="extrasmall text-[#9A9A9A] sm:text-xs">{{ $payload->variant->name ?? $payload->category->name }}</span>
                             <h5 class="text-qt-green-normal">{{ $payload->name }}</h5>
                             @break
                     @endswitch
@@ -81,7 +81,7 @@
                                         <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                     @case('sm')
-                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        <span class="extrasmall text-[8px]! text-[#868686] sm:text-[10px]!">{{ $payload->specs[array_search('furnace_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                 @endswitch
                             </div>
@@ -106,7 +106,7 @@
                                         <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                     @case('sm')
-                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        <span class="extrasmall text-[8px]! text-[#868686] sm:text-[10px]!">{{ $payload->specs[array_search('power_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                 @endswitch
                             </div>
@@ -131,7 +131,7 @@
                                         <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                     @case('sm')
-                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        <span class="extrasmall text-[8px]! text-[#868686] sm:text-[10px]!">{{ $payload->specs[array_search('fuel_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                 @endswitch
                             </div>
@@ -151,7 +151,7 @@
                                         <span class="extrasmall text-[#868686]">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                     @case('sm')
-                                        <span class="extrasmall text-[8px]! text-[#868686]">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
+                                        <span class="extrasmall text-[8px]! text-[#868686] sm:text-[10px]!">{{ $payload->specs[array_search('length_type', array_column($payload->specs, 'type'))]['data']['types']['name'] }}</span>
                                         @break
                                 @endswitch
                             </div>

@@ -19,7 +19,13 @@ class NewsEvent extends Model implements HasMedia
         'excerpt',
         'content',
         'read_time',
+        'meta_title',
+        'meta_description',
         'is_published',
+    ];
+
+    protected $casts = [
+        'content' => 'array'
     ];
 
     public function category()

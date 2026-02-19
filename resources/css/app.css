@@ -241,7 +241,7 @@
             @apply border-b-2 border-qt-green-normal;
         }
         img {
-            @apply mx-auto aspect-49/30 object-cover rounded-xl md:rounded-2xl;
+            @apply mx-auto aspect-49/30 object-cover rounded-xl md:rounded-2xl lg:rounded-3xl;
         }
         ul {
             @apply list-disc ml-5;

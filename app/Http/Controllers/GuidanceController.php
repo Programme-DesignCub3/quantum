@@ -23,11 +23,18 @@ class GuidanceController extends Controller
         $detail = $guidance->getDetailGuidance($slug);
         if(!$detail) return abort(404);
 
+        $detail->primary_image_caption = $detail->getFirstMedia('guidances')?->getCustomProperty('caption');
+        $detail->primary_image_alt_text = $detail->getFirstMedia('guidances')?->getCustomProperty('alt_text');
+
         $other_guidance = $guidance->getRecommendationGuidance(4, $detail->id);
 
+        $meta_keywords = $detail->tags ? implode(', ', $detail->tags->pluck('name')->toArray()) : null;
+        $meta_keywords = $meta_keywords === '' ? null : $meta_keywords;
+
         return view('pages.support.guidance-detail', [
-            'meta_title' => $detail->title,
-            'meta_description' => $detail->excerpt,
+            'meta_title' => $detail->meta_title ?? $detail->title,
+            'meta_description' => $detail->meta_description ?? $detail->excerpt,
+            'meta_keywords' => $meta_keywords,
             'meta_image' => $detail->media->first()->getUrl(),
             'detail' => $detail,
             'other_guidance' => $other_guidance,

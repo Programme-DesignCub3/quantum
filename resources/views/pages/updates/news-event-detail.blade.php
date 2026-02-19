@@ -11,7 +11,7 @@
 
 @section('content')
     <main x-data id="news-event-detail">
-        <section class="flex flex-col">
+        <article class="flex flex-col">
             {{-- Header --}}
             <div class="container px-6 pt-[60px] pb-8">
                 <div class="space-y-2 md:space-y-6">
@@ -38,13 +38,30 @@
                 </div>
             </div>
             {{-- Primary Image --}}
-            <div class="aspect-49/30 md:h-[500px] md:w-full">
-                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
-            </div>
+            <figure class="aspect-49/30 md:h-[500px] md:w-full">
+                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->primary_image_alt_text ?? $detail->title }}">
+                @if($detail->primary_image_caption)
+                    <figcaption class="container text-center text-sm px-4 pt-4 pb-0 sm:px-6 sm:pt-4 md:text-base">{{ $detail->primary_image_caption }}</figcaption>
+                @endif
+            </figure>
             {{-- Content --}}
-            <div class="container flex flex-col gap-12 px-6 pt-[42px] pb-[100px] md:pt-[60px]">
+            <div class="container flex flex-col gap-12 px-6 pt-[42px] pb-[100px] md:pt-20">
                 <div class="article-content">
-                    {!! $detail->content !!}
+                    @foreach($detail->content as $c)
+                        @switch($c['type'])
+                            @case('paragraph')
+                                {!! $c['data']['paragraph'] !!}
+                                @break
+                            @case('image')
+                                <figure class="space-y-4" style="display: flex; flex-direction: column; align-items: {{ array_key_exists('data', $c) && array_key_exists('image_align', $c['data']) ? $c['data']['image_align'] : 'center' }};">
+                                    <img style="width: {{ array_key_exists('data', $c) && array_key_exists('image_width', $c['data']) ? $c['data']['image_width'] . '%' : 'auto' }}" src="{{ asset('storage/' . $c['data']['image']) }}" alt="{{ $c['data']['image_alt_text'] ?? '' }}">
+                                    @if($c['data']['image_caption'])
+                                        <figcaption class="text-sm md:text-base">{{ $c['data']['image_caption'] }}</figcaption>
+                                    @endif
+                                </figure>
+                                @break
+                        @endswitch
+                    @endforeach
                 </div>
                 <div class="flex flex-col gap-2.5">
                     <div class="flex items-center gap-1">
@@ -58,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </article>
         {{-- Recommendation Products --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 pt-[46px] pb-[77px] md:py-20">

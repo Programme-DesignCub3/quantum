@@ -8,16 +8,19 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 
 class Guidance extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasSlug;
+    use InteractsWithMedia, HasSlug, HasTags;
 
     protected $fillable = [
         'title',
         'slug',
         'excerpt',
         'content',
+        'meta_title',
+        'meta_description',
         'is_published',
     ];
 

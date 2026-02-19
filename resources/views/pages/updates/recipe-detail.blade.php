@@ -43,7 +43,7 @@
             </div>
         </x-displays.modal>
         {{-- Recipe Detail --}}
-        <section class="flex flex-col">
+        <article class="flex flex-col">
             {{-- Header --}}
             <div class="container flex flex-col gap-4 px-6 pt-[60px] pb-8">
                 <div class="space-y-2 md:space-y-6">
@@ -76,11 +76,14 @@
                 </div>
             </div>
             {{-- Primary Image --}}
-            <div class="relative md:h-[500px] md:w-full">
-                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->title }}">
-            </div>
+            <figure class="relative md:h-[500px] md:w-full">
+                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->primary_image_alt_text ?? $detail->title }}">
+                @if($detail->primary_image_caption)
+                    <figcaption class="container text-center text-sm px-4 pt-4 pb-0 sm:px-6 sm:pt-4 md:text-base">{{ $detail->primary_image_caption }}</figcaption>
+                @endif
+            </figure>
             {{-- Content --}}
-            <div class="container flex flex-col gap-12 pt-[42px] pb-24 md:px-6">
+            <div class="container flex flex-col gap-12 pt-[42px] pb-24 md:px-6 md:pt-20">
                 <div class="grid grid-cols-1 gap-[58px] md:grid-cols-12 sm:gap-6 lg:gap-10">
                     <div class="flex flex-col gap-4 col-span-full px-6 md:px-0 md:col-span-4">
                         <h3>Bahan-bahan:</h3>
@@ -125,7 +128,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </article>
         {{-- Recommendation Products --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 pt-[46px] pb-[77px] md:py-20">
