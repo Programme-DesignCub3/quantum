@@ -9,7 +9,7 @@ class GuaranteeInformationController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        abort(404);
+        // abort(404);
 
         return view('pages.support.guarantee-information', [
             'meta_title' => $pageSettings->guarantee_meta_title,
@@ -21,7 +21,7 @@ class GuaranteeInformationController extends Controller
 
     public function registrationSuccess(PageSettings $pageSettings)
     {
-        abort(404);
+        // abort(404);
 
         if(!session()->has('guarantee_registered')) {
             return redirect()->route('support.guarantee-information');

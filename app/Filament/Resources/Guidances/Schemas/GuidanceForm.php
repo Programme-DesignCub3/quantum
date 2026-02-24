@@ -34,7 +34,7 @@ class GuidanceForm
                             Fieldset::make('Gambar Utama')
                                 ->schema([
                                     SpatieMediaLibraryFileUpload::make('primary_image')
-                                        ->label('Gambar Utama')
+                                        ->label('Gambar')
                                         ->collection('guidances')
                                         ->image()
                                         ->maxSize(2048)

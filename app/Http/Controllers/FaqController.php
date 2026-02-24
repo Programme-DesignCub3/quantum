@@ -9,7 +9,7 @@ class FaqController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        abort(404);
+        // abort(404);
 
         return view('pages.support.faq', [
             'meta_title' => $pageSettings->faq_meta_title,

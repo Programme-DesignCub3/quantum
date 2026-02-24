@@ -10,7 +10,7 @@ class GuidanceController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        abort(404);
+        // abort(404);
 
         return view('pages.support.guidance', [
             'meta_title' => $pageSettings->guidance_meta_title,

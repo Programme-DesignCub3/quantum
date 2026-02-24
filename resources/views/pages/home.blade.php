@@ -146,7 +146,7 @@
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-9 py-[76px]">
                 <div class="flex justify-between items-center">
-                    <div class="px-4 max-w-72 mx-auto text-center sm:px-6 md:mx-0 md:text-left">
+                    <div class="px-4 max-w-72 mx-auto text-center sm:px-6 md:max-w-xs md:mx-0 md:text-left">
                         <h3>{{ $page_settings->home_title_article }}</h3>
                     </div>
                     {{-- Read More Button (Mobile) --}}

@@ -8,7 +8,7 @@ class SearchController extends Controller
 {
     public function index()
     {
-        abort(404);
+        // abort(404);
 
         return view('pages.search');
     }
