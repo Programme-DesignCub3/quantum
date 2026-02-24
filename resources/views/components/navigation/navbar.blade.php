@@ -32,10 +32,10 @@
                             Produk
                             <span class="icon-[lucide--chevron-right]"></span>
                         </button>
-                        {{-- <button type="button" @click="$store.menuDrawer.openMenu('distributor')" class="menu-nav-link">
+                        <button type="button" @click="$store.menuDrawer.openMenu('distributor')" class="menu-nav-link">
                             Distributor
                             <span class="icon-[lucide--chevron-right]"></span>
-                        </button> --}}
+                        </button>
                         <button type="button" @click="$store.menuDrawer.openMenu('updates')" class="menu-nav-link">
                             Updates
                             <span class="icon-[lucide--chevron-right]"></span>
@@ -75,7 +75,7 @@
                             </a>
                         @endforeach
                     </div>
-                    {{-- <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
+                    <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
                         <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                             <span class="icon-[lucide--chevron-left]"></span>
                             Distributor
@@ -88,7 +88,7 @@
                             <span class="icon-[proicons--book]"></span>
                             Katalog
                         </a>
-                    </div> --}}
+                    </div>
                     <div x-show="$store.menuDrawer.currentMenu === 'updates'" class="flex flex-col gap-1">
                         <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                             <span class="icon-[lucide--chevron-left]"></span>
