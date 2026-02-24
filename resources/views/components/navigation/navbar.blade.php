@@ -213,7 +213,7 @@
             </div>
         </div>
     </div>
-    {{-- <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
             <p class="large font-bold mb-8">Distributor</p>
             <div class="flex flex-col gap-8">
@@ -221,7 +221,7 @@
                 <a href="{{ route('distributor.catalog') }}" class="desktop-menu-nav-link">Katalog</a>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'updates'" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container grid grid-cols-12 px-6 py-12 lg:px-16">
             <div class="col-span-5 flex flex-col gap-8">

@@ -170,13 +170,13 @@
                                 @endforeach
                             </div>
                         </div>
-                        {{-- <div class="flex min-w-40 flex-col gap-7">
+                        <div class="flex min-w-40 flex-col gap-7">
                             <p class="font-semibold text-[#0D545C]">Distributor</p>
                             <div class="flex flex-col gap-6">
                                 <a href="{{ route('distributor.list-distributor') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px] lg:w-max">Daftar Jadi Distributor</a>
                                 <a href="{{ route('distributor.catalog') }}" class="font-semibold text-xs text-qt-green-normal tracking-[0.5px] lg:w-max">Katalog</a>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="flex min-w-40 flex-col gap-7">
                             <p class="font-semibold text-[#0D545C]">Updates</p>
                             <div class="flex flex-col gap-6">
