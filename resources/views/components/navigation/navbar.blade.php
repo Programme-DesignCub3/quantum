@@ -156,7 +156,7 @@
             }" class="flex">
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'about' ? 'active' : ''" class="desktop-menu-nav">Tentang</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'product' ? 'active' : ''" class="desktop-menu-nav">Produk</button>
-                {{-- <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button> --}}
+                <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'updates' ? 'active' : ''" class="desktop-menu-nav">Updates</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'support' ? 'active' : ''" class="desktop-menu-nav">Bantuan</button>
             </div>
