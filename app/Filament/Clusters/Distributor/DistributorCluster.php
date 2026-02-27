@@ -18,4 +18,9 @@ class DistributorCluster extends Cluster
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 
     protected static ?string $clusterBreadcrumb = 'Manajemen Distributor';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return env('FILAMENT_DISTRIBUTOR', false);
+    }
 }

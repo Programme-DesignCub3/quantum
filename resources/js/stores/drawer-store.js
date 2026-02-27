@@ -179,6 +179,7 @@ Alpine.store('premiumRecipeDrawer', {
     isPremium: false,
     formShown: false,
     footerShown: false,
+    success: false,
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
     registerPremium() {
@@ -190,6 +191,7 @@ Alpine.store('premiumRecipeDrawer', {
 Alpine.store('catalogDrawer', {
     open: false,
     data: null,
+    success: false,
     openDrawer(data) {
         this.open = true
         this.data = data

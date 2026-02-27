@@ -82,7 +82,7 @@ class GuidanceForm
                                     ->required(),
                             Hidden::make('excerpt'),
                             Builder::make('content')
-                                ->label('Konten')
+                                ->label('Isi Konten')
                                 ->blockNumbers(false)
                                 ->reorderableWithButtons()
                                 ->required()
@@ -92,7 +92,12 @@ class GuidanceForm
                                         ->schema([
                                             RichEditor::make('value')
                                                 ->label('Paragraf')
-                                                ->toolbarButtons(['bold', 'italic', 'underline'])
+                                                ->toolbarButtons([
+                                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                    ['bulletList', 'orderedList'],
+                                                    ['undo', 'redo'],
+                                                ])
                                                 ->required(),
                                         ]),
                                     Block::make('steps')

@@ -75,6 +75,7 @@ class RecipePremiumForm extends Component
 
         $this->reset(['nama', 'email', 'whatsapp', 'tnc']);
         $this->dispatch('open-limit');
+        $this->status = true;
         session()->put('registered_premium', true);
     }
 

@@ -22,7 +22,7 @@ class GuidanceController extends Controller
 
     public function detail(Guidance $guidance, $slug)
     {
-        abort(404);
+        // abort(404);
 
         $detail = $guidance->getDetailGuidance($slug);
         if(!$detail) return abort(404);

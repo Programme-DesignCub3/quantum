@@ -191,7 +191,7 @@
     }
     /* Recipe */
     .recipe-list p {
-        @apply py-1.5;
+        @apply text-left py-1.5;
         &:not(:last-child) {
             @apply border-b border-[#DBDBDB];
         }
@@ -229,25 +229,34 @@
     }
     /* Dropdown Select (Desktop) */
     .dropdown-select {
-        @apply absolute z-10 top-12 left-0 w-full bg-white rounded-xl max-h-[200px] space-y-2.5 py-4 overflow-y-auto hidden md:block;
+        @apply absolute z-10 top-12 left-0 w-full bg-white rounded-xl max-h-[200px] py-2.5 overflow-y-auto hidden md:block;
         button {
-            @apply w-full text-left text-sm cursor-pointer px-4;
+            @apply w-full text-left text-sm cursor-pointer px-4 py-2.5 hover:bg-[#E7F1F2];
         }
     }
     /* Article Content */
     .article-content {
-        @apply flex flex-col gap-5 md:gap-8;
+        @apply space-y-5 md:space-y-6;
+        p {
+            @apply leading-7 md:leading-8;
+        }
         a {
             @apply border-b-2 border-qt-green-normal;
         }
         img {
-            @apply mx-auto aspect-49/30 object-cover rounded-xl md:rounded-2xl lg:rounded-3xl;
+            @apply max-w-2xl w-full object-cover rounded-xl md:rounded-2xl lg:rounded-3xl;
         }
         ul {
             @apply list-disc ml-5;
         }
         ol {
             @apply list-decimal ml-5;
+        }
+        h2 {
+            @apply text-xl md:text-2xl xl:text-3xl;
+        }
+        h3 {
+            @apply text-lg md:text-xl xl:text-2xl;
         }
     }
     /* Rule Content */
@@ -290,6 +299,9 @@
     .bg-gradient-black-transparent {
         background: #000000;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+        @media (min-width: 768px) {
+            background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+        }
     }
     .drop-shadow-float {
         box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);

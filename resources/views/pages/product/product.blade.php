@@ -15,6 +15,7 @@
 
 @section('content')
     <main x-data id="product" class="bg-white">
+        {{-- Banner --}}
         <section class="relative">
             <img class="w-full h-[560px] object-cover md:hidden" src="{{ $product_banner }}" alt="">
             <img class="w-full h-[600px] object-cover hidden md:block" src="{{ $product_banner_desktop }}" alt="">
@@ -25,7 +26,9 @@
                 </div>
             </div>
         </section>
+        {{-- Product List --}}
         <livewire:displays.product-list :current_category="$current_category" />
+        {{-- Why Choose --}}
         <section class="container flex flex-col gap-[42px] py-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto px-4 sm:px-6 sm:max-w-5xl md:mx-0 md:text-left">
                 <h2>{{ $page_settings->product_title_why }}</h2>
@@ -35,7 +38,7 @@
                 @if(isset($page_settings->product_why_choose_us_formatted[0]))
                     <div class="px-4 sm:px-6">
                         <x-displays.inside-card :image="$page_settings->product_why_choose_us_formatted[0]['image'] ? 'storage/' . $page_settings->product_why_choose_us_formatted[0]['image'] : 'images/og-image.jpg'" :alt="$page_settings->product_why_choose_us_formatted[0]['title']">
-                            <h4>{{ $page_settings->product_why_choose_us_formatted[0]['title'] }}</h4>
+                            <h4 class="md:text-xl">{{ $page_settings->product_why_choose_us_formatted[0]['title'] }}</h4>
                             @if(isset($page_settings->product_why_choose_us_formatted[0]['description']))
                                 <p class="small">{{ $page_settings->product_why_choose_us_formatted[0]['description'] }}</p>
                             @endif
@@ -53,7 +56,7 @@
                                 @foreach($page_settings->product_why_choose_us_formatted->skip(1) as $key => $item)
                                     <li wire:key="product-why-choose-us-{{ $key }}" class="splide__slide">
                                         <x-displays.swipe-card :image="$item['image'] ? 'storage/' . $item['image'] : 'images/og-image.jpg'" :alt="$item['title']">
-                                            <h4>{{ $item['title'] }}</h4>
+                                            <h4 class="md:text-xl">{{ $item['title'] }}</h4>
                                             @if(isset($item['description']))
                                                 <p class="small text-[#9A9A9A]">{{ $item['description'] }}</p>
                                             @endif
@@ -66,6 +69,7 @@
                 @endif
             </div>
         </section>
+        {{-- Guidance --}}
         <section class="container flex flex-col gap-[42px] pt-9 pb-[92px]">
             <div class="space-y-4 text-center max-w-xs mx-auto px-4 sm:px-6 sm:max-w-5xl md:mx-0 md:text-left">
                 <h2>{{ $page_settings->product_title_guidance }}</h2>
@@ -96,6 +100,7 @@
                 </div>
             @endif
         </section>
+        {{-- Other Information --}}
         <section class="container py-[60px] px-4 md:pb-20">
             <h2 class="mb-4 md:mb-8">Info Lainnya</h2>
             <div class="flex flex-col gap-4 md:flex-row">

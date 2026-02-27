@@ -28,7 +28,11 @@
             @foreach($detail->content as $item)
                 @switch($item['type'])
                     @case('paragraph')
-                        <div class="container px-6 py-9 article-content md:py-[60px]">
+                        <div @class([
+                            'md:pb-[60px] md:pt-[40px]' => $loop->first && $item['type'] === 'paragraph',
+                            'md:py-[60px]' => !$loop->first && $item['type'] === 'paragraph',
+                            'container px-6 py-9 article-content'
+                        ])>
                             {!! $item['data']['value'] !!}
                         </div>
                         @break

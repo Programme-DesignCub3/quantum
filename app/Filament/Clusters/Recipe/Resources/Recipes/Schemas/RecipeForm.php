@@ -66,7 +66,10 @@ class RecipeForm
                                 ->required(),
                             RichEditor::make('materials')
                                 ->label('Bahan')
-                                ->toolbarButtons(['bold', 'italic', 'underline'])
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'],
+                                    ['undo', 'redo'],
+                                ])
                                 ->required(),
                             Repeater::make('steps')
                                 ->label('Langkah-langkah')

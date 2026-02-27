@@ -1,8 +1,5 @@
 import Splide from '@splidejs/splide';
-import {
-    slideShow, slidePagination, swipeable,
-    swipeNormal
-} from '../utils/options-slide';
+import { slideShow, swipeable } from '../utils/options-slide';
 import '@splidejs/splide/css';
 
 // Function to initialize or reinitialize
@@ -13,7 +10,7 @@ const productsHomeSlide = () => {
             pagination: false,
             drag: 'free',
             perPage: 4,
-            gap: '1rem',
+            gap: '1.5rem',
             padding: '1.5rem',
             breakpoints: {
                 1280: {
@@ -131,12 +128,9 @@ if (document.querySelector('#homepage')) {
             pagination: false,
             drag: 'free',
             perPage: 3,
-            gap: '1.25rem',
+            gap: '2rem',
             padding: '1.5rem',
             breakpoints: {
-                1280: {
-                    gap: '2rem',
-                },
                 1024: {
                     perPage: 2,
                 },
@@ -168,12 +162,9 @@ if (document.querySelector('#about')) {
             pagination: false,
             drag: 'free',
             perPage: 3,
-            gap: '1.25rem',
+            gap: '2rem',
             padding: '1.5rem',
             breakpoints: {
-                1280: {
-                    gap: '2rem',
-                },
                 1024: {
                     perPage: 2,
                 },
@@ -203,12 +194,9 @@ if (document.querySelector('#product')) {
             pagination: false,
             drag: 'free',
             perPage: 3,
-            gap: '1.25rem',
+            gap: '2rem',
             padding: '1.5rem',
             breakpoints: {
-                1280: {
-                    gap: '2rem',
-                },
                 1024: {
                     perPage: 2,
                 },
@@ -559,13 +547,10 @@ if (document.querySelector('#customer-service')) {
             arrows: false,
             pagination: false,
             drag: 'free',
-            gap: '1.25rem',
+            gap: '2rem',
             padding: '1.5rem',
             perPage: 3,
             breakpoints: {
-                1280: {
-                    gap: '2rem',
-                },
                 1024: {
                     perPage: 2,
                 },

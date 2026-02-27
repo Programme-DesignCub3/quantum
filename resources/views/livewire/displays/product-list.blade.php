@@ -256,7 +256,6 @@
     document.addEventListener('alpine:init', () => {
         Alpine.data('productList', () => ({
             layout: 'row',
-            size: 'sm',
             direction: 'col',
 
             changeLayout(layout) {
@@ -264,15 +263,12 @@
 
                 switch (layout) {
                     case 'square':
-                        this.size = 'lg';
                         this.direction = 'col';
                         break;
                     case 'row':
-                        this.size = 'sm';
                         this.direction = 'col';
                         break;
                     case 'col':
-                        this.size = 'md';
                         this.direction = 'row';
                         break;
                 }

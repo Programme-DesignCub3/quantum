@@ -23,12 +23,12 @@
                     @if(count($page_settings->home_banner) > 0)
                         @foreach($page_settings->home_banner as $banner)
                             <li class="splide__slide">
-                                <img class="brightness-90 w-full object-cover sm:h-[1000px]" src="{{ asset('storage/' . $banner) }}" alt="">
+                                <img class="brightness-90 aspect-25/48 w-full object-cover sm:h-[1000px]" src="{{ asset('storage/' . $banner) }}" alt="">
                             </li>
                         @endforeach
                     @else
                         <li class="splide__slide">
-                            <img class="brightness-90 w-full object-cover sm:h-[1000px]" src="{{ asset('images/mobile-home-placeholder.jpg') }}" alt="">
+                            <img class="brightness-90 aspect-25/48 w-full object-cover sm:h-[1000px]" src="{{ asset('images/mobile-home-placeholder.jpg') }}" alt="">
                         </li>
                     @endif
                 </ul>
@@ -51,12 +51,12 @@
                     @if(count($page_settings->home_banner_desktop) > 0)
                         @foreach($page_settings->home_banner_desktop as $banner)
                             <li class="splide__slide">
-                                <img class="brightness-90 w-full h-[800px] object-cover" src="{{ asset('storage/' . $banner) }}" alt="">
+                                <img class="brightness-90 aspect-144/65 w-full h-[800px] object-cover" src="{{ asset('storage/' . $banner) }}" alt="">
                             </li>
                         @endforeach
                     @else
                         <li class="splide__slide">
-                            <img class="brightness-90 w-full h-[800px] object-cover" src="{{ asset('images/desktop-home-placeholder.jpg') }}" alt="">
+                            <img class="brightness-90 aspect-144/65 w-full h-[800px] object-cover" src="{{ asset('images/desktop-home-placeholder.jpg') }}" alt="">
                         </li>
                     @endif
                 </ul>

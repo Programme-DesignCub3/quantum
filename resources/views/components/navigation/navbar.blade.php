@@ -32,10 +32,10 @@
                             Produk
                             <span class="icon-[lucide--chevron-right]"></span>
                         </button>
-                        <button type="button" @click="$store.menuDrawer.openMenu('distributor')" class="menu-nav-link">
+                        {{-- <button type="button" @click="$store.menuDrawer.openMenu('distributor')" class="menu-nav-link">
                             Distributor
                             <span class="icon-[lucide--chevron-right]"></span>
-                        </button>
+                        </button> --}}
                         <button type="button" @click="$store.menuDrawer.openMenu('updates')" class="menu-nav-link">
                             Updates
                             <span class="icon-[lucide--chevron-right]"></span>
@@ -75,7 +75,7 @@
                             </a>
                         @endforeach
                     </div>
-                    <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
+                    {{-- <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
                         <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                             <span class="icon-[lucide--chevron-left]"></span>
                             Distributor
@@ -88,7 +88,7 @@
                             <span class="icon-[proicons--book]"></span>
                             Katalog
                         </a>
-                    </div>
+                    </div> --}}
                     <div x-show="$store.menuDrawer.currentMenu === 'updates'" class="flex flex-col gap-1">
                         <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
                             <span class="icon-[lucide--chevron-left]"></span>
@@ -156,7 +156,7 @@
             }" class="flex">
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'about' ? 'active' : ''" class="desktop-menu-nav">Tentang</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('product')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'product' ? 'active' : ''" class="desktop-menu-nav">Produk</button>
-                <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button>
+                {{-- <button type="button" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'distributor' ? 'active' : ''" class="desktop-menu-nav">Distributor</button> --}}
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'updates' ? 'active' : ''" class="desktop-menu-nav">Updates</button>
                 <button type="button" @mouseenter="$store.menuDrawer.openMenu('support')" @mouseleave="$store.menuDrawer.closeMenu()" :class="$store.menuDrawer.currentMenuDesktop === 'support' ? 'active' : ''" class="desktop-menu-nav">Bantuan</button>
             </div>
@@ -213,7 +213,7 @@
             </div>
         </div>
     </div>
-    <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
+    {{-- <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'distributor'" @mouseenter="$store.menuDrawer.openMenu('distributor')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
             <p class="large font-bold mb-8">Distributor</p>
             <div class="flex flex-col gap-8">
@@ -221,7 +221,7 @@
                 <a href="{{ route('distributor.catalog') }}" class="desktop-menu-nav-link">Katalog</a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'updates'" @mouseenter="$store.menuDrawer.openMenu('updates')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container grid grid-cols-12 px-6 py-12 lg:px-16">
             <div class="col-span-5 flex flex-col gap-8">

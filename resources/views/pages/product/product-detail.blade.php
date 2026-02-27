@@ -115,6 +115,7 @@
                     </div>
                 </div>
             </div>
+            {{-- Fitur --}}
             <div id="fitur" class="container scrollspy flex flex-col gap-[42px] py-[60px] px-4 scroll-mt-24 sm:px-6 md:pt-[100px]">
                 <div class="space-y-4 text-center max-w-sm mx-auto sm:max-w-5xl md:mx-0 md:text-left">
                     <h2>Apa Keunggulan {{ $detail->category->name . ' Quantum ' . $detail->name . '?' }}</h2>
@@ -123,7 +124,7 @@
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                     @foreach($detail->superiorities as $superiority)
                         <x-displays.simple-card :simetric="true">
-                            <h4>{{ $superiority->title }}</h4>
+                            <h4 class="md:text-xl">{{ $superiority->title }}</h4>
                             <p class="small text-[#9A9A9A]">{{ $superiority->description }}</p>
                             <x-slot:icon>
                                 @if($superiority->getFirstMediaUrl('icon_green'))
@@ -144,7 +145,7 @@
                 <div class="flex flex-col gap-8">
                     <div class="px-4 sm:px-6">
                         <x-displays.inside-card :image="$detail->features[0]->getFirstMediaUrl('feature_image') ? $detail->features[0]->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')" :alt="$detail->features[0]->name">
-                            <h4>{{ $detail->features[0]->name }}</h4>
+                            <h4 class="md:text-xl">{{ $detail->features[0]->name }}</h4>
                             @if($detail->features[0]->description)
                                 <p class="small">{{ $detail->features[0]->description }}</p>
                             @endif
@@ -157,7 +158,7 @@
                                     @foreach($detail->features->skip(1) as $feature)
                                         <li class="splide__slide">
                                             <x-displays.swipe-card :image="$feature->getFirstMediaUrl('feature_image') ? $feature->getFirstMediaUrl('feature_image') : asset('images/og-image.jpg')" :alt="$feature->name">
-                                                <h4>{{ $feature->name }}</h4>
+                                                <h4 class="md:text-xl">{{ $feature->name }}</h4>
                                                 @if($feature->description)
                                                     <p class="small text-[#9A9A9A]">{{ $feature->description }}</p>
                                                 @endif
@@ -171,6 +172,7 @@
                 </div>
             </div>
             <div class="w-full h-px bg-[#CECECE] md:hidden"></div>
+            {{-- Spesifikasi --}}
             <div id="spesifikasi" class="container scrollspy py-[60px] px-4 scroll-mt-24">
                 <div class="space-y-8">
                     <h2>Spesifikasi</h2>
@@ -210,6 +212,7 @@
                 </div>
             </div>
             <div class="w-full h-px bg-[#CECECE]"></div>
+            {{-- Galeri --}}
             @if(!empty($detail->gallery))
                 <div id="galeri" class="container scrollspy border-b border-[#CECECE] flex flex-col gap-8 py-[60px] px-4 scroll-mt-24">
                     <h2>Galeri</h2>
@@ -300,6 +303,7 @@
                 </div>
             </div>
         </section>
+        {{-- Recommendation Other Product --}}
         <section class="bg-[#F4F4F4]">
             <div class="container flex flex-col gap-8 py-[60px]">
                 <h2 class="max-w-60 px-4 sm:max-w-5xl">Rekomendasi Produk Lainnya</h2>
@@ -322,6 +326,7 @@
                 @endif
             </div>
         </section>
+        {{-- Bantuan --}}
         <section id="bantuan" class="container flex flex-col gap-[42px] py-[60px] px-4">
             <div @class([
                 'max-w-[676px]' => $detail->getFirstMedia('guidance_product'),

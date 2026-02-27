@@ -31,6 +31,11 @@ class ManageCatalog extends SettingsPage
 
     protected static ?string $cluster = PageSettingsCluster::class;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return env('FILAMENT_DISTRIBUTOR', false);
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $old_files = app(PageSettings::class)->catalog_meta_image;

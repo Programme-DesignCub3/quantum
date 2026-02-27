@@ -1,9 +1,11 @@
 <div class="flex flex-col gap-4 px-4 md:p-10">
     <h3 class="max-w-72 text-center mx-auto">Formulir Download Brosur/Flyer</h3>
-    <form x-data="{ status: @entangle('status') }" wire:submit="submit" class="flex flex-col gap-4">
-        <x-displays.toast>
-            Berhasil unduh!
-        </x-displays.toast>
+    <form x-data="{ status: @entangle('status') }" x-init="$watch('status', (value) => {
+        $store.catalogDrawer.success = value
+        setTimeout(() => {
+            $store.catalogDrawer.success = false
+        }, 3000)
+    })" wire:submit="submit" class="flex flex-col gap-4">
         <div class="flex flex-col gap-4">
             <input type="hidden" wire:model="catalog_id" x-effect="$wire.catalog_id = $store.catalogDrawer.data?.catalog_id">
             <div x-data="{ input: @entangle('nama') }" class="floating-label-input relative space-y-1.5">

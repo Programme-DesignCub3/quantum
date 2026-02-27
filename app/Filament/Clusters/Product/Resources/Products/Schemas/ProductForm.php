@@ -178,6 +178,7 @@ class ProductForm
                                 ->reorderable(false)
                                 ->minItems(3)
                                 ->maxItems(3)
+                                ->belowContent('Wajib mengisi ketiga data spesifikasi detail.')
                                 ->required()
                                 ->blocks([
                                     Block::make('dimension_image')

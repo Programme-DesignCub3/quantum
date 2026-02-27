@@ -3,10 +3,12 @@
         <x-icons.premium-icon class="size-8 fill-[#FAC70B] md:mb-2.5" />
         <h3 class="text-qt-green-normal md:text-2xl md:font-medium">Resep Premium</h3>
     </div>
-    <form x-data="{ status: @entangle('status') }" wire:submit="submitDownload" class="flex flex-col gap-4 md:gap-6">
-        <x-displays.toast>
-            Berhasil disimpan!
-        </x-displays.toast>
+    <form x-data="{ status: @entangle('status') }" x-init="$watch('status', (value) => {
+        $store.premiumRecipeDrawer.success = value
+        setTimeout(() => {
+            $store.premiumRecipeDrawer.success = false
+        }, 3000)
+    })" wire:submit="submitDownload" class="flex flex-col gap-4 md:gap-6">
         <div class="flex flex-col gap-4">
             <div x-data="{ input: @entangle('nama') }" class="floating-label-input relative space-y-1.5">
                 <label x-cloak for="nama" :class="input ? 'floating' : 'not-floating'">Nama</label>

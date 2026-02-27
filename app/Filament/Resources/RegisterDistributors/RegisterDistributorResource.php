@@ -32,6 +32,11 @@ class RegisterDistributorResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return env('FILAMENT_DISTRIBUTOR', false);
+    }
+
     public static function infolist(Schema $schema): Schema
     {
         return $schema
