@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Filament\Resources\Subscriptions\Pages;
+namespace App\Filament\Resources\EntryData\EntryRecipePremium\Pages;
 
-use App\Filament\Exports\SubscriptionExporter;
-use App\Filament\Resources\Subscriptions\SubscriptionResource;
+use App\Filament\Exports\PremiumMemberExporter;
+use App\Filament\Resources\EntryData\EntryRecipePremium\EntryRecipePremiumResource;
+use Filament\Actions\CreateAction;
 use Filament\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Resources\Pages\ManageRecords;
 
-class ManageSubscriptions extends ManageRecords
+class ManageEntryRecipePremium extends ManageRecords
 {
-    protected static string $resource = SubscriptionResource::class;
+    protected static string $resource = EntryRecipePremiumResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             ExportAction::make()
                 ->label('Ekspor Excel')
-                ->exporter(SubscriptionExporter::class)
+                ->exporter(PremiumMemberExporter::class)
                 ->formats([
                     ExportFormat::Xlsx
                 ])

@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\CatalogDownloads;
+namespace App\Filament\Resources\EntryData\EntryCatalogs;
 
 use App\Filament\Infolists\Components\CatalogEntry;
-use App\Filament\Resources\CatalogDownloads\Pages\ManageCatalogDownloads;
+use App\Filament\Resources\EntryData\EntryCatalogs\Pages\ManageEntryCatalogs;
 use App\Models\CatalogDownload;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
@@ -16,19 +19,24 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class CatalogDownloadResource extends Resource
+class EntryCatalogResource extends Resource
 {
     protected static ?int $navigationSort = 2;
 
     protected static string | UnitEnum | null $navigationGroup = 'Entri Data';
 
-    protected static ?string $navigationLabel = 'Pengunduh Katalog';
+    protected static ?string $navigationLabel = 'Download Katalog';
 
-    protected static ?string $modelLabel = 'Pengunduh Katalog';
+    protected static ?string $modelLabel = 'Download Katalog';
 
     protected static ?string $model = CatalogDownload::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return env('FILAMENT_DISTRIBUTOR', false);
+    }
 
     public static function infolist(Schema $schema): Schema
     {
@@ -76,7 +84,7 @@ class CatalogDownloadResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ManageCatalogDownloads::route('/'),
+            'index' => ManageEntryCatalogs::route('/'),
         ];
     }
 }

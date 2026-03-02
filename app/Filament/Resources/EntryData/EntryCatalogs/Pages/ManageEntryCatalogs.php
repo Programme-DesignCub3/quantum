@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\CatalogDownloads\Pages;
+namespace App\Filament\Resources\EntryData\EntryCatalogs\Pages;
 
 use App\Filament\Exports\CatalogDownloadExporter;
-use App\Filament\Resources\CatalogDownloads\CatalogDownloadResource;
+use App\Filament\Resources\EntryData\EntryCatalogs\EntryCatalogResource;
 use Filament\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Resources\Pages\ManageRecords;
 
-class ManageCatalogDownloads extends ManageRecords
+class ManageEntryCatalogs extends ManageRecords
 {
-    protected static string $resource = CatalogDownloadResource::class;
+    protected static string $resource = EntryCatalogResource::class;
 
     protected function getHeaderActions(): array
     {

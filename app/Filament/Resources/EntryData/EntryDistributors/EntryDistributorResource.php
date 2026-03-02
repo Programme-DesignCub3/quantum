@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\RegisterDistributors;
+namespace App\Filament\Resources\EntryData\EntryDistributors;
 
-use App\Filament\Resources\RegisterDistributors\Pages\ManageRegisterDistributors;
+use App\Filament\Resources\EntryData\EntryDistributors\Pages\ManageEntryDistributors;
 use App\Models\Distributor\RegisterDistributor;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -18,7 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class RegisterDistributorResource extends Resource
+class EntryDistributorResource extends Resource
 {
     protected static ?int $navigationSort = 3;
 
@@ -30,7 +30,7 @@ class RegisterDistributorResource extends Resource
 
     protected static ?string $model = RegisterDistributor::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     public static function shouldRegisterNavigation(): bool
     {
@@ -87,7 +87,7 @@ class RegisterDistributorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ManageRegisterDistributors::route('/'),
+            'index' => ManageEntryDistributors::route('/'),
         ];
     }
 }

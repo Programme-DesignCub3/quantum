@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\RegisterGuarantees;
+namespace App\Filament\Resources\EntryData\EntryGuarantees;
 
-use App\Filament\Resources\RegisterGuarantees\Pages\ManageRegisterGuarantees;
+use App\Filament\Resources\EntryData\EntryGuarantees\Pages\ManageEntryGuarantees;
 use App\Models\RegisterGuarantee;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
@@ -17,7 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class RegisterGuaranteeResource extends Resource
+class EntryGuaranteeResource extends Resource
 {
     protected static ?int $navigationSort = 4;
 
@@ -29,7 +31,7 @@ class RegisterGuaranteeResource extends Resource
 
     protected static ?string $model = RegisterGuarantee::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     public static function infolist(Schema $schema): Schema
     {
@@ -95,7 +97,7 @@ class RegisterGuaranteeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ManageRegisterGuarantees::route('/'),
+            'index' => ManageEntryGuarantees::route('/'),
         ];
     }
 }
