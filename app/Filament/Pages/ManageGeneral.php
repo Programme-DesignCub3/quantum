@@ -2,8 +2,10 @@
 
 namespace App\Filament\Pages;
 
+use App\Constant\AcceptedFileConstant;
 use App\Settings\GeneralSettings;
 use BackedEnum;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -76,9 +78,21 @@ class ManageGeneral extends SettingsPage
                                         ->required(),
                                 ])
                             ]),
+                        FileUpload::make('badges')
+                            ->label('Badge')
+                            ->image()
+                            ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
+                            ->multiple()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->maxSize(2048)
+                            ->directory('badges')
+                            ->columnSpanFull()
+                            ->panelLayout('grid')
+                            ->helperText('File berupa format gambar .jpeg .jpg .png .webp. Rekomendasi rasio 1:1. Maksimal ukuran file 2MB. Bisa mengunggah lebih dari satu gambar.'),
                         Textarea::make('footer_description')
                             ->label('Deskripsi')
-                            ->belowLabel('Deskripsi yang akan ditampilkan di bagian footer website.')
+                            ->belowContent('Deskripsi ini ditampilkan di bagian footer website.')
                             ->rows(3)
                             ->columnSpanFull()
                             ->required(),

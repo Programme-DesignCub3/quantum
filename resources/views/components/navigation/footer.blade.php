@@ -2,11 +2,13 @@
     @if (Route::currentRouteName() !== 'support.contact')
         <div class="bg-[#F4F4F4]">
             <div class="container px-4 py-[60px] flex flex-col gap-8 sm:px-6">
-                <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-x-4 md:gap-6 lg:gap-10 xl:gap-14">
-                    @for($i = 1; $i <= 6; $i++)
-                        <img src="{{ asset('images/certify-' . $i . '.png') }}" alt="">
-                    @endfor
-                </div>
+                @if(count($general_settings->badges) > 0)
+                    <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-x-4 md:gap-6 lg:gap-10 xl:gap-14">
+                        @foreach($general_settings->badges as $badge)
+                            <img src="{{ asset('storage/' . $badge) }}" alt="">
+                        @endforeach
+                    </div>
+                @endif
                 <div class="md:space-y-2">
                     <h2>Quantum Care</h2>
                     <p class="hidden md:block">
