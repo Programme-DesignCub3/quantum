@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ServiceCenters\Schemas;
+namespace App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Schemas;
 
 use App\Constant\AcceptedFileConstant;
 use App\Models\Product\ProductCategory;
@@ -28,23 +28,22 @@ class ServiceCenterForm
                     ->schema([
                         Section::make([
                             SpatieMediaLibraryFileUpload::make('primary_image')
-                                ->label('Foto Tempat Service Center / Mitra')
+                                ->label('Gambar')
                                 ->collection('service_centers')
                                 ->image()
                                 ->maxSize(2048)
                                 ->acceptedFileTypes(AcceptedFileConstant::ACCEPTED_IMAGE)
                                 ->columnSpanFull()
                                 ->belowContent('File berupa format gambar .jpeg .jpg .png .webp. Maksimal ukuran file 2MB.'),
-                            Select::make('type')
+                            Select::make('type_service_id')
                                 ->label('Tipe')
-                                ->options([
-                                    'service_center' => 'Service Center',
-                                    'partner' => 'Mitra',
-                                ])
+                                ->relationship('typeService', 'name')
+                                ->preload()
+                                ->searchable()
                                 ->columnSpanFull()
                                 ->required(),
                             TextInput::make('name')
-                                ->label('Nama Service Center / Mitra')
+                                ->label('Nama')
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->required(),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\ServiceCenter;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -15,7 +15,6 @@ class ServiceCenter extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
-        'type',
         'area',
         'address',
         'operational',
@@ -33,6 +32,11 @@ class ServiceCenter extends Model implements HasMedia
         'provide_sell' => 'array',
     ];
 
+    public function typeService()
+    {
+        return $this->belongsTo(TypeService::class, 'type_service_id');
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -43,12 +47,17 @@ class ServiceCenter extends Model implements HasMedia
     /**
      * Get all service centers with optional query filter.
      * @param int $number
-     * @param ?string $query
+     * @param string $query
+     * @param string $type
      */
-    public function getAllServiceCenter(int $number, ?string $query = null)
+    public function getAllServiceCenter(int $number, string $query, string $type)
     {
         return self::where('is_published', true)
-            ->where('type', 'service_center')
+            ->when($type, function ($query) use ($type) {
+                $query->whereHas('typeService', function ($q) use ($type) {
+                    $q->where('slug', $type);
+                });
+            })
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('name', 'like', '%' . $query . '%')
@@ -63,51 +72,17 @@ class ServiceCenter extends Model implements HasMedia
 
     /**
      * Count all service centers.
-     * @param ?string $query
+     * @param string $query
+     * @param string $type
      */
-    public function getCountAllServiceCenter(?string $query = null)
+    public function getCountAllServiceCenter(string $query, string $type)
     {
         return self::where('is_published', true)
-            ->where('type', 'service_center')
-            ->when($query, function ($q) use ($query) {
-                $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('name', 'like', '%' . $query . '%')
-                        ->orWhere('address', 'like', '%' . $query . '%')
-                        ->orWhere('area', 'like', '%' . $query . '%');
+            ->when($type, function ($query) use ($type) {
+                $query->whereHas('typeService', function ($q) use ($type) {
+                    $q->where('slug', $type);
                 });
             })
-            ->count();
-    }
-
-    /**
-     * Get all service partners with optional query filter.
-     * @param int $number
-     * @param ?string $query
-     */
-    public function getAllServicePartner(int $number, ?string $query = null)
-    {
-        return self::where('is_published', true)
-            ->where('type', 'partner')
-            ->when($query, function ($q) use ($query) {
-                $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('name', 'like', '%' . $query . '%')
-                        ->orWhere('address', 'like', '%' . $query . '%')
-                        ->orWhere('area', 'like', '%' . $query . '%');
-                });
-            })
-            ->latest()
-            ->take($number)
-            ->get();
-    }
-
-    /**
-     * Count all service partners.
-     * @param ?string $query
-     */
-    public function getCountAllServicePartner(?string $query = null)
-    {
-        return self::where('is_published', true)
-            ->where('type', 'partner')
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('name', 'like', '%' . $query . '%')

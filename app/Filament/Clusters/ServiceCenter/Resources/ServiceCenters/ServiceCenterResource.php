@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ServiceCenters;
+namespace App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters;
 
-use App\Filament\Resources\ServiceCenters\Pages\CreateServiceCenter;
-use App\Filament\Resources\ServiceCenters\Pages\EditServiceCenter;
-use App\Filament\Resources\ServiceCenters\Pages\ListServiceCenters;
-use App\Filament\Resources\ServiceCenters\Schemas\ServiceCenterForm;
-use App\Filament\Resources\ServiceCenters\Tables\ServiceCentersTable;
-use App\Models\ServiceCenter;
+use App\Filament\Clusters\ServiceCenter\ServiceCenterCluster;
+use App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Pages\CreateServiceCenter;
+use App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Pages\EditServiceCenter;
+use App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Pages\ListServiceCenters;
+use App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Schemas\ServiceCenterForm;
+use App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Tables\ServiceCentersTable;
+use App\Models\ServiceCenter\ServiceCenter;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,17 +18,15 @@ use UnitEnum;
 
 class ServiceCenterResource extends Resource
 {
-    protected static ?int $navigationSort = 5;
+    protected static string | UnitEnum | null $navigationGroup = 'Manajemen Service Center';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Data';
-
-    protected static ?string $navigationLabel = 'Service Center';
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'Service Center';
 
     protected static ?string $model = ServiceCenter::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
+    protected static ?string $cluster = ServiceCenterCluster::class;
 
     public static function form(Schema $schema): Schema
     {

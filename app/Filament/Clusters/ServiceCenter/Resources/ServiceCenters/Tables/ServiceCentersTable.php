@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ServiceCenters\Tables;
+namespace App\Filament\Clusters\ServiceCenter\Resources\ServiceCenters\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -21,21 +21,10 @@ class ServiceCentersTable
                     ->label('Nama')
                     ->searchable()
                     ->limit(30),
-                TextColumn::make('type')
+                TextColumn::make('typeService.name')
                     ->label('Tipe')
-                    ->badge()
-                    ->color('gray')
-                    ->formatStateUsing(function(string $state) {
-                        switch($state) {
-                            case 'service_center':
-                                return 'Service Center';
-                            case 'partner':
-                                return 'Mitra';
-                            default:
-                                return 'Lainnya';
-                        }
-                    })
                     ->searchable()
+                    ->placeholder('Tidak ada tipe')
                     ->sortable(),
                 TextColumn::make('area')
                     ->label('Wilayah/Area')
