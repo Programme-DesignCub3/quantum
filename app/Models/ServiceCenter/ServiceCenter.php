@@ -47,16 +47,14 @@ class ServiceCenter extends Model implements HasMedia
     /**
      * Get all service centers with optional query filter.
      * @param int $number
-     * @param string $query
-     * @param string $type
+     * @param ?string $query
+     * @param ?string $type
      */
-    public function getAllServiceCenter(int $number, string $query, string $type)
+    public function getAllServiceCenter(int $number, ?string $query, ?string $type)
     {
         return self::where('is_published', true)
-            ->when($type, function ($query) use ($type) {
-                $query->whereHas('typeService', function ($q) use ($type) {
-                    $q->where('slug', $type);
-                });
+            ->whereHas('typeService', function ($q) use ($type) {
+                $q->where('slug', $type);
             })
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
@@ -72,16 +70,14 @@ class ServiceCenter extends Model implements HasMedia
 
     /**
      * Count all service centers.
-     * @param string $query
-     * @param string $type
+     * @param ?string $query
+     * @param ?string $type
      */
-    public function getCountAllServiceCenter(string $query, string $type)
+    public function getCountAllServiceCenter(?string $query, ?string $type)
     {
         return self::where('is_published', true)
-            ->when($type, function ($query) use ($type) {
-                $query->whereHas('typeService', function ($q) use ($type) {
-                    $q->where('slug', $type);
-                });
+            ->whereHas('typeService', function ($q) use ($type) {
+                $q->where('slug', $type);
             })
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
