@@ -10,7 +10,9 @@ class TermsConditionsController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->tnc_is_active === 'false') {
+            return abort(404);
+        }
 
         $pageSettings->tnc_updated_date_formatted = Carbon::parse($pageSettings->tnc_updated_date)->locale('id_ID')->isoFormat('D MMMM YYYY');
 

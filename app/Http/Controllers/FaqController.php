@@ -9,7 +9,9 @@ class FaqController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->faq_is_active === 'false') {
+            return abort(404);
+        }
 
         return view('pages.support.faq', [
             'meta_title' => $pageSettings->faq_meta_title,

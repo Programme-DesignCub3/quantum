@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Components\Section;
@@ -61,6 +62,25 @@ class ManageContact extends SettingsPage
     {
         return $schema
             ->components([
+                Section::make('Status')
+                    ->description('Aktifkan atau nonaktifkan halaman kontak.')
+                    ->columnSpanFull()
+                    ->schema([
+                        ToggleButtons::make('contact_is_active')
+                            ->label('Status Halaman')
+                            ->options([
+                                "true" => 'Aktif',
+                                "false" => 'Nonaktif',
+                            ])
+                            ->colors([
+                                "true" => 'success',
+                                "false" => 'danger',
+                            ])
+                            ->inline()
+                            ->default(1)
+                            ->columnSpanFull()
+                            ->required(),
+                    ]),
                 Section::make('Meta Tags')
                     ->description('Pengaturan meta tags untuk halaman kontak.')
                     ->columnSpanFull()

@@ -10,7 +10,9 @@ class GuidanceController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->guidance_is_active === 'false') {
+            return abort(404);
+        }
 
         return view('pages.support.guidance', [
             'meta_title' => $pageSettings->guidance_meta_title,
@@ -20,9 +22,11 @@ class GuidanceController extends Controller
         ]);
     }
 
-    public function detail(Guidance $guidance, $slug)
+    public function detail(PageSettings $pageSettings, Guidance $guidance, $slug)
     {
-        // abort(404);
+        if($pageSettings->guidance_is_active === 'false') {
+            return abort(404);
+        }
 
         $detail = $guidance->getDetailGuidance($slug);
         if(!$detail) return abort(404);

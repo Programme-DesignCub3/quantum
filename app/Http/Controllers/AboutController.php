@@ -9,7 +9,9 @@ class AboutController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->about_is_active === 'false') {
+            return abort(404);
+        }
 
         $pageSettings->about_description_explain_formatted = nl2br(e($pageSettings->about_description_explain));
         $pageSettings->about_history_formatted = collect($pageSettings->about_history);

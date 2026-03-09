@@ -9,7 +9,9 @@ class CatalogController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        abort(404);
+        if($pageSettings->catalog_is_active === 'false') {
+            return abort(404);
+        }
 
         return view('pages.distributor.catalog', [
             'meta_title' => $pageSettings->catalog_meta_title,

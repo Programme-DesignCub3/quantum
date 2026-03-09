@@ -1,7 +1,10 @@
 <?php
 
+use App\Settings\PageSettings;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+
+$pageSettings = app(PageSettings::class);
 
 // Beranda
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
@@ -9,9 +12,13 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 });
 
 // Beranda > Tentang
-Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('about', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Tentang', route('about'));
+    if ($pageSettings->about_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Tentang', route('about'));
+    }
 });
 
 // Beranda > Produk
@@ -42,21 +49,33 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category =
 });
 
 // Beranda > Distributor
-Breadcrumbs::for('distributor.list-distributor', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('distributor.list-distributor', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Distributor', route('distributor.list-distributor'));
+    if ($pageSettings->distributor_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Distributor', route('distributor.list-distributor'));
+    }
 });
 
 // Beranda > Katalog
-Breadcrumbs::for('distributor.catalog', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('distributor.catalog', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Katalog', route('distributor.catalog'));
+    if ($pageSettings->catalog_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Katalog', route('distributor.catalog'));
+    }
 });
 
 // Beranda > Berita dan Event
-Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('updates.news', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Berita dan Event', route('updates.news'));
+    if ($pageSettings->news_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Berita dan Event', route('updates.news'));
+    }
 });
 
 // Beranda > Berita dan Event > [Detail Berita]
@@ -71,9 +90,13 @@ Breadcrumbs::for('updates.news.detail', function (BreadcrumbTrail $trail, $slug 
 });
 
 // Beranda > Resep
-Breadcrumbs::for('updates.recipe', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('updates.recipe', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Resep', route('updates.recipe'));
+    if ($pageSettings->recipe_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Resep', route('updates.recipe'));
+    }
 });
 
 // Beranda > Resep > [Detail Resep]
@@ -88,15 +111,23 @@ Breadcrumbs::for('updates.recipe.detail', function (BreadcrumbTrail $trail, $slu
 });
 
 // Beranda > Layanan Pelanggan
-Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.customer-service', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Layanan Pelanggan', route('support.customer-service'));
+    if ($pageSettings->cs_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Layanan Pelanggan', route('support.customer-service'));
+    }
 });
 
 // Beranda > Garansi
-Breadcrumbs::for('support.guarantee-information', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.guarantee-information', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Garansi', route('support.guarantee-information'));
+    if ($pageSettings->guarantee_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Garansi', route('support.guarantee-information'));
+    }
 });
 
 // Beranda > Garansi > Terima Kasih
@@ -106,27 +137,43 @@ Breadcrumbs::for('support.guarantee-information.registration-success', function 
 });
 
 // Beranda > Service Center
-Breadcrumbs::for('support.service-center', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.service-center', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Service Center', route('support.service-center'));
+    if ($pageSettings->sc_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Service Center', route('support.service-center'));
+    }
 });
 
 // Beranda > FAQ
-Breadcrumbs::for('support.faq', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.faq', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('FAQ', route('support.faq'));
+    if ($pageSettings->faq_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('FAQ', route('support.faq'));
+    }
 });
 
 // Beranda > Kontak
-Breadcrumbs::for('support.contact', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.contact', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Kontak', route('support.contact'));
+    if ($pageSettings->contact_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Kontak', route('support.contact'));
+    }
 });
 
 // Beranda > Edukasi dan Panduan
-Breadcrumbs::for('support.guidance', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.guidance', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Edukasi dan Panduan', route('support.guidance'));
+    if ($pageSettings->guidance_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Edukasi dan Panduan', route('support.guidance'));
+    }
 });
 
 // Beranda > Edukasi dan Panduan > [Detail Panduan]
@@ -141,21 +188,33 @@ Breadcrumbs::for('support.guidance.detail', function (BreadcrumbTrail $trail, $s
 });
 
 // Beranda > Tutorial Video
-Breadcrumbs::for('support.tutorial-video', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('support.tutorial-video', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Tutorial Video', route('support.tutorial-video'));
+    if ($pageSettings->video_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Tutorial Video', route('support.tutorial-video'));
+    }
 });
 
 // Beranda > Syarat & Ketentuan
-Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('terms-conditions', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Syarat & Ketentuan', route('terms-conditions'));
+    if ($pageSettings->tnc_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Syarat & Ketentuan', route('terms-conditions'));
+    }
 });
 
 // Beranda > Kebijakan Privasi
-Breadcrumbs::for('privacy-policy', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('privacy-policy', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
-    $trail->push('Kebijakan Privasi', route('privacy-policy'));
+    if ($pageSettings->pp_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Kebijakan Privasi', route('privacy-policy'));
+    }
 });
 
 // Search Page

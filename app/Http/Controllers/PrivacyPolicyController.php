@@ -10,7 +10,9 @@ class PrivacyPolicyController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->pp_is_active === 'false') {
+            return abort(404);
+        }
 
         $pageSettings->pp_updated_date_formatted = Carbon::parse($pageSettings->pp_updated_date)->locale('id_ID')->isoFormat('D MMMM YYYY');
         $pageSettings->pp_updated_date_cookie_formatted = Carbon::parse($pageSettings->pp_updated_date_cookie)->locale('id_ID')->isoFormat('D MMMM YYYY');

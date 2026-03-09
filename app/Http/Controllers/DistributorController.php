@@ -9,7 +9,9 @@ class DistributorController extends Controller
 {
     public function index(PageSettings $pageSettings)
     {
-        // abort(404);
+        if($pageSettings->distributor_is_active === 'false') {
+            return abort(404);
+        }
 
         return view('pages.distributor.distributor', [
             'meta_title' => $pageSettings->distributor_meta_title,

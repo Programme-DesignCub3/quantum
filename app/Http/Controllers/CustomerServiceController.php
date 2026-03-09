@@ -11,7 +11,9 @@ class CustomerServiceController extends Controller
 {
     public function index(PageSettings $pageSettings, Product $product, Tutorial $tutorial)
     {
-        // abort(404);
+        if($pageSettings->cs_is_active === 'false') {
+            return abort(404);
+        }
 
         $guidances = $product->getProductGuidanceByNumber(4);
 

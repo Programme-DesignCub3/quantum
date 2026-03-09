@@ -10,6 +10,10 @@ class HomeController extends Controller
 {
     public function index(PageSettings $pageSettings, NewsEvent $newsEvent)
     {
+        if($pageSettings->home_is_active === 'false') {
+            abort(404);
+        }
+
         $pageSettings->home_why_choose_us_formatted = collect($pageSettings->home_why_choose_us);
 
         $articles = $newsEvent->getNewsByNumber(4);

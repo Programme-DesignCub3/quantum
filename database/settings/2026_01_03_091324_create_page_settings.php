@@ -7,6 +7,7 @@ return new class extends SettingsMigration
     public function up(): void
     {
         // Home Page
+        $this->migrator->add('page.home_is_active', "true");
         $this->migrator->add('page.home_meta_title', null);
         $this->migrator->add('page.home_meta_description', null);
         $this->migrator->add('page.home_meta_keywords', null);
@@ -27,6 +28,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.home_testimonials', [ [ 'age' => 35, 'name' => 'Hanna', 'origin' => 'Jakarta', 'testimonial' => 'Kompor gas Quantum ini life saver banget! Nggak cuma hemat gas, desainnya juga simple dan modern. Bikin dapur jadi elegan. Recommended pokoknya!' ], [ 'age' => 55, 'name' => 'Danang', 'origin' => 'Jakarta', 'testimonial' => 'Saya puas jadi distributor Quantum selama hampir 6 tahun. Produknya berkualitas tinggi, penjualannya stabil, dan jadi pilihan utama banyak orang.' ] ]);
 
         // About Page
+        $this->migrator->add('page.about_is_active', "false");
         $this->migrator->add('page.about_meta_title', null);
         $this->migrator->add('page.about_meta_description', null);
         $this->migrator->add('page.about_meta_keywords', null);
@@ -52,6 +54,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.about_award', [ [ 'year' => '2017', 'awards' => [ [ 'image' => '', 'title' => 'Rintek Industri', 'description' => null ], [ 'image' => '', 'title' => 'ICSA 2017', 'description' => null ], [ 'image' => '', 'title' => 'DIgital Popular Award Brand ', 'description' => null ], [ 'image' => '', 'title' => 'Superbrands Indonesia\'s Choice 2017', 'description' => null ], [ 'image' => '', 'title' => 'Top Brands Award 2017', 'description' => 'Kategori Regulator Gas' ] ] ], [ 'year' => '2016', 'awards' => [ [ 'image' => '', 'title' => 'Top Brand Award 2016', 'description' => 'Kategori Home Appliance Kompor dan Regulator Gas' ] ] ], [ 'year' => '2015', 'awards' => [ [ 'image' => '', 'title' => 'Top Brand Award 2015', 'description' => 'Kategori Kompor dan Regulator Gas' ], [ 'image' => '', 'title' => 'ICSA 2015', 'description' => 'Kategori Regulator Gas' ] ] ] ]);
 
         // Product Page
+        $this->migrator->add('page.product_is_active', "false");
         $this->migrator->add('page.product_meta_title', null);
         $this->migrator->add('page.product_meta_description', null);
         $this->migrator->add('page.product_meta_keywords', null);
@@ -65,6 +68,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.product_why_choose_us', [ [ 'image' => '', 'title' => 'Apinya Stabil dan Merata', 'description' => 'Kontrol panas lebih mudah dengan masak pakai kompor Quantum' ], [ 'image' => '', 'title' => 'Hemat Gas', 'description' => null ], [ 'image' => '', 'title' => 'Desain Modern dan Fungsional', 'description' => null ], [ 'image' => '', 'title' => 'Fitur Aman, Masak Nyaman', 'description' => null ] ]);
 
         // Distributor Page
+        $this->migrator->add('page.distributor_is_active', "false");
         $this->migrator->add('page.distributor_meta_title', null);
         $this->migrator->add('page.distributor_meta_description', null);
         $this->migrator->add('page.distributor_meta_keywords', null);
@@ -79,6 +83,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.distributor_benefit', [ [ 'title' => 'Headline benefit 1', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 2', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 3', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 4', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ], [ 'title' => 'Headline benefit 5', 'description' => 'Deskripsi singkat lorem ipsum dolor sit amet Info lorem ipsum dolor sit amet Info lorem ipsum dolor' ] ]);
 
         // Catalog Page
+        $this->migrator->add('page.catalog_is_active', "false");
         $this->migrator->add('page.catalog_meta_title', null);
         $this->migrator->add('page.catalog_meta_description', null);
         $this->migrator->add('page.catalog_meta_keywords', null);
@@ -87,6 +92,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.catalog_description', 'Dapatkan informasi detail setiap produk untuk kebutuhan dapur Anda.');
 
         // News and Event (Articles) Page
+        $this->migrator->add('page.news_is_active', "true");
         $this->migrator->add('page.news_meta_title', null);
         $this->migrator->add('page.news_meta_description', null);
         $this->migrator->add('page.news_meta_keywords', null);
@@ -95,6 +101,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.news_description', 'Jelajahi berbagai artikel menarik Quantum dan dapatkan inspirasi setiap hari.');
 
         // Recipe Page
+        $this->migrator->add('page.recipe_is_active', "false");
         $this->migrator->add('page.recipe_meta_title', null);
         $this->migrator->add('page.recipe_meta_description', null);
         $this->migrator->add('page.recipe_meta_keywords', null);
@@ -103,6 +110,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.recipe_description', 'Hadirkan kehangatan untuk keluarga di setiap sajian.');
 
         // Customer Service Page
+        $this->migrator->add('page.cs_is_active', "false");
         $this->migrator->add('page.cs_meta_title', null);
         $this->migrator->add('page.cs_meta_description', null);
         $this->migrator->add('page.cs_meta_keywords', null);
@@ -117,14 +125,15 @@ return new class extends SettingsMigration
         $this->migrator->add('page.cs_description_video', 'Semua yang perlu Anda tahu dalam penggunaan produk Quantum.');
         $this->migrator->add('page.cs_support', [ [ 'image' => '', 'title' => 'Respon Cepat & Tepat', 'description' => 'Kami siap menjawab pertanyaan dan menyelesaikan masalah terkait produk.' ], [ 'image' => '', 'title' => 'Dukungan Teknis Resmi', 'description' => 'Bantuan langsung dari tim ahli untuk memastikan keamanan dan kenyamanan Anda.' ], [ 'image' => '', 'title' => 'Akses Mudah ke Berbagai Channel', 'description' => 'Bisa hubungi lewat call center, WhatsApp, email, atau media sosial resmi.' ] ]);
 
-
         // Guarantee Information Page
+        $this->migrator->add('page.guarantee_is_active', "false");
         $this->migrator->add('page.guarantee_meta_title', null);
         $this->migrator->add('page.guarantee_meta_description', null);
         $this->migrator->add('page.guarantee_meta_keywords', null);
         $this->migrator->add('page.guarantee_meta_image', null);
 
         // Service Center Page
+        $this->migrator->add('page.sc_is_active', "false");
         $this->migrator->add('page.sc_meta_title', null);
         $this->migrator->add('page.sc_meta_description', null);
         $this->migrator->add('page.sc_meta_keywords', null);
@@ -133,6 +142,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.sc_description', 'Dapatkan layanan perbaikan produk Quantum di pusat service resmi dan mitra terpercaya.');
 
         // FAQ Page
+        $this->migrator->add('page.faq_is_active', "false");
         $this->migrator->add('page.faq_meta_title', null);
         $this->migrator->add('page.faq_meta_description', null);
         $this->migrator->add('page.faq_meta_keywords', null);
@@ -147,6 +157,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.faq_guarantee', [ [ 'answer' => 'Setiap pembelian produk mendapatkan garansi resmi selama 12 bulan (1 tahun) sejak tanggal pembelian yang tertera pada invoice.', 'question' => 'Berapa lama masa garansi yang diberikan untuk produk ini?' ], [ 'answer' => 'Garansi mencakup kerusakan manufaktur (cacat produksi) dan kegagalan fungsi komponen utama dalam penggunaan normal. Garansi tidak berlaku untuk kerusakan akibat kelalaian pengguna (jatuh, terkena air, dsb).', 'question' => 'Apa saja kerusakan yang ditanggung oleh garansi?' ], [ 'answer' => 'Anda cukup menghubungi tim dukungan kami dengan melampirkan foto/video kerusakan serta bukti pembelian (invoice). Kami akan memandu proses perbaikan atau penggantian unit baru.', 'question' => 'Bagaimana prosedur klaim garansi jika terjadi kerusakan?' ] ]);
 
         // Contact Page
+        $this->migrator->add('page.contact_is_active', "false");
         $this->migrator->add('page.contact_meta_title', null);
         $this->migrator->add('page.contact_meta_description', null);
         $this->migrator->add('page.contact_meta_keywords', null);
@@ -179,6 +190,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.contact_socmed_facebook', 'https://www.facebook.com/QuantumIDN');
 
         // Education & Guidance Page
+        $this->migrator->add('page.guidance_is_active', "false");
         $this->migrator->add('page.guidance_meta_title', null);
         $this->migrator->add('page.guidance_meta_description', null);
         $this->migrator->add('page.guidance_meta_keywords', null);
@@ -189,6 +201,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.guidance_description_article', 'Temukan tips seputar produk Quantum untuk pengalaman memasak lebih efisien');
 
         // Video & Tutorial Page
+        $this->migrator->add('page.video_is_active', "false");
         $this->migrator->add('page.video_meta_title', null);
         $this->migrator->add('page.video_meta_description', null);
         $this->migrator->add('page.video_meta_keywords', null);
@@ -197,6 +210,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.video_description', 'Rasakan performa produk Quantum yang optimal dengan video tutorial resmi.');
 
         // Terms & Conditions Page
+        $this->migrator->add('page.tnc_is_active', "false");
         $this->migrator->add('page.tnc_meta_title', null);
         $this->migrator->add('page.tnc_meta_description', null);
         $this->migrator->add('page.tnc_meta_keywords', null);
@@ -206,6 +220,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.tnc_content', '<p>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.</p><ol start=\"1\"><li><p><strong>Headline</strong><br>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.<br><br></p></li><li><p><strong>Headline</strong><br>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.<br><br></p></li><li><p><strong>Headline</strong><br>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.<br><br></p></li><li><p><strong>Headline</strong><br>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.<br><br></p></li><li><p><strong>Headline</strong><br>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.</p></li></ol><p>Lorem ipsum dolor sit amet consectetur. Vestibulum odio tellus imperdiet sollicitudin. Consequat gravida sit mauris mi cursus. Dui a blandit suspendisse suspendisse tincidunt felis diam pretium. Sem vel egestas pulvinar porttitor diam morbi varius. Amet aliquam adipiscing tellus vitae enim facilisis.</p>');
 
         // Privacy Policy Page
+        $this->migrator->add('page.pp_is_active', "false");
         $this->migrator->add('page.pp_meta_title', null);
         $this->migrator->add('page.pp_meta_description', null);
         $this->migrator->add('page.pp_meta_keywords', null);

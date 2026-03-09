@@ -11,6 +11,10 @@ class NewsEventController extends Controller
 {
     public function index(NewsEvent $newsEvent, PageSettings $pageSettings)
     {
+        if($pageSettings->news_is_active === 'false') {
+            return abort(404);
+        }
+
         $latest_news = $newsEvent->getNewsByNumber(4);
 
         return view('pages.updates.news-event', [
@@ -23,8 +27,12 @@ class NewsEventController extends Controller
         ]);
     }
 
-    public function detail(NewsEvent $newsEvent, Product $product, $slug)
+    public function detail(PageSettings $pageSettings, NewsEvent $newsEvent, Product $product, $slug)
     {
+        if($pageSettings->news_is_active === 'false') {
+            return abort(404);
+        }
+
         $detail = $newsEvent->getDetailNews($slug);
         if(!$detail) return abort(404);
 
