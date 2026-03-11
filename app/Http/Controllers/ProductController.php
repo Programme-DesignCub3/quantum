@@ -78,7 +78,7 @@ class ProductController extends Controller
         }
 
         $data_drawer = [
-            'image' => $detail->media->first()->getUrl(),
+            'image' => $detail->getMedia('products')->first()->getUrl(),
             'category' => $detail->variant->name ?? $detail->category->name,
             'name' => $detail->name,
             'marketplace' => $marketplaces,
@@ -93,7 +93,7 @@ class ProductController extends Controller
             'meta_title' => $meta_title,
             'meta_description' => $detail->meta_description,
             'meta_keywords' => $meta_keywords,
-            'meta_image' => $detail->media->first()->getUrl(),
+            'meta_image' => $detail->getMedia('products')->first()->getUrl(),
             'data_drawer' => $data_drawer,
             'detail' => $detail,
             'compare_product' => $compare_product,

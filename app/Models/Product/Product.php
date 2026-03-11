@@ -81,7 +81,7 @@ class Product extends Model implements HasMedia
         $categories = ProductCategory::pluck('id')->toArray();
 
         return self::query()
-            ->fromSub(function ($q) use ($categories) {
+            ->fromSub(function ($q) use ($categories, $is_best_seller) {
                 $q->from('products')
                 ->select('*')
                 ->selectRaw('
@@ -90,13 +90,13 @@ class Product extends Model implements HasMedia
                         ORDER BY created_at DESC
                     ) as rn
                 ')
+                ->when($is_best_seller, function ($q) {
+                    $q->where('is_best_seller', true);
+                })
                 ->whereIn('product_category_id', $categories);
             }, 'p')
             ->where('rn', '<=', $number)
             ->where('is_published', true)
-            ->when($is_best_seller, function ($q) {
-                $q->where('is_best_seller', true);
-            })
             ->with('category', 'media', 'variant', 'types')
             ->latest()
             ->get()

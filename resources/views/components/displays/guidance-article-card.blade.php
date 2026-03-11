@@ -6,7 +6,7 @@
             <h5>{{ $payload->title }}</h5>
         </div>
         <div class="max-w-[120px] shrink-0 aspect-6/5 md:aspect-75/64">
-            <img class="aspect-6/5 object-cover rounded-2xl overflow-hidden md:aspect-75/64" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
+            <img class="aspect-6/5 object-cover rounded-2xl overflow-hidden md:aspect-75/64" src="{{ $payload->getMedia('guidances')->first()->getUrl() }}" alt="{{ $payload->title }}">
         </div>
     </a>
     {{-- Desktop --}}
@@ -19,7 +19,7 @@
             </x-inputs.button>
         </div>
         <div class="max-w-[120px] shrink-0 aspect-6/5 md:aspect-75/64">
-            <img class="aspect-6/5 object-cover rounded-2xl overflow-hidden md:aspect-75/64" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
+            <img class="aspect-6/5 object-cover rounded-2xl overflow-hidden md:aspect-75/64" src="{{ $payload->getMedia('guidances')->first()->getUrl() }}" alt="{{ $payload->title }}">
         </div>
     </div>
 </div>

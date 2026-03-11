@@ -43,7 +43,7 @@ class GuidanceController extends Controller
             'meta_title' => $detail->meta_title ?? $detail->title,
             'meta_description' => $detail->meta_description ?? $detail->excerpt,
             'meta_keywords' => $meta_keywords,
-            'meta_image' => $detail->media->first()->getUrl(),
+            'meta_image' => $detail->getMedia('guidances')->first()->getUrl(),
             'detail' => $detail,
             'other_guidance' => $other_guidance,
         ]);

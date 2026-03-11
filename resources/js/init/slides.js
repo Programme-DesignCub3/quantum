@@ -21,6 +21,7 @@ const productsHomeSlide = () => {
                 },
                 768: {
                     perPage: 2,
+                    gap: '1rem',
                     autoWidth: true,
                 },
                 550: {
@@ -80,7 +81,7 @@ if (document.querySelector('#homepage')) {
             pagination: false,
             drag: 'free',
             perPage: 4,
-            gap: '1.25rem',
+            gap: '1.5rem',
             padding: '1.5rem',
             breakpoints: {
                 1280: {
@@ -90,8 +91,8 @@ if (document.querySelector('#homepage')) {
                     perPage: 2,
                 },
                 768: {
-                    gap: '0.65rem',
                     perPage: 2,
+                    gap: '1rem',
                     autoWidth: true,
                 },
                 550: {
@@ -262,6 +263,7 @@ if (document.querySelector('#product-detail')) {
                 },
                 768: {
                     perPage: 2,
+                    gap: '1rem',
                     autoWidth: true,
                 },
                 550: {

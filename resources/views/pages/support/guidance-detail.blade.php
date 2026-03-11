@@ -19,7 +19,7 @@
             </div>
             {{-- Primary Image --}}
             <figure class="relative">
-                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->media->first()->getUrl() }}" alt="{{ $detail->primary_image_alt_text ?? $detail->title }}">
+                <img class="aspect-49/30 object-cover md:h-[500px] md:w-full" src="{{ $detail->getMedia('guidances')->first()->getUrl() }}" alt="{{ $detail->primary_image_alt_text ?? $detail->title }}">
                 @if($detail->primary_image_caption)
                     <figcaption class="container text-center text-sm px-4 pt-4 pb-0 sm:px-6 sm:pt-4 md:text-base">{{ $detail->primary_image_caption }}</figcaption>
                 @endif

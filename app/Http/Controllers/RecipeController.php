@@ -50,7 +50,7 @@ class RecipeController extends Controller
             'meta_title' => $detail->meta_title ?? $detail->title,
             'meta_description' => $detail->meta_description ?? $detail->description,
             'meta_keywords' => $meta_keywords,
-            'meta_image' => $detail->media->first()->getUrl(),
+            'meta_image' => $detail->getMedia('recipes')->first()->getUrl(),
             'detail' => $detail,
             'recommendation_products' => $recommendation_products,
             'other_recipes' => $other_recipes,

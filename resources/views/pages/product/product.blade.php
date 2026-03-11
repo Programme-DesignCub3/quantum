@@ -82,7 +82,7 @@
                             @foreach($guidances as $guidance)
                                 <li wire:key="guidance-{{ $guidance->id }}" class="splide__slide">
                                     <div class="max-w-60 md:max-w-full">
-                                        <x-displays.inside-card :image="$guidance->media->first()->getUrl()" :alt="$guidance->title">
+                                        <x-displays.inside-card :image="$guidance->getMedia('guidances')->first()->getUrl()" :alt="$guidance->title">
                                             <h4>{{ $guidance->title }}</h4>
                                             <x-inputs.button type="hyperlink" href="{{ route('support.guidance.detail', $guidance->slug) }}" size="md" color="white">
                                                 Selengkapnya

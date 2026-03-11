@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-6 md:flex-col-reverse">
+<div x-data x-cloak x-effect="document.body.style.overflow = $store.searchDrawer.open ? 'hidden' : 'auto'" class="flex flex-col gap-6 md:flex-col-reverse">
     @if($this->search != '')
         <div class="w-full flex flex-col gap-4 justify-center items-center md:flex-row">
             <span class="max-w-56 mx-auto text-center md:text-sm md:mx-0 md:max-w-full">Kesulitan menemukan yang dicari silahkan hubungi Customer Care Kami</span>
@@ -17,7 +17,7 @@
                                 @foreach($items as $key => $item)
                                     <a href="{{ route('product.detail', [$item->category->slug, $item->slug]) }}" class="flex items-center gap-4">
                                         <div class="shrink-0 bg-white rounded-2xl overflow-hidden">
-                                            <img class="size-[100px] object-cover object-center" src="{{ $item->media->first()->getUrl() }}" alt="{{ $item->name }}">
+                                            <img class="size-[100px] object-cover object-center" src="{{ $item->getMedia('products')->first()->getUrl() }}" alt="{{ $item->name }}">
                                         </div>
                                         <div class="flex flex-col gap-2.5">
                                             <div class="space-y-0">

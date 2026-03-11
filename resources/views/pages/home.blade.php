@@ -150,7 +150,7 @@
                         <h3>{{ $page_settings->home_title_article }}</h3>
                     </div>
                     {{-- Read More Button (Mobile) --}}
-                    <div class="hidden justify-center items-center px-4 md:flex">
+                    <div class="hidden justify-center items-center px-4 sm:px-6 md:flex">
                         <x-inputs.button type="hyperlink" href="{{ route('updates.news') }}" size="lg" variant="secondary" color="white" class="w-max">
                             Lihat Lebih Banyak
                         </x-inputs.button>

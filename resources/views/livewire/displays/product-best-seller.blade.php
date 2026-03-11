@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-6">
-    <div class="flex justify-center items-center px-4 md:justify-between md:px-6">
+    <div class="flex justify-center items-center px-4 sm:px-6 md:justify-between">
         {{-- Tabs --}}
         <div class="flex gap-0.5 bg-white p-1 rounded-full">
             <button type="button" wire:click="productsFilter(false)" class="tab {{ $bestSellerOnly ? '' : 'active' }}">
@@ -10,7 +10,7 @@
             </button>
         </div>
         {{-- Read More Button (Desktop) --}}
-        <div class="hidden justify-center items-center px-4 md:flex">
+        <div class="hidden justify-center items-center md:flex">
             <x-inputs.button type="hyperlink" href="{{ route('product') }}" size="lg" variant="secondary" color="white">
                 Lihat Semua Produk
             </x-inputs.button>

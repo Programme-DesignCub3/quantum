@@ -6,7 +6,7 @@
         'gap-2 p-2': direction === 'row'
     }"
 @endif>
-    <div @class([
+    <a href="{{ route('product.detail', [$payload->category->slug, $payload->slug]) }}" @class([
         'flex-row gap-4' => $direction === 'row',
         'flex-col' => $direction === 'col',
         'flex'
@@ -19,8 +19,8 @@
         <div class="flex-1 relative bg-white w-full">
             <img @class([
                 'rounded-2xl' => $direction === 'row',
-                'aspect-41/35 size-full object-contain mx-auto sm:aspect-6/5',
-            ]) src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->variant->name . ' ' . $payload->name }}">
+                'aspect-41/35 object-contain mx-auto w-60 h-full sm:w-72 sm:aspect-6/5',
+            ]) src="{{ $payload->getMedia('products')->first()->getUrl() }}" alt="{{ $payload->variant->name . ' ' . $payload->name }}">
             @if($payload->is_best_seller)
                 <div class="absolute flex items-center justify-center top-0 right-0 py-1 px-3 rounded-bl-lg bg-[#FBCD26]">
                     <span>Best Seller</span>
@@ -78,7 +78,7 @@
                 </div>
             </div> --}}
         </div>
-    </div>
+    </a>
     <div @class([
         'gap-3' => $direction === 'row' || $direction === 'col',
         'px-4 pb-4' => $direction === 'col',

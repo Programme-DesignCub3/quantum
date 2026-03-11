@@ -236,7 +236,7 @@
                 <div class="col-span-7 grid grid-cols-2 gap-5 rtl">
                     @foreach($nav_recipes as $recipe)
                         <a href="{{ route('updates.recipe.detail', $recipe->slug) }}" class="relative order-first flex-1 rounded-3xl overflow-hidden">
-                            <img class="aspect-19/11 size-full object-cover object-top brightness-85" src="{{ $recipe->media->first()->getUrl() }}" alt="{{ $recipe->title }}">
+                            <img class="aspect-19/11 size-full object-cover object-top brightness-85" src="{{ $recipe->getMedia('recipes')->first()->getUrl() }}" alt="{{ $recipe->title }}">
                             <div class="absolute bottom-0 w-full flex flex-row-reverse justify-between items-end gap-3 p-5">
                                 <h5 class="text-white text-left">{{ $recipe->title }}</h5>
                                 <div class="shrink-0 hidden justify-center items-center size-14 bg-white rounded-full xl:flex">

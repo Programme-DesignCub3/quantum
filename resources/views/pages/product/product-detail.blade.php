@@ -16,9 +16,14 @@
                 <div class="splide main-product-detail" role="group" aria-label="Main Product Detail Slides">
                     <div class="splide__track">
                         <ul class="splide__list">
-                            @foreach($detail->images as $image)
+                            @foreach($detail->images as $key => $image)
                                 <li class="splide__slide">
-                                    <img class="w-full h-[300px] object-cover" src="{{ $image }}" alt="{{ $detail->variant->name . ' ' . $detail->name }}">
+                                    <a data-fslightbox="product-list" href="{{ $image }}" class="flex justify-center items-center size-full md:hidden">
+                                        <img class="w-full object-cover" src="{{ $image }}" alt="{{ $detail->variant->name . ' ' . $detail->name }}">
+                                    </a>
+                                    <div class="zoom-cursor hidden justify-center items-center size-full md:flex">
+                                        <img class="w-full object-cover" src="{{ $image }}" alt="{{ $detail->variant->name . ' ' . $detail->name }}">
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>

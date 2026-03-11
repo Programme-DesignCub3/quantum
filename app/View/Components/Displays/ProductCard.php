@@ -32,7 +32,7 @@ class ProductCard extends Component
         }
 
         $this->data_drawer  = [
-            'image' => $this->payload->media->first()->getUrl(),
+            'image' => $this->payload->getMedia('products')->first()->getUrl(),
             'category' => $this->payload->variant->name ?? $this->payload->category->name,
             'name' => $this->payload->name,
             'marketplace' => $marketplaces,

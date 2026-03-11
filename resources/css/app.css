@@ -413,6 +413,12 @@
     @apply rounded-lg overflow-hidden border! border-[#6D6D6D]!;
 }
 
+.splide.thumbnail-product-detail.is-focus-in {
+    .splide__slide:focus {
+        @apply outline-2! outline-black! -outline-offset-2!
+    }
+}
+
 .datepicker {
     @apply w-full!;
     .datepicker-header {
