@@ -1,6 +1,6 @@
-<div @class([
+<div x-data="{ url: '{{ route($routeName, $payload->slug) }}' }" @click="window.location.href = url" @class([
     'border border-[#F4F4F4]' => $border,
-    'flex flex-col rounded-2xl overflow-hidden h-full'
+    'flex flex-col rounded-2xl overflow-hidden h-full cursor-pointer'
 ])>
     <div class="relative bg-white aspect-49/30">
         <img class="aspect-49/30 object-cover" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">

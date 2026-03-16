@@ -1,12 +1,12 @@
-<div wire:key="card-{{ $payload->id ?? $payload->slug }}" x-data="{ data: @js($data_drawer) }" @class([
+<div wire:key="card-{{ $payload->id ?? $payload->slug }}" x-data="{ data: @js($data_drawer), url: '{{ route('product.detail', [$payload->category->slug, $payload->slug]) }}' }" @click="window.location.href = url" @class([
     'gap-2 p-2' => $direction === 'row',
-    'flex flex-col rounded-2xl overflow-hidden justify-between size-full bg-white'
+    'flex flex-col rounded-2xl overflow-hidden justify-between size-full bg-white cursor-pointer'
 ]) @if(Route::currentRouteName() === 'product' || Route::currentRouteName() === 'product.category')
     :class="{
         'gap-2 p-2': direction === 'row'
     }"
 @endif>
-    <a href="{{ route('product.detail', [$payload->category->slug, $payload->slug]) }}" @class([
+    <div wire:ignore @class([
         'flex-row gap-4' => $direction === 'row',
         'flex-col' => $direction === 'col',
         'flex'
@@ -78,7 +78,7 @@
                 </div>
             </div> --}}
         </div>
-    </a>
+    </div>
     <div @class([
         'gap-3' => $direction === 'row' || $direction === 'col',
         'px-4 pb-4' => $direction === 'col',
@@ -96,7 +96,7 @@
                 Lihat
             </a>
         @endif
-        <button type="button" @click="$store.productDrawer.openDrawer(data)" class="transition-all duration-300 ease-in-out w-full cursor-pointer border disabled:cursor-not-allowed py-3 px-6 rounded-xl font-semibold tracking-[0.5px] leading-[114%] text-sm border-transparent bg-qt-green-normal text-white hover:bg-qt-green-hover disabled:bg-[#E9E9E9] disabled:text-[#C7C7C7]">
+        <button type="button" @click.stop="$store.productDrawer.openDrawer(data)" class="transition-all duration-300 ease-in-out w-full cursor-pointer border disabled:cursor-not-allowed py-3 px-6 rounded-xl font-semibold tracking-[0.5px] leading-[114%] text-sm border-transparent bg-qt-green-normal text-white hover:bg-qt-green-hover disabled:bg-[#E9E9E9] disabled:text-[#C7C7C7]">
             Beli
         </button>
     </div>

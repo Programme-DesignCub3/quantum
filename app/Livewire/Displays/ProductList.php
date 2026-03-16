@@ -110,7 +110,7 @@ class ProductList extends Component
                 $query->orderBy('is_best_seller', 'desc');
             })
             ->latest()
-            ->paginate(6);
+            ->paginate(8);
 
         $products->transform(function ($product) {
             // Specs

@@ -1,7 +1,7 @@
 <nav x-data="navbar" x-init="currentMenuInit(@js($route_group))"
     :class="{
         'bg-white transition-all duration-300 ease-in-out': isWhite,
-        'bg-white ': isWhite || $store.menuDrawer.currentMenuDesktop,
+        'md:bg-white ': isWhite || $store.menuDrawer.currentMenuDesktop,
         'top-0': position,
         '-top-full': !position,
         'sticky': sticky,

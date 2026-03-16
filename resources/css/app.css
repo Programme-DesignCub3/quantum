@@ -22,20 +22,8 @@
         max-width: 100%;
     }
 
-    @variant md {
-        max-width: 820px;
-    }
-
-    @variant lg {
-        max-width: 1024px;
-    }
-
-    @variant xl {
-        max-width: 1280px;
-    }
-
     @variant 2xl {
-        max-width: 1400px;
+        max-width: 1488px;
     }
 }
 
