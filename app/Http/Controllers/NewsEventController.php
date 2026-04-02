@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NewsEvent\NewsEvent;
 use App\Models\Product\Product;
 use App\Settings\PageSettings;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NewsEventController extends Controller
@@ -39,6 +40,8 @@ class NewsEventController extends Controller
         $detail->primary_image_caption = $detail->getFirstMedia('news-events')?->getCustomProperty('caption');
         $detail->primary_image_alt_text = $detail->getFirstMedia('news-events')?->getCustomProperty('alt_text');
 
+        $published_at = $detail->published_at ? Carbon::parse($detail->published_at)->translatedFormat('d F Y') : $detail->created_at->translatedFormat('d F Y');
+
         $recommendation_products = $product->getRecommendationProduct(3);
 
         $other_news = $newsEvent->getRecommendationNews(4, $detail->id);
@@ -54,6 +57,7 @@ class NewsEventController extends Controller
             'detail' => $detail,
             'recommendation_products' => $recommendation_products,
             'other_news' => $other_news,
+            'published_at' => $published_at,
         ]);
     }
 }

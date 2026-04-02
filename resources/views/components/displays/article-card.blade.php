@@ -3,7 +3,7 @@
     'flex flex-col rounded-2xl overflow-hidden h-full cursor-pointer'
 ])>
     <div class="relative bg-white aspect-49/30">
-        <img class="aspect-49/30 object-cover" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
+        <img class="aspect-49/30 object-cover w-full" src="{{ $payload->media->first()->getUrl() }}" alt="{{ $payload->title }}">
         @if($for !== 'guidance')
             <span class="absolute bottom-2 right-2 small bg-[#60A3AB] py-0.5 px-2 rounded-full text-white">{{ $payload->category->name }}</span>
         @endif

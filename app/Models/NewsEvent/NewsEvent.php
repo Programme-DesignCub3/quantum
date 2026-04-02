@@ -22,6 +22,7 @@ class NewsEvent extends Model implements HasMedia
         'meta_title',
         'meta_description',
         'is_published',
+        'published_at',
     ];
 
     protected $casts = [

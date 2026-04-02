@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\NewsEvent\Resources\NewsEvents\Schemas;
 use App\Constant\AcceptedFileConstant;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
@@ -138,6 +139,10 @@ class NewsEventForm
                                 ->inline()
                                 ->default(1)
                                 ->columnSpanFull()
+                                ->required(),
+                            DatePicker::make('published_at')
+                                ->label('Tanggal Publikasi')
+                                ->default(now())
                                 ->required(),
                             Select::make('news_event_category_id')
                                 ->label('Kategori Berita & Event')

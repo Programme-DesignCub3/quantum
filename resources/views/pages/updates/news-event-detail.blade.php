@@ -27,7 +27,7 @@
                         <div class="flex gap-2.5">
                             <div class="flex items-center gap-2">
                                 <span class="icon-[lucide--calendar] text-base"></span>
-                                <span>{{ $detail->created_at->translatedFormat('d F Y') }}</span>
+                                <span>{{ $published_at }}</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <span class="icon-[lucide--clock-4] text-base"></span>
