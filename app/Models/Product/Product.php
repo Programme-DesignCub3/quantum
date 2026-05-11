@@ -298,4 +298,21 @@ class Product extends Model implements HasMedia
             })
             ->count();
     }
+
+    /**
+     * Get all products by category
+     * @param ?string $category
+     */
+    public function getAllProductByCategory(?string $category = null)
+    {
+        return self::where('is_published', true)
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('slug', $category);
+                });
+            })
+            ->with('category', 'media', 'variant')
+            ->latest()
+            ->get();
+    }
 }

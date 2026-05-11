@@ -50,12 +50,16 @@
                 </div>
                 {{-- Guidance Article List --}}
                 <div class="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-5">
-                    <div class="flex flex-col gap-4 md:col-span-6">
+                    <div @class([
+                        'flex flex-col gap-4',
+                        'md:col-span-6' => !$latest->isEmpty() || !$guidances->isEmpty(),
+                        'col-span-full' => $latest->isEmpty() || $guidances->isEmpty()
+                    ])>
                         {{-- First Item --}}
                         @if(!$latest->isEmpty())
                             <div class="flex flex-col gap-3">
                                 <div class="rounded-3xl overflow-hidden">
-                                    <img class="aspect-17/10 object-cover" src="{{ $latest[0]->getMedia('guidances')->first()->getUrl() }}" alt="{{ $latest[0]->title }}">
+                                    <img class="aspect-17/10 object-cover w-full" src="{{ $latest[0]->getMedia('guidances')->first()->getUrl() }}" alt="{{ $latest[0]->title }}">
                                 </div>
                                 <div class="space-y-1 p-3">
                                     <span class="block text-qt-green-normal">{{ $latest[0]->category->name }}</span>

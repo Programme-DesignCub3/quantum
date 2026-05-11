@@ -50,13 +50,13 @@
                 <x-displays.drawer store="guaranteeCategoryProductDrawer">
                     <div class="flex flex-col gap-1 py-4">
                         @foreach($product_categories as $category)
-                            <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', '{{ $category->name }}')" class="w-full text-left p-4 cursor-pointer">{{ $category->name }}</button>
+                            <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="categoryProduct('{{ $category->name }}', '{{ $category->slug }}')" class="w-full text-left p-4 cursor-pointer">{{ $category->name }}</button>
                         @endforeach
                     </div>
                 </x-displays.drawer>
                 <div x-cloak x-show="$store.guaranteeCategoryProductDrawer.open" @click.outside="$store.guaranteeCategoryProductDrawer.closeDrawer()" class="dropdown-select drop-shadow-float">
                     @foreach($product_categories as $category)
-                        <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="$set('kategori_produk', '{{ $category->name }}')">{{ $category->name }}</button>
+                        <button type="button" @click="$store.guaranteeCategoryProductDrawer.closeDrawer()" wire:click="categoryProduct('{{ $category->name }}', '{{ $category->slug }}')">{{ $category->name }}</button>
                     @endforeach
                 </div>
                 <input wire:model="kategori_produk" type="hidden">
@@ -65,21 +65,21 @@
             {{-- Model Produk --}}
             <div x-data="{ input: @entangle('model_produk') }" class="floating-label-input space-y-1.5">
                 <label x-cloak for="model_produk" :class="input ? 'floating' : 'not-floating'">Model Produk</label>
-                <button type="button" id="model_produk" @click="$store.guaranteeModelProductDrawer.openDrawer()" :class="input ? 'filled' : 'not-filled'" class="select-form gap-2 text-left">
+                <button type="button" id="model_produk" @click="$store.guaranteeModelProductDrawer.openDrawer()" :class="input ? 'filled' : 'not-filled'" class="select-form gap-2 text-left" :disabled="{{ $model_products ? 'false' : 'true' }}">
                     <span id="select-form" x-text="input ? input : 'Model Produk'"></span>
                     <span class="icon-[lucide--chevron-down] text-xl text-[#6D6D6D] shrink-0" :class="{ 'md:rotate-180': $store.guaranteeModelProductDrawer.open }"></span>
                 </button>
                 <x-displays.drawer store="guaranteeModelProductDrawer">
-                    <div class="flex flex-col gap-1 py-4">
-                        <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #1')" class="w-full text-left p-4 cursor-pointer">Model #1</button>
-                        <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #2')" class="w-full text-left p-4 cursor-pointer">Model #2</button>
-                        <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #3')" class="w-full text-left p-4 cursor-pointer">Model #3</button>
+                    <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
+                        @foreach($model_products as $model)
+                            <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', '{{ $model->name }}')" class="w-full text-left p-4 cursor-pointer">{{ $model->name }}</button>
+                        @endforeach
                     </div>
                 </x-displays.drawer>
                 <div x-cloak x-show="$store.guaranteeModelProductDrawer.open" @click.outside="$store.guaranteeModelProductDrawer.closeDrawer()" class="dropdown-select drop-shadow-float">
-                    <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #1')">Model #1</button>
-                    <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #2')">Model #2</button>
-                    <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', 'Model #3')">Model #3</button>
+                    @foreach($model_products as $model)
+                        <button type="button" @click="$store.guaranteeModelProductDrawer.closeDrawer()" wire:click="$set('model_produk', '{{ $model->name }}')">{{ $model->name }}</button>
+                    @endforeach
                 </div>
                 <input wire:model="model_produk" type="hidden">
                 @error('model_produk') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
@@ -128,11 +128,17 @@
                 <input wire:model="tempat_pembelian" type="hidden">
                 @error('tempat_pembelian') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
-            {{-- Pesan --}}
-            <div x-data="{ input: @entangle('pesan') }" class="floating-label-input relative space-y-1.5">
-                <label x-cloak for="pesan" :class="input ? 'floating' : 'not-floating'">Pesan</label>
-                <textarea wire:model="pesan" x-model="input" id="pesan" placeholder="Pesan" required></textarea>
-                @error('pesan') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
+            {{-- Bukti Pembelian --}}
+            <div class="file-input space-y-1.5">
+                <label for="bukti_pembelian">Upload Bukti Pembelian</label>
+                <input type="file" id="bukti_pembelian" wire:model="bukti_pembelian" accept="image/*,application/pdf">
+                @error('bukti_pembelian') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
+            </div>
+            {{-- Catatan --}}
+            <div x-data="{ input: @entangle('catatan') }" class="floating-label-input relative space-y-1.5">
+                <label x-cloak for="catatan" :class="input ? 'floating' : 'not-floating'">Catatan</label>
+                <textarea wire:model="catatan" x-model="input" id="catatan" placeholder="Catatan" required></textarea>
+                @error('catatan') <span class="block capitalize-first text-[#D6301E]">{{ $message }}</span> @enderror
             </div>
             {{-- Syarat & Ketentuan --}}
             <div class="space-y-1.5">

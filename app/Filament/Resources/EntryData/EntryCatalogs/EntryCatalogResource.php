@@ -25,18 +25,13 @@ class EntryCatalogResource extends Resource
 
     protected static string | UnitEnum | null $navigationGroup = 'Entri Data';
 
-    protected static ?string $navigationLabel = 'Download Katalog';
+    protected static ?string $navigationLabel = 'Log Unduhan Katalog';
 
-    protected static ?string $modelLabel = 'Download Katalog';
+    protected static ?string $modelLabel = 'Log Unduhan Katalog';
 
     protected static ?string $model = CatalogDownload::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return env('FILAMENT_DISTRIBUTOR', false);
-    }
 
     public static function infolist(Schema $schema): Schema
     {

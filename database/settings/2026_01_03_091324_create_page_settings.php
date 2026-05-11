@@ -166,6 +166,7 @@ return new class extends SettingsMigration
         $this->migrator->add('page.contact_title_service', 'Service Center Quantum');
         $this->migrator->add('page.contact_description', 'Hubungi Kontak Resmi Quantum untuk berbagai layanan bantuan dan keperluan Anda seputar produk');
         $this->migrator->add('page.contact_description_service', 'Pusat Servis Resmi Quantum yang profesional dan terpercaya siap membantu Anda untuk berbagai layanan seputar produk');
+        $this->migrator->add('page.contact_regular_number', null);
         $this->migrator->add('page.contact_cc_number', '0800-1-503-508');
         $this->migrator->add('page.contact_cc_operational', [ [ 'day' => 'Senin - Jumat', 'to_hour' => '20:00', 'timezone' => 'WIB', 'from_hour' => '07:00' ] ]);
         $this->migrator->add('page.contact_cc_information', 'Hubungi langsung tim layanan pelanggan Quantum untuk mendapatkan informasi, bantuan teknis, atau konsultasi seputar produk.');
@@ -188,6 +189,9 @@ return new class extends SettingsMigration
         $this->migrator->add('page.contact_socmed_youtube', 'https://www.youtube.com/@quantumindonesia');
         $this->migrator->add('page.contact_socmed_instagram', 'https://www.instagram.com/quantum_indonesia');
         $this->migrator->add('page.contact_socmed_facebook', 'https://www.facebook.com/QuantumIDN');
+        $this->migrator->add('page.contact_email_marketing', 'marketing@quantumssm.co.id');
+        $this->migrator->add('page.contact_email_marketing_operational', [ [ 'day' => 'Senin - Jumat', 'to_hour' => '20:00', 'timezone' => 'WIB', 'from_hour' => '07:00' ] ]);
+        $this->migrator->add('page.contact_email_marketing_information', 'Hubungi tim marketing Quantum untuk informasi seputar peluang bisnis, kemitraan, dan penawaran eksklusif.');
 
         // Education & Guidance Page
         $this->migrator->add('page.guidance_is_active', "false");

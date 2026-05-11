@@ -16,6 +16,7 @@ class RegisterGuarantee extends Model
         'product_model',
         'purchase_date',
         'purchase_place',
+        'purchase_proof',
         'message',
     ];
 }

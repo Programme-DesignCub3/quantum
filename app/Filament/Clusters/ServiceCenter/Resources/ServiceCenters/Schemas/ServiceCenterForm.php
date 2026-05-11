@@ -47,11 +47,14 @@ class ServiceCenterForm
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->required(),
-                            TextInput::make('area')
-                                ->label('Wilayah/Area')
-                                ->autocomplete(false)
+                            Select::make('area_service_id')
+                                ->label('Area')
+                                ->relationship('areaService', 'area', function($query) {
+                                    $query->orderBy('area', 'asc');
+                                })
+                                ->preload()
+                                ->searchable()
                                 ->columnSpanFull()
-                                ->belowContent('Contoh: Jakarta, Bandung, Surabaya')
                                 ->required(),
                             Textarea::make('address')
                                 ->label('Alamat')
@@ -130,12 +133,14 @@ class ServiceCenterForm
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->prefixIcon(Heroicon::Phone)
+                                ->rule('phone:INTERNATIONAL,ID')
                                 ->required(),
                             TextInput::make('whatsapp')
                                 ->label('Nomor WhatsApp')
                                 ->autocomplete(false)
                                 ->columnSpanFull()
                                 ->prefixIcon(Heroicon::Phone)
+                                ->rule('phone:INTERNATIONAL,ID')
                                 ->required(),
                             TextInput::make('maps')
                                 ->label('Embed Maps')

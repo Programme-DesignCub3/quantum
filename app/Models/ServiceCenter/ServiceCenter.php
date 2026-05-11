@@ -15,7 +15,6 @@ class ServiceCenter extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
-        'area',
         'address',
         'operational',
         'provide_service',
@@ -37,6 +36,11 @@ class ServiceCenter extends Model implements HasMedia
         return $this->belongsTo(TypeService::class, 'type_service_id');
     }
 
+    public function areaService()
+    {
+        return $this->belongsTo(AreaService::class, 'area_service_id');
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -46,11 +50,10 @@ class ServiceCenter extends Model implements HasMedia
 
     /**
      * Get all service centers with optional query filter.
-     * @param int $number
      * @param ?string $query
      * @param ?string $type
      */
-    public function getAllServiceCenter(int $number, ?string $query, ?string $type)
+    public function getAllServiceCenter(?string $query, ?string $type)
     {
         return self::where('is_published', true)
             ->whereHas('typeService', function ($q) use ($type) {
@@ -60,32 +63,12 @@ class ServiceCenter extends Model implements HasMedia
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('name', 'like', '%' . $query . '%')
                         ->orWhere('address', 'like', '%' . $query . '%')
-                        ->orWhere('area', 'like', '%' . $query . '%');
+                        ->orWhereHas('areaService', function ($areaQuery) use ($query) {
+                            $areaQuery->where('area', 'like', '%' . $query . '%');
+                        });
                 });
             })
             ->latest()
-            ->take($number)
             ->get();
-    }
-
-    /**
-     * Count all service centers.
-     * @param ?string $query
-     * @param ?string $type
-     */
-    public function getCountAllServiceCenter(?string $query, ?string $type)
-    {
-        return self::where('is_published', true)
-            ->whereHas('typeService', function ($q) use ($type) {
-                $q->where('slug', $type);
-            })
-            ->when($query, function ($q) use ($query) {
-                $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('name', 'like', '%' . $query . '%')
-                        ->orWhere('address', 'like', '%' . $query . '%')
-                        ->orWhere('area', 'like', '%' . $query . '%');
-                });
-            })
-            ->count();
     }
 }

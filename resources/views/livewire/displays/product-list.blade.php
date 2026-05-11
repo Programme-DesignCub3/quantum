@@ -23,7 +23,7 @@
                 @endforeach
             </div>
         </div>
-        {{-- Filter Section (Mobile) --}}
+        {{-- Filter Section - Mobile --}}
         <div class="flex flex-col bg-white md:hidden">
             {{-- All Filter --}}
             <div class="flex gap-2 py-2 px-4">
@@ -69,7 +69,7 @@
             'py-8' => $count_products == 0,
             'container px-4 sm:px-6 md:grid md:grid-cols-12 md:gap-10'
         ])>
-            {{-- All Filter (Desktop) --}}
+            {{-- Filter Section - Desktop --}}
             <div wire:ignore class="hidden flex-col gap-6 md:flex md:col-span-3 md:gap-4">
                 <h4 class="text-xl">Filter</h4>
                 <div class="flex flex-col gap-4">
@@ -163,7 +163,7 @@
             </div>
         </div>
     </div>
-    {{-- (Drawer) All Filter --}}
+    {{-- (Drawer) All Filter - Mobile --}}
     <x-displays.drawer store="productFilterDrawer">
         <div wire:ignore class="flex flex-col gap-6">
             <h4 class="text-center">Filter</h4>
@@ -215,7 +215,7 @@
             </div>
         </div>
     </x-displays.drawer>
-    {{-- (Drawer) Variant Filter --}}
+    {{-- (Drawer) Variant Filter - Mobile --}}
     <x-displays.drawer store="productVariantDrawer">
         <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
             @if(!$variants->isEmpty())
@@ -232,7 +232,7 @@
             @endif
         </div>
     </x-displays.drawer>
-    {{-- (Drawer) Type Filter --}}
+    {{-- (Drawer) Type Filter - Mobile --}}
     <x-displays.drawer store="productTypeDrawer">
         <div class="flex flex-col max-h-80 overflow-y-auto gap-1 py-4">
             @if(!$types->isEmpty())
@@ -249,7 +249,7 @@
             @endif
         </div>
     </x-displays.drawer>
-    {{-- (Drawer) Sort --}}
+    {{-- (Drawer) Sort - Mobile --}}
     <x-displays.drawer store="productSortDrawer">
         <div class="flex flex-col gap-1 py-4">
             <button type="button" @click="$store.productSortDrawer.closeDrawer()" wire:click="$set('sort', '')" class="w-full text-left p-4 cursor-pointer">Terbaru</button>

@@ -13,7 +13,6 @@ class ServiceCenterList extends Component
     public $type_services;
     public $type_service_name;
     public $current_tab;
-    public $amount = 3;
 
     #[Url(as: 'q', except: '')]
     public $search = '';
@@ -31,21 +30,16 @@ class ServiceCenterList extends Component
         $this->type_service_name = $name;
         $this->current_tab = $slug;
         $this->search = '';
-        $this->amount = 3;
-    }
-
-    public function loadMore()
-    {
-        $this->amount += 3;
     }
 
     public function render(ServiceCenter $serviceCenter)
     {
-        $total_count = $serviceCenter->getCountAllServiceCenter($this->search, $this->current_tab);
-        $service_centers = $serviceCenter->getAllServiceCenter($this->amount, $this->search, $this->current_tab);
+        $get_service = $serviceCenter->getAllServiceCenter($this->search, $this->current_tab);
+        $service_centers = $get_service->groupBy('areaService.area')->sortBy(function($group) {
+            return $group->first()->areaService->area;
+        });
 
         return view('livewire.displays.service-center-list', [
-            'total_count' => $total_count,
             'service_centers' => $service_centers,
         ]);
     }

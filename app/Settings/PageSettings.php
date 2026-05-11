@@ -166,6 +166,8 @@ class PageSettings extends Settings
     public string $contact_title_service;
     public string $contact_description;
     public string $contact_description_service;
+
+    public ?string $contact_regular_number;
     public string $contact_cc_number;
     public array $contact_cc_operational;
     public string $contact_cc_information;
@@ -188,6 +190,9 @@ class PageSettings extends Settings
     public string $contact_socmed_youtube;
     public string $contact_socmed_instagram;
     public string $contact_socmed_facebook;
+    public string $contact_email_marketing;
+    public array $contact_email_marketing_operational;
+    public string $contact_email_marketing_information;
 
     // Education & Guidance Page
     public string $guidance_is_active;

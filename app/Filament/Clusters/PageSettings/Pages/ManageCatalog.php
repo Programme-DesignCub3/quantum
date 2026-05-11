@@ -20,7 +20,7 @@ class ManageCatalog extends SettingsPage
 {
     protected static ?int $navigationSort = 5;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Distributor';
+    protected static string | UnitEnum | null $navigationGroup = 'Produk';
 
     protected static ?string $navigationLabel = 'Katalog';
 
@@ -31,11 +31,6 @@ class ManageCatalog extends SettingsPage
     protected static string $settings = PageSettings::class;
 
     protected static ?string $cluster = PageSettingsCluster::class;
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return env('FILAMENT_DISTRIBUTOR', false);
-    }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {

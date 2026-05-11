@@ -83,15 +83,17 @@
                 <x-inputs.button type="button" size="lg" event="$store.productDrawer.openDrawer(data)" class="w-max hidden md:block">
                     Beli Sekarang
                 </x-inputs.button>
+                @if(in_array('detail', array_column($detail->specs_detail, 'type')))
+                    <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
+                        @foreach($detail->specs_detail[array_search('detail', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $spec)
+                            <x-displays.specs :label="$label">
+                                <p>{{ $spec }}</p>
+                            </x-displays.specs>
+                        @endforeach
+                    </div>
+                @endif
             </div>
             <div x-cloak :class="isVisible ? 'bottom-0' : '-bottom-full'" class="fixed z-40 transition-all duration-300 ease-in-out left-1/2 -translate-x-1/2 bg-white p-4 max-w-full w-full rounded-t-2xl drop-shadow-float-lg md:hidden">
-                {{-- <div class="space-y-0">
-                    <span>Harga</span>
-                    <div class="flex space-x-1">
-                        <p>Rp</p>
-                        <p class="large">350.000</p>
-                    </div>
-                </div> --}}
                 <x-inputs.button type="button" size="lg" event="$store.productDrawer.openDrawer(data)" class="drop-shadow-float w-full">
                     Beli Sekarang
                 </x-inputs.button>
@@ -203,7 +205,7 @@
                             </x-displays.accordion>
                         @endif
                         @if(in_array('detail', array_column($detail->specs_detail, 'type')))
-                            <x-displays.accordion type="secondary" title="Spesifikasi Detil" :open="true">
+                            <x-displays.accordion type="secondary" title="Spesifikasi Detail" :open="true">
                                 <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
                                     @foreach($detail->specs_detail[array_search('detail', array_column($detail->specs_detail, 'type'))]['data']['value'] as $label => $spec)
                                         <x-displays.specs :label="$label">
@@ -285,7 +287,7 @@
                 </div>
                 <div class="flex flex-col gap-8">
                     <div class="border-b border-[#CECECE] py-3">
-                        <h4>Spesifikasi Detil</h4>
+                        <h4>Spesifikasi Detail</h4>
                     </div>
                     <div class="grid grid-cols-2 gap-4 md:max-w-max md:mx-auto">
                         <div class="flex flex-col gap-4 md:px-4 md:w-[330px]">

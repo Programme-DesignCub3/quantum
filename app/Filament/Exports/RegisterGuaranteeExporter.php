@@ -33,8 +33,11 @@ class RegisterGuaranteeExporter extends Exporter
                 ->label('Tanggal Pembelian'),
             ExportColumn::make('purchase_place')
                 ->label('Tempat Pembelian'),
+            ExportColumn::make('purchase_proof')
+                ->label('Bukti Pembelian')
+                ->formatStateUsing(fn ($state) => $state ? asset('storage/' . $state) : ''),
             ExportColumn::make('message')
-                ->label('Pesan'),
+                ->label('Catatan'),
             ExportColumn::make('created_at')
                 ->label('Tanggal Pendaftaran'),
         ];

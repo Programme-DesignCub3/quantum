@@ -2,14 +2,18 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
 use App\Models\RegisterGuarantee;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
 use Livewire\Component;
 
 class GuaranteeForm extends Component
 {
+    use WithFileUploads;
+
     // Personal Data
     public $nama_lengkap;
     public $nomor_handphone;
@@ -22,9 +26,11 @@ class GuaranteeForm extends Component
     public $model_produk;
     public $tanggal_pembelian;
     public $tempat_pembelian;
-    public $pesan;
+    public $bukti_pembelian;
+    public $catatan;
 
     public $product_categories = [];
+    public $model_products = [];
     public $tnc;
 
     public function mount(ProductCategory $productCategory)
@@ -44,7 +50,8 @@ class GuaranteeForm extends Component
             'model_produk' => 'required',
             'tanggal_pembelian' => 'required|date',
             'tempat_pembelian' => 'required',
-            'pesan' => 'required',
+            'bukti_pembelian' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'catatan' => 'required',
             'tnc' => 'accepted'
         ];
     }
@@ -52,6 +59,8 @@ class GuaranteeForm extends Component
     public function submit()
     {
         $this->validate();
+
+        $path = $this->bukti_pembelian->store('purchase-proofs', 'public');
 
         RegisterGuarantee::create([
             'name' => $this->nama_lengkap,
@@ -63,7 +72,8 @@ class GuaranteeForm extends Component
             'product_model' => $this->model_produk,
             'purchase_date' => $this->tanggal_pembelian,
             'purchase_place' => $this->tempat_pembelian,
-            'message' => $this->pesan,
+            'purchase_proof' => $path,
+            'message' => $this->catatan,
         ]);
 
         $this->reset([
@@ -76,12 +86,20 @@ class GuaranteeForm extends Component
             'model_produk',
             'tanggal_pembelian',
             'tempat_pembelian',
-            'pesan',
+            'bukti_pembelian',
+            'catatan',
             'tnc'
         ]);
 
         session()->put('guarantee_registered', true);
         return redirect()->route('support.guarantee-information.registration-success');
+    }
+
+    public function categoryProduct($name, $slug, Product $product)
+    {
+        $this->kategori_produk = $name;
+        $this->model_products = $product->getAllProductByCategory($slug);
+        $this->model_produk = null;
     }
 
     #[On('purchase-date-selected')]

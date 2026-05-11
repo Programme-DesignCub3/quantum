@@ -11,7 +11,6 @@
         'w-full z-50'
     ])>
     <div class="container px-3 py-3 flex justify-between items-center w-full sm:px-6 md:py-0">
-        {{-- Logo --}}
         <a href="{{ route('home') }}">
             <img class="w-24 md:w-28 lg:w-[134px]" src="{{ asset('images/logo.png') }}" alt="Logo Quantum Indonesia">
         </a>
@@ -74,6 +73,10 @@
                                 {{ $category->name }}
                             </a>
                         @endforeach
+                        <a href="{{ route('catalog') }}" class="menu-nav-sublink">
+                            <span class="icon-[proicons--book]"></span>
+                            Katalog
+                        </a>
                     </div>
                     {{-- <div x-show="$store.menuDrawer.currentMenu === 'distributor'" class="flex flex-col gap-1">
                         <button type="button" @click="$store.menuDrawer.closeMenu()" class="menu-nav-back">
@@ -83,10 +86,6 @@
                         <a href="{{ route('distributor.list-distributor') }}" class="menu-nav-sublink">
                             <x-icons.store-icon class="fill-qt-green-normal" />
                             Daftar Distributor
-                        </a>
-                        <a href="{{ route('distributor.catalog') }}" class="menu-nav-sublink">
-                            <span class="icon-[proicons--book]"></span>
-                            Katalog
                         </a>
                     </div> --}}
                     <div x-show="$store.menuDrawer.currentMenu === 'updates'" class="flex flex-col gap-1">
@@ -170,6 +169,7 @@
             </div>
         </div>
     </div>
+    {{-- Desktop - Dropdowns --}}
     <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop || $store.searchDrawer.open" class="fixed left-0 w-full min-h-dvh bg-black/40 hidden md:block"></div>
     <div x-cloak x-show="$store.menuDrawer.currentMenuDesktop === 'about'" @mouseenter="$store.menuDrawer.openMenu('about')" @mouseleave="$store.menuDrawer.closeMenu()" class="absolute left-0 w-full bg-[#E7F1F2] hidden md:block">
         <div class="container px-6 py-12 lg:px-16">
@@ -189,6 +189,7 @@
                     @foreach ($product_categories as $category)
                         <a href="{{ route('product.category', $category->slug) }}" class="desktop-menu-nav-link">{{ $category->name }}</a>
                     @endforeach
+                    <a href="{{ route('catalog') }}" class="desktop-menu-nav-link">Katalog</a>
                 </div>
             </div>
             <div class="col-span-7 grid grid-cols-2 gap-5 rtl">
@@ -218,7 +219,6 @@
             <p class="large font-bold mb-8">Distributor</p>
             <div class="flex flex-col gap-8">
                 <a href="{{ route('distributor.list-distributor') }}" class="desktop-menu-nav-link">Daftar Distributor</a>
-                <a href="{{ route('distributor.catalog') }}" class="desktop-menu-nav-link">Katalog</a>
             </div>
         </div>
     </div> --}}

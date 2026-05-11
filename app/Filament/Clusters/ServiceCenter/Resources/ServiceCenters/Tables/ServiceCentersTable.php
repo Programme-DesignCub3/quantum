@@ -26,9 +26,9 @@ class ServiceCentersTable
                     ->searchable()
                     ->placeholder('Tidak ada tipe')
                     ->sortable(),
-                TextColumn::make('area')
-                    ->label('Wilayah/Area')
-                    ->placeholder('Tidak ada wilayah/area')
+                TextColumn::make('areaService.area')
+                    ->label('Area')
+                    ->placeholder('Tidak ada area')
                     ->searchable(),
                 ToggleColumn::make('is_published')
                     ->label('Status Publikasi')

@@ -35,11 +35,13 @@ Route::prefix('produk')->name('product')->group(function () {
     });
 });
 
+// Product => Katalog
+Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog');
+
 // Distributor
-Route::name('distributor')->group(function () {
-    Route::get('/katalog', [CatalogController::class, 'index'])->name('.catalog');
-    Route::get('/distributor', [DistributorController::class, 'index'])->name('.list-distributor');
-});
+// Route::name('distributor')->group(function () {
+//     Route::get('/distributor', [DistributorController::class, 'index'])->name('.list-distributor');
+// });
 
 // Updates
 Route::name('updates')->group(function () {

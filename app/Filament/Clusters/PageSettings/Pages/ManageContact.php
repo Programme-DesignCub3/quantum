@@ -145,6 +145,17 @@ class ManageContact extends SettingsPage
                                     ->columnSpanFull()
                                     ->required(),
                             ]),
+                        Section::make('Nomor Telepon Reguler')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('contact_regular_number')
+                                    ->label('Nomor')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->prefixIcon(Heroicon::Phone)
+                                    ->rule('phone:INTERNATIONAL,ID')
+                                    ->helperText('Nomor telepon reguler akan ditampilkan di floating button pada website. Untuk kolom ini tidak wajib diisi.'),
+                            ]),
                         Section::make('Call Center')
                             ->collapsible()
                             ->schema([
@@ -153,6 +164,7 @@ class ManageContact extends SettingsPage
                                     ->autocomplete(false)
                                     ->columnSpanFull()
                                     ->prefixIcon(Heroicon::Phone)
+                                    ->rule('phone:INTERNATIONAL,ID')
                                     ->required(),
                                 Textarea::make('contact_cc_information')
                                     ->label('Informasi Lainnya')
@@ -207,6 +219,7 @@ class ManageContact extends SettingsPage
                                     ->autocomplete(false)
                                     ->columnSpanFull()
                                     ->prefixIcon(Heroicon::Phone)
+                                    ->rule('phone:INTERNATIONAL,ID')
                                     ->required(),
                                 Textarea::make('contact_wa_information')
                                     ->label('Informasi Lainnya')
@@ -416,6 +429,60 @@ class ManageContact extends SettingsPage
                                     ->columnSpanFull()
                                     ->required(),
                                 Repeater::make('contact_socmed_operational')
+                                    ->label('Jam Operasional')
+                                    ->columnSpanFull()
+                                    ->reorderableWithButtons()
+                                    ->minItems(1)
+                                    ->required()
+                                    ->schema([
+                                        TextInput::make('day')
+                                            ->label('Hari (From - To)')
+                                            ->autocomplete(false)
+                                            ->belowContent('Contoh: Senin - Jumat')
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Flex::make([
+                                            TimePicker::make('from_hour')
+                                                ->label('Jam (From)')
+                                                ->prefix('Dari')
+                                                ->seconds(false)
+                                                ->columnSpan(1)
+                                                ->required(),
+                                            TimePicker::make('to_hour')
+                                                ->label('Jam (To)')
+                                                ->prefix('Sampai')
+                                                ->seconds(false)
+                                                ->columnSpan(1)
+                                                ->required(),
+                                            Select::make('timezone')
+                                                ->label('Zona Waktu')
+                                                ->options([
+                                                    'WIB' => 'WIB',
+                                                    'WITA' => 'WITA',
+                                                    'WIT' => 'WIT',
+                                                ])
+                                                ->default('WIB')
+                                                ->selectablePlaceholder(false)
+                                                ->columnSpan(1)
+                                                ->required(),
+                                        ])
+                                    ]),
+                            ]),
+                        Section::make('Email Marketing')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('contact_email_marketing')
+                                    ->label('Email Marketing')
+                                    ->autocomplete(false)
+                                    ->columnSpanFull()
+                                    ->prefixIcon(Heroicon::Envelope)
+                                    ->required(),
+                                Textarea::make('contact_email_marketing_information')
+                                    ->label('Informasi Lainnya')
+                                    ->rows(3)
+                                    ->columnSpanFull()
+                                    ->required(),
+                                Repeater::make('contact_email_marketing_operational')
                                     ->label('Jam Operasional')
                                     ->columnSpanFull()
                                     ->reorderableWithButtons()

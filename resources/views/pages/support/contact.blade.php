@@ -64,7 +64,7 @@
                     </x-slot:button>
                 </x-displays.simple-card>
                 <x-displays.drawer store="contactWhatsAppDrawer">
-                    <x-layouts.contacts.whatsapp-layout :settings="$page_settings" />
+                    <x-layouts.contacts.whats-app-layout :settings="$page_settings" />
                 </x-displays.drawer>
                 <x-displays.modal store="contactWhatsAppDrawer">
                     <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
@@ -73,7 +73,7 @@
                                 <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
                             </button>
                         </div>
-                        <x-layouts.contacts.whatsapp-layout :settings="$page_settings" />
+                        <x-layouts.contacts.whats-app-layout :settings="$page_settings" />
                     </div>
                 </x-displays.modal>
                 {{-- Email --}}
@@ -178,6 +178,35 @@
                             </button>
                         </div>
                         <x-layouts.contacts.social-media-layout :settings="$page_settings" />
+                    </div>
+                </x-displays.modal>
+                {{-- Email Marketing --}}
+                <x-displays.simple-card background="white" :background-icon="false" :border="false">
+                    <h3 class="md:text-2xl">Email Marketing</h3>
+                    <p>Konsultasikan kebutuhan Anda langsung via email resmi kami</p>
+                    <x-slot:icon>
+                        <span class="icon-[lucide--mail] text-qt-green-normal text-[40px]"></span>
+                    </x-slot:icon>
+                    <x-slot:button>
+                        <div class="flex justify-between">
+                            <x-inputs.button-icon type="button" icon="icon-[material-symbols--info-outline-rounded]" event="$store.contactEmailMarketingDrawer.openDrawer()" class="rounded-2xl!" />
+                            <x-inputs.button type="hyperlink" href="{{ 'mailto:' . $page_settings->contact_email_marketing }}" class="rounded-2xl!">
+                                Email
+                            </x-inputs.button>
+                        </div>
+                    </x-slot:button>
+                </x-displays.simple-card>
+                <x-displays.drawer store="contactEmailMarketingDrawer">
+                    <x-layouts.contacts.email-marketing-layout :settings="$page_settings" />
+                </x-displays.drawer>
+                <x-displays.modal store="contactEmailMarketingDrawer">
+                    <div class="relative w-full bg-white drop-shadow-float-lg rounded-3xl overflow-hidden p-10 min-[830px]:w-xl">
+                        <div class="absolute top-3 right-3">
+                            <button type="button" @click="$store.contactEmailMarketingDrawer.closeDrawer()" class="rounded-full cursor-pointer size-10 flex justify-center items-center">
+                                <span class="icon-[material-symbols--close-rounded] text-2xl"></span>
+                            </button>
+                        </div>
+                        <x-layouts.contacts.email-marketing-layout :settings="$page_settings" />
                     </div>
                 </x-displays.modal>
             </div>

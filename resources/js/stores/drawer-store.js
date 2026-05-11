@@ -154,6 +154,11 @@ Alpine.store('contactSocmedDrawer', {
     openDrawer() { this.open = true },
     closeDrawer() { this.open = false },
 })
+Alpine.store('contactEmailMarketingDrawer', {
+    open: false,
+    openDrawer() { this.open = true },
+    closeDrawer() { this.open = false },
+})
 Alpine.store('shareDrawer', {
     open: false,
     openDrawer() {this.open = true },

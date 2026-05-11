@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\EntryData\EntryGuarantees;
 
+use App\Filament\Infolists\Components\LinkEntry;
 use App\Filament\Resources\EntryData\EntryGuarantees\Pages\ManageEntryGuarantees;
 use App\Models\RegisterGuarantee;
 use BackedEnum;
@@ -62,8 +63,10 @@ class EntryGuaranteeResource extends Resource
                             ->label('Tanggal Pembelian'),
                         TextEntry::make('purchase_place')
                             ->label('Tempat Pembelian'),
+                        LinkEntry::make('purchase_proof')
+                            ->label('Bukti Pembelian'),
                         TextEntry::make('message')
-                            ->label('Pesan'),
+                            ->label('Catatan'),
                     ]),
             ]);
     }

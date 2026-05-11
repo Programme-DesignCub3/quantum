@@ -17,6 +17,13 @@ class Floating extends Component
      */
     public function __construct(PageSettings $pageSettings)
     {
+        if ($pageSettings->contact_regular_number) {
+            $regular_number = new PhoneNumber($pageSettings->contact_regular_number, 'ID');
+            $pageSettings->contact_regular_number_formatted = $regular_number->formatE164();
+        } else {
+            $pageSettings->contact_regular_number_formatted = null;
+        }
+
         $call_center = new PhoneNumber($pageSettings->contact_cc_number, 'ID');
         $whatsapp = new PhoneNumber($pageSettings->contact_wa_number, 'ID');
 
@@ -24,6 +31,7 @@ class Floating extends Component
         $pageSettings->contact_wa_number_formatted = $whatsapp->formatE164();
 
         $this->data_drawer = [
+            'number' => $pageSettings->contact_regular_number_formatted,
             'email' => $pageSettings->contact_email,
             'whatsapp' => $pageSettings->contact_wa_number_formatted,
             'call_center' => $pageSettings->contact_cc_number_formatted,

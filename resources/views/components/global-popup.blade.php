@@ -86,20 +86,20 @@
 
 {{-- Video --}}
 <div x-data x-cloak x-effect="document.body.style.overflow = $store.videoModal.open ? 'hidden' : 'auto'" @keydown.escape.window="$store.videoModal.closeVideo()" :class="$store.videoModal.open ? 'visible bg-black/40' : 'invisible bg-black/0'" class="fixed z-50 left-1/2 top-0 -translate-x-1/2 transition-all duration-300 ease-in-out max-w-full w-full mx-auto min-h-dvh overflow-hidden flex justify-center items-center px-4">
-    <div :class="$store.videoModal.open ? 'visible' : 'invisible'" class="flex grow flex-col gap-2 drop-shadow-float-lg md:rounded-2xl md:max-w-3xl md:relative">
+    <div :class="$store.videoModal.open ? 'visible' : 'invisible'" class="flex grow flex-col gap-2 md:rounded-2xl md:max-w-3xl md:relative">
         <div class="flex justify-end md:absolute md:z-60 md:-top-4 md:-right-4">
             <button type="button" @click="$store.videoModal.closeVideo()" class="size-6 cursor-pointer md:rounded-full md:size-10 md:bg-white md:flex md:justify-center md:items-center">
                 <span class="icon-[material-symbols--close-rounded] text-2xl text-white md:text-black"></span>
             </button>
         </div>
         <template x-if="$store.videoModal.data?.type === 'local'">
-            <video x-ref="videoPlayer" class="w-full aspect-video rounded-2xl bg-black" controls playsinline webkit-playsinline>
+            <video x-ref="videoPlayer" class="w-full aspect-video rounded-2xl bg-black drop-shadow-float-lg" controls playsinline webkit-playsinline>
                 <source :src="$store.videoModal.data?.src" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </template>
         <template x-if="$store.videoModal.data?.type === 'youtube'">
-            <iframe class="w-full aspect-video bg-black rounded-2xl" :src="$store.videoModal.open ? 'https://www.youtube.com/embed/' + $store.videoModal.data?.src : ''" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe class="w-full aspect-video bg-black rounded-2xl drop-shadow-float-lg" :src="$store.videoModal.open ? 'https://www.youtube.com/embed/' + $store.videoModal.data?.src : ''" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </template>
     </div>
 </div>

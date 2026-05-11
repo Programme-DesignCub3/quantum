@@ -203,12 +203,12 @@
             @apply w-full p-3 rounded-xl border outline-offset-2 text-[#6D6D6D] text-sm border-[#E9E9E9] outline-none focus:border-[#6D6D6D] placeholder:text-[#6D6D6D]/60;
         }
         button.select-form {
-            @apply relative flex justify-between items-center w-full p-3 rounded-xl border border-[#E9E9E9] outline-none cursor-pointer focus:border-[#6D6D6D];
+            @apply relative flex justify-between items-center w-full p-3 rounded-xl border border-[#E9E9E9] outline-none cursor-pointer text-[#6D6D6D]/60 focus:border-[#6D6D6D] disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed;
             &.filled {
-                @apply text-[#6D6D6D];
+                @apply text-[#6D6D6D]!;
             }
             &.not-filled {
-                @apply text-[#6D6D6D]/60;
+                @apply text-[#6D6D6D]/60!;
             }
             span#select-form {
                 @apply text-sm;
@@ -217,9 +217,18 @@
     }
     /* Dropdown Select (Desktop) */
     .dropdown-select {
-        @apply absolute z-10 top-12 left-0 w-full bg-white rounded-xl max-h-[200px] py-2.5 overflow-y-auto hidden md:block;
+        @apply absolute z-20 top-12 left-0 w-full bg-white rounded-xl max-h-[200px] py-2.5 overflow-y-auto hidden md:block;
         button {
             @apply w-full text-left text-sm cursor-pointer px-4 py-2.5 hover:bg-[#E7F1F2];
+        }
+    }
+    /* File Input */
+    .file-input {
+        label {
+            @apply block text-sm text-[#6D6D6D]/60;
+        }
+        input[type="file"] {
+            @apply w-full rounded-xl border outline-offset-2 text-[#6D6D6D]/60 text-sm border-[#E9E9E9] outline-none cursor-pointer focus:border-[#6D6D6D] file:bg-gray-200 file:p-3 file:cursor-pointer;
         }
     }
     /* Article Content */
@@ -323,11 +332,13 @@
     }
 }
 
-/* Customization */
-
 [x-cloak] {
     @apply hidden!;
 }
+
+/* Customization & Misc */
+
+/* Splide - Custom */
 
 .splide__pagination {
     &.slide-home {
@@ -406,6 +417,8 @@
         @apply outline-2! outline-black! -outline-offset-2!
     }
 }
+
+/* Datepicker - Custom */
 
 .datepicker {
     @apply w-full!;

@@ -4,7 +4,7 @@
             @if($for === 'distributor')
                 Distributor {{ $payload->area->area }}
             @else
-                {{ $payload->area }}
+                {{ $payload->areaService->area }}
             @endif
         </span>
         <h4 class="md:text-xl">{{ $payload->name }}</h4>
@@ -14,13 +14,13 @@
         <div class="flex flex-col gap-4">
             <span class="block text-[#6D6D6D]">{{ $payload->address }}</span>
             <div x-data class="flex flex-wrap gap-2">
-                <x-inputs.button-icon type="button" event="$store.placeDetailDrawer.openDrawer(data)" class="rounded-2xl!" icon="icon-[material-symbols--info-outline-rounded]" />
-                <x-inputs.button-icon type="hyperlink" href="{{ 'tel:' . $payload->phone_formatted }}" class="rounded-2xl!" icon="icon-[lucide--phone]" />
-                <x-inputs.button-icon type="hyperlink" :newTab="true" href="{{ 'https://wa.me/' . $payload->whatsapp_formatted }}" class="rounded-2xl!" icon="icon-[ic--baseline-whatsapp]" />
+                <x-inputs.button-icon type="button" size="sm" event="$store.placeDetailDrawer.openDrawer(data)" class="rounded-xl! p-2.5!" icon="icon-[material-symbols--info-outline-rounded]" />
+                <x-inputs.button-icon type="hyperlink" size="sm" href="{{ 'tel:' . $payload->phone_formatted }}" class="rounded-xl! p-2.5!" icon="icon-[lucide--phone]" />
+                <x-inputs.button-icon type="hyperlink" size="sm" :newTab="true" href="{{ 'https://wa.me/' . $payload->whatsapp_formatted }}" class="rounded-xl! p-2.5!" icon="icon-[ic--baseline-whatsapp]" />
                 @if($for === 'distributor')
-                    <x-inputs.button-icon type="hyperlink" href="#map-embed" event="$store.placeDetailDrawer.embedMap(data)" class="rounded-2xl!" icon="icon-[lucide--map-pin]" />
+                    <x-inputs.button-icon type="hyperlink" size="sm" href="#map-embed" event="$store.placeDetailDrawer.embedMap(data)" class="rounded-xl! p-2.5!" icon="icon-[lucide--map-pin]" />
                 @else
-                    <x-inputs.button-icon type="hyperlink" href="{{ $payload->type === 'service_center' ? '#map-embed' : '#map-embed-partner' }}" event="$store.placeDetailDrawer.embedMap(data)" class="rounded-2xl!" icon="icon-[lucide--map-pin]" />
+                    <x-inputs.button-icon type="hyperlink" size="sm" href="#map-embed" event="$store.placeDetailDrawer.embedMap(data)" class="rounded-xl! p-2.5!" icon="icon-[lucide--map-pin]" />
                 @endif
             </div>
         </div>

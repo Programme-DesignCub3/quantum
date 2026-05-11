@@ -34,7 +34,7 @@ class PlaceCard extends Component
                 'for' => $this->for,
                 'image' => $this->payload->getFirstMedia('service_centers') ? $this->payload->getFirstMedia('service_centers')->getUrl() : null,
                 'type' => $this->payload->type,
-                'area' => $this->payload->area,
+                'area' => $this->payload->areaService->area,
                 'name' => $this->payload->name,
                 'address' => $this->payload->address,
                 'operational' => $this->payload->operational,

@@ -24,9 +24,46 @@
                         </button>
                     </div>
                 </div>
-                <div class="flex flex-col gap-8 lg:flex-row">
-                    <div id="map-embed" class="flex flex-col gap-4 scroll-mt-24 lg:w-full">
-                        {{-- Map Embed --}}
+                <div class="grid grid-cols-12 gap-8">
+                    {{-- Service Center List --}}
+                    <div class="col-span-full order-last flex flex-col lg:order-first lg:col-span-7 xl:col-span-8">
+                        @if(!$service_centers->isEmpty())
+                            @foreach ($service_centers as $area => $service_center)
+                                <div wire:key="service-center-{{ $area }}">
+                                    <x-displays.accordion-place :area="$area" :last="$loop->last">
+                                        <div class="flex flex-col gap-4 pt-3 pb-6 pl-8">
+                                            @foreach ($service_center as $detail)
+                                                <div wire:ignore wire:key="service-center-detail-{{ $detail->id }}">
+                                                    <x-displays.place-card for="service_center" :payload="$detail" />
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </x-displays.accordion-place>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="min-h-[100px] flex justify-center items-center h-full md:min-h-[200px]">
+                                <p class="text-center text-gray-500">
+                                    @if($search !== '')
+                                        Pencarian tidak ditemukan
+                                    @else
+                                        Tidak ada data untuk ditampilkan
+                                    @endif
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+                    {{-- Divider --}}
+                    <template x-if="$store.placeDetailDrawer?.embed_map">
+                        <div class="col-span-full flex items-center justify-center lg:hidden">
+                            <div class="flex-1 w-full h-px bg-black/10"></div>
+                            <span class="flex-1 text-center mx-3 text-xs text-[#6D6D6D]">Daftar {{ $type_service_name }}</span>
+                            <div class="flex-1 w-full h-px bg-black/10"></div>
+                        </div>
+                    </template>
+                    {{-- Map Embed --}}
+                    <div id="map-embed" class="col-span-full order-first flex flex-col gap-4 scroll-mt-24 lg:order-last lg:col-span-5 xl:col-span-4">
+                        {{-- Map Embed (Choosed) --}}
                         <template x-if="$store.placeDetailDrawer.embed_map?.maps">
                             <div class="map-iframe" x-html="$store.placeDetailDrawer.embed_map?.maps"></div>
                         </template>
@@ -57,52 +94,7 @@
                             </div>
                         </template>
                     </div>
-                    {{-- Divider --}}
-                    <template x-if="$store.placeDetailDrawer?.embed_map">
-                        <div class="flex items-center justify-center lg:hidden">
-                            <div class="flex-1 w-full h-px bg-black/10"></div>
-                            <span class="flex-1 text-center mx-3 text-xs text-[#6D6D6D]">Daftar {{ $type_service_name }}</span>
-                            <div class="flex-1 w-full h-px bg-black/10"></div>
-                        </div>
-                    </template>
-                    {{-- Service Center List --}}
-                    <div class="flex flex-col gap-4 lg:w-[60%]">
-                        @if(!$service_centers->isEmpty())
-                            @foreach ($service_centers as $service_center)
-                                <div wire:key="service-center-{{ $service_center->id }}">
-                                    <x-displays.place-card for="service_center" :payload="$service_center" />
-                                </div>
-                            @endforeach
-                            @if($total_count > 3 && $service_centers->count() < $total_count)
-                                <div wire:click="loadMore" class="hidden mt-4 lg:block">
-                                    <x-inputs.button type="button" size="lg">
-                                        Lebih banyak
-                                    </x-inputs.button>
-                                </div>
-                            @endif
-                        @else
-                            <div class="min-h-[100px] flex justify-center items-center h-full md:min-h-[200px]">
-                                <p class="text-center text-gray-500">
-                                    @if($search !== '')
-                                        Pencarian tidak ditemukan
-                                    @else
-                                        Tidak ada data untuk ditampilkan
-                                    @endif
-                                </p>
-                            </div>
-                        @endif
-                    </div>
                 </div>
-            </div>
-            {{-- Load More Button (Mobile) --}}
-            <div class="flex justify-center lg:hidden">
-                @if($total_count > 3 && $service_centers->count() < $total_count)
-                    <div wire:click="loadMore">
-                        <x-inputs.button type="button" size="lg">
-                            Lebih banyak
-                        </x-inputs.button>
-                    </div>
-                @endif
             </div>
         @else
             <div class="min-h-[100px] flex justify-center items-center md:min-h-[200px]">

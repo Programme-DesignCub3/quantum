@@ -5,9 +5,11 @@
             <h5 class="md:max-w-60 md:mx-auto">Hubungi Kami melalui Channel Berikut</h5>
         </div>
         <div class="flex justify-center gap-4">
-            <a href="#" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
-                <span class="icon-[lucide--phone] text-qt-green-normal text-2xl"></span>
-            </a>
+            <template x-if="$store.contactDrawer.data?.number">
+                <a :href="`tel:${$store.contactDrawer.data?.number}`" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
+                    <span class="icon-[lucide--phone] text-qt-green-normal text-2xl"></span>
+                </a>
+            </template>
             <a :href="'mailto:' + $store.contactDrawer.data?.email" class="flex justify-center items-center size-[60px] bg-[#F3F8F9] rounded-2xl">
                 <span class="icon-[lucide--mail] text-qt-green-normal text-2xl"></span>
             </a>

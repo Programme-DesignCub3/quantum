@@ -13,7 +13,7 @@ class CatalogController extends Controller
             return abort(404);
         }
 
-        return view('pages.distributor.catalog', [
+        return view('pages.product.catalog', [
             'meta_title' => $pageSettings->catalog_meta_title,
             'meta_description' => $pageSettings->catalog_meta_description,
             'meta_keywords' => $pageSettings->catalog_meta_keywords,

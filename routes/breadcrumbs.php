@@ -48,6 +48,16 @@ Breadcrumbs::for('product.detail', function (BreadcrumbTrail $trail, $category =
     }
 });
 
+// Beranda > Katalog
+Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) use ($pageSettings) {
+    $trail->parent('home');
+    if ($pageSettings->catalog_is_active === 'false') {
+        $trail->push('404');
+    } else {
+        $trail->push('Katalog', route('catalog'));
+    }
+});
+
 // Beranda > Distributor
 Breadcrumbs::for('distributor.list-distributor', function (BreadcrumbTrail $trail) use ($pageSettings) {
     $trail->parent('home');
@@ -55,16 +65,6 @@ Breadcrumbs::for('distributor.list-distributor', function (BreadcrumbTrail $trai
         $trail->push('404');
     } else {
         $trail->push('Distributor', route('distributor.list-distributor'));
-    }
-});
-
-// Beranda > Katalog
-Breadcrumbs::for('distributor.catalog', function (BreadcrumbTrail $trail) use ($pageSettings) {
-    $trail->parent('home');
-    if ($pageSettings->catalog_is_active === 'false') {
-        $trail->push('404');
-    } else {
-        $trail->push('Katalog', route('distributor.catalog'));
     }
 });
 

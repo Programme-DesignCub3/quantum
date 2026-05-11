@@ -2,7 +2,7 @@
     :component="$getEntryWrapperView()"
     :entry="$entry"
 >
-    <ol {{ $getExtraAttributeBag() }} style="margin-left: 20px; list-style-type: decimal;">
+    <ol {{ $getExtraAttributeBag() }}>
         @foreach($getState() as $catalog)
             <li class="bg-red-500">{{ $catalog }}</li>
         @endforeach
