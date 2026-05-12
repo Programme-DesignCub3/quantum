@@ -101,56 +101,25 @@ class ManagePrivacyPolicy extends SettingsPage
                     ->description('Pengaturan konten untuk halaman kebijakan privasi.')
                     ->columnSpanFull()
                     ->schema([
-                        Section::make('Section Kebijakan Privasi')
-                            ->description('Pengaturan pada section kebijakan privasi di halaman kebijakan privasi.')
-                            ->columnSpanFull()
-                            ->collapsible()
-                            ->schema([
-                                TextInput::make('pp_title')
-                                    ->label('Judul')
-                                    ->autocomplete(false)
-                                    ->columnSpanFull()
-                                    ->required(),
-                                DatePicker::make('pp_updated_date')
-                                    ->label('Tanggal Diperbarui')
-                                    ->columnSpanFull()
-                                    ->required(),
-                                RichEditor::make('pp_content')
-                                    ->label('Paragraf')
-                                    ->toolbarButtons([
-                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
-                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                        ['bulletList', 'orderedList'],
-                                        ['undo', 'redo'],
-                                    ])
-                                    ->columnSpanFull()
-                                    ->required(),
-                            ]),
-                        Section::make('Section Penggunaan Cookies')
-                            ->description('Pengaturan pada section penggunaan cookies di halaman kebijakan privasi.')
-                            ->columnSpanFull()
-                            ->collapsible()
-                            ->schema([
-                                TextInput::make('pp_title_cookie')
-                                    ->label('Judul')
-                                    ->autocomplete(false)
-                                    ->columnSpanFull()
-                                    ->required(),
-                                DatePicker::make('pp_updated_date_cookie')
-                                    ->label('Tanggal Diperbarui')
-                                    ->columnSpanFull()
-                                    ->required(),
-                                RichEditor::make('pp_content_cookie')
-                                    ->label('Paragraf')
-                                    ->toolbarButtons([
-                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
-                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                        ['bulletList', 'orderedList'],
-                                        ['undo', 'redo'],
-                                    ])
-                                    ->columnSpanFull()
-                                    ->required(),
-                            ])
+                            TextInput::make('pp_title')
+                                ->label('Judul')
+                                ->autocomplete(false)
+                                ->columnSpanFull()
+                                ->required(),
+                            DatePicker::make('pp_updated_date')
+                                ->label('Tanggal Diperbarui')
+                                ->columnSpanFull()
+                                ->required(),
+                            RichEditor::make('pp_content')
+                                ->label('Paragraf')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['bulletList', 'orderedList'],
+                                    ['undo', 'redo'],
+                                ])
+                                ->columnSpanFull()
+                                ->required(),
                     ]),
             ]);
     }

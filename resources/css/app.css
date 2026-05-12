@@ -259,6 +259,9 @@
     /* Rule Content */
     .rules-content {
         @apply flex flex-col gap-5;
+        h2 {
+            @apply text-2xl md:text-3xl;
+        }
         a {
             @apply border-b-2 border-qt-green-normal;
         }

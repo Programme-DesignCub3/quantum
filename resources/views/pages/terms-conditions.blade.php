@@ -13,7 +13,7 @@
     <main class="container flex flex-col gap-8 py-[60px] px-6 md:py-20 lg:py-[100px]">
         {{-- Heading --}}
         <div class="space-y-2 md:text-center md:max-w-5xl md:mx-auto">
-            <h2>{{ $page_settings->tnc_title }}</h2>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl">{{ $page_settings->tnc_title }}</h1>
             <p>Terakhir diperbarui: {{ $page_settings->tnc_updated_date_formatted }}</p>
         </div>
         {{-- Content --}}
